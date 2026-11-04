@@ -1,0 +1,41 @@
+---
+// HOME 13: "FAQ" — 8 sawal/jawab (click karne pe khulte hain). FAQ schema bhi yahin se banta hai.
+import SectionHeading from '../SectionHeading.astro';
+const faqs = [
+  { q: 'How long does it take to see SEO results?', a: 'Most clients see measurable ranking movement within 30–60 days and major traffic lifts by month 3–6. SEO is a compounding investment — we build systems, not short-term spikes.' },
+  { q: 'What is GEO and how is it different from SEO?', a: 'SEO gets you ranked in Google’s blue links. GEO (Generative Engine Optimization) gets your brand cited inside the AI answer in ChatGPT, Perplexity, Google AI Overviews, and others. They work together, but GEO is a separate discipline.' },
+  { q: 'Do you work with clients globally?', a: 'Yes. We work with businesses across the US, UK, Canada, Australia, the EU, and the UAE. Everything is remote-first, with flexible meeting times, clear reporting, and scheduled strategy calls — so timezones are never a problem.' },
+  { q: 'What is included in the Rank-Ready website package?', a: 'Strategy, semantic architecture, on-page SEO, schema, Core Web Vitals optimization, local landing pages (if applicable), GMB setup, and a full launch plan. Every package is scoped to your business — no templates.' },
+  { q: 'Do you offer monthly retainers or one-time projects?', a: 'Both. Website builds and audits are one-time engagements. Semantic SEO, GEO, and GMB management are monthly retainers because they need continuous optimization to win.' },
+  { q: 'How do you track AI and GEO visibility?', a: 'We use a combination of proprietary tools, manual query monitoring across ChatGPT, Perplexity, and Gemini, and third-party tracking platforms. You get a monthly report showing exactly where you are cited and where we are pushing next.' },
+  { q: 'What industries do you specialize in?', a: 'Legal, medical and dental, home services, real estate, e-commerce, and SaaS. We take select clients outside these categories if we see strong fit.' },
+  { q: 'Do you offer any guarantees?', a: 'We guarantee the work, the process, and the reporting — but anyone promising guaranteed rankings is lying to you. SEO is influence, not a button. We promise best-in-class execution and full transparency.' },
+];
+const schema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<section class="sec" style="background:#fff" id="faq">
+  <SectionHeading class="faq-head" eyebrow="FAQ" title="Questions? We’ve got answers." />
+  <div class="row faq-list">
+    {faqs.map((f) => (
+      <details class="tg">
+        <summary><h5>{f.q}</h5></summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>
+<style>
+  :global(.faq-head) { padding-bottom: 48px !important; }
+  .faq-list { max-width: 860px; font-family: var(--inter); }
+  .tg { background: #fff; border: .8px solid #E2E8F0; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
+  summary { list-style: none; cursor: pointer; position: relative; padding-right: 50px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
+  .tg[open] summary::after { content: '−'; }
+  h5 { font-size: 17px; font-weight: 700; line-height: 17px; color: var(--navy); padding-bottom: 0; }
+  .tg p { font-size: 15px; line-height: 30.6px; color: var(--slate-500); padding-top: 14px; }
+</style>
