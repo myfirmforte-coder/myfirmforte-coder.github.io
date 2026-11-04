@@ -1,0 +1,33 @@
+---
+// HOME 8: "INDUSTRIES" — 5 small cards with icons.
+import SectionHeading from '../SectionHeading.astro';
+const industries = [
+  { icon: 'fas fa-balance-scale', name: 'Legal &amp; Law Firms', href: '/industries/legal/' },
+  { icon: 'fas fa-hospital', name: 'Medical &amp; Dental', href: '/industries/medical-dental/' },
+  { icon: 'fas fa-home', name: 'Home Services', href: '/industries/home-services/' },
+  { icon: 'fas fa-synagogue', name: 'Real Estate', href: '/industries/real-estate/' },
+  { icon: 'fas fa-shopping-cart', name: 'E-commerce &amp; SaaS', href: '/industries/ecommerce-website-and-seo/' },
+];
+---
+<section class="sec" style="background:#fff">
+  <SectionHeading
+    eyebrow="INDUSTRIES"
+    title="Specialized strategies. Not cookie-cutter checklists."
+    sub="We go deep in the industries we serve so we understand your customers, your competition, and your conversion funnel — not just your keywords."
+  />
+  <div class="row grid g-5 ind">
+    {industries.map((i) => (
+      <a href={i.href} class="icard">
+        <i class={i.icon}></i>
+        <h4 set:html={i.name} />
+      </a>
+    ))}
+  </div>
+</section>
+<style>
+  .ind { column-gap: 3%; }
+  .icard { display: block; background: #fff; padding: 32px 20px; border-radius: 14px; box-shadow: 6px 6px 30px 0 rgba(15,23,42,.06); text-align: center; transition: transform .3s; }
+  .icard:hover { transform: translateY(-4px); }
+  i { font-size: 44px; color: var(--green); display: block; margin-bottom: 16px; }
+  h4 { font-family: var(--inter); font-size: 15px; font-weight: 700; line-height: 19.5px; color: var(--navy); padding-bottom: 0; }
+</style>
