@@ -1,0 +1,40 @@
+---
+// HOME 7: "CASE STUDIES" — 3 cards with image.
+import SectionHeading from '../SectionHeading.astro';
+import { WP } from '../../data/site';
+const cases = [
+  { img: WP + 'Untitled-design-75.png', tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', result: '+312% organic traffic', color: '#10B981' },
+  { img: WP + 'Untitled-design-78.png', tag: 'HOME SERVICES · GMB', title: '5x More Local Calls in 60 Days', result: '+480% GMB actions', color: '#10B981' },
+  { img: WP + 'Untitled-design-77.png', tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', result: 'AI visibility: 0 → 74%', color: '#8B5CF6' },
+];
+---
+<section class="sec" style="background:#F8FAFC">
+  <SectionHeading
+    eyebrow="CASE STUDIES"
+    title="Real businesses. Real rankings. Real revenue."
+    sub="We don’t do vanity metrics. Here’s the work — with numbers that actually moved the business."
+  />
+  <div class="row grid g-3 list">
+    {cases.map((c) => (
+      <div class="card cs">
+        <img src={c.img} width="800" height="800" alt={c.title} loading="lazy" />
+        <div class="body">
+          <p class="tag">{c.tag}</p>
+          <h3>{c.title}</h3>
+          <p class="res" style={`color:${c.color}`}>{c.result}</p>
+          <a href="/case-studies/" class="link-btn">Read the case study →</a>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="row center"><a href="/case-studies/" class="outline-btn">View all case studies →</a></div>
+</section>
+<style>
+  .list { margin-bottom: 48px; }
+  .cs { overflow: hidden; box-shadow: 6px 6px 40px 0 rgba(15,23,42,.1); font-family: var(--inter); }
+  .cs img { width: 100%; margin-bottom: 35px; }
+  .body { padding: 0 28px 28px; }
+  .tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; line-height: 30.6px; color: var(--slate-500); margin-bottom: 12px; }
+  h3 { font-size: 20px; font-weight: 700; line-height: 26px; color: var(--navy); margin-bottom: 16px; }
+  .res { font-size: 20px; font-weight: 800; line-height: 30.6px; margin-bottom: 20px; }
+</style>
