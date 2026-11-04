@@ -1,0 +1,81 @@
+---
+// FOOTER: brand, services links, company links, contact + bottom bar.
+import { site } from '../data/site';
+const services = [
+  ['Website Design', '/services/web-development/'],
+  ['Semantic SEO', '/services/semantic-seo/'],
+  ['Local Landing Pages', '/services/local-landing-pages/'],
+  ['GMB Management', '/services/gmb-management/'],
+  ['AI & GEO Optimization', '/services/ai-geo-optimization/'],
+  ['SEO Audits', '/services/seo-audits/'],
+];
+const company = [
+  ['About Us', '/about/'],
+  ['Case Studies', '/case-studies/'],
+  ['Industries', '/industries/'],
+  ['Blog', '/blog/'],
+  ['Contact', '/contact/'],
+  ['Careers', '/careers/'],
+];
+const socials = [
+  ['facebook-f', 'Facebook', '#'],
+  ['twitter', 'X', '#'],
+  ['instagram', 'Instagram', '#'],
+  ['linkedin-in', 'LinkedIn', '#'],
+  ['youtube', 'Youtube', '#'],
+];
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="row grid g-4 ftr-top">
+    <div>
+      <h3 class="brand">Rank Ready</h3>
+      <p class="txt">We build websites and search systems engineered to win Google, local, and AI search — all at once.</p>
+      <ul class="social">
+        {socials.map(([icon, name, href]) => (
+          <li><a href={href} title={`Follow on ${name}`} target="_blank" rel="noopener"><i class={`fab fa-${icon}`}></i></a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h4 class="head">SERVICES</h4>
+      <p class="links">{services.map(([l, h]) => <><a href={h}>{l}</a><br /></>)}</p>
+    </div>
+    <div>
+      <h4 class="head">COMPANY</h4>
+      <p class="links">{company.map(([l, h]) => <><a href={h}>{l}</a><br /></>)}</p>
+    </div>
+    <div>
+      <h4 class="head">CONTACT</h4>
+      <p class="links contact">
+        📞 <a href={site.phoneLink}>{site.phone}</a><br />
+        📧 <a href={`mailto:${site.email}`}>{site.email}</a><br />
+        🌍 Working globally · 24/7 Support
+      </p>
+      <a href={site.whatsapp} class="wa">WhatsApp Us →</a>
+    </div>
+  </div>
+  <div class="row ftr-bottom">
+    <p>© {year} Rank Ready. All rights reserved. &nbsp;·&nbsp; <a href="/privacy-policy/">Privacy Policy</a> &nbsp;·&nbsp; <a href="/privacy-policy/">Terms</a> &nbsp;·&nbsp; <a href="/sitemap-index.xml">Sitemap</a></p>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--navy-deep); padding: 80px 0 40px; font-family: var(--inter); }
+  .ftr-top { margin-bottom: 48px; }
+  .brand { font-size: 24px; font-weight: 800; line-height: 24px; color: #fff; margin-bottom: 16px; }
+  .txt { font-size: 14px; line-height: 30.6px; color: var(--slate-400); margin-bottom: 20px; }
+  .social { list-style: none; padding: 10px; margin: 0; display: flex; gap: 8px; background: var(--slate-800); width: fit-content; }
+  .social a { width: 32px; height: 32px; border-radius: 50%; background: var(--slate-800); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: color .3s; }
+  .social a:hover { color: var(--green); }
+  .head { font-size: 14px; font-weight: 700; line-height: 14px; letter-spacing: 1.5px; color: #fff; margin-bottom: 20px; }
+  .links { font-size: 14px; line-height: 30.8px; color: var(--slate-400); }
+  .links a { text-transform: uppercase; transition: color .3s; }
+  .links a:hover { color: var(--green); }
+  .contact { line-height: 26.6px; margin-bottom: 20px; }
+  .wa { display: inline-block; background: #25D366; color: #fff; font-size: 13px; font-weight: 600; line-height: 22.1px; padding: 10px 18px; border-radius: 6px; }
+  .ftr-bottom { border-top: .8px solid var(--slate-800); padding: 24px 0 0; text-align: center; font-size: 13px; line-height: 30.6px; color: var(--slate-500); }
+  .ftr-bottom a { text-transform: uppercase; }
+  .ftr-bottom a:hover { color: var(--green); }
+  @media (max-width: 767px) { .ftr { padding: 60px 0 30px; } }
+</style>
