@@ -1,0 +1,27 @@
+---
+// HOME 6: "PROVEN RESULTS" — 4 stats.
+import SectionHeading from '../SectionHeading.astro';
+const stats = [
+  { value: '+240%', label: 'Average organic traffic lift in 6 months', color: '#10B981' },
+  { value: '120+', label: 'Clients served across 15 industries', color: '#8B5CF6' },
+  { value: '87%', label: 'Reach page 1 within 90 days', color: '#10B981' },
+  { value: '4.9/5', label: 'Average client satisfaction rating', color: '#8B5CF6' },
+];
+---
+<section class="sec" style="background:#fff">
+  <SectionHeading eyebrow="PROVEN RESULTS" title="Numbers that move businesses forward." />
+  <div class="row grid g-4">
+    {stats.map((s) => (
+      <div class="stat">
+        <p class="val" style={`color:${s.color}`}>{s.value}</p>
+        <p class="lbl">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .stat { text-align: center; font-family: var(--inter); }
+  .val { font-size: 64px; font-weight: 800; line-height: 64px; margin-bottom: 8px; }
+  .lbl { font-size: 14px; line-height: 21px; color: var(--slate-500); }
+  @media (max-width: 767px) { .val { font-size: 48px; line-height: 48px; } }
+</style>
