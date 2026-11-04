@@ -1,0 +1,16 @@
+{
+  "name": "rank-ready",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@fortawesome/fontawesome-free": "5.15.4",
+    "astro": "7.4.5"
+  }
+}
