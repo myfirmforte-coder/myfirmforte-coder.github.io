@@ -1,0 +1,75 @@
+---
+// CHAT WIDGET: neeche daayein kone wala "RA" bubble (Services / FAQs / Book a Call).
+import { site } from '../data/site';
+const services = [
+  ['Website Design', '/services/web-development/'],
+  ['Semantic SEO', '/services/semantic-seo-optimization-services/'],
+  ['Local Landing Pages', '/services/local-landing-pages/'],
+  ['GMB Management', '/services/gmb-management-services/'],
+  ['AI GEO Optimization', '/services/ai-geo-optimization/'],
+  ['SEO Audits', '/services/seo-audits/'],
+];
+const faqs = [
+  ['How long does SEO take?', 'Most clients see ranking movement in 30–60 days and major traffic lifts by month 3–6.'],
+  ['What is GEO?', 'Generative Engine Optimization gets your brand cited inside AI answers like ChatGPT and Perplexity.'],
+  ['Do you work globally?', 'Yes — US, UK, Canada, Australia, EU and UAE. Fully remote-first.'],
+];
+---
+<div class="ra">
+  <button class="ra-bubble" aria-expanded="false" title="Support">RA</button>
+  <section class="ra-panel" hidden>
+    <header class="ra-head">
+      <div class="ra-row"><strong>Hey! How can we help?</strong><button class="ra-close" aria-label="Close">×</button></div>
+      <p class="ra-sub">Pick an option to get started:</p>
+      <nav class="ra-tabs">
+        <button data-tab="services">Services</button>
+        <button data-tab="faqs">FAQs</button>
+        <button data-tab="book">Book a Call</button>
+      </nav>
+    </header>
+    <div class="ra-body">
+      <div data-pane="services" hidden>{services.map(([l, h]) => <a class="ra-item" href={h}>{l} →</a>)}</div>
+      <div data-pane="faqs" hidden>{faqs.map(([q, a]) => <details class="ra-faq"><summary>{q}</summary><p>{a}</p></details>)}</div>
+      <div data-pane="book" hidden>
+        <p class="ra-p">Book a free 30-minute strategy call with our team.</p>
+        <a class="ra-cta" href={site.calendly} target="_blank" rel="noopener">Book a Free Call →</a>
+        <a class="ra-item" href={site.whatsapp}>WhatsApp: {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const w = document.querySelector('.ra')!;
+  const panel = w.querySelector<HTMLElement>('.ra-panel')!;
+  const bubble = w.querySelector('.ra-bubble')!;
+  const toggle = (open: boolean) => { panel.hidden = !open; bubble.setAttribute('aria-expanded', String(open)); };
+  bubble.addEventListener('click', () => toggle(panel.hidden));
+  w.querySelector('.ra-close')!.addEventListener('click', () => toggle(false));
+  w.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((t) =>
+    t.addEventListener('click', () => {
+      w.querySelectorAll<HTMLElement>('[data-pane]').forEach((p) => (p.hidden = p.dataset.pane !== t.dataset.tab));
+      w.querySelectorAll('[data-tab]').forEach((x) => x.classList.toggle('on', x === t));
+    })
+  );
+</script>
+
+<style>
+  .ra { position: fixed; right: 24px; bottom: 24px; z-index: 1000; font-family: var(--inter); }
+  .ra-bubble { width: 56px; height: 56px; border-radius: 50%; border: 0; background: #2bb673; color: #fff; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
+  .ra-panel { position: absolute; right: 0; bottom: 70px; width: 340px; max-width: calc(100vw - 48px); background: #fff; border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,.25); overflow: hidden; }
+  .ra-head { background: #2bb673; color: #fff; padding: 18px; }
+  .ra-row { display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+  .ra-close { background: none; border: 0; color: #fff; font-size: 24px; cursor: pointer; line-height: 1; }
+  .ra-sub { font-size: 13px; opacity: .9; padding: 4px 0 12px; }
+  .ra-tabs { display: flex; gap: 6px; }
+  .ra-tabs button { flex: 1; border: 1px solid rgba(255,255,255,.6); background: transparent; color: #fff; border-radius: 20px; padding: 6px 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .ra-tabs button.on { background: #fff; color: #2bb673; }
+  .ra-body { padding: 14px 18px; max-height: 320px; overflow: auto; font-size: 14px; color: var(--navy); }
+  .ra-item { display: block; padding: 10px 0; border-bottom: 1px solid #E2E8F0; font-weight: 600; }
+  .ra-item:hover { color: #2bb673; }
+  .ra-faq { border-bottom: 1px solid #E2E8F0; padding: 10px 0; }
+  .ra-faq summary { cursor: pointer; font-weight: 600; }
+  .ra-faq p, .ra-p { font-size: 13px; line-height: 1.6; color: var(--slate-500); padding-top: 6px; }
+  .ra-cta { display: block; text-align: center; background: #2bb673; color: #fff; border-radius: 8px; padding: 12px; font-weight: 700; margin: 12px 0; }
+</style>
