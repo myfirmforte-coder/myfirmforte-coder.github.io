@@ -1,0 +1,31 @@
+---
+// HOME 2: "THE HARD TRUTH" — 3 problem cards.
+import SectionHeading from '../SectionHeading.astro';
+const cards = [
+  { title: 'Stuck on Page 3', text: 'No topical authority. No semantic depth. No real ranking strategy behind the scenes.' },
+  { title: 'Invisible to AI', text: 'ChatGPT and Perplexity don’t mention you. Your competitors get cited. You get skipped.' },
+  { title: 'Zero Local Leads', text: 'Weak GMB. Thin location pages. You’re losing every “near me” search in your area.' },
+];
+---
+<section class="sec" style="background:#fff">
+  <SectionHeading
+    class="top0"
+    eyebrow="THE HARD TRUTH"
+    eyebrowColor="#DC2626"
+    title="Your website is invisible — on Google and inside AI."
+    sub="Most sites are built to look pretty, not to rank. They skip semantic structure, ignore local signals, and aren’t optimized for the AI engines now answering nearly half of all searches. The result? You pay for a site that doesn’t bring in customers."
+  />
+  <div class="row grid g-3">
+    {cards.map((c) => (
+      <div class="pcard">
+        <h3>{c.title}</h3>
+        <div>{c.text}</div>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  :global(.top0) { padding-top: 0 !important; }
+  .pcard { background: var(--light-bg); border-radius: 12px; padding: 32px 24px; text-align: center; font-family: var(--inter); font-size: 16px; line-height: 25.6px; color: var(--slate-500); }
+  h3 { font-size: 22px; font-weight: 700; line-height: 22px; color: #333; }
+</style>
