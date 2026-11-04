@@ -1,0 +1,40 @@
+---
+// HOME 12: "INSIGHTS" — latest 3 blog posts.
+import SectionHeading from '../SectionHeading.astro';
+import { WP } from '../../data/site';
+const posts = [
+  { img: WP + 'Untitled-design-73.png', cat: 'TECHNICAL SEO', title: 'Core Web Vitals in Modern Design', excerpt: 'In today’s competitive digital landscape, website performance and user experience are critical to success…', href: '/the-role-of-core-web-vitals-in-modern-website-design-and-seo/' },
+  { img: WP + 'Untitled-design-72.png', cat: 'WEBSITE DESIGN', title: 'Design SEO-Friendly Landing Pages', excerpt: 'Landing pages are critical tools in digital marketing, designed with a singular goal in mind: conversions…', href: '/design-seo-friendly-landing-pages/' },
+  { img: WP + 'Untitled-design-71.png', cat: 'SEMANTIC SEO', title: 'The Role of Schema Markup in SEO', excerpt: 'In the competitive world of search engine optimization (SEO), schema markup is one of the most underused tools…', href: '/schema-markup-in-boosting-seo/' },
+];
+---
+<section class="sec" style="background:#F8FAFC">
+  <SectionHeading
+    eyebrow="INSIGHTS"
+    title="Latest from the Rank Ready blog."
+    sub="Actionable, no-fluff SEO, GEO, and local search guides — written by the team actually doing the work."
+  />
+  <div class="row grid g-3 list">
+    {posts.map((p) => (
+      <a href={p.href} class="post">
+        <img src={p.img} width="800" height="800" alt={p.title} loading="lazy" />
+        <div class="body">
+          <p class="cat">{p.cat}</p>
+          <h3>{p.title}</h3>
+          <p class="ex">{p.excerpt}</p>
+          <span class="link-btn">Read more →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+  <div class="row center"><a href="/blog/" class="outline-btn">Visit the blog →</a></div>
+</section>
+<style>
+  .list { margin-bottom: 48px; }
+  .post { display: block; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 6px 6px 30px 0 rgba(15,23,42,.06); font-family: var(--inter); }
+  .post img { width: 100%; margin-bottom: 35px; }
+  .body { padding: 0 24px 24px; }
+  .cat { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; line-height: 30.6px; color: var(--green); margin-bottom: 10px; }
+  h3 { font-size: 18px; font-weight: 700; line-height: 23.4px; color: var(--navy); margin-bottom: 12px; }
+  .ex { font-size: 14px; line-height: 22.4px; color: var(--slate-500); margin-bottom: 20px; }
+</style>
