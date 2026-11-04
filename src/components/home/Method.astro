@@ -1,0 +1,34 @@
+---
+// HOME 3: "The Rank Ready Method™" — 4 pillars (dark section).
+import SectionHeading from '../SectionHeading.astro';
+const pillars = [
+  { n: '01', title: 'Foundation', text: 'Technically flawless. Fast, crawlable, and built on a Core Web Vitals–optimized architecture.' },
+  { n: '02', title: 'Semantic Depth', text: 'Entity-driven content and topical clusters that make search engines trust you as the authority.' },
+  { n: '03', title: 'Local Dominance', text: 'Precision location pages and GMB optimization working together as one integrated system.' },
+  { n: '04', title: 'GEO / AI Optimization', text: 'Schema, entity clarity, and citation-ready content that gets you mentioned inside AI answers.', featured: true },
+];
+---
+<section class="sec on-dark" style="background:#0F172A">
+  <SectionHeading
+    eyebrow="OUR FRAMEWORK"
+    title="The Rank Ready Method™"
+    sub="A proprietary 4-pillar system that wins traditional search, local search, <em>and</em> the new AI-powered search engines — all from one unified strategy."
+  />
+  <div class="row grid g-4">
+    {pillars.map((p) => (
+      <div class:list={['pillar', { featured: p.featured }]}>
+        <p class="num">{p.n}</p>
+        <h3>{p.title}</h3>
+        <p class="txt">{p.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .pillar { background: var(--slate-800); padding: 32px 28px; border-radius: 16px; font-family: var(--inter); }
+  .featured { border: 1.6px solid var(--purple); }
+  .num { font-size: 42px; font-weight: 800; line-height: 42px; color: var(--green); margin-bottom: 16px; }
+  .featured .num { color: var(--purple); }
+  h3 { font-size: 20px; font-weight: 700; line-height: 20px; color: #fff; margin-bottom: 12px; }
+  .txt { font-size: 15px; line-height: 24px; color: var(--slate-400); }
+</style>
