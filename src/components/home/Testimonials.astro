@@ -1,0 +1,33 @@
+---
+// HOME 10: "WHAT CLIENTS SAY" — 3 testimonials.
+import SectionHeading from '../SectionHeading.astro';
+const reviews = [
+  { quote: 'Rank Ready took our firm from invisible to the first result for nearly every key term in our market. Inquiries tripled in four months. They’re the only SEO team I’d recommend without hesitation.', initials: 'JS', name: 'John Smith', role: 'Managing Partner, Smith &amp; Associates Law' },
+  { quote: 'We went from begging for referrals to turning away work. Their GMB and local page strategy is unmatched. Best investment we’ve made in the business.', initials: 'SK', name: 'Sarah Khan', role: 'Owner, Elite Home Services' },
+  { quote: 'I didn’t even know GEO was a thing. Now my brand gets cited by ChatGPT when people ask for recommendations in my industry. Rank Ready is years ahead of every other agency.', initials: 'DP', name: 'Daniel Park', role: 'Founder, NorthPeak SaaS' },
+];
+---
+<section class="sec" style="background:#fff">
+  <SectionHeading eyebrow="WHAT CLIENTS SAY" title="We let results — and clients — do the talking." />
+  <div class="row grid g-3">
+    {reviews.map((r) => (
+      <div class="card rv">
+        <p class="stars">⭐⭐⭐⭐⭐</p>
+        <p class="quote">“{r.quote}”</p>
+        <div class="who">
+          <div class="av">{r.initials}</div>
+          <div><div class="nm">{r.name}</div><div class="rl" set:html={r.role} /></div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .rv { padding: 36px 32px; font-family: var(--inter); }
+  .stars { color: #FBBF24; font-size: 18px; line-height: 30.6px; margin-bottom: 16px; font-family: 'Open Sans', sans-serif; }
+  .quote { font-size: 16px; line-height: 30.6px; color: var(--navy); margin-bottom: 24px; }
+  .who { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid #E2E8F0; }
+  .av { width: 48px; height: 48px; flex: none; border-radius: 50%; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 18px; }
+  .nm { font-weight: 700; font-size: 14px; color: var(--navy); line-height: 1.7; }
+  .rl { font-size: 12px; color: var(--slate-500); line-height: 1.7; }
+</style>
