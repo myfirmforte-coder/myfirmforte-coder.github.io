@@ -1,0 +1,38 @@
+---
+// HOME 4: "WHAT WE DO" — 6 service cards. Icon = Font Awesome class.
+import SectionHeading from '../SectionHeading.astro';
+const services = [
+  { icon: 'fas fa-globe', title: 'Rank-Ready Website Design', text: 'SEO-first websites built to rank from day one — not after 12 months of "fixes."', href: '/services/web-development/' },
+  { icon: 'fas fa-brain', title: 'Semantic SEO', text: 'Entity-driven content architecture that makes your site the definitive voice in your niche.', href: '/services/semantic-seo/' },
+  { icon: 'fas fa-map-marker-alt', title: 'Local Landing Pages', text: 'Hyper-targeted, geo-specific pages engineered to dominate every city you serve.', href: '/services/local-landing-pages/' },
+  { icon: 'fas fa-circle', title: 'GMB Management', text: 'Turn your Google Business Profile into a predictable local lead machine.', href: '/services/gmb-management/' },
+  { icon: 'fas fa-certificate', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, Claude, and Google AI Overviews when customers ask.', href: '/services/ai-geo-optimization/', featured: true },
+  { icon: 'fas fa-search', title: 'SEO Audits', text: 'Deep, no-fluff audits that uncover exactly what’s holding your rankings back.', href: '/services/seo-audits/' },
+];
+---
+<section class="sec" style="background:#F8FAFC">
+  <SectionHeading
+    eyebrow="WHAT WE DO"
+    title="Services Built to Make You Unignorable."
+    sub="Every service is a layer of the same goal: get found, get chosen, and get paid — across every search platform that matters in 2026 and beyond."
+  />
+  <div class="row grid g-3 cards">
+    {services.map((s) => (
+      <div class:list={['card', 'svc', { featured: s.featured }]}>
+        <i class={`${s.icon} ico`}></i>
+        <h3 set:html={s.title} />
+        <p class="txt">{s.text}</p>
+        <a href={s.href} class="link-btn">Learn more →</a>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .cards { row-gap: 57px; }
+  .svc { padding: 36px 28px; font-family: var(--inter); }
+  .featured { border: 1.6px solid var(--purple); }
+  .ico { font-size: 43px; color: var(--green-btn); margin-bottom: 30px; display: block; }
+  h3 { font-size: 20px; font-weight: 700; line-height: 20px; color: var(--navy); margin-bottom: 12px; }
+  .txt { font-size: 15px; line-height: 24px; color: var(--slate-500); margin-bottom: 20px; }
+  @media (max-width: 980px) { .cards { row-gap: 30px; } }
+</style>
