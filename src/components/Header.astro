@@ -1,0 +1,99 @@
+---
+// HEADER: top bar (reviews, Faq, Support, phone) + logo, menu, appointment button.
+// Menu ke links src/data/site.ts mein hain.
+import { site, mainMenu } from '../data/site';
+---
+<header class="hdr">
+  <div class="topbar">
+    <div class="tb-row">
+      <div class="tb-left">
+        <span class="stars">{[1,2,3,4,5].map(() => <span class="star"><i class="fas fa-star"></i></span>)}</span>
+        <a href="#" class="tb-reviews">See our trusted reviews</a>
+      </div>
+      <div class="tb-right">
+        <a href="/faq/" class="tb-link tb-sep">Faq</a>
+        <a href="/contact/" class="tb-link">Support</a>
+        <span class="tb-phone">
+          <a href={site.whatsapp} aria-label="WhatsApp"><i class="fas fa-phone-square-alt"></i></a>
+          <a href={site.phoneLink}><strong>{site.phone}</strong></a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <div class="nav-row">
+      <a href="/" class="logo"><img src={site.logo} width="270" height="69" alt="Rank Ready" /></a>
+      <nav class="menu" aria-label="Main">
+        <ul>
+          {mainMenu.map((item) => (
+            <li class={item.children ? 'has-sub' : ''}>
+              <a href={item.href}>{item.label}{item.children && <i class="fas fa-angle-down caret"></i>}</a>
+              {item.children && (
+                <ul class="sub">
+                  {item.children.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a href={site.calendly} target="_blank" rel="noopener" class="appt">Make an Appointment</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const b = document.querySelector('.burger');
+  const m = document.querySelector('.hdr .menu');
+  b?.addEventListener('click', () => {
+    const open = m?.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(!!open));
+  });
+</script>
+
+<style>
+  .hdr { background: var(--header-bg); }
+  .topbar .tb-row, .nav-row { width: 90%; margin: 0 auto; display: flex; align-items: center; }
+  .tb-row { padding: 10px 0; justify-content: space-between; border-bottom: .8px solid rgba(214,214,214,.25); }
+  .tb-left, .tb-right { display: flex; align-items: center; }
+  .stars { display: flex; gap: 3px; margin-right: 13px; }
+  .star { width: 24px; height: 24px; background: #00B67A; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; }
+  .tb-reviews { font-family: Montserrat, sans-serif; font-size: 16px; font-weight: 500; color: #fff; }
+  .tb-link { font-size: 16px; font-weight: 500; color: #fff; line-height: 16px; padding-right: 20px; margin-right: 20px; }
+  .tb-sep { border-right: .8px solid #fff; }
+  .tb-phone { display: flex; align-items: center; gap: 10px; font-size: 18px; color: #fff; }
+  .tb-phone i { color: var(--green); font-size: 28px; }
+
+  .navbar { background: var(--header-bg); position: sticky; top: 0; z-index: 100; }
+  .nav-row { padding: 10px 0; min-height: 96px; }
+  .logo img { width: 270px; height: auto; }
+  .menu { margin-left: 30px; flex: 1; }
+  .menu > ul { list-style: none; padding: 0; display: flex; }
+  .menu > ul > li { position: relative; padding: 0 11px; }
+  .menu > ul > li > a { display: flex; align-items: center; gap: 6px; padding: 31px 0; font-size: 15px; font-weight: 600; line-height: 14px; text-transform: uppercase; color: #fff; transition: opacity .3s; }
+  .menu > ul > li > a:hover { opacity: .8; }
+  .caret { font-size: 14px; }
+  .sub { list-style: none; padding: 0; position: absolute; top: 100%; left: 0; width: 240px; background: var(--header-bg); box-shadow: 0 5px 17px rgba(0,0,0,.25); border-top: 3px solid var(--green-btn); opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .25s; z-index: 10; }
+  .has-sub:hover .sub, .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
+  .sub li { border-bottom: 1px solid var(--green-btn); }
+  .sub a { display: block; padding: 16px 20px; font-size: 14px; font-weight: 600; line-height: 1.4; color: #fff; transition: background .3s; }
+  .sub a:hover { background: var(--green-btn); }
+  .appt { background: var(--green-btn); color: #fff; border-radius: 8px; padding: 10px 30px; font-size: 16px; font-weight: 500; line-height: 27.2px; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; transition: opacity .3s; }
+  .appt:hover { opacity: .9; }
+  .burger { display: none; background: none; border: 0; color: #fff; font-size: 26px; cursor: pointer; margin-left: auto; }
+
+  @media (max-width: 980px) {
+    .tb-row { flex-direction: column; gap: 14px; }
+    .nav-row { flex-wrap: wrap; min-height: 0; }
+    .logo img { width: 200px; }
+    .burger { display: block; }
+    .menu { display: none; order: 3; flex-basis: 100%; margin: 0; }
+    .menu.open { display: block; }
+    .menu > ul { flex-direction: column; border-top: 3px solid var(--green-btn); }
+    .menu > ul > li > a { padding: 14px 0; }
+    .sub { position: static; opacity: 1; visibility: visible; transform: none; width: 100%; box-shadow: none; border-top: 0; }
+    .appt { order: 4; flex-basis: 100%; text-align: center; margin-top: 20px; padding: 17px 30px; }
+  }
+</style>
