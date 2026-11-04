@@ -1,0 +1,42 @@
+---
+// HOME 14: Final CTA — "Ready to be Rank Ready?"
+import { site } from '../../data/site';
+---
+<section class="sec cta">
+  <div class="cta-bg" aria-hidden="true"><div class="c1"></div><div class="c2"></div><div class="c3"></div></div>
+  <div class="row row-narrow center inner">
+    <div class="badge-wrap"><div class="badge"><span class="dot"></span>LET'S BUILD THE FUTURE OF YOUR SEARCH PRESENCE</div></div>
+    <h2>Ready to be <span class="grad">Rank Ready?</span></h2>
+    <p class="lead">Stop watching competitors who figured this out first. Let’s build you a site and a search footprint that wins Google, wins local, and wins AI — starting today.</p>
+    <div class="rr-btn-group btns">
+      <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
+      <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Custom Quote</span><span class="rr-btn-arrow">→</span></a>
+    </div>
+    <div class="assure">
+      <span><b>✓</b> No pressure</span><span><b>✓</b> No obligation</span><span><b>✓</b> 30-minute fit call</span>
+    </div>
+  </div>
+</section>
+<style>
+  .cta { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%); padding: 140px 0; overflow: hidden; font-family: Inter, sans-serif; }
+  .cta-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .c1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 500px; background: radial-gradient(ellipse, rgba(16,185,129,.15) 0%, transparent 60%); filter: blur(60px); }
+  .c2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,.2) 0%, transparent 70%); filter: blur(80px); }
+  .c3 { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%); }
+  .inner { z-index: 1; }
+  .badge-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; }
+  .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  h2 { font-size: 84px; font-weight: 800; line-height: 88.2px; letter-spacing: -2.5px; color: #fff; margin-bottom: 28px; }
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .lead { max-width: 720px; margin: 0 auto 44px; font-size: 20px; line-height: 30.6px; color: var(--slate-300); }
+  .btns { justify-content: center; margin-bottom: 24px; }
+  .assure { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--slate-500); font-weight: 500; }
+  .assure b { color: var(--green); font-weight: 500; margin-right: 4px; }
+  @media (max-width: 767px) {
+    .cta { padding: 80px 0; }
+    h2 { font-size: 42px; line-height: 44.1px; letter-spacing: -1px; }
+    .lead { font-size: 17px; }
+    .rr-btn-lg { width: 100%; justify-content: center; }
+  }
+</style>
