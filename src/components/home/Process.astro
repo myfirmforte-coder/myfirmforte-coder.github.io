@@ -1,0 +1,33 @@
+---
+// HOME 9: "HOW WE WORK" — 5 steps.
+import SectionHeading from '../SectionHeading.astro';
+const steps = [
+  { title: 'Audit', text: 'Deep technical, semantic, and GEO audit of your existing footprint.' },
+  { title: 'Strategy', text: 'Custom roadmap built around your niche, geography, and growth targets.' },
+  { title: 'Build', text: 'Execution by senior strategists — content, schema, pages, and GMB.' },
+  { title: 'Launch', text: 'Careful launch with monitoring, stress testing, and team training.' },
+  { title: 'Scale', text: 'Monthly optimization, AI visibility tracking, and aggressive growth.' },
+];
+---
+<section class="sec" style="background:#F8FAFC">
+  <SectionHeading
+    eyebrow="HOW WE WORK"
+    title="A proven 5-step process. Zero guesswork."
+    sub="No fluffy “discovery phases.” Every step has a deliverable, a deadline, and a direct line to your results."
+  />
+  <div class="row grid g-5">
+    {steps.map((s, i) => (
+      <div class="step">
+        <p class="num">{String(i + 1).padStart(2, '0')}</p>
+        <h3>{s.title}</h3>
+        <p class="txt">{s.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .step { font-family: var(--inter); }
+  .num { font-size: 48px; font-weight: 800; line-height: 48px; color: var(--green); margin-bottom: 16px; }
+  h3 { font-size: 18px; font-weight: 700; line-height: 18px; color: var(--navy); margin-bottom: 10px; }
+  .txt { font-size: 14px; line-height: 22.4px; color: var(--slate-500); }
+</style>
