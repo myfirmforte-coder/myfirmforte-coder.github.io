@@ -18,7 +18,7 @@ jobs:
         run: |
           mkdir -p public/images
           base="https://rank-ready.com/wp-content/uploads/2026"
-          for f in 05/logo-reverse.png 04/logo-primary.png 05/Untitled-design-71.png 05/Untitled-design-72.png 05/Untitled-design-73.png 05/Untitled-design-75.png 05/Untitled-design-77.png 05/Untitled-design-78.png; do
+          for f in 05/logo-reverse.png 04/logo-primary.png 05/Untitled-design-71.png 05/Untitled-design-72.png 05/Untitled-design-73.png 05/Untitled-design-75.png 05/Untitled-design-77.png 05/Untitled-design-78.png 04/cropped-app-icon-32x32.png 04/cropped-app-icon-192x192.png 04/cropped-app-icon-180x180.png; do
             curl -fsSL -A "Mozilla/5.0" "${base}/${f}" -o "public/images/$(basename ${f})"
           done
           ls -la public/images
