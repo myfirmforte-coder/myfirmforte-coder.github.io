@@ -1,0 +1,300 @@
+---
+// SERVICES PAGE — /services/
+// 6 service cards, method steps, "why us", stats aur FAQs sab neeche arrays mein hain.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { site } from '../../data/site';
+
+// color: 'green' | 'purple' | 'dark'. featured: true = hara border + "NEW" badge.
+const services = [
+  { icon: '🎨', color: 'green', tag: 'FOUNDATION', title: 'Rank-Ready Website Design', href: '/services/rank-ready-website-design/',
+    text: 'Most agencies design a pretty site and wish you luck with SEO. We build the two things as one thing — semantic HTML, schema, CWV, and conversion UX baked in from day one.',
+    points: ['Semantic architecture &amp; schema markup', 'Core Web Vitals optimized (90+ Lighthouse)', 'SEO-ready CMS with custom fields', '6-8 week timelines, zero vendor lock-in'] },
+  { icon: '🧠', color: 'green', tag: 'AUTHORITY', title: 'Semantic SEO', href: '/services/semantic-seo/',
+    text: 'Google stopped matching strings in 2013. We build entity-driven topical authority that ranks for hundreds of related queries per page, not one.',
+    points: ['Entity &amp; topical gap research', 'Content architecture &amp; clusters', 'Internal linking &amp; schema strategy', '+312% avg. traffic growth in 6 months'] },
+  { icon: '🗺️', color: 'green', tag: 'LOCAL', title: 'Local Landing Pages', href: '/services/local-landing-pages/',
+    text: "One city, one service, one page that wins. We've shipped 120+ genuinely unique city pages for multi-location clients — zero duplicate content, full local schema.",
+    points: ['Genuinely unique content per city', 'LocalBusiness + Service schema per page', 'NAP consistency across citations', '+480% avg. local pack appearances'] },
+  { icon: '📍', color: 'green', tag: 'LOCAL PACK', title: 'GMB Management', href: '/services/gmb-management/',
+    text: 'Your Google Business Profile is the most valuable digital real estate you own. We manage every signal Google uses to rank local businesses — end-to-end.',
+    points: ['Weekly posts, monthly photo strategy', 'Review acquisition &amp; response system', 'Q&amp;A management, NAP monitoring', '5× avg. call volume in 90 days'] },
+  { icon: '🚀', color: 'purple', tag: 'NEXT FRONTIER', title: 'AI &amp; GEO Optimization', href: '/services/ai-geo-optimization/', featured: true,
+    text: "The next search frontier isn't Google — it's generative engines. We get your brand cited by ChatGPT, Perplexity, Claude, and Google AI Overviews.",
+    points: ['Entity establishment across open web', 'AI visibility audits &amp; citation monitoring', 'llms.txt &amp; schema for LLMs', '74% avg. AI citation rate in 90 days'] },
+  { icon: '📊', color: 'dark', tag: 'DIAGNOSTIC', title: 'SEO + GEO Audits', href: '/services/seo-audits/',
+    text: 'Senior-led audits that actually diagnose the problem. No 80-page PDFs full of noise — just focused findings, a prioritized action plan, and a path forward.',
+    points: ['10 layers: technical, content, semantic, GEO', '48-hour turnaround available', 'Free first audit, no obligation', 'Action plan with impact + effort scoring'] },
+];
+
+const method = [
+  { title: 'Diagnose first', text: "Every engagement starts with a senior-led audit. We don't recommend services until we've identified what's actually broken, what's underperforming, and where the biggest wins are hiding." },
+  { title: "Architect, don't patch", text: 'Most agencies apply surface-level fixes. We build systems — semantic architectures, entity maps, content hierarchies — that compound over time instead of requiring constant re-work.' },
+  { title: 'Build for both Google &amp; AI', text: 'Every asset we produce is optimized for traditional SEO AND generative engines. The overlap is significant — and the sites we build rank in Google, get cited by ChatGPT, and appear in Perplexity.' },
+  { title: 'Measure what matters', text: "Vanity metrics don't pay the bills. We track rankings, traffic, conversions, and revenue attribution. Monthly reports are plain-English summaries of what moved — not 40-page PDFs nobody reads." },
+];
+
+const why = [
+  { icon: '🧬', title: 'Semantic SEO specialists', text: "While most agencies still chase keywords, we build entity-driven topical authority. It's the only approach that works long-term in 2026." },
+  { icon: '🚀', title: 'Real GEO expertise', text: "We've been executing GEO since 2023 — not since last month when ChatGPT got popular. We've banked the data, the methodology, and the proven playbooks." },
+  { icon: '👨‍💼', title: 'Senior-led, not junior-dumped', text: 'Every engagement gets senior strategic oversight. No junior teams executing from templates while the senior you signed up for takes the next sales call.' },
+  { icon: '🎯', title: 'Results over reports', text: "Monthly summaries under 5 pages. Quarterly strategy calls. No 40-page PDFs designed to look impressive — just clear updates on what moved and what's next." },
+  { icon: '🔓', title: 'Zero vendor lock-in', text: "Everything we build is yours — code, content, schemas, tracking. Move to another agency tomorrow and it all still works. Transparency isn't optional." },
+  { icon: '⚡', title: 'Ship velocity', text: "We don't drag out timelines to justify retainers. Websites ship in 6-8 weeks. Audits turn around in 5-7 days. Movement shows up fast, because speed compounds." },
+];
+
+const numbers = [
+  { value: '+312%', label: 'avg. organic traffic in 6 months' },
+  { value: '5×', label: 'call volume lift on GMB clients' },
+  { value: '74%', label: 'AI citation rate (GEO clients)' },
+  { value: '500+', label: 'clients served since 2018' },
+];
+
+const faqs = [
+  { q: 'Which service should I start with?', a: 'It depends on where your biggest bottleneck is. If you have a decent site but aren’t ranking, <strong>Semantic SEO or GEO</strong> is usually the right start. If your site itself is the bottleneck (slow, non-semantic, no schema), <strong>Rank-Ready Website Design</strong> has to come first or everything else fights a losing battle. If you’re a local business where the 3-pack drives everything, <strong>GMB Management + Local Landing Pages</strong> is the highest-ROI combo. Not sure? Get a <a href="/services/seo-audits/">free audit</a> and we’ll tell you honestly.' },
+  { q: 'Can I hire Rank Ready for just one service, or do I need to commit to everything?', a: 'Just one is fine. Most clients start with one service, see results, and expand from there. The services are designed to work together but they’re also genuinely valuable standalone. We’ll never upsell you into services you don’t need.' },
+  { q: "What's your typical engagement model — project or retainer?", a: 'Depends on the service. <strong>Website Design</strong> and <strong>Audits</strong> are fixed-scope projects with a one-time fee. <strong>Semantic SEO, GMB Management, Local Pages, and GEO</strong> are monthly retainers because they require ongoing work to compound. Minimum retainer engagement is 3 months (enough time to see real movement), but most clients stay on for 12+ months because the returns keep growing.' },
+  { q: 'How much does each service cost?', a: 'Pricing is based on scope — which depends on your site size, competitive landscape, and business goals. Instead of publishing generic tiers that don’t match your situation, we give every prospect a custom quote after a 30-minute discovery call. That way, you see real numbers for your real business, not made-up package names. <a href="https://calendly.com/rankready/initial-consultation/" target="_blank" rel="noopener">Book a call</a> and you’ll get a quote within 48 hours.' },
+  { q: 'Do you work with international clients?', a: 'Yes — we operate globally. We have clients in the US, UK, EU, Australia, UAE, Canada, and South Asia. We work in English-language markets primarily, but we’ve supported multilingual SEO engagements (hreflang strategy, multi-region optimization, localized content) on several enterprise projects. Our team operates across time zones with 24/7 support coverage.' },
+  { q: 'How long before I see results?', a: 'It varies by service. <strong>GMB Management</strong> typically shows movement in 30-60 days. <strong>Local Landing Pages</strong> start ranking within 60-90 days of indexation. <strong>Semantic SEO</strong> compounds from month 3 with meaningful traffic lift by month 4-6. <strong>GEO</strong> shows first citations in 30-60 days, durable results by month 4. <strong>Website Design</strong> typically sees 4.2× traffic within 90 days of launch. None of this is instant — SEO is a long game. But we show early indicators so you know it’s working long before the big numbers hit.' },
+  { q: "What if we're already working with another SEO agency?", a: 'That’s fine. We’ve taken over from other agencies many times. Our <strong>free audit</strong> is a good neutral starting point — you’ll see what’s working, what isn’t, and what a different approach might unlock. If the audit reveals you’re being well-served, we’ll tell you that too. If it reveals real gaps, you’ll have a clear picture before making any decisions.' },
+  { q: 'Do you sign NDAs?', a: 'Always. We also don’t publish client logos or case studies without explicit written permission. The results you see on our site are from clients who opted in — many more fly completely under the radar. We respect discretion.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') } })),
+};
+---
+<BaseLayout
+  title="SEO Services | Rank Ready — Semantic SEO, GEO, GMB, Local & Web"
+  description="Six integrated services for ranking in Google AND AI. Semantic SEO, GEO, Local Pages, GMB, Web Design, Audits. Pick one or stack them. Free audit."
+>
+  <!-- 1. HERO -->
+  <section class="sec s-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner">
+      <div class="badge"><span class="dot"></span>OUR SERVICES</div>
+      <h1>Six services. <span class="grad">One system</span> for ranking.</h1>
+      <p class="lead">Every service we offer is part of one integrated system — because SEO in 2026 isn’t about keywords or backlinks or content or GMB or GEO in isolation. It’s about getting all of it working together. Here’s how we do that.</p>
+      <div class="rr-btn-group" style="justify-content:center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
+        <a href="#services-grid" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Explore Services</span><span class="rr-btn-arrow">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SIX SERVICES -->
+  <section class="sec s-grid" id="services-grid">
+    <SectionHeading
+      eyebrow="PICK YOUR STARTING POINT"
+      title="The six services, in plain English."
+      sub="Most clients start with one service, see results, then expand into adjacent areas. Here’s everything we do, with enough detail for you to self-select."
+    />
+    <div class="row grid g-2 svc-grid">
+      {services.map((s) => (
+        <a href={s.href} class:list={['svc', { featured: s.featured }]}>
+          {s.featured && <div class="new">⚡ NEW · GEO INSIDE</div>}
+          <div class="svc-head">
+            <div class:list={['svc-ico', s.color]}>{s.icon}</div>
+            <div>
+              <div class="svc-tag">{s.tag}</div>
+              <div class="svc-title" set:html={s.title} />
+            </div>
+          </div>
+          <div class="svc-text">{s.text}</div>
+          <ul>
+            {s.points.map((p) => <li><span class="tick">✓</span><span set:html={p} /></li>)}
+          </ul>
+          <div class="svc-more">Explore this service <span>→</span></div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3. METHOD -->
+  <section class="sec s-method">
+    <SectionHeading
+      eyebrow="THE RANK READY METHOD™"
+      title="How we work across every engagement."
+      sub="Whether you hire us for one service or all six, the underlying methodology is the same. It’s what makes the results compound."
+    />
+    <div class="row grid g-4">
+      {method.map((m, i) => (
+        <div class="step">
+          <div class="num">{String(i + 1).padStart(2, '0')}</div>
+          <div class="step-title" set:html={m.title} />
+          <div class="step-text">{m.text}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 4. WHY CHOOSE -->
+  <section class="sec s-why on-dark">
+    <SectionHeading
+      class="why-head"
+      eyebrow="WHY CHOOSE RANK READY"
+      title="What makes us different from the other 10,000 SEO agencies."
+      sub="Six things our clients consistently tell us we do better than every agency they’ve worked with before."
+    />
+    <div class="row grid g-3 why-grid">
+      {why.map((w) => (
+        <div class="why-card">
+          <div class="w-ico">{w.icon}</div>
+          <div class="w-title">{w.title}</div>
+          <div class="w-text">{w.text}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 5. NUMBERS -->
+  <section class="sec s-num">
+    <div class="row row-narrow center num-head">
+      <p class="eyebrow" style="margin-bottom:14px">THE NUMBERS</p>
+      <h2>Results that show up on the P&amp;L.</h2>
+    </div>
+    <div class="row grid g-4">
+      {numbers.map((n) => (
+        <div class="stat">
+          <div class="val grad">{n.value}</div>
+          <div class="lbl">{n.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 6. FAQ -->
+  <section class="sec s-faq">
+    <SectionHeading
+      eyebrow="COMMON QUESTIONS"
+      title="How we work, priced &amp; packaged."
+      sub="The most common questions we get from founders and marketing leads evaluating whether Rank Ready is the right fit."
+    />
+    <div class="row faq-list">
+      {faqs.map((f, i) => (
+        <details class="tg" open={i === 0}>
+          <summary><h5>{f.q}</h5></summary>
+          <p set:html={f.a} />
+        </details>
+      ))}
+    </div>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+
+  <!-- 7. FINAL CTA -->
+  <section class="sec s-cta">
+    <div class="bg" aria-hidden="true"><div class="c1"></div><div class="c2"></div></div>
+    <div class="row row-narrow center inner">
+      <h2>Let’s make you <span class="grad">Rank Ready.</span></h2>
+      <p class="lead">Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
+      <div class="rr-btn-group" style="justify-content:center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><span class="rr-btn-arrow">→</span></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><span class="rr-btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+  /* 1. Hero */
+  .s-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 140px 0; font-family: var(--inter); overflow: hidden; }
+  .s-hero .row { max-width: 1000px; }
+  .g1 { position: absolute; top: 5%; left: -8%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(16,185,129,.18) 0%, transparent 70%); filter: blur(80px); }
+  .g2 { position: absolute; bottom: -15%; right: -8%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(139,92,246,.2) 0%, transparent 70%); filter: blur(90px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
+  .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .s-hero h1 { font-size: 68px; font-weight: 800; line-height: 74.8px; letter-spacing: -2px; color: #fff; text-align: center; margin-bottom: 28px; }
+  .s-hero .lead { max-width: 760px; margin: 0 auto 40px; font-size: 20px; line-height: 30.6px; color: var(--slate-300); }
+
+  /* 2. Services grid */
+  .s-grid { background: var(--light-bg); padding: 120px 0 100px; }
+  .svc-grid { row-gap: 57px; align-items: stretch; }
+  .svc { display: block; position: relative; height: 100%; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 40px 36px; font-family: var(--inter); box-shadow: 0 4px 20px rgba(15,23,42,.04); transition: all .35s ease; }
+  .svc:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(15,23,42,.15); }
+  .svc.featured { border: 2px solid var(--green); }
+  .new { position: absolute; top: -14px; right: 24px; background: linear-gradient(135deg, #10B981, #8B5CF6); color: #fff; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 100px; letter-spacing: 1px; line-height: 1.7; }
+  .svc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .svc-ico { width: 64px; height: 64px; flex: none; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; }
+  .svc-ico.green { background: linear-gradient(135deg, #10B981, #059669); box-shadow: 0 10px 24px -8px #10B98166; }
+  .svc-ico.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); box-shadow: 0 10px 24px -8px #8B5CF666; }
+  .svc-ico.dark { background: linear-gradient(135deg, #0F172A, #1E293B); box-shadow: 0 10px 24px -8px #0F172A66; }
+  .svc-tag { font-size: 11px; letter-spacing: 2px; color: var(--slate-500); font-weight: 600; line-height: 1.7; }
+  .svc-title { font-size: 24px; font-weight: 800; color: var(--navy); margin-top: 4px; letter-spacing: -.5px; line-height: 1.2; }
+  .svc-text { font-size: 15.5px; color: var(--slate-500); line-height: 1.7; margin-bottom: 22px; }
+  .svc ul { list-style: none; padding: 0; margin: 0 0 26px; }
+  .svc li { padding: 8px 0; color: var(--slate-500); font-size: 14.5px; line-height: 1.6; display: flex; gap: 12px; align-items: flex-start; }
+  .tick { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .svc-more { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; font-size: 14.5px; padding-top: 20px; border-top: 1px solid #E2E8F0; line-height: 1.7; }
+  .svc-more span { transition: transform .3s; }
+  .svc:hover .svc-more span { transform: translateX(5px); }
+
+  /* 3. Method */
+  .s-method { background: #fff; padding: 120px 0; }
+  .step { font-family: var(--inter); }
+  .num { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 24px; margin-bottom: 22px; letter-spacing: -.5px; box-shadow: 0 10px 24px -8px rgba(16,185,129,.4); }
+  .step-title { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 12px; }
+  .step-text { font-size: 14.5px; color: var(--slate-500); line-height: 1.75; }
+
+  /* 4. Why */
+  .s-why { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0; }
+  :global(.why-head) { padding-bottom: 40px !important; }
+  .s-why :global(.sec-title) { letter-spacing: -1.5px; }
+  .s-why :global(.sec-sub) { font-size: 17px; color: var(--slate-400); max-width: 720px; margin: 0 auto; }
+  .why-grid { row-gap: 30px; }
+  .why-card { background: rgba(255,255,255,.03); border: .8px solid rgba(255,255,255,.08); padding: 32px 28px; border-radius: 16px; font-family: var(--inter); }
+  .w-ico { font-size: 32px; margin-bottom: 18px; line-height: 1.7; }
+  .w-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -.3px; line-height: 1.7; }
+  .w-text { font-size: 15px; color: var(--slate-400); line-height: 1.7; }
+
+  /* 5. Numbers */
+  .s-num { background: #fff; font-family: var(--inter); }
+  .num-head { padding-bottom: 40px; }
+  .num-head h2 { font-size: 44px; font-weight: 800; line-height: 50.6px; letter-spacing: -1px; color: var(--navy); margin-bottom: 16px; }
+  .stat { text-align: center; padding: 20px 0; }
+  .val { font-size: 64px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 10px; }
+  .lbl { font-size: 14px; color: var(--slate-500); line-height: 1.5; }
+
+  /* 6. FAQ */
+  .s-faq { background: #fff; padding: 120px 0; }
+  .s-faq :global(.sec-title) { letter-spacing: -1px; }
+  .faq-list { max-width: 860px; font-family: var(--inter); }
+  .tg { background: #fff; border: .8px solid #E2E8F0; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
+  .tg[open] { background: var(--light-bg); }
+  summary { list-style: none; cursor: pointer; position: relative; padding-right: 50px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
+  .tg[open] summary::after { content: '−'; }
+  h5 { font-size: 17px; font-weight: 700; line-height: 1.3; color: var(--navy); padding-bottom: 0; }
+  .tg p { font-size: 15px; line-height: 26.25px; color: var(--slate-500); padding-top: 14px; }
+  .tg p :global(strong) { font-weight: 700; }
+  .tg p :global(a) { color: var(--green); }
+
+  /* 7. CTA */
+  .s-cta { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%); padding: 120px 0; font-family: var(--inter); overflow: hidden; }
+  .c1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(16,185,129,.12) 0%, transparent 60%); filter: blur(60px); }
+  .c2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
+  .s-cta h2 { font-size: 64px; font-weight: 800; line-height: 70.4px; letter-spacing: -1.5px; color: #fff; margin-bottom: 24px; }
+  .s-cta .lead { max-width: 640px; margin: 0 auto 36px; font-size: 18px; line-height: 30.6px; color: var(--slate-300); }
+
+  @media (max-width: 980px) {
+    .svc-grid { row-gap: 30px; }
+  }
+  @media (max-width: 767px) {
+    .s-hero { padding: 70px 0; }
+    .s-hero h1 { font-size: 40px; line-height: 44px; letter-spacing: -1px; }
+    .s-hero .lead { font-size: 17px; }
+    .s-grid, .s-method, .s-why, .s-faq, .s-cta { padding: 60px 0; }
+    .svc { padding: 32px 24px; }
+    .svc-title { font-size: 21px; }
+    .num-head h2 { font-size: 30px; line-height: 36px; }
+    .val { font-size: 48px; }
+    .s-cta h2 { font-size: 40px; line-height: 44px; }
+  }
+</style>
