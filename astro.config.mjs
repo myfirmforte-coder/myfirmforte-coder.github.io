@@ -14,5 +14,6 @@ export default defineConfig({
   // Purane / doosre URLs ko sahi page pe bhejna (SEO ke liye)
   redirects: {
     '/services/rank-ready-website-design/': '/services/web-development/',
+    '/services/semantic-seo/': '/services/semantic-seo-optimization-services/',
   },
 });
