@@ -40,8 +40,7 @@ footer `#020617`, light bg `#F8FAFC`, muted text `#64748B`. Sections: 100px vert
 2. Keep old WordPress URLs. If a URL must change, add a redirect.
 3. Always run `npm run build` and make sure it passes before pushing.
 4. Push to `main` → GitHub Actions deploys automatically.
-5. Images: currently loaded from `https://rank-ready.com/wp-content/uploads/...` (`WP` constant in
-   `site.ts`). Before WordPress is removed, copy them into `public/images/` and update paths.
+5. Images live in `public/images/` (served at `/images/...`). Never hotlink the old WordPress site.
 
 ## Going live on rank-ready.com (later)
 - `src/data/site.ts`: `NOINDEX = false`.
