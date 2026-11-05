@@ -1,0 +1,129 @@
+---
+// GMB MANAGEMENT SERVICES — /services/gmb-management-services/
+// (Purana URL /services/gmb-management/ yahan redirect hota hai.)
+// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+
+const data: ServiceData = {
+  meta: {
+    title: 'Google Business Profile Management | GMB Optimization | Rank Ready',
+    description: 'Dominate the local 3-pack. Pro GBP management — reviews, posts, photos, geo-grid reporting. 5× avg call volume in 90 days. See the playbook in action.',
+  },
+  schema: { name: 'Google Business Profile Management', serviceType: 'GMB / Google Business Profile optimization' },
+
+  hero: {
+    badge: 'GOOGLE BUSINESS PROFILE MANAGEMENT',
+    title: 'Dominate the local <span class="grad">3-pack.</span>',
+    lead: 'Your Google Business Profile is the most valuable digital real estate your business owns — and 90% of business owners have no idea how to work it. We manage every signal Google uses to rank local businesses, turning your GBP into a 24/7 lead engine.',
+    card: { value: '5×', title: 'avg. increase in GMB phone calls within 90 days', note: 'measured across 40+ GMB management clients in 2024-2025' },
+  },
+
+  problem: {
+    eyebrow: 'WHY YOUR GBP ISN’T RANKING',
+    title: 'A ‘complete’ profile is not the same as a ranking profile.',
+    sub: 'Filling out your Google Business Profile is the easy part. Getting it to actually rank in the 3-pack? That’s where 95% of businesses get stuck.',
+    cards: [
+      { icon: '👻', title: 'Optimized ≠ Active', text: "Most profiles sit static — no weekly posts, no fresh photos, no Q&amp;A engagement, no review responses. Google's algorithm rewards active profiles. Inactive ones quietly drop, even if every field is filled out." },
+      { icon: '⭐', title: 'Reviews are treated as optional', text: 'Review velocity, recency, response rate, and sentiment are all direct ranking factors. Businesses that let reviews trickle in passively (or ignore the negative ones) lose every 3-pack battle to competitors with structured review acquisition.' },
+      { icon: '🏷️', title: 'Wrong categories, missing attributes, no services', text: 'The primary category is the single most important ranking factor on GBP — and most businesses pick the wrong one. Services, attributes, and business descriptions all miss keyword opportunities that competitors capture.' },
+    ],
+  },
+
+  included: {
+    eyebrow: 'WHAT’S INCLUDED',
+    title: 'Everything your Google Business Profile needs, managed end-to-end.',
+    sub: 'We don’t just ‘keep your profile updated.’ We actively manage every signal Google uses to rank local businesses — and report monthly on what moved.',
+    cards: [
+      { icon: '🔍', title: 'Full GBP Audit &amp; Optimization', text: 'Primary/secondary categories, complete services list, attributes, business description, hours, logo, cover photo, and service area configuration.' },
+      { icon: '📸', title: 'Ongoing Photo &amp; Media Strategy', text: 'New photos uploaded on a schedule. Geo-tagged images, team photos, work-in-progress shots, and 360° content that signals freshness and authenticity.' },
+      { icon: '📝', title: 'Weekly Google Posts', text: 'Fresh posts every week — offers, updates, event announcements, product highlights — written to drive clicks and signal an actively managed business.' },
+      { icon: '💬', title: 'Q&amp;A Management', text: 'We seed strategic Q&amp;As using real customer queries, then monitor and respond to new questions. Unattended Q&amp;A sections are a silent lead killer.' },
+      { icon: '⭐', title: 'Review Acquisition System', text: 'Automated review requests via SMS and email, response templates, sentiment monitoring, and escalation workflows for negative reviews.' },
+      { icon: '🗣️', title: 'Review Response (Every Single Review)', text: 'Professional responses to 100% of reviews — positive and negative — within 24 hours. Response rate is a documented ranking signal.' },
+      { icon: '📍', title: 'NAP Consistency Monitoring', text: 'Quarterly audits of your Name, Address, and Phone data across GBP, your website, and top 30+ citation sites. Inconsistencies silently kill rankings.' },
+      { icon: '📊', title: 'Geo-Grid Ranking Reports', text: "Monthly heat-map reports showing where you rank in every ZIP code you serve — so you can see exactly where visibility is strong and where it's weak." },
+      { icon: '🔄', title: 'Insights &amp; Strategy Reviews', text: 'GBP Insights analysis (discovery vs. direct searches, actions, photo views), plus quarterly strategy calls to adjust based on performance.' },
+    ],
+  },
+
+  steps: {
+    eyebrow: 'HOW IT WORKS',
+    title: 'From messy profile to local pack leader in 90 days.',
+    sub: 'A 5-phase process that transforms your Google Business Profile from a checkbox into a growth engine.',
+    items: [
+      { title: 'Full GBP Audit', text: 'Week 1. Comprehensive audit of your current profile, competitor profiles in your target markets, review velocity, and ranking positions across your service area.' },
+      { title: 'Optimization Sprint', text: 'Week 1-2. Category restructure, services rebuild, attribute review, photo audit and upload, description rewrite, and baseline Q&amp;A seeding.' },
+      { title: 'Posting &amp; Review Systems Live', text: 'Week 2-3. Weekly post calendar goes live. Review acquisition automation launches. Response templates deployed across your team or managed by us.' },
+      { title: 'Monthly Management &amp; Reporting', text: 'Ongoing. Posts weekly, Q&amp;As monitored daily, reviews responded to within 24 hours, photos updated monthly, and geo-grid reports delivered.' },
+      { title: 'Quarterly Strategy Reviews', text: "Every 90 days. Deep analysis of what's working, competitor movement, new service additions, and strategic adjustments based on ranking data." },
+    ],
+  },
+
+  why: {
+    eyebrow: 'WHY GBP MANAGEMENT MATTERS',
+    title: 'The 3-pack captures 44% of all local search clicks. Are you in it?',
+    article: [
+      { title: 'Proximity, prominence, and relevance — the three pillars', text: "Google's local ranking algorithm evaluates three core signals: <strong>proximity</strong> (how close you are to the searcher), <strong>prominence</strong> (how well-known and trusted your business is, driven largely by reviews and citations), and <strong>relevance</strong> (how accurately your profile matches what they're searching for). You can't change proximity, but the other two are entirely controllable — which is why professionally managed GBPs consistently outrank do-it-yourself profiles." },
+      { title: 'Reviews are the single biggest prominence signal', text: 'Review <strong>count, velocity, recency, sentiment, and keyword density</strong> all factor into local rankings. Businesses that actively solicit reviews from every customer — and respond to every single one — consistently outperform competitors with higher star averages but lower volume. Review acquisition is a system, not a hope.' },
+      { title: 'Posts, photos, and Q&amp;A signal active management', text: 'Google favors businesses that treat their GBP as a living asset. <strong>Weekly posts</strong> signal that the business is open and operating. <strong>Regular photo uploads</strong> signal authenticity and freshness. <strong>Active Q&amp;A</strong> signals engagement. These signals compound — a profile with all three consistently outranks one with none, even if everything else is equal.' },
+      { title: 'Category selection is the highest-leverage decision', text: 'Your <strong>primary category</strong> is the single most important ranking factor on Google Business Profile. Choosing "Roofing Contractor" vs. "Roofer" vs. "Roofing Service" can shift your rankings across thousands of queries. Most businesses pick based on intuition and leave massive ranking potential on the table. We pick based on data.' },
+    ],
+    facts: [
+      { value: '44%', label: 'of local clicks go to the map 3-pack results' },
+      { value: '88%', label: 'of local-intent mobile searches end in a call or visit within 24h' },
+      { value: '5×', label: 'more calls after managed GBP vs. DIY profile management' },
+      { value: '63%', label: 'of consumers check Google reviews before visiting a business' },
+    ],
+  },
+
+  audience: {
+    eyebrow: 'IS THIS FOR YOU?',
+    title: 'Who gets the most from professional GBP management.',
+    sub: 'GBP management is foundational for any business that serves a local area. Here’s where the ROI is highest.',
+    cards: [
+      { icon: '🏠', title: 'Home Services', text: 'Plumbing, HVAC, roofing, electrical, pest control — emergency services where local pack presence drives urgent calls.' },
+      { icon: '🦷', title: 'Medical, Dental &amp; Healthcare', text: 'Dental practices, cosmetic clinics, physical therapy, specialists — where patients research before choosing providers.' },
+      { icon: '🍽️', title: 'Restaurants &amp; Hospitality', text: 'Restaurants, bars, cafés, hotels, event venues — where reviews, photos, and hours directly drive foot traffic.' },
+      { icon: '⚖️', title: 'Legal &amp; Professional Services', text: 'Law firms, accountants, consultants, financial advisors where local search trust signals drive inquiries.' },
+      { icon: '🚗', title: 'Auto Services', text: 'Repair shops, detailers, dealerships, tire shops, auto glass — competitive local verticals dominated by well-managed GBPs.' },
+      { icon: '🏢', title: 'Multi-Location Brands', text: 'Franchise networks, retail chains, and service groups managing 10-500+ individual Google Business Profiles at scale.' },
+    ],
+  },
+
+  result: {
+    value: '5×',
+    title: 'phone call volume in 60 days',
+    note: 'Multi-location home services · GBP optimization + review acquisition + weekly posting',
+    quote: "We had a beautiful website but almost nobody found us through Google. Within two months of Rank Ready taking over our GBP, we jumped into the top of the 3-pack in nine cities and our phone hasn't stopped ringing. Best money we've spent in twenty years of business.",
+    initials: 'SK', name: 'Sarah Khan', role: 'Owner, Elite Home Services',
+  },
+
+  faq: {
+    eyebrow: 'COMMON QUESTIONS',
+    title: 'GBP management, demystified.',
+    sub: 'The questions we get most often from business owners exploring professional GBP management.',
+    items: [
+      { q: 'How long does it take to see results from GBP management?', a: 'Most clients see <strong>measurable improvement in 30-60 days</strong> and meaningful 3-pack movement within <strong>60-90 days</strong>. The first wins are usually review volume lift and reply rate — those happen within weeks. Geo-grid ranking improvements come next, then overall call volume and form fill lift. By 90 days, the profile is transformed.' },
+      { q: 'How many reviews should I be getting per month?', a: 'Depends on your industry and competitive landscape. As a general benchmark: <strong>home services</strong> should aim for 8-20 new reviews/month, <strong>medical/dental</strong> for 10-30, <strong>legal</strong> for 3-10, and <strong>restaurants</strong> for 20-50+. Our review acquisition systems typically 3-5× whatever your current rate is within 60 days — without buying reviews or anything sketchy.' },
+      { q: 'What if we have a suspended profile or review problems?', a: 'We handle <strong>profile suspension appeals</strong>, category disputes, and review removal requests (for reviews that violate Google’s policies). Not every negative review can be removed — Google’s bar is high — but fake reviews, competitor attacks, and policy violations can often be handled successfully. We’ve reinstated dozens of suspended profiles in the past two years.' },
+      { q: 'Do you manage multiple locations?', a: 'Yes. We regularly manage <strong>5-100+ GBPs</strong> under a single brand. Multi-location management uses our bulk workflow tools for posts, reviews, and reporting, with per-location strategy layered on top where needed. Scales cleanly from small chains to national brands.' },
+      { q: "What's the difference between your service and hiring an in-house manager?", a: 'An in-house manager costs $50-85K/year fully loaded for one person who has to also learn SEO, local algorithm changes, citation management, review platforms, and dispute workflows. Our service is a fraction of that cost and draws on a team that’s been specializing in local SEO for 8+ years. If you have complex enterprise needs, we <strong>work alongside in-house teams</strong> too.' },
+      { q: "What's your review acquisition approach — is it compliant?", a: '100% compliant with Google’s policies. We use <strong>automated SMS and email requests</strong> sent to real customers after real transactions, linking directly to your Google review URL. No review gating (where you filter out bad reviews before they post — that’s a TOS violation), no incentivized reviews, no fake review generation. Just a systematic way to ask happy customers to share their experience.' },
+      { q: 'Do you post on Google Posts every week?', a: 'Yes — <strong>one post per week minimum</strong>, often two. Posts are written in your brand voice, rotate through offer/update/event/product formats, and include on-brand imagery. Every post is crafted to either drive clicks to your site, encourage a call, or signal freshness to Google’s algorithm.' },
+      { q: 'How is GBP management different from local SEO?', a: 'GBP management focuses specifically on your <strong>Google Business Profile</strong> and its ranking in the local 3-pack. Local SEO is a broader practice that includes your GBP but also covers local landing pages, citations, on-site local signals, and general organic local ranking. The two compound — managing your GBP while running local landing pages yields much better results than either alone. For businesses where both matter, we usually recommend our integrated approach.' },
+    ],
+  },
+
+  related: {
+    eyebrow: 'EXPLORE MORE',
+    title: 'Services that pair perfectly with this one.',
+    sub: 'Most clients start with one service and expand as results come in. Here’s what tends to work well together.',
+    cards: [
+      { icon: '🗺️', color: 'green', title: 'Local Landing Pages', text: 'Hyper-local service pages that feed authority into your GBP and dominate organic.', href: '/services/local-landing-pages/' },
+      { icon: '🧠', color: 'purple', title: 'Semantic SEO', text: 'Site-wide topical authority that lifts your entire local presence — not just the GBP.', href: '/services/semantic-seo-optimization-services/' },
+      { icon: '📊', color: 'dark', title: 'Free SEO Audit', text: 'Not sure if your GBP is the bottleneck? Get a free audit covering GBP + local SEO.', href: '/services/seo-audits/' },
+    ],
+  },
+};
+---
+<ServicePage data={data} />
