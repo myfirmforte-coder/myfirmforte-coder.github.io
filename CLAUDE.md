@@ -22,6 +22,9 @@ developer: they describe changes in simple Urdu/English and the AI makes them. K
 | Section heading (eyebrow/title/sub) | `src/components/SectionHeading.astro` |
 | Home page order | `src/pages/index.astro` |
 | Home sections (one file each) | `src/components/home/*.astro` |
+| Service page design (shared by all service pages) | `src/components/ServicePage.astro` — pages in `src/pages/services/<slug>/index.astro` only pass a `data` object |
+| Reusable FAQ list / bottom CTA | `src/components/FaqList.astro`, `src/components/CtaBanner.astro` |
+| Redirects (old URL → new URL) | `redirects` in `astro.config.mjs` |
 
 Home sections in order: Hero, Problem ("The hard truth"), Method (4 pillars), Services (6 cards),
 Geo ("future of search"), Results (stats), CaseStudies, Industries, Process (5 steps),
