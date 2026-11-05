@@ -1,0 +1,319 @@
+---
+// SERVICE PAGE TEMPLATE — har service page (Web Development, Semantic SEO, GMB...) isi design ko use karta hai.
+// Page ki file (src/pages/services/<naam>/index.astro) sirf text/data deti hai; design yahan hai.
+// Design badalna ho to yahan badlein — saare service pages mein khud badal jayega.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from './SectionHeading.astro';
+import FaqList from './FaqList.astro';
+import CtaBanner from './CtaBanner.astro';
+import { site } from '../data/site';
+
+type Card = { icon: string; title: string; text: string };
+type Head = { eyebrow: string; title: string; sub: string };
+export interface ServiceData {
+  meta: { title: string; description: string };
+  schema: { name: string; serviceType: string };
+  hero: { badge: string; title: string; lead: string; card: { value: string; title: string; note: string } };
+  problem: Head & { cards: Card[] };
+  included: Head & { cards: Card[] };
+  steps: Head & { items: { title: string; text: string }[] };
+  why: { eyebrow: string; title: string; article: { title: string; text: string }[]; facts: { value: string; label: string }[] };
+  audience: Head & { cards: Card[] };
+  result: { value: string; title: string; note: string; quote: string; initials: string; name: string; role: string };
+  faq: Head & { items: { q: string; a: string }[] };
+  related: Head & { cards: (Card & { color: 'green' | 'purple' | 'dark'; href: string })[] };
+}
+interface Props { data: ServiceData }
+const { data: d } = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: d.schema.name,
+  serviceType: d.schema.serviceType,
+  provider: { '@type': 'ProfessionalService', name: site.name, url: Astro.site?.toString() },
+  areaServed: 'Worldwide',
+};
+---
+<BaseLayout title={d.meta.title} description={d.meta.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- 1. HERO -->
+  <section class="sec w-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row hero-row inner">
+      <div>
+        <div class="badge"><span class="dot"></span>{d.hero.badge}</div>
+        <h1 set:html={d.hero.title} />
+        <p class="lead">{d.hero.lead}</p>
+        <div class="rr-btn-group">
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Get a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
+          <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Quote</span><span class="rr-btn-arrow">→</span></a>
+        </div>
+      </div>
+      <div>
+        <div class="result-card">
+          <div class="rc-g1"></div><div class="rc-g2"></div>
+          <div class="rc-in">
+            <div class="rc-lbl">AVERAGE CLIENT RESULT</div>
+            <div class="rc-val grad">{d.hero.card.value}</div>
+            <div class="rc-title">{d.hero.card.title}</div>
+            <div class="rc-note">{d.hero.card.note}</div>
+            <div class="rc-foot">
+              <div class="avs"><span class="av a1">JS</span><span class="av a2">SK</span><span class="av a3">DP</span></div>
+              <div class="rc-trust">Trusted by 500+ clients since 2018</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. THE PROBLEM -->
+  <section class="sec w-problem">
+    <SectionHeading eyebrow={d.problem.eyebrow} title={d.problem.title} sub={d.problem.sub} />
+    <div class="row grid g-3">
+      {d.problem.cards.map((p) => (
+        <div class="prob">
+          <div class="prob-ico">{p.icon}</div>
+          <div class="c-title" set:html={p.title} />
+          <div class="c-text" set:html={p.text} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3. WHAT'S INCLUDED -->
+  <section class="sec w-incl">
+    <SectionHeading eyebrow={d.included.eyebrow} title={d.included.title} sub={d.included.sub} />
+    <div class="row grid g-3 gap57">
+      {d.included.cards.map((f) => (
+        <div class="feat">
+          <div class="feat-ico">{f.icon}</div>
+          <div class="f-title" set:html={f.title} />
+          <div class="f-text" set:html={f.text} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 4. HOW IT WORKS -->
+  <section class="sec w-how">
+    <SectionHeading eyebrow={d.steps.eyebrow} title={d.steps.title} sub={d.steps.sub} />
+    <div class="row grid g-5">
+      {d.steps.items.map((s, i) => (
+        <div class="step">
+          <div class="num">{String(i + 1).padStart(2, '0')}</div>
+          <div class="f-title" set:html={s.title} />
+          <div class="f-text" set:html={s.text} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 5. WHY THIS MATTERS -->
+  <section class="sec w-why">
+    <div class="row row-narrow why-text">
+      <p class="eyebrow" style="margin-bottom:14px">{d.why.eyebrow}</p>
+      <h2 set:html={d.why.title} />
+      <div class="article">
+        {d.why.article.map((m) => (<><h3 set:html={m.title} /><p set:html={m.text} /></>))}
+      </div>
+    </div>
+    <div class="row facts-row">
+      <div class="facts">
+        {d.why.facts.map((f) => (
+          <div class="fact">
+            <div class="fact-val grad">{f.value}</div>
+            <div class="fact-lbl">{f.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. IS THIS FOR YOU -->
+  <section class="sec w-who">
+    <SectionHeading eyebrow={d.audience.eyebrow} title={d.audience.title} sub={d.audience.sub} />
+    <div class="row grid g-3 gap57">
+      {d.audience.cards.map((a) => (
+        <div class="aud">
+          <div class="aud-ico">{a.icon}</div>
+          <div class="aud-title" set:html={a.title} />
+          <div class="aud-text" set:html={a.text} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 7. FEATURED RESULT -->
+  <section class="sec w-result">
+    <div class="row feat-row">
+      <div class="fr-card">
+        <div class="fr-g1"></div><div class="fr-g2"></div>
+        <div class="fr-grid">
+          <div>
+            <div class="rc-lbl">FEATURED RESULT</div>
+            <div class="fr-val grad">{d.result.value}</div>
+            <div class="fr-title">{d.result.title}</div>
+            <div class="fr-note" set:html={d.result.note} />
+          </div>
+          <div>
+            <div class="fr-stars">⭐⭐⭐⭐⭐</div>
+            <div class="fr-quote">"{d.result.quote}"</div>
+            <div class="fr-who">
+              <div class="fr-av">{d.result.initials}</div>
+              <div><div class="fr-name">{d.result.name}</div><div class="fr-role" set:html={d.result.role} /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="sec w-faq">
+    <SectionHeading eyebrow={d.faq.eyebrow} title={d.faq.title} sub={d.faq.sub} />
+    <FaqList faqs={d.faq.items} />
+  </section>
+
+  <!-- 9. EXPLORE MORE -->
+  <section class="sec w-more">
+    <SectionHeading eyebrow={d.related.eyebrow} title={d.related.title} sub={d.related.sub} />
+    <div class="row grid g-3">
+      {d.related.cards.map((r) => (
+        <a href={r.href} class="rel">
+          <div class:list={['rel-ico', r.color]}>{r.icon}</div>
+          <div class="rel-title" set:html={r.title} />
+          <div class="rel-text" set:html={r.text} />
+          <div class="rel-more">Learn more →</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 10. CTA -->
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  :global(.grad) { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .gap57 { row-gap: 57px; }
+  section { font-family: var(--inter); }
+
+  /* 1. Hero */
+  .w-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0; overflow: hidden; }
+  .g1 { position: absolute; top: 10%; left: -5%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(16,185,129,.15) 0%, transparent 70%); filter: blur(70px); }
+  .g2 { position: absolute; bottom: -15%; right: -5%; width: 650px; height: 650px; background: radial-gradient(circle, rgba(139,92,246,.18) 0%, transparent 70%); filter: blur(80px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .hero-row { display: grid; grid-template-columns: 57.8% 36.7%; justify-content: space-between; align-items: start; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
+  .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .w-hero h1 { font-size: 64px; font-weight: 800; line-height: 70.4px; letter-spacing: -2px; color: #fff; margin-bottom: 24px; }
+  .w-hero .lead { font-size: 19px; line-height: 30.6px; color: var(--slate-300); margin-bottom: 36px; }
+  .result-card { background: linear-gradient(135deg, #1E293B 0%, #020617 100%); border: 1px solid rgba(255,255,255,.08); border-radius: 24px; padding: 40px 36px; position: relative; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+  .rc-g1 { position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%); filter: blur(40px); }
+  .rc-g2 { position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(139,92,246,.25), transparent 70%); filter: blur(30px); }
+  .rc-in { position: relative; }
+  .rc-lbl { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,.55); font-weight: 600; margin-bottom: 18px; line-height: 1.7; }
+  .rc-val { font-size: 84px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 14px; }
+  .rc-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+  .rc-note { font-size: 13.5px; color: var(--slate-400); line-height: 1.55; }
+  .rc-foot { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: 10px; }
+  .avs { display: flex; }
+  .av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #0F172A; font-size: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
+  .av + .av { margin-left: -8px; }
+  .a1 { background: linear-gradient(135deg, #10B981, #8B5CF6); }
+  .a2 { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+  .a3 { background: linear-gradient(135deg, #FBBF24, #F59E0B); }
+  .rc-trust { font-size: 12px; color: var(--slate-400); line-height: 1.7; }
+
+  /* 2. Problem */
+  .w-problem { background: var(--light-bg); }
+  .prob { background: #fff; padding: 36px 32px; border-radius: 16px; border: .8px solid #E2E8F0; }
+  .prob-ico { display: inline-flex; width: 48px; height: 48px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+  .c-title { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 12px; }
+  .c-text { font-size: 15px; color: var(--slate-500); line-height: 1.7; }
+
+  /* 3. Included + 4. Steps */
+  .w-incl { background: #fff; padding: 120px 0 100px; }
+  .feat { background: #fff; padding: 32px 28px; border-radius: 14px; box-shadow: 6px 6px 40px 0 rgba(15,23,42,.06); }
+  .feat-ico { display: inline-flex; width: 52px; height: 52px; background: linear-gradient(135deg, #10B981, #059669); border-radius: 12px; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; color: #fff; box-shadow: 0 8px 20px -6px rgba(16,185,129,.4); }
+  .f-title { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 10px; }
+  .f-text { font-size: 14.5px; color: var(--slate-500); line-height: 1.7; }
+  .w-how { background: var(--light-bg); padding: 120px 0; }
+  .num { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 22px; margin-bottom: 18px; letter-spacing: -.5px; box-shadow: 0 10px 24px -8px rgba(16,185,129,.4); }
+
+  /* 5. Why this matters */
+  .w-why { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0; }
+  .why-text { padding-bottom: 30px; }
+  .w-why h2 { font-size: 44px; font-weight: 800; line-height: 50.6px; letter-spacing: -1px; color: #fff; margin-bottom: 24px; }
+  .article { font-size: 16.5px; color: var(--slate-300); line-height: 1.85; }
+  .article h3 { color: #fff; font-size: 22px; font-weight: 700; margin: 30px 0 14px; letter-spacing: -.3px; line-height: 1.3; padding: 0; }
+  .article p { padding: 0; }
+  .article :global(strong) { color: #fff; }
+  .facts-row { max-width: 1100px; padding: 30px 0 0; }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .fact { padding: 28px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; }
+  .fact-val { font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 10px; }
+  .fact-lbl { font-size: 13.5px; color: var(--slate-400); line-height: 1.5; }
+
+  /* 6. Audience */
+  .w-who { background: #fff; }
+  .aud { background: var(--light-bg); padding: 28px 24px; border-radius: 14px; border: .8px solid #E2E8F0; }
+  .aud-ico { font-size: 32px; margin-bottom: 14px; line-height: 1.7; }
+  .aud-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.7; }
+  .aud-text { font-size: 14px; color: var(--slate-500); line-height: 1.6; }
+
+  /* 7. Featured result */
+  .w-result { background: var(--light-bg); }
+  .feat-row { max-width: 1100px; }
+  .fr-card { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: 24px; padding: 56px 48px; position: relative; overflow: hidden; color: #fff; }
+  .fr-g1 { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%); filter: blur(50px); }
+  .fr-g2 { position: absolute; bottom: -50px; left: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(139,92,246,.2), transparent 70%); filter: blur(40px); }
+  .fr-grid { position: relative; display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: center; }
+  .fr-val { font-size: 110px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 16px; }
+  .fr-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+  .fr-note { font-size: 14px; color: var(--slate-400); line-height: 1.55; }
+  .fr-stars { color: #FBBF24; font-size: 18px; margin-bottom: 14px; }
+  .fr-quote { font-size: 19px; line-height: 1.7; margin-bottom: 26px; color: #E2E8F0; font-style: italic; }
+  .fr-who { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); }
+  .fr-av { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #fff; }
+  .fr-name { font-weight: 700; font-size: 15px; line-height: 1.7; }
+  .fr-role { font-size: 13px; color: var(--slate-400); line-height: 1.5; }
+
+  /* 8/9 */
+  .w-faq { background: #fff; padding: 120px 0; }
+  .w-more { background: var(--light-bg); }
+  .rel { display: block; height: 100%; background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 32px 28px; transition: all .3s; }
+  .rel:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(15,23,42,.12); border-color: var(--green); }
+  .rel-ico { display: inline-flex; width: 48px; height: 48px; border-radius: 12px; align-items: center; justify-content: center; font-size: 22px; color: #fff; margin-bottom: 20px; }
+  .rel-ico.green { background: linear-gradient(135deg, #10B981, #059669); }
+  .rel-ico.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+  .rel-ico.dark { background: linear-gradient(135deg, #0F172A, #1E293B); }
+  .rel-title { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .rel-text { font-size: 14.5px; color: var(--slate-500); line-height: 1.65; margin-bottom: 18px; }
+  .rel-more { font-size: 13.5px; color: var(--green); font-weight: 600; }
+
+  /* :global(.sec-title) letter-spacing like original */
+  section :global(.sec-title) { letter-spacing: -1px; }
+
+  @media (max-width: 980px) {
+    .hero-row { grid-template-columns: 1fr; row-gap: 50px; }
+    .gap57 { row-gap: 30px; }
+  }
+  @media (max-width: 767px) {
+    .w-hero { padding: 60px 0; }
+    .w-hero h1 { font-size: 40px; line-height: 44px; letter-spacing: -1px; }
+    .w-hero .lead { font-size: 17px; }
+    .w-incl, .w-how, .w-why, .w-faq { padding: 60px 0; }
+    .rc-val { font-size: 64px; }
+    .w-why h2 { font-size: 30px; line-height: 36px; }
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .fr-card { padding: 40px 24px; }
+    .fr-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    .fr-who { justify-content: center; text-align: left; }
+    .fr-val { font-size: 72px; }
+  }
+</style>
