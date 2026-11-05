@@ -64,6 +64,8 @@ ul { margin: 0; }
 .rr-btn-primary:hover::before { left: 100%; }
 .rr-btn-ghost { background: rgba(255,255,255,.04); color: #fff !important; border: 1.5px solid rgba(255,255,255,.15); backdrop-filter: blur(10px); }
 .rr-btn-ghost:hover { background: rgba(255,255,255,.08); border-color: var(--green); transform: translateY(-2px); }
+.rr-btn-outline { background: transparent; color: var(--navy) !important; border: 1.5px solid var(--navy); }
+.rr-btn-outline:hover { background: var(--navy); color: #fff !important; transform: translateY(-2px); }
 .rr-btn-arrow { display: inline-block; transition: transform .3s ease; font-size: 18px; }
 .rr-btn:hover .rr-btn-arrow { transform: translateX(5px); }
 .rr-btn-lg { padding: 22px 38px; font-size: 17px; }
