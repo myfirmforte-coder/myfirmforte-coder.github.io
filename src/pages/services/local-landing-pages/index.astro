@@ -1,0 +1,129 @@
+---
+// LOCAL LANDING PAGES — /services/local-landing-pages/
+// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+
+const data: ServiceData = {
+  meta: {
+    title: 'Local Landing Page Services | City SEO Pages That Rank | Rank Ready',
+    description: 'Hyper-local landing pages for multi-location businesses. Genuinely unique content per city, full local schema. 120+ pages deployed, zero duplicate flags.',
+  },
+  schema: { name: 'Local Landing Page Services', serviceType: 'Local SEO landing pages' },
+
+  hero: {
+    badge: 'LOCAL LANDING PAGES',
+    title: 'Local Landing Pages Services that <span class="grad">Rank &amp; Generates Leads.</span>',
+    lead: 'If your business serves multiple locations, a generic ‘Service Areas’ page won’t cut it. We build dedicated, genuinely unique landing pages for every city you serve — architected to rank locally, load fast, and convert the people you actually want as customers.',
+    buttons: ['Book Free Call', 'Book Free Call'],
+    card: { value: '+480%', title: 'avg. local pack appearances after rollout', note: 'measured across multi-location clients in past 18 months' },
+  },
+
+  problem: {
+    eyebrow: 'WHY MOST LOCATION PAGES FAIL',
+    title: 'The templated location page is dead. Google caught on years ago.',
+    sub: 'Your competitors aren’t smarter — they’re just using better local landing pages.<br />If your “Locations” page isn’t bringing leads, here’s what’s going wrong.',
+    cards: [
+      { icon: '📄', title: 'Duplicate content penalties', text: 'Most agencies create city landing pages by copying one template and swapping the location. Google easily detects this duplicate content — and those pages rarely rank. Instead of helping, they can weaken your entire SEO performance.' },
+      { icon: '🏚️', title: 'No real local relevance', text: 'Just adding a city name isn’t enough to rank in competitive U.S. markets. Without real local SEO signals like neighborhoods, landmarks, and local proof, Google won’t prioritize your pages. That’s why competitors in places like Houston outperform generic pages.' },
+      { icon: '🧱', title: 'Thin content, missing schema, weak internal linking', text: 'Pages with thin content, no schema, and poor internal linking fail to rank. Without proper LocalBusiness optimization and structure, Google has no reason to trust or show your page. That means no visibility — and no leads.' },
+    ],
+  },
+
+  included: {
+    eyebrow: 'WHAT’S INCLUDED',
+    title: 'Everything that goes into a winning local landing page system.',
+    sub: 'Whether you need 5 city pages or 500, the deliverables are the same — built to scale without sacrificing quality or triggering duplicate content issues.',
+    cards: [
+      { icon: '🔍', title: 'Per-Location Keyword Research', text: 'Unique keyword maps for every city you target. Local search volume, intent analysis, and competitive difficulty scored at the ZIP-code level.' },
+      { icon: '✍️', title: 'Genuinely Unique Content Per Page', text: 'No template duplication. Each page includes city-specific context, local market insights, and service nuances that reflect real on-the-ground knowledge.' },
+      { icon: '🗺️', title: 'LocalBusiness + Service Schema', text: 'Full JSON-LD implementation per page — LocalBusiness, Service, Place, GeoCoordinates, PostalAddress, and review aggregation schemas.' },
+      { icon: '📍', title: 'NAP Consistency Audit', text: 'Name, Address, Phone consistency across every page, your GMB, and major citations. Discrepancies silently kill local rankings — we find and fix them.' },
+      { icon: '💬', title: 'Location-Specific Testimonials', text: 'Real customer reviews filtered and placed by city, so each page has locally relevant social proof. Review schema implemented for star ratings in SERPs.' },
+      { icon: '🗂️', title: 'URL Structure &amp; Information Architecture', text: 'Clean, hierarchical URLs that signal relationships (e.g. /service-areas/austin/), XML sitemaps, breadcrumb schema, and crawl-efficient linking.' },
+      { icon: '🔗', title: 'Inter-Page Linking Strategy', text: 'Hub-and-spoke architecture with smart cross-linking between service pages, location pages, and related cities that passes authority efficiently.' },
+      { icon: '⚡', title: 'Core Web Vitals Optimized', text: 'Every page ships with 90+ Lighthouse scores. Optimized images, lazy loading, minimal JS, and fast TTFB — because slow local pages lose to fast competitors.' },
+      { icon: '🎯', title: 'Conversion-Focused Design', text: 'Click-to-call CTAs, form placements tested per industry, service-specific offers, and trust signals positioned at decision points. Design serves conversion.' },
+    ],
+  },
+
+  steps: {
+    eyebrow: 'HOW IT WORKS',
+    title: 'From service area map to ranking pages in 4-8 weeks.',
+    sub: 'A scalable process that works whether you need 5 pages or 500. Here’s the workflow.',
+    items: [
+      { title: 'Service Area Mapping', text: 'Week 1. We map your service territory, prioritize target cities by opportunity, and identify primary vs. secondary location pages based on search volume and competition.' },
+      { title: 'Local Keyword &amp; Intent Research', text: 'Week 2-3. Per-city keyword research, local intent analysis, SERP audits for each market, and competitive gap identification for every target location.' },
+      { title: 'Content Architecture &amp; Templates', text: 'Week 3-4. Semantic templates (not content templates) with unique content variables, local fact requirements, and schema blueprints for each page type.' },
+      { title: 'Content Production &amp; Build', text: 'Week 4-8. Pages produced in batches, each with genuinely unique city-specific content, local context, testimonials, and media. Zero duplicate content.' },
+      { title: 'Launch, Indexing &amp; Monitoring', text: 'Ongoing. Submit sitemaps, request indexing, monitor local ranking movements per city, and iterate based on which pages gain traction fastest.' },
+    ],
+  },
+
+  why: {
+    eyebrow: 'WHY LOCAL LANDING PAGES MATTER',
+    title: '46% of all Google searches are local. You need pages that win them.',
+    article: [
+      { title: "The local pack vs. organic: they're two different SEO games", text: 'The Google 3-Pack — the map with three local businesses at the top of search results — runs on a different algorithm than organic rankings. It’s driven by proximity, prominence, and relevance, where your Google Business Profile optimization plays a major role. But your local landing pages for SEO control the organic results below the map. These pages not only rank for city-based keywords but also strengthen your overall local authority — directly supporting your visibility in both organic search and the local pack.' },
+      { title: '"Near me" has become an assumed modifier', text: 'Google no longer needs “near me” in a query to show local results. A user searching for “plumber” in Austin sees Austin-based businesses. A search in Phoenix shows Phoenix results. That means every service search is now a local SEO opportunity. Without location-specific landing pages, your business simply won’t appear in those city-level searches.' },
+      { title: 'Why duplicate content is a silent killer', text: 'When multiple location landing pages share similar or duplicated content, Google groups them using canonical clustering. It selects one page and ignores or devalues the rest. This isn’t a manual penalty — it’s an algorithmic filter that quietly removes your pages from search results. Poorly built city pages for SEO can reduce visibility across your entire domain.' },
+      { title: 'Local schema is how you tell Google "this page is for THIS city"', text: 'Without proper LocalBusiness schema markup, Google has to guess which page targets which location. With structured data — including GeoCoordinates, PostalAddress, and areaServed — you clearly signal which local landing page belongs to which city. This improves your chances of ranking, appearing in rich results, and strengthening your local SEO presence across U.S. markets.' },
+    ],
+    facts: [
+      { value: '46%', label: 'of all Google searches have local intent' },
+      { value: '76%', label: 'of local searches result in a visit within 24 hours' },
+      { value: '28%', label: 'of local searches result in a purchase the same day' },
+      { value: '120+', label: "location pages we've deployed for a single dental group" },
+    ],
+  },
+
+  audience: {
+    eyebrow: 'IS THIS FOR YOU?',
+    title: 'Who benefits most from a local landing page rollout.',
+    sub: 'Local landing pages are transformative for multi-location businesses and service-area operators. Here’s where the ROI is highest.',
+    cards: [
+      { icon: '🏠', title: 'Home Services', text: 'Plumbing, HVAC, roofing, electrical, landscaping — any service business that operates across multiple cities or ZIP codes.' },
+      { icon: '🦷', title: 'Medical &amp; Dental Groups', text: 'Multi-location practices, dental service organizations (DSOs), specialty medical groups, and clinic networks.' },
+      { icon: '⚖️', title: 'Law Firms', text: 'Firms with multiple offices, regional practice areas, or attorneys serving distinct geographic markets.' },
+      { icon: '🏡', title: 'Real Estate', text: 'Brokerages and agents needing neighborhood-level pages, city pages, and hyper-targeted buyer/seller funnels.' },
+      { icon: '🍴', title: 'Restaurant &amp; Hospitality Groups', text: 'Restaurant chains, hotel groups, catering businesses — anywhere each location has its own local search presence.' },
+      { icon: '🏢', title: 'Franchises', text: 'Franchise networks where each location competes in its own local market — scalable templates without cannibalization.' },
+    ],
+  },
+
+  result: {
+    value: '+890%',
+    title: 'local pack appearances in 12 months',
+    note: 'Multi-location dental group · 120 unique city pages deployed with zero duplicate content flags',
+    quote: "We went from fighting for visibility in two cities to dominating every market we serve. Rank Ready's system shipped 120 location pages in under two months — every single one ranks, every single one is genuinely unique, and our booking volume has never been higher.",
+    initials: 'PS', name: 'Dr. Priya Shah', role: 'Founder, MetroDental Group',
+  },
+
+  faq: {
+    eyebrow: 'COMMON QUESTIONS',
+    title: 'Everything about local landing pages, answered.',
+    sub: 'The most common questions from business owners exploring a local page rollout.',
+    items: [
+      { q: 'How many location pages can you build — and is there a limit?', a: 'We regularly build <strong>anywhere from 5 to 500+ pages</strong> in a single engagement. Our largest single deployment was 120 location pages for a multi-state dental group. There’s no hard cap — scalability is built into our semantic template system. The right number for you depends on your service areas, search volume per city, and competitive landscape.' },
+      { q: 'How do you avoid duplicate content penalties?', a: 'Every page we build has <strong>genuinely unique content</strong> — not just a swapped city name. We research each market individually, write location-specific context (neighborhoods, local landmarks, market nuances), include city-filtered testimonials, and implement unique schema for each location. Our internal duplicate-content threshold is under 20% similarity between any two pages, well below Google’s penalty trigger. We’ve never had a client flagged.' },
+      { q: 'Do you write the content yourselves or do I need to provide it?', a: '<strong>We write it.</strong> Our senior copywriters handle every location page, working from semantic briefs that include the local research, required entities, schema, and intent mapping. If you want to review or contribute local knowledge (neighborhoods you serve especially well, specific local cases), we’ll work it in. But you don’t need to write anything.' },
+      { q: 'How long does a local landing page rollout take?', a: 'Depends on volume. A <strong>5-10 page rollout</strong> ships in 4-6 weeks. A <strong>25-50 page rollout</strong> typically runs 6-10 weeks. Large deployments of 100+ pages are batched into production sprints and may run 10-16 weeks to completion. You’ll get a firm timeline in the proposal.' },
+      { q: 'Do you keep the pages updated over time?', a: 'Yes — <strong>ongoing freshness</strong> is part of why these pages keep ranking. We include quarterly content refreshes (updated testimonials, new local stats, freshened meta data) as part of all retainer engagements. One-time builds include 6 months of freshness maintenance before transitioning to an optional retainer.' },
+      { q: 'Do these pages integrate with my Google Business Profile?', a: 'Yes — and they should. Each location page can be linked as the landing URL for the corresponding GMB listing, creating a strong local-to-landing funnel that Google rewards. If you need us to <strong>manage the GMB side too</strong>, that’s our separate GMB Management service and they’re designed to work together.' },
+      { q: "What's the difference between a 'location page' and a 'service area page'?", a: 'A <strong>location page</strong> is for a business with a physical presence or primary office in that city (uses LocalBusiness schema with a real address). A <strong>service area page</strong> is for service-area businesses without a physical storefront in that location (uses Service schema with areaServed). We build both — the difference is schema, NAP handling, and how we signal local relevance without lying about a physical address.' },
+      { q: 'How do I know which cities to prioritize?', a: 'We run a full opportunity analysis during phase 1: search volume per target city, current ranking positions, local competition density, your existing customer concentration, and conversion potential per market. You’ll get a <strong>priority-ranked list of cities</strong> with reasoning, and we’ll agree on the rollout order before writing a single page.' },
+    ],
+  },
+
+  related: {
+    eyebrow: 'EXPLORE MORE',
+    title: 'Services that pair perfectly with this one.',
+    sub: 'Most clients start with one service and expand as results come in. Here’s what tends to work well together.',
+    cards: [
+      { icon: '📍', color: 'green', title: 'GMB Management', text: 'Local pages + optimized Google Business Profile = 3-pack domination.', href: '/services/gmb-management/' },
+      { icon: '🧠', color: 'purple', title: 'Semantic SEO', text: 'Compound the power of your local pages with topical authority across your whole site.', href: '/services/semantic-seo-optimization-services/' },
+      { icon: '📊', color: 'dark', title: 'Free SEO Audit', text: 'Not sure where to start? Get a free audit that shows which cities offer the biggest opportunity.', href: '/services/seo-audits/' },
+    ],
+  },
+};
+---
+<ServicePage data={data} />
