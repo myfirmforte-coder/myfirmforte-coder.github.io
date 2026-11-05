@@ -1,0 +1,102 @@
+---
+// INDUSTRY PAGE — /industries/legal/
+// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+
+const data: IndustryData = {
+  meta: {
+    title: "SEO for Law Firms | Legal SEO Agency | Rank Ready",
+    description: "Legal SEO isn't content marketing with a gavel emoji. Practice areas compete on the most expensive CPCs in Google, state bar rules restrict what you can say,",
+  },
+  schema: { name: "SEO for Law Firms", serviceType: "Legal SEO" },
+  hero: {
+    badge: "SEO FOR LAW FIRMS",
+    title: "SEO for law firms <span class='grad'>that actually converts cases.</span>",
+    lead: "Legal SEO isn’t content marketing with a gavel emoji. Practice areas compete on the most expensive CPCs in Google, state bar rules restrict what you can say, and trust is everything. We build systems that handle all three — and put your firm on page one for the cases you actually want.",
+    card: { value: "+312%", title: "organic traffic in 6 months", note: "Smith & Associates Law · Full rebuild + semantic SEO engagement" },
+  },
+  problem: {
+    eyebrow: "THE CHALLENGE",
+    title: "Why SEO in this vertical is different.",
+    sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
+    cards: [
+      { icon: "💸", title: "Absurd keyword CPCs on paid ads", text: "Legal keywords are the most expensive in Google Ads — 'personal injury lawyer' regularly hits $150+ per click. Organic SEO is the only sustainable channel for long-term inquiries at scale." },
+      { icon: "🏢", title: "Mega-firms with bottomless SEO budgets", text: "You're competing against firms spending six figures monthly on SEO. Without a sharper strategy — practice area depth, local targeting, semantic authority — you get buried by volume you can't outspend." },
+      { icon: "⚖️", title: "Bar rules restrict what you can advertise", text: "State bar compliance limits testimonials, guarantees, and certain claim types. Your SEO has to drive serious inquiries while staying compliant with ABA Model Rules and your jurisdiction's specific restrictions." },
+    ],
+  },
+  approach: {
+    eyebrow: "THE APPROACH",
+    title: "Services we recommend for this industry, in order.",
+    sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
+    cards: [
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "A page for every city × practice area combination you serve. 'Divorce lawyer Austin,' 'DUI attorney Dallas,' 'workers comp Houston' — each genuinely unique, schema-rich, and built to rank locally.", href: "/services/local-landing-pages/" },
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Topical authority across each practice area. Deep pillar content, cluster pages on procedure questions, and entity architecture that makes you Google's answer for your practice areas.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "📍", color: "green", title: "GMB Management", text: "Lawyers in the 3-pack get the calls. We manage GBP signals, review acquisition (compliant with bar rules), posts, and Q&amp;A to dominate local legal searches.", href: "/services/gmb-management-services/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Clients increasingly ask ChatGPT 'best family lawyer in [city]' before Googling. We get your firm cited in those conversations before your competitors know GEO exists.", href: "/services/ai-geo-optimization/" },
+      { icon: "🎨", color: "dark", title: "Rank-Ready Website Design", text: "A semantic, schema-rich site built for E-E-A-T. Attorney bio schema, credential markup, case result displays that comply with bar rules, and Core Web Vitals optimization.", href: "/services/web-development/" },
+      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Senior-led audit of your current legal SEO presence, practice area coverage gaps, local visibility per market, and specific compliance-safe opportunities.", href: "/services/seo-audits/" },
+    ],
+  },
+  why: {
+    eyebrow: "DEEPER CONTEXT",
+    title: "Why legal SEO is its own discipline entirely.",
+    article: [
+      { title: "Practice area SEO is practice-area-specific", text: "A family law firm and a personal injury firm aren't doing the same SEO — not even close. Family law ranks on emotional, long-tail, how-to queries. Personal injury ranks on high-commercial-intent 'lawyer near me' queries. Workers comp sits somewhere in between. <strong>Every practice area has its own semantic ecosystem</strong> — and pretending they're the same costs you rankings in every one." },
+      { title: "E-E-A-T matters more for YMYL categories", text: "Law is a <strong>Your Money or Your Life</strong> category under Google's quality framework, meaning Experience, Expertise, Authoritativeness, and Trustworthiness are weighted more heavily than in other verticals. Attorney bio schema, bar admission markup, published thought leadership, and case result displays all contribute to the E-E-A-T signals that make legal content rank." },
+      { title: "City × practice area pages are the core scalable unit", text: "If your firm serves 5 cities across 4 practice areas, that's <strong>20 potential landing pages</strong> — each targeting a distinct search intent with distinct keywords. Most firms have 2-4 of those pages, leaving 80%+ of their addressable search market invisible. Scaling to full coverage is where real case flow unlocks." },
+    ],
+    facts: [
+      { value: "$150+", label: "typical CPC on competitive legal paid keywords" },
+      { value: "72%", label: "of legal clients research online before calling" },
+      { value: "+312%", label: "organic traffic achieved for Smith & Associates" },
+      { value: "15+", label: "practice areas we've executed SEO for" },
+    ],
+  },
+  result: {
+    value: "+312%",
+    title: "organic traffic in 6 months",
+    note: "Smith &amp; Associates Law · Rank-Ready rebuild + semantic SEO",
+    quote: "Inquiries tripled in four months. Our marketing team finally has analytics they can use, and we're getting the kind of cases we actually want to take — not just whatever the phone happens to ring with.",
+    initials: "JS", name: "John Smith", role: "Managing Partner, Smith &amp; Associates Law",
+  },
+  audience: {
+    eyebrow: "INDUSTRY SUB-SEGMENTS",
+    title: "Which legal practices we work with.",
+    sub: "From solo practitioners to regional firms with multiple offices, we’ve built SEO programs across the practice spectrum.",
+    cards: [
+      { icon: "💔", title: "Family &amp; Divorce", text: "Divorce, custody, alimony, adoption — emotionally-driven long-tail content is gold here." },
+      { icon: "🚗", title: "Personal Injury", text: "Auto accidents, slip &amp; fall, medical malpractice — the most competitive legal SEO category there is." },
+      { icon: "🏢", title: "Business &amp; Commercial", text: "Contracts, LLC formation, M&amp;A, commercial disputes — B2B-style legal SEO with extended sales cycles." },
+      { icon: "⛓️", title: "Criminal Defense", text: "DUI, drug charges, white-collar — time-sensitive urgent-intent queries." },
+      { icon: "🏗️", title: "Workers' Comp &amp; Disability", text: "Claims, appeals, SSDI — high-commercial-intent local queries across metros." },
+      { icon: "🛂", title: "Immigration", text: "Green cards, visas, asylum, citizenship — multi-language SEO opportunities and E-E-A-T sensitive." },
+    ],
+  },
+  faq: {
+    eyebrow: "COMMON QUESTIONS",
+    title: "Questions specific to this industry.",
+    sub: "What business owners and marketing leads in this vertical most often ask us.",
+    items: [
+      { q: "Is SEO compliant with state bar advertising rules?", a: "Yes — <strong>when done correctly</strong>. Every state bar has specific rules about lawyer advertising, and SEO content counts as advertising. We build compliance into the process: no unverifiable claims, testimonials only where permitted and with required disclaimers, no misleading ‘best’ or ‘top’ language where prohibited, and jurisdiction-specific review. We’ve worked with firms in 25+ states without a single bar complaint." },
+      { q: "How do you handle reviews for law firms?", a: "We use a <strong>compliant review acquisition system</strong> — automated requests go to real clients after case resolution, with clear Google-approved language, no incentives, and no review gating. Negative reviews get professional, compliant responses that don’t disclose any case details. Most states allow lawyer reviews; a few restrict them; we adapt per jurisdiction." },
+      { q: "How long before we see case flow from SEO?", a: "Typical timeline: <strong>ranking movement in 60-90 days</strong>, consistent inquiry lift by month 4-6, substantial case flow growth by month 8-12. Family law and workers comp tend to move faster (longer-tail, lower competition) than personal injury (ultra-competitive). A free audit will give you firm-specific timeline expectations." },
+      { q: "Do I need different SEO for each practice area?", a: "<strong>Yes — each practice area has its own strategy.</strong> Keywords, user intent, content depth, and ranking factors differ per area. A firm practicing family + PI + workers comp effectively runs three parallel SEO programs on one domain. We architect the site structure and content plan so each practice area gets proper attention without cannibalizing the others." },
+      { q: "What about AI tools — can ChatGPT recommend my firm?", a: "Yes, and increasingly this is where your clients are starting their research. <strong>GEO (Generative Engine Optimization)</strong> is a specific strategy for getting your firm cited when someone asks ChatGPT, Perplexity, or Claude for attorney recommendations. Most law firms aren’t doing this yet — which is exactly why moving early captures outsized returns. Read our <a href='/services/ai-geo-optimization/'>GEO service</a> page for the full methodology." },
+      { q: "Can you help us compete against mega-firms spending $50k/month?", a: "Yes, because mega-firm SEO spend is usually <strong>inefficient</strong>. Large firms often run bloated agency retainers, generic content, and brute-force link building. A smaller firm with sharper semantic strategy, better local targeting, and focused practice area depth regularly outranks them in specific metros and practice areas. You don’t need to outspend — you need to out-strategize." },
+      { q: "Do you handle lawyer directories and citations?", a: "Yes. NAP consistency across <strong>Avvo, Justia, FindLaw, Martindale-Hubbell, Lawyers.com, and LII Cornell</strong> plus general citations (Google, Bing, Apple Maps, Yelp, BBB) is part of every legal SEO engagement. Listing quality and profile completeness across legal-specific directories signals authority to Google and drives direct inquiries." },
+    ],
+  },
+  related: {
+    eyebrow: "START SOMEWHERE",
+    title: "Recommended next steps.",
+    sub: "If this industry fits, here’s the cleanest path forward.",
+    cards: [
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Practice area authority and topical depth — the core play for competitive legal keywords.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🗺️", color: "purple", title: "Local Landing Pages", text: "City × practice area pages that unlock the 80% of search volume you're not capturing yet.", href: "/services/local-landing-pages/" },
+      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Get a legal-industry-aware audit showing exactly where your firm stands.", href: "/services/seo-audits/" },
+    ],
+  },
+};
+---
+<IndustryPage data={data} />
