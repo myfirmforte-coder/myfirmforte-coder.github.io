@@ -11,4 +11,8 @@ export default defineConfig({
   trailingSlash: 'always', // WordPress jaise URLs: /services/seo-audits/
   build: { format: 'directory' },
   integrations: [sitemap()],
+  // Purane / doosre URLs ko sahi page pe bhejna (SEO ke liye)
+  redirects: {
+    '/services/rank-ready-website-design/': '/services/web-development/',
+  },
 });
