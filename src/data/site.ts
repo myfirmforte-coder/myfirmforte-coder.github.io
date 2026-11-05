@@ -19,12 +19,12 @@ export const site = {
   calendly: 'https://calendly.com/rankready/initial-consultation/',
   // Forms ke liye Web3Forms access key (web3forms.com se free). Khali ho to form email app kholta hai.
   web3formsKey: '',
-  // NOTE: images abhi purani WordPress site se aa rahi hain.
-  // WordPress band karne se pehle inhe public/images/ mein daal ke path badalna hai.
-  logo: 'https://rank-ready.com/wp-content/uploads/2026/05/logo-reverse.png',
+  // Saari images is project ke andar public/images/ mein save hain (WordPress pe depend nahi).
+  logo: '/images/logo-reverse.png',
 };
 
-export const WP = 'https://rank-ready.com/wp-content/uploads/2026/05/';
+// Images ka folder (public/images/). Nayi image daalni ho to wahan file rakh ke yahan se naam likhein.
+export const WP = '/images/';
 
 export const mainMenu = [
   { label: 'About Us', href: '/about-us/' },
