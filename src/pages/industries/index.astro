@@ -1,0 +1,188 @@
+---
+// INDUSTRIES PAGE — /industries/
+// Har industry ka text, checklist aur result card neeche "industries" array mein hai.
+// flip: true = result card left side pe (desktop), text right side pe.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { site } from '../../data/site';
+
+const industries = [
+  {
+    id: 'legal', pill: '⚖️ Legal', eyebrow: '⚖️ &nbsp; LEGAL · LAW FIRMS',
+    title: 'Law firms that actually win on Google.',
+    text: 'Personal injury. Family law. Criminal defense. Corporate. Every practice area has brutal local competition and razor-thin CPC if you run paid. Organic is where margins live — and we know exactly how to win it.',
+    points: ['Entity-driven practice area pages (Semantic SEO)', 'Local pack domination for every city you serve', 'GMB management + automated review acquisition', 'Review schema &amp; legal directory optimization'],
+    stat: { value: '+214%', title: 'avg. qualified lead growth', note: 'across 30+ law firm clients in the past 3 years' },
+    colors: ['#0F172A', '#1E293B'], flip: false,
+  },
+  {
+    id: 'medical', pill: '🦷 Medical &amp; Dental', eyebrow: '🦷 &nbsp; MEDICAL &amp; DENTAL',
+    title: 'Fill your schedule with local patients.',
+    text: 'Dental practices, cosmetic clinics, orthodontists, dermatologists — patients search locally, and they trust who ranks #1. We build the systems that make that #1 spot yours, across every treatment you offer.',
+    points: ['HIPAA-compliant copy &amp; schema', 'Per-location landing pages with unique content', 'Insurance and treatment query targeting', 'Google Business Profile + review management'],
+    stat: { value: '+187%', title: 'avg. monthly bookings lift', note: 'measured across 20+ multi-location practices' },
+    colors: ['#164E63', '#0E7490'], flip: true,
+  },
+  {
+    id: 'home', pill: '🏠 Home Services', eyebrow: '🏠 &nbsp; HOME SERVICES',
+    title: 'Own every ‘near me’ search in your service area.',
+    text: 'Plumbing. HVAC. Roofing. Electrical. Landscaping. If you’re not in the local pack for your services in every ZIP code you serve, you’re invisible. We fix that — permanently.',
+    points: ["Hyper-local 'near me' service pages", 'Service area optimization across GMB', 'Emergency-service query capture', 'Call tracking and lead attribution setup'],
+    stat: { value: '+480%', title: 'avg. GMB call increase', note: 'across home services clients in past 12 months' },
+    colors: ['#7F1D1D', '#DC2626'], flip: false,
+  },
+  {
+    id: 'realestate', pill: '🏡 Real Estate', eyebrow: '🏡 &nbsp; REAL ESTATE',
+    title: 'Rank for neighborhoods, not just ‘homes for sale’.',
+    text: 'High-intent luxury real estate buyers search by neighborhood, school district, and lifestyle — not generic terms. We build the hyper-targeted content architecture that captures them at the moment they’re ready to transact.',
+    points: ['Neighborhood-level semantic content', 'IDX integration + listing schema', 'Buyer/seller persona content funnels', 'Hyper-targeted luxury and niche keywords'],
+    stat: { value: '+156%', title: 'avg. attributed listing revenue', note: 'measured across 15+ boutique agencies' },
+    colors: ['#78350F', '#D97706'], flip: true,
+  },
+  {
+    id: 'saas', pill: '🚀 E-com &amp; SaaS', eyebrow: '🚀 &nbsp; E-COMMERCE &amp; SAAS',
+    title: 'Rank in Google AND be cited by ChatGPT.',
+    text: 'For B2B SaaS and DTC e-commerce brands, the new battlefield isn’t just Google — it’s also Perplexity, ChatGPT, and Gemini. We’re one of the few agencies actually doing GEO optimization at scale.',
+    points: ['GEO optimization — cited in AI engines', 'Commercial-intent keyword clusters', 'SERP feature capture (People Also Ask, Featured Snippets)', 'Product-led SEO &amp; comparison page strategy'],
+    stat: { value: '74%', title: 'avg. AI engine citation rate', note: 'for clients on our GEO program for 90+ days' },
+    colors: ['#8B5CF6', '#5B21B6'], flip: false,
+  },
+];
+---
+<BaseLayout
+  title="Industries We Serve | Specialized SEO by Vertical | Rank Ready"
+  description="Vertical-specific SEO playbooks for law, healthcare, home services, real estate, e-commerce & SaaS. Each industry has its own ranking system. Find yours."
+>
+  <!-- 1. HERO -->
+  <section class="sec i-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner">
+      <div class="badge-wrap"><div class="badge"><span class="dot"></span>INDUSTRIES</div></div>
+      <h1>We’ve ranked 15+ industries. <span class="grad">Yours is probably next.</span></h1>
+      <p class="lead">Every industry has its own keyword landscape, buyer intent, and competition. Here’s how we win in the five verticals we know best — and how we’d approach yours.</p>
+    </div>
+  </section>
+
+  <!-- 2. JUMP LINKS -->
+  <section class="sec i-pills">
+    <div class="row pills">
+      {industries.map((i) => <a href={'#' + i.id} set:html={i.pill} />)}
+    </div>
+  </section>
+
+  <!-- 3. FIVE INDUSTRIES -->
+  <section class="sec i-list">
+    {industries.map((i) => (
+      <div class:list={['row', 'ind', { flip: i.flip }]}>
+        <div class="ind-text">
+          <div id={i.id} class="anchor"></div>
+          <div class="ind-eyebrow" set:html={i.eyebrow} />
+          <h2 set:html={i.title} />
+          <p class="ind-p" set:html={i.text} />
+          <div class="checks">
+            {i.points.map((p) => <div class="check"><span class="tick">✓</span><span set:html={p} /></div>)}
+          </div>
+          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Get a Free Industry Audit</span><span class="rr-btn-arrow">→</span></a>
+        </div>
+        <div class="stat-card" style={'background:linear-gradient(135deg,' + i.colors[0] + ' 0%,' + i.colors[1] + ' 100%)'}>
+          <div class="sc-grid"></div><div class="sc-glow"></div>
+          <div class="sc-inner">
+            <div class="sc-label">AVERAGE CLIENT RESULT</div>
+            <div class="sc-value">{i.stat.value}</div>
+            <div class="sc-title">{i.stat.title}</div>
+            <div class="sc-note">{i.stat.note}</div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- 4. NOT ON THIS LIST -->
+  <section class="sec i-more">
+    <div class="row center">
+      <div class="more-eyebrow">NOT ON THIS LIST?</div>
+      <h2>We’ve worked in 15+ industries.</h2>
+      <p class="more-p">Insurance. Financial services. Education. Manufacturing. Logistics. Travel. Non-profit. If your business has search intent — and every business does — we can help you capture more of it.</p>
+      <div class="rr-btn-group" style="justify-content:center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
+        <a href="/contact/" class="rr-btn rr-btn-outline rr-btn-lg"><span>Tell Us About Your Industry</span><span class="rr-btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CTA -->
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+  /* 1. Hero */
+  .i-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0 100px; font-family: var(--inter); overflow: hidden; }
+  .i-hero .row { max-width: 1100px; padding: 29px 0 28px; }
+  .g1 { position: absolute; top: 10%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); filter: blur(60px); }
+  .g2 { position: absolute; bottom: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .badge-wrap { display: flex; justify-content: center; height: 48px; margin-bottom: 25px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; }
+  .dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .i-hero h1 { font-size: 68px; font-weight: 800; line-height: 74.8px; letter-spacing: -2px; color: #fff; text-align: center; padding-bottom: 10px; margin-bottom: 14px; }
+  .lead { max-width: 720px; margin: 0 auto; font-size: 19px; font-weight: 500; line-height: 30.6px; color: var(--slate-300); text-align: center; padding: 0; }
+
+  /* 2. Pills */
+  .i-pills { padding: 60px 0 40px; background: #fff; }
+  .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-family: var(--inter); padding: 28px 0; }
+  .pills a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--light-bg); border: 1px solid #E2E8F0; border-radius: 100px; color: var(--navy); font-weight: 600; font-size: 14px; line-height: 30.6px; transition: border-color .3s; }
+  .pills a:hover { border-color: var(--green); }
+
+  /* 3. Industries */
+  .i-list { padding: 80px 0; background: #fff; font-family: var(--inter); }
+  .ind { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8%; align-items: start; padding: 28.5px 0; margin-bottom: 80px; }
+  .ind.flip .ind-text { order: 2; }
+  .ind.flip .stat-card { order: 1; }
+  .ind-text { position: relative; padding-top: 52px; }
+  .anchor { position: absolute; top: -80px; }
+  .ind-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--green); line-height: 30.6px; margin-bottom: 14px; }
+  .ind h2 { font-size: 40px; font-weight: 800; line-height: 48px; letter-spacing: -1px; color: var(--navy); margin-bottom: 20px; }
+  .ind-p { font-size: 16px; font-weight: 500; line-height: 28px; color: var(--slate-500); margin-bottom: 24px; padding: 0; }
+  .checks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .check { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--navy); line-height: 1.55; }
+  .tick { flex-shrink: 0; width: 22px; height: 22px; background: linear-gradient(135deg, #10B981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; margin-top: 2px; line-height: 1; }
+
+  .stat-card { border-radius: 24px; padding: 56px 40px; position: relative; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; }
+  .sc-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 30px 30px; }
+  .sc-glow { position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(16,185,129,.3), transparent 70%); filter: blur(40px); }
+  .sc-inner { position: relative; text-align: center; }
+  .sc-label { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,.6); font-weight: 600; margin-bottom: 16px; }
+  .sc-value { font-size: 96px; font-weight: 800; background: linear-gradient(135deg, #10B981, #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -3px; line-height: 1; margin-bottom: 12px; }
+  .sc-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .sc-note { font-size: 14px; color: rgba(255,255,255,.7); max-width: 280px; margin: 0 auto; line-height: 1.5; }
+
+  /* 4. Not on this list */
+  .i-more { background: var(--light-bg); font-family: var(--inter); }
+  .i-more .row { padding: 28px 0; }
+  .more-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--green); line-height: 30.6px; margin-bottom: 14px; }
+  .i-more h2 { font-size: 42px; font-weight: 800; line-height: 48.3px; letter-spacing: -1px; color: var(--navy); margin-bottom: 24px; }
+  .more-p { max-width: 680px; margin: 0 auto 32px; font-size: 17px; font-weight: 500; line-height: 29.75px; color: var(--slate-500); padding: 0; }
+
+  @media (max-width: 980px) {
+    .ind { grid-template-columns: 1fr; row-gap: 30px; }
+    .ind.flip .ind-text, .ind.flip .stat-card { order: 0; }
+    .ind.flip .stat-card { order: -1; }
+    .ind-text { padding-top: 0; }
+  }
+  @media (max-width: 767px) {
+    .i-hero { padding: 80px 0 60px; }
+    .i-hero h1 { font-size: 36px; line-height: 39.6px; }
+    .lead { font-size: 17px; }
+    .i-pills { padding: 40px 0 20px; }
+    .i-list { padding: 40px 0; }
+    .ind { padding: 30px 0; margin-bottom: 50px; }
+    .ind h2 { font-size: 28px; line-height: 33.6px; }
+    .i-more { padding: 60px 0; }
+    .i-more h2 { font-size: 30px; line-height: 34.5px; }
+    .ind .rr-btn { width: 100%; justify-content: center; }
+  }
+</style>
