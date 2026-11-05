@@ -1,0 +1,26 @@
+---
+// "Let's make you Rank Ready." — inner pages ke neeche wala dark CTA section.
+import { site } from '../data/site';
+---
+<section class="sec cta-b">
+  <div class="bg" aria-hidden="true"><div class="c1"></div><div class="c2"></div></div>
+  <div class="row row-narrow center inner">
+    <h2>Let’s make you <span class="grad">Rank Ready.</span></h2>
+    <p class="lead">Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
+    <div class="rr-btn-group" style="justify-content:center">
+      <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><span class="rr-btn-arrow">→</span></a>
+      <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><span class="rr-btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+<style>
+  .cta-b { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%); padding: 120px 0; font-family: var(--inter); overflow: hidden; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .c1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(16,185,129,.12) 0%, transparent 60%); filter: blur(60px); }
+  .c2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
+  .inner { z-index: 1; }
+  h2 { font-size: 64px; font-weight: 800; line-height: 70.4px; letter-spacing: -1.5px; color: #fff; margin-bottom: 24px; }
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .lead { max-width: 640px; margin: 0 auto 36px; font-size: 18px; line-height: 30.6px; color: var(--slate-300); }
+  @media (max-width: 767px) { .cta-b { padding: 60px 0; } h2 { font-size: 40px; line-height: 44px; } }
+</style>
