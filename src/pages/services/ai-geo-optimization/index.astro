@@ -1,0 +1,128 @@
+---
+// AI & GEO OPTIMIZATION — /services/ai-geo-optimization/
+// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+
+const data: ServiceData = {
+  meta: {
+    title: 'GEO Services | AI SEO & Generative Engine Optimization | Rank Ready',
+    description: 'Get cited by ChatGPT, Perplexity & Google AI Overviews. The only GEO playbook that ranks brands in AI engines. 74% avg citation rate. Free GEO audit.',
+  },
+  schema: { name: 'AI & GEO Optimization', serviceType: 'Generative Engine Optimization (GEO)' },
+
+  hero: {
+    badge: 'AI & GEO OPTIMIZATION',
+    title: 'Get cited by ChatGPT, Perplexity &amp; <span class="grad">Google AI Overviews.</span>',
+    lead: 'The next search frontier isn’t Google — it’s generative engines. Most agencies don’t know where to start. We’ve been doing Generative Engine Optimization since before it had a name, and we know exactly how to make your brand the one AI recommends.',
+    card: { value: '74%', title: 'avg. AI engine citation rate for clients on GEO for 90+ days', note: 'measured across ChatGPT, Perplexity, Claude, and Gemini citations' },
+  },
+
+  problem: {
+    eyebrow: 'THE SEARCH GAME HAS CHANGED',
+    title: 'If you’re only optimizing for Google, you’re already behind.',
+    sub: 'The way people search for information is fundamentally shifting. Your SEO strategy needs to catch up — fast.',
+    cards: [
+      { icon: '🤖', title: 'LLMs are replacing Google for research queries', text: "When buyers research solutions, compare vendors, or investigate topics before a purchase, they increasingly ask ChatGPT, Perplexity, or Claude instead of Googling. If your brand isn't cited in those conversations, you're not in the consideration set at all — no matter how well you rank organically." },
+      { icon: '📉', title: 'Zero-click searches are killing organic traffic', text: "Google's AI Overviews now answer queries directly on the SERP. Click-through rates to organic results have dropped 20-40% on informational queries since 2024. The winners aren't ranking #1 anymore — they're being cited inside the AI Overview itself." },
+      { icon: '❓', title: 'Most agencies have no idea where to start', text: "GEO is new. The tooling is immature. The signals are partially understood. The agencies selling it often sell repackaged SEO with an AI veneer. We've been executing real GEO strategies since 2023 and have the data to back up what works." },
+    ],
+  },
+
+  included: {
+    eyebrow: 'WHAT’S INCLUDED',
+    title: 'A complete GEO engagement — built on what actually works.',
+    sub: 'GEO is a combination of semantic SEO fundamentals, emerging structured data patterns, authority signaling, and AI-specific content formatting. Here’s what we handle.',
+    cards: [
+      { icon: '🔍', title: 'AI Visibility Baseline Audit', text: 'Systematic testing across ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews to document where (and whether) your brand currently appears in AI-generated responses.' },
+      { icon: '🧬', title: 'Entity Establishment &amp; Disambiguation', text: 'Wikipedia presence, Wikidata entries, Knowledge Graph signaling, and consistent entity representation across the open web — how LLMs learn who you are.' },
+      { icon: '🧠', title: 'Authority Content Production', text: 'Long-form, citation-worthy content written to be pulled into AI responses — structured for extractive summarization with clear claims, data, and unique insights.' },
+      { icon: '🔖', title: 'AI-Optimized Schema &amp; Structured Data', text: 'FAQPage, HowTo, Article, Organization, and emerging LLM-specific schemas implemented to make your content maximally parseable by AI engines.' },
+      { icon: '📋', title: 'llms.txt &amp; AI Crawler Configuration', text: 'Proper llms.txt file setup, robots.txt AI directives, and controlled access for GPTBot, PerplexityBot, ClaudeBot, Google-Extended, and Bingbot.' },
+      { icon: '📰', title: 'Off-Site Citation &amp; PR Strategy', text: 'Earning mentions and citations on sites that LLMs pull training and grounding data from — industry publications, Wikipedia, academic sources, structured databases.' },
+      { icon: '💬', title: 'Conversational Query Targeting', text: 'Content written around how people ask AI tools for recommendations (natural language, long-tail, conversational), not just how they type Google queries.' },
+      { icon: '📈', title: 'AI Citation Monitoring', text: "Weekly automated testing across major AI engines with tracked prompts, citation frequency, and competitive positioning. You'll see exactly when and where you appear." },
+      { icon: '🔬', title: 'Iterative Testing &amp; Optimization', text: 'Content experiments, schema tests, and structural variations tested for AI citation lift. We treat GEO as a living experiment, not a fixed recipe.' },
+    ],
+  },
+
+  steps: {
+    eyebrow: 'HOW IT WORKS',
+    title: 'From AI invisibility to being the brand AI recommends.',
+    sub: 'GEO compounds over time. Here’s how we structure the engagement so you see early signals within 30 days and durable citation rates by month 4.',
+    items: [
+      { title: 'AI Baseline &amp; Opportunity Map', text: 'Week 1-2. Systematic audit of your current AI visibility across ChatGPT, Perplexity, Claude, Gemini, and AI Overviews. Identification of the specific prompts your buyers use.' },
+      { title: 'Entity &amp; Authority Foundation', text: 'Week 2-6. Wikipedia and Wikidata work where eligible, Knowledge Graph optimization, schema rollout, and consistency auditing across the open web.' },
+      { title: 'AI-Ready Content Production', text: 'Month 2+. Monthly content production focused on citation-worthy pieces — original research, data-driven posts, expert commentary, and structured answers.' },
+      { title: 'Off-Site &amp; Citation Expansion', text: 'Month 2+. Strategic PR, industry contributions, directory placements, and citation building on the sources LLMs actually pull from.' },
+      { title: 'Measure, Iterate, Expand', text: 'Ongoing. Weekly AI citation testing, monthly reports showing citation lift per prompt, and quarterly strategic adjustments as AI engines evolve.' },
+    ],
+  },
+
+  why: {
+    eyebrow: 'WHY GEO IS THE DEFINING SEO SHIFT OF THE DECADE',
+    title: 'If semantic SEO is the playbook for 2020-2025, GEO is the playbook for 2025-2030.',
+    article: [
+      { title: 'Generative engines are the new distribution', text: '<strong>ChatGPT has over 200 million weekly active users</strong>, Perplexity has surpassed 15 million users, and Google AI Overviews now appear on the majority of informational queries. For research, comparison, and advisory queries — the queries that precede every high-ticket purchase — users are increasingly skipping the traditional SERP entirely. Your brand either gets cited in the AI response, or it gets left out of the conversation.' },
+      { title: 'AI engines rely heavily on structured, authoritative sources', text: "LLMs are trained on the open web but grounded at query time using retrieval-augmented generation (RAG). They pull from sites with strong entity signaling, clean structured data, high topical authority, and citable claims. <strong>A site that's invisible to Google's Knowledge Graph is usually invisible to ChatGPT too</strong> — the signal quality required to get cited by AI is a superset of what ranks well in traditional SEO." },
+      { title: 'Wikipedia, Reddit, and structured sources have outsized weight', text: 'Off-site presence matters more in GEO than in traditional SEO. <strong>Wikipedia and Wikidata entries</strong>, mentions in <strong>industry publications</strong>, <strong>academic citations</strong>, <strong>Reddit and Stack Exchange presence</strong>, and entries in <strong>structured databases</strong> all contribute to how LLMs learn to represent your brand. Building visibility across these surfaces is core GEO work.' },
+      { title: "It's still early — which means the ROI is uncapped", text: "Most of your competitors aren't doing GEO yet. The businesses moving now are establishing presence on surfaces their competitors don't even know exist. <strong>Three years from now, this will be table stakes</strong>. Today, it's still a competitive moat for the businesses willing to invest in being early." },
+    ],
+    facts: [
+      { value: '200M+', label: 'weekly active ChatGPT users as of 2025' },
+      { value: '74%', label: 'of buyers now use AI for pre-purchase research' },
+      { value: '40%', label: 'drop in organic CTR on queries showing AI Overviews' },
+      { value: '0→74%', label: 'avg. citation rate lift on Rank Ready GEO clients in 90 days' },
+    ],
+  },
+
+  audience: {
+    eyebrow: 'IS THIS FOR YOU?',
+    title: 'Who benefits most from a GEO engagement.',
+    sub: 'GEO isn’t equally valuable for every business. It’s transformative for businesses whose buyers research before purchasing — and those tend to cluster in a few industries.',
+    cards: [
+      { icon: '🚀', title: 'B2B SaaS', text: 'Software where buyers research, compare vendors, and read category reviews before evaluation. GEO is arguably the most important marketing channel for B2B SaaS in 2026.' },
+      { icon: '⚖️', title: 'Professional Services', text: 'Law firms, consultants, accountants, and agencies where trust, expertise, and authority drive decisions long before the first sales call.' },
+      { icon: '🏥', title: 'Healthcare &amp; YMYL', text: 'Medical, financial, and legal providers — where patients and clients use AI to research options, understand conditions, and evaluate providers.' },
+      { icon: '🎓', title: 'Education &amp; Courses', text: 'Online education, certifications, bootcamps, and learning platforms — where AI is increasingly the first touchpoint for course and program research.' },
+      { icon: '💼', title: 'Enterprise &amp; High-Consideration B2B', text: "Long sales cycles, multiple stakeholders, and extensive pre-vendor research — categories where being 'recommended by ChatGPT' is a genuine competitive advantage." },
+      { icon: '🏆', title: 'Thought Leaders &amp; Personal Brands', text: 'Authors, speakers, consultants, and executives where being the person AI recommends in your niche is worth tens of thousands in monthly inbound.' },
+    ],
+  },
+
+  result: {
+    value: '0 → 74%',
+    title: 'AI engine citation rate in 90 days',
+    note: 'B2B SaaS startup · GEO + semantic SEO integrated engagement',
+    quote: "Before Rank Ready, we weren't mentioned anywhere in AI answers for our category. Now we're cited by ChatGPT, Perplexity, and Claude when buyers ask for recommendations — and inbound demo requests have nearly doubled. They're playing a game our competitors don't even know exists.",
+    initials: 'DP', name: 'Daniel Park', role: 'Founder, NorthPeak SaaS',
+  },
+
+  faq: {
+    eyebrow: 'COMMON QUESTIONS',
+    title: 'GEO, demystified.',
+    sub: 'The questions we get most from companies exploring GEO for the first time.',
+    items: [
+      { q: 'What exactly is GEO (Generative Engine Optimization)?', a: '<strong>GEO is the practice of optimizing for visibility and citations in AI-generated answers</strong> — specifically in tools like ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews. Traditional SEO gets you to the top of Google’s SERPs. GEO gets your brand cited when someone asks an AI tool for recommendations in your category. The two practices overlap significantly, but GEO has distinct strategies for schema, content structure, authority building, and off-site presence.' },
+      { q: 'How do you actually measure AI citations?', a: 'We run <strong>automated weekly tests</strong> across ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews using a defined set of prompts that match your buyer intent. Each prompt is scored on whether your brand was mentioned, cited with a link, recommended specifically, or omitted. You’ll get a monthly citation report showing your visibility per prompt, per engine, with trend lines over time. It’s the closest thing to Search Console for AI.' },
+      { q: 'What tools do you use for GEO?', a: 'Our stack includes <strong>our own prompt-testing infrastructure</strong> (for citation monitoring), <strong>Otterly.ai</strong> and <strong>Profound</strong> (for AI visibility tracking), <strong>Ahrefs and Semrush</strong> (for backlink and entity data), <strong>Surfer SEO and Clearscope</strong> (for content optimization), <strong>Wikipedia/Wikidata</strong> (for entity signaling), and manual testing workflows that complement the automated tools. Most of this is invisible to clients — you just see the results.' },
+      { q: 'How is GEO different from traditional SEO?', a: 'Significant overlap, real differences. <strong>Traditional SEO</strong> optimizes for ranking positions in a result list. <strong>GEO</strong> optimizes for being cited, paraphrased, or recommended inside an AI-generated answer. GEO places more weight on: entity disambiguation (Knowledge Graph, Wikipedia), structured authority signals, conversational query targeting, off-site presence on LLM-training sources, and specific content formats optimized for extractive summarization. Most businesses need both.' },
+      { q: "Does traditional SEO still matter if I'm doing GEO?", a: 'Absolutely yes. <strong>Traditional SEO is a prerequisite for GEO</strong>, not a replacement. AI engines pull heavily from sources that rank well in Google, have strong backlink profiles, and demonstrate topical authority. A site that’s invisible to Google is usually invisible to ChatGPT too. The right play is to do both — with GEO-specific layers (entity work, AI-optimized content, off-site citations) added on top of a solid SEO foundation.' },
+      { q: 'How long before I see GEO results?', a: 'Early signals (first AI citations) typically appear in <strong>30-60 days</strong>. Meaningful citation frequency across multiple engines usually kicks in at <strong>90-120 days</strong>. Durable citation dominance — where you’re consistently the go-to reference in your category — is typically a <strong>6-12 month</strong> outcome. GEO compounds: each piece of citation-worthy content, each authority signal, each off-site mention builds on the last.' },
+      { q: 'What types of content work best for GEO?', a: '<strong>Citation-worthy content</strong> performs best: original research with unique data, how-to guides with clear step-by-step structure, definitive answers to specific questions, comparison content with structured tables, and expert commentary with real insights. AI engines prefer content that’s easy to extract, attributable to a clear source, and backed by authority signals. Thin, generic, or highly subjective content almost never gets cited.' },
+      { q: 'Can small businesses benefit from GEO, or is it only for enterprise?', a: 'Small businesses benefit enormously — arguably more than enterprises, because <strong>most small businesses aren’t doing GEO at all</strong>. Getting cited by ChatGPT for ‘best [your category] in [your niche]’ queries can drive real inbound demand. It’s also more achievable at small scale because your category is likely less saturated than enterprise verticals. The work is the same methodology, just scoped proportionally.' },
+    ],
+  },
+
+  related: {
+    eyebrow: 'EXPLORE MORE',
+    title: 'Services that pair perfectly with this one.',
+    sub: 'Most clients start with one service and expand as results come in. Here’s what tends to work well together.',
+    cards: [
+      { icon: '🧠', color: 'green', title: 'Semantic SEO', text: 'The foundation layer GEO builds on. Entity-rich, topically authoritative content ranks everywhere.', href: '/services/semantic-seo-optimization-services/' },
+      { icon: '🎨', color: 'purple', title: 'Rank-Ready Website Design', text: 'A semantic, schema-rich site is a prerequisite for both great SEO and great GEO.', href: '/services/web-development/' },
+      { icon: '📊', color: 'dark', title: 'Free GEO Audit', text: 'See exactly where you stand in ChatGPT, Perplexity, and AI Overviews — free, no obligation.', href: '/services/seo-audits/' },
+    ],
+  },
+};
+---
+<ServicePage data={data} />
