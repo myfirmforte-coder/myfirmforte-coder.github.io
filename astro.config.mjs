@@ -15,5 +15,6 @@ export default defineConfig({
   redirects: {
     '/services/rank-ready-website-design/': '/services/web-development/',
     '/services/semantic-seo/': '/services/semantic-seo-optimization-services/',
+    '/services/gmb-management/': '/services/gmb-management-services/',
   },
 });
