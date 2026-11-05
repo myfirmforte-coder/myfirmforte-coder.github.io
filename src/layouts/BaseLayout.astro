@@ -19,6 +19,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/images/cropped-app-icon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/images/cropped-app-icon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/images/cropped-app-icon-180x180.png" />
     {NOINDEX && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
