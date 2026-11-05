@@ -13,7 +13,7 @@ type Head = { eyebrow: string; title: string; sub: string };
 export interface ServiceData {
   meta: { title: string; description: string };
   schema: { name: string; serviceType: string };
-  hero: { badge: string; title: string; lead: string; card: { value: string; title: string; note: string } };
+  hero: { badge: string; title: string; lead: string; buttons?: [string, string]; card: { value: string; title: string; note: string } };
   problem: Head & { cards: Card[] };
   included: Head & { cards: Card[] };
   steps: Head & { items: { title: string; text: string }[] };
@@ -46,8 +46,8 @@ const serviceSchema = {
         <h1 set:html={d.hero.title} />
         <p class="lead">{d.hero.lead}</p>
         <div class="rr-btn-group">
-          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Get a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
-          <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Quote</span><span class="rr-btn-arrow">→</span></a>
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>{d.hero.buttons?.[0] ?? 'Get a Free Strategy Call'}</span><span class="rr-btn-arrow">→</span></a>
+          <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>{d.hero.buttons?.[1] ?? 'Request a Quote'}</span><span class="rr-btn-arrow">→</span></a>
         </div>
       </div>
       <div>
