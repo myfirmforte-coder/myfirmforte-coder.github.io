@@ -1,0 +1,245 @@
+---
+// BLOG PAGE — /blog/
+// Posts ki list: src/data/posts.ts (naya post wahan sab se upar add karein).
+// Images: public/images/blog/
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { site } from '../../data/site';
+import { posts, blogCategories } from '../../data/posts';
+
+const fmt = (d: string) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const img = (f: string) => (f ? '/images/blog/' + f : '');
+const featured = posts[0];
+const rest = posts.slice(1);
+const counts = Object.fromEntries(blogCategories.map((c) => [c, posts.filter((p) => p.cat === c).length]));
+const PAGE = 12; // pehli dafa kitne posts dikhen; baqi "Load more" se
+---
+<BaseLayout
+  title="Rank Ready Blog | SEO, GEO & Semantic Search Insights"
+  description="Sharp, no-fluff articles on semantic SEO, GEO, Core Web Vitals, GMB, and the search shifts that actually matter. New tactics published every Tuesday."
+>
+  <!-- 1. HERO -->
+  <section class="sec b-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner center">
+      <div class="badge"><span class="dot"></span>THE RANK READY BLOG</div>
+      <h1>SEO &amp; GEO insights <span class="grad">that actually move rankings.</span></h1>
+      <p class="lead">Sharp, no-fluff articles on semantic SEO, GEO, Core Web Vitals, GMB, and the search shifts that actually matter. New tactics published every Tuesday.</p>
+      <div class="h-stats">
+        <div><strong>{posts.length}</strong><span>articles</span></div>
+        <div><strong>{blogCategories.length}</strong><span>topics</span></div>
+        <div><strong>Weekly</strong><span>new tactics</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FEATURED POST -->
+  <section class="feat-sec">
+    <div class="row">
+      <a href={'/' + featured.slug + '/'} class="feat">
+        <div class="feat-img">
+          {featured.img ? <img src={img(featured.img)} alt={featured.title} width="768" height="512" /> : <div class="ph">✍️</div>}
+          <span class="new">LATEST</span>
+        </div>
+        <div class="feat-body">
+          <div class="meta"><span class="chip">{featured.cat}</span><span class="date">{fmt(featured.date)}</span></div>
+          <h2>{featured.title}</h2>
+          <p>{featured.excerpt}</p>
+          <span class="read">Read the article <span>→</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 3. FILTERS + SEARCH + GRID -->
+  <section class="sec list-sec">
+    <div class="row toolbar">
+      <div class="cats" role="tablist">
+        <button class="cat active" data-cat="all">All articles <em>{posts.length}</em></button>
+        {blogCategories.map((c) => <button class="cat" data-cat={c}>{c} <em>{counts[c]}</em></button>)}
+      </div>
+      <label class="search">
+        <span aria-hidden="true">🔍</span>
+        <input type="search" id="q" placeholder="Search articles…" aria-label="Search articles" />
+      </label>
+    </div>
+
+    <div class="row grid-posts" id="posts">
+      {rest.map((p, i) => (
+        <a href={'/' + p.slug + '/'} class="post" data-cat={p.cat} data-title={p.title.toLowerCase()} data-i={i} hidden={i >= PAGE}>
+          <div class="p-img">
+            {p.img ? <img src={img(p.img)} alt={p.title} width="768" height="512" loading="lazy" /> : <div class="ph">✍️</div>}
+          </div>
+          <div class="p-body">
+            <div class="meta"><span class="chip">{p.cat}</span><span class="date">{fmt(p.date)}</span></div>
+            <h3>{p.title}</h3>
+            <p>{p.excerpt}</p>
+            <span class="read">Read more <span>→</span></span>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="row empty" id="empty" hidden>No articles match your search.</p>
+    <div class="row center more-row">
+      <button class="rr-btn rr-btn-outline" id="more"><span>Load more articles</span><span class="rr-btn-arrow">↓</span></button>
+    </div>
+  </section>
+
+  <!-- 4. AUDIT CTA -->
+  <section class="sec audit-sec">
+    <div class="row audit-row">
+      <div class="audit">
+        <div class="a1"></div><div class="a2"></div>
+        <div class="audit-in">
+          <div>
+            <div class="a-badge"><span class="dot"></span>FREE SEO + GEO AUDIT</div>
+            <h2>Reading is good. A plan for your site is better.</h2>
+            <p>Get a senior-led audit of your rankings, local visibility and AI citations — with the 3 things actually holding you back.</p>
+          </div>
+          <div class="rr-btn-group">
+            <a href="/services/seo-audits/" class="rr-btn rr-btn-primary rr-btn-lg"><span>Get My Free Audit</span><span class="rr-btn-arrow">→</span></a>
+            <a href={site.calendly} class="rr-btn rr-btn-ghost rr-btn-lg" target="_blank" rel="noopener"><span>Book a Call</span><span class="rr-btn-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CTA -->
+  <CtaBanner />
+</BaseLayout>
+
+<script>
+  const PAGE = 12;
+  let shown = PAGE;
+  let cat = 'all';
+  const cards = [...document.querySelectorAll<HTMLElement>('#posts .post')];
+  const more = document.getElementById('more') as HTMLElement;
+  const empty = document.getElementById('empty') as HTMLElement;
+  const q = document.getElementById('q') as HTMLInputElement;
+  function render() {
+    const term = q.value.trim().toLowerCase();
+    const match = cards.filter((c) => (cat === 'all' || c.dataset.cat === cat) && (!term || (c.dataset.title || '').includes(term)));
+    cards.forEach((c) => (c.hidden = true));
+    match.slice(0, shown).forEach((c) => (c.hidden = false));
+    more.hidden = match.length <= shown;
+    empty.hidden = match.length > 0;
+  }
+  document.querySelectorAll<HTMLElement>('.cat').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.cat').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    cat = b.dataset.cat || 'all';
+    shown = PAGE;
+    render();
+  }));
+  q.addEventListener('input', () => { shown = PAGE; render(); });
+  more.addEventListener('click', () => { shown += PAGE; render(); });
+  render();
+</script>
+
+<style>
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  section { font-family: var(--inter); }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+  /* 1. Hero */
+  .b-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 110px 0 170px; overflow: hidden; }
+  .b-hero .row { max-width: 980px; }
+  .g1 { position: absolute; top: 5%; left: -8%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(16,185,129,.14) 0%, transparent 70%); filter: blur(70px); }
+  .g2 { position: absolute; bottom: -20%; right: -8%; width: 650px; height: 650px; background: radial-gradient(circle, rgba(139,92,246,.18) 0%, transparent 70%); filter: blur(80px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
+  .dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .b-hero h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: #fff; margin-bottom: 22px; padding: 0; }
+  .lead { font-size: 18.5px; line-height: 1.7; color: var(--slate-300); max-width: 720px; margin: 0 auto 34px; padding: 0; }
+  .h-stats { display: inline-flex; gap: 0; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); border-radius: 16px; overflow: hidden; }
+  .h-stats div { padding: 14px 28px; display: flex; flex-direction: column; align-items: center; line-height: 1.3; }
+  .h-stats div + div { border-left: 1px solid rgba(255,255,255,.1); }
+  .h-stats strong { color: #fff; font-size: 22px; font-weight: 800; }
+  .h-stats span { color: var(--slate-400); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+  /* shared bits */
+  .meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .chip { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #047857; background: #ECFDF5; border-radius: 100px; padding: 4px 12px; line-height: 1.6; }
+  .date { font-size: 13px; color: var(--slate-400); line-height: 1.6; }
+  .read { font-size: 14px; font-weight: 700; color: var(--green); display: inline-flex; gap: 6px; align-items: center; }
+  .read span { transition: transform .3s; }
+  .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 56px; background: linear-gradient(135deg, #0F172A, #1E293B); background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(135deg, #0F172A, #1E293B); background-size: 30px 30px, 30px 30px, 100% 100%; }
+
+  /* 2. Featured */
+  .feat-sec { position: relative; z-index: 2; margin-top: -110px; }
+  .feat-sec .row { padding: 0; }
+  .feat { display: grid; grid-template-columns: 1.15fr 1fr; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(15,23,42,.35); border: 1px solid #E2E8F0; transition: transform .3s, box-shadow .3s; }
+  .feat:hover { transform: translateY(-4px); box-shadow: 0 40px 80px -30px rgba(15,23,42,.4); }
+  .feat:hover .read span { transform: translateX(5px); }
+  .feat-img { position: relative; min-height: 380px; background: #0F172A; }
+  .feat-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .new { position: absolute; top: 20px; left: 20px; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 100px; line-height: 1.6; }
+  .feat-body { padding: 48px 46px; display: flex; flex-direction: column; justify-content: center; }
+  .feat-body h2 { font-size: 32px; font-weight: 800; line-height: 1.2; letter-spacing: -.8px; color: var(--navy); margin-bottom: 16px; padding: 0; }
+  .feat-body p { font-size: 16px; line-height: 1.75; color: var(--slate-500); margin-bottom: 24px; padding: 0; }
+
+  /* 3. List */
+  .list-sec { background: #fff; padding: 80px 0 100px; }
+  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 0 0 36px; }
+  .cats { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cat { font-family: var(--inter); padding: 10px 18px; border-radius: 100px; border: 1.5px solid #E2E8F0; background: #fff; color: var(--slate-500); font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s; line-height: 1.6; }
+  .cat em { font-style: normal; font-size: 12px; margin-left: 4px; padding: 1px 8px; border-radius: 100px; background: var(--light-bg); color: var(--slate-400); }
+  .cat:hover { border-color: var(--green); color: var(--green); }
+  .cat.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .cat.active em { background: rgba(255,255,255,.15); color: #fff; }
+  .search { display: flex; align-items: center; gap: 10px; border: 1.5px solid #E2E8F0; border-radius: 100px; padding: 8px 18px; min-width: 280px; transition: border-color .2s; }
+  .search:focus-within { border-color: var(--green); }
+  .search span { font-size: 14px; opacity: .6; }
+  .search input { border: 0; outline: 0; font-family: var(--inter); font-size: 14.5px; color: var(--navy); width: 100%; background: transparent; padding: 4px 0; }
+  .grid-posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 0; }
+  .post { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 18px; overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
+  .post[hidden] { display: none; }
+  .post:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -20px rgba(15,23,42,.2); border-color: var(--green); }
+  .post:hover .read span { transform: translateX(5px); }
+  .p-img { aspect-ratio: 16 / 10; overflow: hidden; background: #0F172A; }
+  .p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .post:hover .p-img img { transform: scale(1.04); }
+  .p-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+  .p-body h3 { font-size: 19px; font-weight: 700; line-height: 1.35; letter-spacing: -.2px; color: var(--navy); margin-bottom: 10px; padding: 0; }
+  .p-body p { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); margin-bottom: 18px; padding: 0; flex: 1; }
+  .empty { text-align: center; color: var(--slate-500); font-size: 16px; padding: 30px 0; }
+  .more-row { padding: 48px 0 0; }
+  .more-row [hidden] { display: none; }
+  #more { cursor: pointer; font-family: var(--inter); }
+
+  /* 4. Audit CTA */
+  .audit-sec { background: var(--light-bg); }
+  .audit-row { padding: 0; }
+  .audit { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: 26px; padding: 56px 56px; position: relative; overflow: hidden; color: #fff; }
+  .a1 { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%); filter: blur(50px); }
+  .a2 { position: absolute; bottom: -60px; left: -60px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(139,92,246,.22), transparent 70%); filter: blur(40px); }
+  .audit-in { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .a-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; margin-bottom: 16px; line-height: 1.7; }
+  .audit h2 { font-size: 34px; font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 12px; padding: 0; }
+  .audit p { font-size: 16.5px; line-height: 1.7; color: var(--slate-300); padding: 0; max-width: 560px; }
+
+  @media (max-width: 980px) {
+    .feat { grid-template-columns: 1fr; }
+    .feat-img { min-height: 260px; }
+    .grid-posts { grid-template-columns: repeat(2, 1fr); }
+    .audit-in { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 767px) {
+    .b-hero { padding: 60px 0 140px; }
+    .b-hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .lead { font-size: 16.5px; }
+    .h-stats div { padding: 12px 16px; }
+    .h-stats strong { font-size: 18px; }
+    .feat-sec { margin-top: -90px; }
+    .feat-img { min-height: 210px; }
+    .feat-body { padding: 28px 24px; }
+    .feat-body h2 { font-size: 24px; }
+    .list-sec { padding: 56px 0 60px; }
+    .search { min-width: 0; width: 100%; }
+    .grid-posts { grid-template-columns: 1fr; gap: 20px; }
+    .audit { padding: 40px 26px; }
+    .audit h2 { font-size: 26px; }
+  }
+</style>
