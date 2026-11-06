@@ -5,49 +5,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
 import { site } from '../../data/site';
+import { caseTabs } from '../../data/caseStudies';
 
-const filters = [
-  { label: 'All Case Studies', href: '/case-studies/', active: true },
-  { label: 'Semantic SEO', href: '/services/semantic-seo-optimization-services/' },
-  { label: 'Local SEO', href: '/services/local-landing-pages/' },
-  { label: 'GEO / AI', href: '/services/ai-geo-optimization/' },
-  { label: 'Website Design', href: '/services/web-development/' },
-  { label: 'GMB', href: '/services/gmb-management-services/' },
-];
 
 // colors = card ke upar wale hisse ka gradient. featured: true = hara border + "FEATURED" badge.
-// link = "Read the case study" button (abhi '#', jab case study ka apna page banega to yahan URL daal dein).
+// link = "Read the case study" button ka page. Filter buttons (tabs) ki list: src/data/caseStudies.ts
 const cases = [
   { icon: '⚖️', colors: ['#0F172A', '#1E293B'], featured: true,
     tags: [['LEGAL', '/industries/legal/'], ['SEMANTIC SEO', '/services/semantic-seo-optimization-services/']],
     title: 'From Page 4 to Position 2 in 90 Days',
     text: 'A mid-sized law firm was buried on page 4 for their core practice area keywords. We rebuilt their content with entity-driven semantic architecture and strategic topical clusters. Within 90 days, they ranked #2 nationally for their primary service.',
-    stats: [['+312%', 'Organic traffic'], ['3.2×', 'Qualified leads']], link: '#' },
+    stats: [['+312%', 'Organic traffic'], ['3.2×', 'Qualified leads']], link: '/industries/legal/' },
   { icon: '🏠', colors: ['#7F1D1D', '#DC2626'],
     tags: [['HOME SERVICES', '/industries/home-services/'], ['GMB', '/services/gmb-management-services/']],
     title: '5× More Local Calls in 60 Days',
     text: "A multi-location home services company was losing every 'near me' search to competitors with better-optimized Google Business Profiles. We restructured their GMB strategy, added geo-specific service pages, and automated review acquisition.",
-    stats: [['+480%', 'GMB actions'], ['5×', 'Call volume']], link: '#' },
+    stats: [['+480%', 'GMB actions'], ['5×', 'Call volume']], link: '/industries/home-services/' },
   { icon: '🚀', colors: ['#8B5CF6', '#5B21B6'],
     tags: [['SAAS', '/industries/ecommerce-website-and-seo/'], ['GEO OPTIMIZATION', '/services/ai-geo-optimization/']],
     title: 'Cited by ChatGPT in 3 Weeks',
     text: 'A B2B SaaS company wanted to show up when prospects asked AI tools for recommendations in their category. We implemented schema optimization, authority content, and entity signaling across their domain — and earned citations across 4 major AI engines.',
-    stats: [['0 → 74%', 'AI visibility'], ['4 of 5', 'AI engines citing']], link: '#' },
+    stats: [['0 → 74%', 'AI visibility'], ['4 of 5', 'AI engines citing']], link: '/case-studies/geo-ai-saas-citations/' },
   { icon: '🛒', colors: ['#065F46', '#059669'],
     tags: [['E-COMMERCE', '/industries/ecommerce-website-and-seo/'], ['WEBSITE', '/services/web-development/']],
     title: 'Full Rebuild → #1 in 6 Months',
     text: "A DTC brand had a beautiful Shopify store that couldn't rank. We rebuilt it on a Rank-Ready architecture with proper semantic structure, Core Web Vitals optimization, and a content strategy built around commercial intent clusters.",
-    stats: [['+$180K', 'Organic revenue'], ['340+', 'Page 1 keywords']], link: '#' },
+    stats: [['+$180K', 'Organic revenue'], ['340+', 'Page 1 keywords']], link: '/case-studies/website-design-dtc-rebuild/' },
   { icon: '🦷', colors: ['#164E63', '#0E7490'],
     tags: [['MEDICAL', '/industries/medical-dental/'], ['LOCAL SEO', '/services/local-landing-pages/']],
     title: '120 Location Pages, Zero Duplicate Content',
     text: 'A dental group with 120 locations needed unique, rankable pages for every city. Using semantic templates and local-intent research, we deployed 120 hyper-local pages with zero duplicate content penalties and dominant local pack visibility.',
-    stats: [['+890%', 'Local pack appearances'], ['+2,400', 'Monthly bookings']], link: '#' },
+    stats: [['+890%', 'Local pack appearances'], ['+2,400', 'Monthly bookings']], link: '/case-studies/local-seo-dental-group/' },
   { icon: '🏡', colors: ['#78350F', '#D97706'],
     tags: [['REAL ESTATE', '/industries/real-estate/'], ['SEO', '/services/semantic-seo-optimization-services/'], ['WEBSITE', '/services/web-development/']],
     title: '$1.2M in Attributed Listings',
     text: 'A boutique real estate agency wanted to rank for high-intent luxury keywords. We rebuilt their site with a semantic-first architecture and built out hyper-targeted neighborhood content. Six months later, they credited $1.2M in closed volume to organic search.',
-    stats: [['$1.2M', 'Attributed revenue'], ['48', 'Top-3 keywords']], link: '#' },
+    stats: [['$1.2M', 'Attributed revenue'], ['48', 'Top-3 keywords']], link: '/industries/real-estate/' },
 ];
 
 const reviews = [
@@ -73,7 +66,7 @@ const reviews = [
   <!-- 2. FILTERS + CASE STUDY CARDS -->
   <section class="sec c-list">
     <div class="row filters">
-      {filters.map((f) => <a href={f.href} class:list={['filter', { active: f.active }]}>{f.label}</a>)}
+      {caseTabs.map((f, i) => <a href={f.href} class:list={['filter', { active: i === 0 }]}>{f.label}</a>)}
     </div>
     <div class="row grid cases">
       {cases.map((c) => (
