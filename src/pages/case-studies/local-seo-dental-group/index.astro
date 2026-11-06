@@ -1,0 +1,62 @@
+---
+// CASE STUDY — Local SEO (multi-location dental group) — /case-studies/local-seo-dental-group/
+// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../../components/CaseStudyPage.astro';
+
+const data: CaseStudyData = {
+  meta: {
+    title: 'Local SEO Case Study: 120 Location Pages, Zero Duplicate Content | Rank Ready',
+    description: 'How MetroDental Group deployed 120 unique, rankable location pages in 60 days — +890% local pack appearances and +2,400 monthly bookings with zero duplicate content flags.',
+  },
+  path: '/case-studies/local-seo-dental-group/',
+  hero: {
+    tag: 'LOCAL SEO',
+    icon: '🦷',
+    title: '120 location pages. <span class="grad">Zero duplicate content.</span>',
+    lead: 'A multi-state dental group needed a unique, rankable page for every city it serves. Using semantic templates and local-intent research, we deployed <strong>120 hyper-local pages in 60 days</strong> — every one genuinely unique, every one ranking.',
+  },
+  facts: [
+    { label: 'Client', value: 'MetroDental Group' },
+    { label: 'Industry', value: 'Dental service organization (DSO)' },
+    { label: 'Timeline', value: '120 pages in 60 days' },
+    { label: 'Services', value: 'Local Landing Pages · GMB · Semantic SEO' },
+  ],
+  kpis: [
+    { value: '120', label: 'unique location pages deployed' },
+    { value: '+890%', label: 'local pack appearances' },
+    { value: '+2,400', label: 'monthly bookings' },
+    { value: '0', label: 'duplicate content flags' },
+  ],
+  overview: [
+    { title: 'Client overview', text: '<strong>MetroDental Group</strong> is a multi-state dental service organization with <strong>120 locations</strong>. Patients search locally — “dentist near me”, “Invisalign in [city]” — and choose from whoever ranks at the top. Each location needed its own visibility in its own market.' },
+    { title: 'The challenge', text: 'The group was fighting for visibility in only a couple of cities. Scaling to 120 markets brought the classic multi-location problems:' },
+  ],
+  challenges: [
+    'Every location needed its own rankable page — but “city-swap” templates trigger <strong>duplicate content</strong> problems.',
+    'Healthcare is a <strong>YMYL</strong> category, so thin or inaccurate content gets demoted hard.',
+    '120 locations means 120 Google Business Profiles, 120 review streams and 120 chances to get it wrong.',
+  ],
+  approach: [
+    { title: 'Local-intent research per market', text: 'We mapped how patients search in each city — treatments, insurance questions and neighborhood terms — so every page targets what that market actually looks for.' },
+    { title: 'Semantic page templates with genuinely unique content', text: 'Each location page was built on a semantic template but filled with <strong>location-specific substance</strong>, not a swapped city name.', points: ['Neighborhoods served, practice hours and directions', 'Provider bios for that site and the services offered there', 'City-filtered testimonials and insurance accepted at that location'] },
+    { title: 'Full local schema on every page', text: 'LocalBusiness and Service schema on each page, with NAP details matching the location’s Google Business Profile exactly.' },
+    { title: 'Similarity control at scale', text: 'Every page was checked against an internal similarity threshold kept <strong>well under Google’s penalty trigger</strong> — which is how 120 pages shipped with zero duplicate content flags.' },
+  ],
+  results: [
+    { value: '+890%', title: 'Local pack appearances', text: 'Dominant local pack visibility across the markets the group serves.' },
+    { value: '+2,400', title: 'Monthly bookings', text: 'More patients booking directly from local search every month.' },
+    { value: '60 days', title: 'From plan to 120 live pages', text: 'A full multi-state rollout shipped in under two months — and every page ranks.' },
+  ],
+  quote: {
+    text: 'We went from fighting for visibility in two cities to dominating every market we serve. Rank Ready’s system shipped 120 location pages in under two months — every single one ranks, every single one is genuinely unique, and our booking volume has never been higher.',
+    name: 'Dr. Priya Shah', role: 'Founder, MetroDental Group', initials: 'PS',
+  },
+  takeaways: [
+    '<strong>Unique beats templated.</strong> A swapped city name isn’t a location page — real local substance is what ranks.',
+    '<strong>Scale needs a system.</strong> Semantic templates plus similarity checks let you grow to 100+ pages safely.',
+    '<strong>Schema ties it together.</strong> LocalBusiness + Service markup that matches each GBP signals exactly where you operate.',
+    '<strong>Local visibility drives bookings.</strong> Patients choose from the top results — being there in every market fills the schedule.',
+  ],
+};
+---
+<CaseStudyPage data={data} />
