@@ -1,0 +1,58 @@
+---
+// CASE STUDY — Website Design (DTC Shopify rebuild) — /case-studies/website-design-dtc-rebuild/
+// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../../components/CaseStudyPage.astro';
+
+const data: CaseStudyData = {
+  meta: {
+    title: 'Website Design Case Study: Full Rebuild → #1 in 6 Months | Rank Ready',
+    description: 'How a Rank-Ready rebuild of a DTC Shopify store — semantic structure, Core Web Vitals and commercial-intent content — delivered +$180K organic revenue and 340+ page-one keywords.',
+  },
+  path: '/case-studies/website-design-dtc-rebuild/',
+  hero: {
+    tag: 'WEBSITE DESIGN',
+    icon: '🛒',
+    title: 'Full rebuild → <span class="grad">#1 in 6 months.</span>',
+    lead: 'A DTC brand had a beautiful Shopify store that couldn’t rank. We rebuilt it on a Rank-Ready architecture — proper semantic structure, Core Web Vitals optimization and a content strategy built around commercial-intent clusters — and organic search became a <strong>+$180K</strong> revenue channel.',
+  },
+  facts: [
+    { label: 'Client', value: 'DTC e-commerce brand' },
+    { label: 'Platform', value: 'Shopify' },
+    { label: 'Timeline', value: '#1 rankings within 6 months' },
+    { label: 'Services', value: 'Rank-Ready Website Design · Semantic SEO' },
+  ],
+  kpis: [
+    { value: '+$180K', label: 'organic revenue' },
+    { value: '340+', label: 'page-one keywords' },
+    { value: '#1', label: 'rankings for core terms' },
+    { value: '6 months', label: 'from rebuild to top rankings' },
+  ],
+  overview: [
+    { title: 'Client overview', text: 'A <strong>direct-to-consumer brand</strong> selling online through Shopify. The store looked great — but design alone doesn’t rank, and organic search was contributing almost nothing to revenue.' },
+    { title: 'The challenge', text: 'The site was built to look good, not to be understood by search engines. The issues were structural:' },
+  ],
+  challenges: [
+    'No semantic structure — Google couldn’t tell which pages should rank for which products and categories.',
+    'Slow, heavy pages that struggled with <strong>Core Web Vitals</strong>.',
+    'Underbuilt category pages — where most commercial-intent search volume lives.',
+  ],
+  approach: [
+    { title: 'Rank-Ready architecture', text: 'We rebuilt the store on a semantic architecture: a clear category hierarchy, clean internal linking and pages that each target a distinct intent.' },
+    { title: 'Core Web Vitals optimization', text: 'Images, scripts and theme code were optimized so pages load fast and pass Core Web Vitals on mobile and desktop.' },
+    { title: 'Schema at scale', text: 'Product schema with price, availability and reviews across the catalog, plus structured category pages that search engines understand.' },
+    { title: 'Commercial-intent content clusters', text: 'Category and buyer-guide content built around the high-volume “best [category]” and “buy [category] online” queries that drive revenue.' },
+  ],
+  results: [
+    { value: '+$180K', title: 'Organic revenue', text: 'Organic search became a meaningful revenue channel for the brand.' },
+    { value: '340+', title: 'Page-one keywords', text: 'Hundreds of commercial and category keywords now rank on the first page of Google.' },
+    { value: '#1', title: 'Within 6 months', text: 'Top rankings for core terms within six months of the rebuild going live.' },
+  ],
+  takeaways: [
+    '<strong>A beautiful site isn’t the same as a ranking site.</strong> Structure, speed and schema decide whether Google sends you traffic.',
+    '<strong>Category pages are the center of gravity.</strong> They capture the commercial searches product pages miss.',
+    '<strong>Speed is a ranking factor and a conversion factor.</strong> Passing Core Web Vitals helps both.',
+    '<strong>Build SEO in from day one.</strong> A rebuild is the cheapest moment to fix the foundations.',
+  ],
+};
+---
+<CaseStudyPage data={data} />
