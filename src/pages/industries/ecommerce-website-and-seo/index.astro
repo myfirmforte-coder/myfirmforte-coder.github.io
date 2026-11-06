@@ -1,0 +1,102 @@
+---
+// INDUSTRY PAGE — /industries/ecommerce-website-and-seo/
+// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+
+const data: IndustryData = {
+  meta: {
+    title: "SEO for E-commerce & SaaS | DTC + B2B SaaS SEO | Rank Ready",
+    description: "Category page SEO for DTC, comparison content for SaaS, GEO so AI tools recommend you. 0→74% AI citation rate for NorthPeak SaaS in 90 days.",
+  },
+  schema: { name: "SEO for E-commerce & SaaS", serviceType: "E-commerce and SaaS SEO" },
+  hero: {
+    badge: "SEO FOR E-COMMERCE & SAAS",
+    title: "SEO for brands that live <span class='grad'>or die by organic growth.</span>",
+    lead: "E-commerce and SaaS have the highest SEO ROI of any verticals — and the most competitive keyword landscapes. Category page optimization for DTC, product-led SEO for SaaS, and above all, getting cited by ChatGPT when buyers research alternatives. We do all three.",
+    card: { value: "0→74%", title: "AI engine citation rate in 90 days", note: "NorthPeak SaaS · Semantic SEO + GEO integrated engagement" },
+  },
+  problem: {
+    eyebrow: "THE CHALLENGE",
+    title: "Why SEO in this vertical is different.",
+    sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
+    cards: [
+      { icon: "🛒", title: "E-comm category pages are almost always underbuilt", text: "DTC brands pour budget into product pages but ignore category pages — which is where most commercial-intent organic search volume lives. 'Best [category]' and 'buy [category] online' queries go to competitors with better category page SEO." },
+      { icon: "💻", title: "SaaS keyword landscapes are murderous", text: "You're fighting Wikipedia, G2, Capterra, and 20 competitors all running aggressive SEO programs. Breaking into page 1 on commercial SaaS terms requires semantic depth most agencies can't actually deliver." },
+      { icon: "🤖", title: "Buyers now ask AI before Google", text: "For SaaS especially — and increasingly for considered e-commerce purchases — buyers ask ChatGPT for recommendations before searching Google. If you're not cited in those AI responses, you're not in the consideration set, regardless of your Google rankings." },
+    ],
+  },
+  approach: {
+    eyebrow: "THE APPROACH",
+    title: "Services we recommend for this industry, in order.",
+    sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
+    cards: [
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "The core play for both DTC and SaaS: category-level topical authority, comparison content, buyer guides, alternatives pages — all built around entity and intent architecture.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Particularly critical for SaaS. Get cited when ChatGPT answers 'best [category] software' or 'alternatives to [competitor]' — the new top-of-funnel for B2B buyers.", href: "/services/ai-geo-optimization/" },
+      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "Semantic architecture, Product &amp; SoftwareApplication schema, Core Web Vitals optimization, CMS configured for SEO-ready content velocity.", href: "/services/web-development/" },
+      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "E-comm: category coverage, product page schema, internal linking, CWV. SaaS: comparison content gaps, competitor keyword overlap, AI citation baseline.", href: "/services/seo-audits/" },
+      { icon: "🗺️", color: "dark", title: "Local Landing Pages", text: "For e-comm brands with physical retail or SaaS companies targeting specific regional markets — less common, but high-impact when it applies.", href: "/services/local-landing-pages/" },
+      { icon: "📍", color: "dark", title: "GMB Management", text: "Only relevant for e-comm with physical retail locations or service-area SaaS setups. Most DTC and pure SaaS skip this service.", href: "/services/gmb-management-services/" },
+    ],
+  },
+  why: {
+    eyebrow: "DEEPER CONTEXT",
+    title: "Why e-commerce & SaaS SEO requires different playbooks than anything else.",
+    article: [
+      { title: "E-commerce: category pages are the center of gravity", text: "For most DTC brands, <strong>category pages drive more organic revenue than product pages</strong> — by a factor of 3-10×. 'Best running shoes,' 'linen dresses,' 'organic skincare' — these are the high-volume commercial queries. A properly optimized category page (with descriptive content, Product schema on child listings, faceted navigation handled correctly, and internal linking depth) can rank for hundreds of related queries. Most Shopify and WooCommerce stores leave this entirely unbuilt." },
+      { title: "SaaS: product-led SEO and comparison content", text: "SaaS SEO revolves around <strong>three content types</strong>: (1) category-defining content for 'what is X' and 'X vs Y' queries, (2) comparison and alternatives content capturing competitor-brand search volume, and (3) integration and use-case content for long-tail commercial intent. A strong SaaS SEO program produces 50-200 pages per year across these three buckets — with Wikipedia and G2 as the only bigger competitors." },
+      { title: "GEO is now existential for SaaS", text: "When someone asks ChatGPT 'best project management tools for engineering teams,' the AI cites 3-5 products. If you're not one of them, you're invisible to that buyer's research phase — which happens <em>before</em> they Google anything. <strong>GEO is now a foundational SaaS marketing channel</strong>, not an experimental one. The SaaS brands moving fast on GEO are banking advantages their competitors won't catch up on for 18-24 months." },
+    ],
+    facts: [
+      { value: "37%", label: "of SaaS buyers now start research with AI tools" },
+      { value: "3-10×", label: "revenue lift from category page vs. product page SEO" },
+      { value: "0→74%", label: "AI citation rate achieved for NorthPeak SaaS" },
+      { value: "+$180K", label: "attributed e-commerce revenue lift for one DTC client" },
+    ],
+  },
+  result: {
+    value: "0 → 74%",
+    title: "AI engine citation rate in 90 days",
+    note: "NorthPeak SaaS · Semantic SEO + GEO integrated engagement",
+    quote: "Before Rank Ready, we weren't mentioned anywhere in AI answers for our category. Now we're cited by ChatGPT, Perplexity, and Claude when buyers ask for recommendations — and inbound demo requests have nearly doubled. They're playing a game our competitors don't even know exists.",
+    initials: "DP", name: "Daniel Park", role: "Founder, NorthPeak SaaS",
+  },
+  audience: {
+    eyebrow: "INDUSTRY SUB-SEGMENTS",
+    title: "E-commerce & SaaS segments we work with.",
+    sub: "From bootstrapped DTC brands to Series B SaaS companies — if your business lives on organic growth, we have a playbook.",
+    cards: [
+      { icon: "👕", title: "DTC Fashion &amp; Apparel", text: "Category-page SEO, seasonal content, buyer-guide production, Product schema at scale." },
+      { icon: "💄", title: "Beauty &amp; Personal Care", text: "Ingredient content, routine guides, YMYL-sensitive claims handled correctly." },
+      { icon: "🏋️", title: "Health, Fitness &amp; Wellness", text: "Supplements, equipment, apparel — high-volume informational + commercial hybrid queries." },
+      { icon: "🏠", title: "Home Goods &amp; Decor", text: "Visual-driven categories with strong 'ideas' and 'inspiration' content funnels." },
+      { icon: "🛠️", title: "B2B SaaS", text: "Category-defining, comparison, alternatives, integrations, use cases — the standard SaaS content stack." },
+      { icon: "📚", title: "EdTech &amp; Courses", text: "High-intent 'learn X' queries, certification content, comparison to alternatives." },
+    ],
+  },
+  faq: {
+    eyebrow: "COMMON QUESTIONS",
+    title: "Questions specific to this industry.",
+    sub: "What business owners and marketing leads in this vertical most often ask us.",
+    items: [
+      { q: "What's the biggest SEO opportunity most DTC brands miss?", a: "<strong>Category page optimization.</strong> Nine out of ten Shopify and WooCommerce stores have category pages with 0-100 words of content, no schema beyond basic Product markup on listings, and no internal linking strategy. Adding <strong>descriptive category content</strong> (500-1500 words covering buyer intent, key considerations, and subcategory links) typically 2-4× organic revenue on that category in 60-120 days. This is the single highest-ROI move for most DTC." },
+      { q: "How should SaaS companies prioritize content?", a: "Three-phase sequence. <strong>Phase 1 (months 1-3):</strong> category-defining content (‘what is X,’ ‘how to do X’). <strong>Phase 2 (months 3-6):</strong> comparison and alternatives content (‘[competitor] alternatives,’ ‘X vs Y’). <strong>Phase 3 (months 6+):</strong> use case, integration, and industry-specific content. This sequence builds topical authority before chasing competitor-brand traffic, which Google rewards with faster rankings." },
+      { q: "Can GEO really drive pipeline for SaaS?", a: "Yes — and increasingly it’s the <strong>leading indicator</strong> for SaaS pipeline. When B2B buyers ask ChatGPT ‘best [category] for [use case],’ the AI cites 3-5 products. Being one of those cited products becomes your new top-of-funnel. Our SaaS clients with strong GEO see 20-40% of demo requests citing ‘ChatGPT told me about you’ within 6 months. This channel barely existed 2 years ago." },
+      { q: "What about product page SEO for DTC?", a: "Product pages should have <strong>Product schema (with reviews, price, availability)</strong>, descriptive content beyond the manufacturer boilerplate, FAQ sections with FAQPage schema, and strong internal linking to related products and categories. But the biggest return on product page SEO comes from volume — turning 100 product pages into 100 rankable assets through systematic schema and content enhancement, not from obsessing over any single page." },
+      { q: "How do we handle SEO when we have thousands of products or listings?", a: "At scale, you need <strong>programmatic SEO</strong>: templated content structures, schema automation, faceted navigation handled correctly (mostly with noindex/follow on deep combinations), and prioritization by commercial value per SKU or category. We’ve worked with catalogs up to 50k SKUs. The pattern is ruthless prioritization — focus SEO effort on the 500-2000 highest-commercial-value pages, not everything." },
+      { q: "Shopify or WooCommerce or Next.js for SEO?", a: "All three can rank well when configured correctly. <strong>Shopify</strong> is fast out of the box but has URL structure limitations and app-bloat risks. <strong>WooCommerce</strong> is more flexible but requires more hands-on optimization. <strong>Next.js / headless</strong> offers the best raw performance ceiling but demands engineering discipline. For most DTC brands under $10M revenue, properly optimized Shopify wins. Above that, headless often makes sense." },
+      { q: "How long before we see pipeline impact?", a: "For SaaS, expect <strong>first rankings in 60-90 days</strong>, meaningful demo pipeline contribution by month 4-6, and durable channel contribution by month 9-12. For DTC, the cycle is similar but conversion is faster — category page lift often shows revenue contribution within 60-90 days of publishing enhanced category content. GEO signals tend to appear even faster (30-60 days) for brands doing it properly." },
+    ],
+  },
+  related: {
+    eyebrow: "START SOMEWHERE",
+    title: "Recommended next steps.",
+    sub: "If this industry fits, here’s the cleanest path forward.",
+    cards: [
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Category and comparison content built on topical authority — the core e-comm and SaaS play.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited by ChatGPT and Perplexity — now foundational for SaaS, increasingly important for considered DTC.", href: "/services/ai-geo-optimization/" },
+      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "E-comm or SaaS aware audit showing exactly where your biggest opportunities are.", href: "/services/seo-audits/" },
+    ],
+  },
+};
+---
+<IndustryPage data={data} />
