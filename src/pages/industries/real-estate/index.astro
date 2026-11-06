@@ -1,0 +1,102 @@
+---
+// INDUSTRY PAGE — /industries/real-estate/
+// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+
+const data: IndustryData = {
+  meta: {
+    title: "SEO for Real Estate Brokerages & Agents | Rank Ready",
+    description: "Real estate SEO beyond Zillow. Neighborhood pages, market reports, agent + brokerage architecture. $1.2M attributed revenue for one regional brokerage.",
+  },
+  schema: { name: "SEO for Real Estate", serviceType: "Real Estate SEO" },
+  hero: {
+    badge: "SEO FOR REAL ESTATE",
+    title: "SEO for brokerages <span class='grad'>&amp; agents that still works.</span>",
+    lead: "Zillow, Redfin, and Realtor.com own most real estate search terms. But there’s a whole layer of high-intent, locally-specific, buyer-and-seller queries they can’t dominate — and that’s exactly where we build. Neighborhood-level authority, agent-level authority, and hyperlocal content your competitors can’t touch.",
+    card: { value: "$1.2M", title: "attributed revenue in 12 months", note: "Regional brokerage · 40 neighborhood pages + semantic content strategy" },
+  },
+  problem: {
+    eyebrow: "THE CHALLENGE",
+    title: "Why SEO in this vertical is different.",
+    sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
+    cards: [
+      { icon: "🏢", title: "Zillow &amp; Redfin own the transactional keywords", text: "Trying to rank for 'homes for sale in Austin' against a portal with a $1B marketing budget is a losing game. You need a different search layer — neighborhood guides, market reports, agent-specific authority — where portals can't compete." },
+      { icon: "📍", title: "Neighborhood-level content is where wins hide", text: "Portals have city pages. They don't have 'Clarksville Austin real estate,' 'Tarrytown market report,' or 'Hyde Park family homes' — all high-intent queries with commercial volume, easy wins, and no portal competition." },
+      { icon: "🎯", title: "Agent SEO vs. brokerage SEO requires different strategies", text: "An individual agent building personal brand SEO has different priorities than a brokerage running team-wide SEO. We architect programs that don't have agents cannibalizing their own brokerage or vice versa." },
+    ],
+  },
+  approach: {
+    eyebrow: "THE APPROACH",
+    title: "Services we recommend for this industry, in order.",
+    sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
+    cards: [
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "The core play: neighborhood pages at scale. Each neighborhood gets its own page with market data, school info, local character, featured listings, and agent info — all unique, all ranking.", href: "/services/local-landing-pages/" },
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Market reports, buyer guides, seller guides, neighborhood deep dives, school reviews — topical authority that makes you the local market expert Google trusts.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "IDX-integrated site with fast search, neighborhood landing architecture, agent bio system, and CWV-optimized for the mobile-first home buyer.", href: "/services/web-development/" },
+      { icon: "📍", color: "dark", title: "GMB Management", text: "Brokerage and individual agent GBPs, review acquisition after every closing, weekly posts featuring listings and neighborhood content.", href: "/services/gmb-management-services/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited when buyers ask ChatGPT 'best neighborhoods in [city]' or 'best realtor in [area].' Early-mover advantage while competitors are still obsessing over Zillow.", href: "/services/ai-geo-optimization/" },
+      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Real-estate-aware audit covering neighborhood coverage gaps, IDX SEO health, agent-vs-brokerage architecture, and content opportunities.", href: "/services/seo-audits/" },
+    ],
+  },
+  why: {
+    eyebrow: "DEEPER CONTEXT",
+    title: "Why real estate SEO looks nothing like other verticals.",
+    article: [
+      { title: "Don't try to beat Zillow at its own game", text: "Portals dominate <strong>transactional keywords</strong> ('homes for sale in [city]') and will continue to. That's fine — those aren't the queries you want anyway. The high-value queries are <strong>informational and hyperlocal</strong>: 'best neighborhoods in [city] for families,' '[neighborhood] market trends 2026,' 'is [neighborhood] a good investment,' 'moving from [city A] to [city B].' Portals can't own all of these. You can." },
+      { title: "Neighborhood pages are real estate's killer app", text: "A brokerage serving a metro with <strong>30 distinct neighborhoods</strong> needs 30 neighborhood pages — each with unique content, market data, school info, neighborhood character, featured listings, and commute information. Most brokerages have 0-3 of these. A full rollout typically captures hundreds of ranking keywords Zillow can't touch, and positions you as the local authority buyers actually want." },
+      { title: "IDX SEO is its own beast", text: "Integrated IDX listings are essential functionally but create <strong>SEO hazards</strong>: thin content pages, duplicate content (same listing across multiple IDX sites), fast-expiring URLs, and crawl budget waste. Properly configured IDX SEO uses canonical tags, noindex on low-value listing pages, and content augmentation to turn IDX pages into ranking assets instead of liabilities." },
+    ],
+    facts: [
+      { value: "93%", label: "of home buyers use the internet during their search" },
+      { value: "41%", label: "of buyers find their new home online first" },
+      { value: "$1.2M", label: "attributed revenue for a single regional brokerage client" },
+      { value: "40+", label: "neighborhood pages deployed for one brokerage" },
+    ],
+  },
+  result: {
+    value: "$1.2M",
+    title: "attributed revenue in 12 months",
+    note: "Regional brokerage · 40 neighborhood pages + market report content strategy",
+    quote: "We stopped trying to rank against Zillow and started building neighborhood authority. Eight months in, we're the go-to source for market info in half the neighborhoods we cover — and the lead quality is better than any channel we've ever run.",
+    initials: "MR", name: "Marcus Reyes", role: "Managing Broker, Coastline Realty Group",
+  },
+  audience: {
+    eyebrow: "INDUSTRY SUB-SEGMENTS",
+    title: "Real estate segments we work with.",
+    sub: "We’ve built SEO programs across the real estate spectrum — from solo agents to regional brokerage networks.",
+    cards: [
+      { icon: "🏢", title: "Brokerages &amp; Teams", text: "Independent brokerages, Keller Williams / Compass / EXP / Berkshire teams, indie shops." },
+      { icon: "👤", title: "Individual Agents", text: "Top producers building personal brand SEO alongside brokerage presence." },
+      { icon: "🏘️", title: "New Construction &amp; Builders", text: "Residential developers selling new build communities and master-planned neighborhoods." },
+      { icon: "🏡", title: "Luxury Real Estate", text: "High-end markets where trust signals, photography, and positioning matter more than volume." },
+      { icon: "🏭", title: "Commercial Real Estate", text: "Office, retail, industrial, multifamily — longer sales cycles with research-heavy buyers." },
+      { icon: "🏖️", title: "Vacation &amp; Investment Properties", text: "Short-term rental markets, second home destinations, investment-property buyer content." },
+    ],
+  },
+  faq: {
+    eyebrow: "COMMON QUESTIONS",
+    title: "Questions specific to this industry.",
+    sub: "What business owners and marketing leads in this vertical most often ask us.",
+    items: [
+      { q: "Can we really rank against Zillow and Redfin?", a: "Not for their core transactional keywords, and you shouldn’t try. But for <strong>hyperlocal and informational queries</strong> — neighborhood guides, market reports, school deep-dives, ‘moving to [city]’ content — portals don’t compete effectively. That’s a massive search layer with real commercial intent where local brokerages consistently win. Our real estate clients average 200-500 first-page rankings after 12 months, almost entirely in this layer." },
+      { q: "How do neighborhood pages actually work?", a: "Each neighborhood gets its own dedicated URL (e.g. <code>/neighborhoods/clarksville/</code>) with unique content: overview and character, current market statistics (median price, DOM, price/sqft), schools serving that area, amenities and restaurants, demographics, commute info, and featured recent listings. Proper schema (Place, RealEstateAgent, RealEstateListing) ties it all together. A metro with 30 neighborhoods becomes a 30-page content asset." },
+      { q: "What about IDX integration — does that help or hurt SEO?", a: "Both, depending on how it’s configured. <strong>Properly</strong>: IDX gives you fresh listings content, demonstrates local inventory, and builds site depth. <strong>Improperly</strong>: thin listing pages waste crawl budget, duplicate content across MLS feeds creates canonical issues, and expired listings trigger soft 404s. We configure IDX SEO carefully — canonical handling, noindex where appropriate, content augmentation where it adds value — to make it a ranking asset." },
+      { q: "Should individual agents run their own SEO or lean on the brokerage's?", a: "Both, with different focus. <strong>Agent-level SEO</strong> is about personal brand, reviews, video content, and name-based queries. <strong>Brokerage-level SEO</strong> covers neighborhood authority, market content, and team reputation. Done right, they reinforce each other: an agent’s personal site links to brokerage neighborhood pages; the brokerage links to top producer agent pages. Done wrong, agents compete with their own brokerage. We architect the relationship carefully." },
+      { q: "How do we handle listing content for SEO?", a: "Listings on IDX platforms typically have thin, auto-generated descriptions. To get real SEO value: write <strong>longer, original description paragraphs</strong> on featured or luxury listings, add neighborhood context and buyer-relevant detail, implement RealEstateListing schema, and link listings to the relevant neighborhood page. This turns your listings from crawl-budget-wasters into long-tail ranking assets." },
+      { q: "What about video for SEO — neighborhood tours, listing walkthroughs?", a: "Video is increasingly important in real estate SEO. <strong>YouTube ranks separately</strong> from Google web search and appears in Google as video carousels, creating a second channel. Neighborhood tour videos, listing walkthroughs, and market update videos embedded on relevant pages also boost on-page engagement metrics which correlate with rankings. We recommend a parallel video strategy for most real estate clients." },
+      { q: "What results do you see on real estate clients?", a: "Typical outcomes at 12 months: <strong>200-500 first-page rankings</strong> (primarily hyperlocal), <strong>3-5× organic traffic growth</strong>, and 15-40% of total lead volume coming from organic vs. almost zero at baseline. Direct revenue attribution varies based on average deal size, but most clients recoup annual SEO investment within 2-3 transactions." },
+    ],
+  },
+  related: {
+    eyebrow: "START SOMEWHERE",
+    title: "Recommended next steps.",
+    sub: "If this industry fits, here’s the cleanest path forward.",
+    cards: [
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Neighborhood pages at scale — the core play for real estate SEO.", href: "/services/local-landing-pages/" },
+      { icon: "🧠", color: "purple", title: "Semantic SEO", text: "Market reports, buyer guides, neighborhood authority — everything Zillow can't compete on.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Real-estate-aware audit covering IDX health, neighborhood coverage, and agent architecture.", href: "/services/seo-audits/" },
+    ],
+  },
+};
+---
+<IndustryPage data={data} />
