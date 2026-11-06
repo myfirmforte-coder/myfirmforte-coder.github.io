@@ -1,0 +1,102 @@
+---
+// INDUSTRY PAGE — /industries/home-services/
+// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+
+const data: IndustryData = {
+  meta: {
+    title: "SEO for Home Services | Plumbing, HVAC, Roofing SEO | Rank Ready",
+    description: "SEO that rings the phone. 3-pack domination, service-area pages, review velocity. 5× call volume for Elite Home Services in 60 days. Free audit.",
+  },
+  schema: { name: "SEO for Home Services", serviceType: "Home Services SEO" },
+  hero: {
+    badge: "SEO FOR HOME SERVICES",
+    title: "SEO that keeps the <span class='grad'>phone ringing.</span>",
+    lead: "Home services SEO lives or dies in the 3-pack. Homeowners searching ’emergency plumber near me’ at 2am aren’t scrolling to page two — they’re tapping the first three results. We’ve built SEO programs for plumbing, HVAC, roofing, and electrical companies that own their local markets and ring constantly.",
+    card: { value: "5×", title: "call volume in 60 days", note: "Elite Home Services · GMB + local landing page rollout across 9 cities" },
+  },
+  problem: {
+    eyebrow: "THE CHALLENGE",
+    title: "Why SEO in this vertical is different.",
+    sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
+    cards: [
+      { icon: "⏰", title: "Emergency searches convert in seconds", text: "'Water heater leaking' searches don't scroll, read blog posts, or compare five options. They tap the first phone number in the 3-pack. If you're in position 4, you don't exist for that customer." },
+      { icon: "🗺️", title: "Service area confusion tanks rankings", text: "Most home services businesses serve 5-20 cities but have one 'Service Areas' page. Google can't decide which city you serve best, so it ranks you weakly in all of them instead of dominantly in each." },
+      { icon: "📆", title: "Seasonal demand swings punish passive strategies", text: "HVAC companies need to be ranking BEFORE the heat wave, not during it. Roofers need storm-season authority banked months in advance. Reactive SEO loses to proactive semantic authority." },
+    ],
+  },
+  approach: {
+    eyebrow: "THE APPROACH",
+    title: "Services we recommend for this industry, in order.",
+    sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
+    cards: [
+      { icon: "📍", color: "green", title: "GMB Management", text: "The single highest-leverage service for home services. Aggressive review acquisition, weekly posts, photo strategy, and geo-grid reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "A dedicated page for every service area you cover. 'Emergency plumber in Austin,' 'AC repair in Round Rock' — each uniquely written and built to rank independently.", href: "/services/local-landing-pages/" },
+      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "Mobile-first, click-to-call optimized, Core Web Vitals passing. Emergency service forms that convert at 2am, trust signals placed where homeowners need them.", href: "/services/web-development/" },
+      { icon: "🧠", color: "dark", title: "Semantic SEO", text: "Service + topical authority content that banks ranking power before seasonal peaks. Maintenance content, troubleshooting guides, cost calculators — all built to rank.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited when ChatGPT or Perplexity answers 'best [service] company in [city].' Early-mover advantage in a channel your local competitors haven't even started on.", href: "/services/ai-geo-optimization/" },
+      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Audit of your GBP, service area coverage, review velocity, and local pack positioning across every city you serve. 48-hour turnaround.", href: "/services/seo-audits/" },
+    ],
+  },
+  why: {
+    eyebrow: "DEEPER CONTEXT",
+    title: "Why home services SEO is 80% local, 20% everything else.",
+    article: [
+      { title: "The 3-pack is the whole game", text: "For home services, the <strong>Google Maps 3-pack captures 60-70% of all local search clicks</strong>. Organic results below the 3-pack pick up the remainder, but the 3-pack is where the phone rings. Which means your <strong>Google Business Profile</strong> isn't marketing — it's infrastructure. A well-managed GBP with active reviews and high prominence will outperform a beautiful website without those signals every time." },
+      { title: "Service-area pages vs. location pages", text: "If you serve 15 cities from one central office, you don't need 15 storefronts — you need <strong>15 service-area pages</strong>, each using proper Service schema with areaServed targeting, unique local content, and internal linking that signals geographic hierarchy. This is technically different from multi-location business pages, and handling it wrong triggers 'hidden location' penalties." },
+      { title: "Reviews are the difference between growth and survival", text: "Among otherwise-similar local businesses, <strong>review velocity and count are the biggest differentiators</strong> in local rankings. A plumber with 400 reviews at 4.8 stars outranks a better plumber with 40 reviews at 5.0. Systematic review acquisition after every service call isn't optional — it's the core operational SEO task. We automate it so it happens without your dispatchers having to remember." },
+    ],
+    facts: [
+      { value: "78%", label: "of local mobile searches convert to a call or visit in 24h" },
+      { value: "60-70%", label: "of local clicks go to the 3-pack" },
+      { value: "5×", label: "call volume achieved for Elite Home Services" },
+      { value: "+480%", label: "avg. local pack appearance lift for our clients" },
+    ],
+  },
+  result: {
+    value: "5×",
+    title: "phone call volume in 60 days",
+    note: "Elite Home Services · GMB optimization + 9 city pages + review acquisition",
+    quote: "We had a beautiful website but almost nobody found us through Google. Within two months of Rank Ready taking over, we jumped into the top of the 3-pack in nine cities and our phone hasn't stopped ringing. Best money we've spent in twenty years of business.",
+    initials: "SK", name: "Sarah Khan", role: "Owner, Elite Home Services",
+  },
+  audience: {
+    eyebrow: "INDUSTRY SUB-SEGMENTS",
+    title: "Home service trades we work with.",
+    sub: "Any service business where homeowners search ‘near me’ and the phone needs to ring. Here’s where we’ve done the deepest work.",
+    cards: [
+      { icon: "🚰", title: "Plumbing", text: "Emergency plumbing, drain cleaning, water heater install, repipe — high urgency queries." },
+      { icon: "❄️", title: "HVAC", text: "AC repair, furnace install, maintenance plans — seasonal cycles that reward early SEO." },
+      { icon: "🏠", title: "Roofing", text: "Storm damage, full replacements, inspections — storm-response SEO and insurance claim content." },
+      { icon: "⚡", title: "Electrical", text: "Panel upgrades, emergency service, EV chargers, rewiring — mixed urgency and project work." },
+      { icon: "🌿", title: "Landscaping &amp; Lawn", text: "Maintenance, installation, hardscape — seasonal traffic patterns and visual content wins." },
+      { icon: "🐛", title: "Pest Control", text: "Termite, rodents, ants, quarterly maintenance — high recurring-revenue potential." },
+    ],
+  },
+  faq: {
+    eyebrow: "COMMON QUESTIONS",
+    title: "Questions specific to this industry.",
+    sub: "What business owners and marketing leads in this vertical most often ask us.",
+    items: [
+      { q: "How fast can we move up in the 3-pack?", a: "If you have a moderately populated GBP and are currently outside the 3-pack, expect <strong>first movement in 30-45 days</strong> and consistent 3-pack presence by 60-90 days. If you’re already in the 3-pack but ranked #3, we can typically move you to #1 in similar timeframes. If you’re starting from a nearly-empty profile, add 30 days for foundational setup and review velocity to compound." },
+      { q: "We serve 15+ cities from one office. Can we rank in all of them?", a: "Yes — with the right setup. <strong>Service-area pages</strong> (distinct from location pages) use Service schema with areaServed targeting, genuinely unique content per city, and internal linking structures that signal geographic hierarchy. We’ve helped home services companies rank in 20+ cities from a single physical location. The key is avoiding ‘hidden location’ signals that trigger Google’s local spam filters." },
+      { q: "What about storm response — can SEO handle sudden demand spikes?", a: "For roofing, tree services, water restoration, and similar storm-responsive trades, we build <strong>dormant storm-response content</strong> that activates during events. Storm damage guides, insurance claim walkthroughs, emergency landing pages — all published months ahead, ranked, and ready to capture the search spike when a storm actually hits. Reactive SEO can’t compete; banked content can." },
+      { q: "How do we get more Google reviews?", a: "Our <strong>review acquisition automation</strong> triggers a request SMS/email after every completed job, sent to the customer’s phone or email within 30 minutes of service completion. Direct link to your Google review URL. Our home services clients typically hit 8-20 new reviews/month/location after 30-60 days. 100% compliant with Google’s review policies — no gating, no incentives." },
+      { q: "Should we focus on Google Ads or SEO?", a: "Both, with different roles. <strong>Google Ads</strong> for immediate emergency-service CPC capture — especially valuable when SEO is still compounding. <strong>SEO</strong> for durable, ever-compounding organic presence. Most of our home services clients run both. We don’t manage ads (that’s a different specialty), but we coordinate with your PPC vendor so the two strategies reinforce each other." },
+      { q: "How do we handle seasonal demand in SEO?", a: "Build the authority <em>before</em> the season. HVAC companies should rank for ‘AC repair’ in March, not July. Roofing companies need storm-season content published and indexed 3-6 months ahead of peak hurricane or hail season. We plan content calendars around your seasonal cycle so ranking power is banked when demand arrives." },
+      { q: "What about franchise locations — do they compete with each other?", a: "Franchise SEO requires careful territory management to avoid <strong>cannibalization</strong>. We architect franchise SEO programs so each location targets distinct city/ZIP territories, shares brand authority without stealing each other’s rankings, and uses proper schema to signal boundaries. We’ve worked with franchise networks from 10 to 100+ locations." },
+    ],
+  },
+  related: {
+    eyebrow: "START SOMEWHERE",
+    title: "Recommended next steps.",
+    sub: "If this industry fits, here’s the cleanest path forward.",
+    cards: [
+      { icon: "📍", color: "green", title: "GMB Management", text: "The single highest-leverage service for home services — 60-70% of clicks live here.", href: "/services/gmb-management-services/" },
+      { icon: "🗺️", color: "purple", title: "Local Landing Pages", text: "A page for every city you serve — uniquely written, schema-rich, built to rank.", href: "/services/local-landing-pages/" },
+      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Home-services-aware audit covering GBP health, service area coverage, review velocity.", href: "/services/seo-audits/" },
+    ],
+  },
+};
+---
+<IndustryPage data={data} />
