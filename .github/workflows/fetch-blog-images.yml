@@ -1,0 +1,32 @@
+# Ek dafa chalne wala kaam: purani WordPress site se blog ki featured images utha ke public/images/blog/ mein save karta hai.
+name: Save blog images from old site
+
+on:
+  push:
+    paths: ['.github/workflows/fetch-blog-images.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download blog images
+        run: |
+          mkdir -p public/images/blog
+          base="https://rank-ready.com/wp-content/uploads"
+          for f in 2026/06/SEO-MISTAKES-1-768x512.jpg 2026/06/SEO-For-Plumbing-1-768x512.jpg 2026/06/HELPFULL-CONTENT-SYSTEM-768x512.jpg 2026/06/category-pages-768x512.jpg 2026/06/AI-Visibility-Audit-768x512.jpg 2026/06/SEO-AUDIT-2026-768x512.jpg 2026/06/Featured-Snippets-vs-AI-Overviews-768x512.jpg 2026/05/SEO-AUDIT-768x512.jpg 2026/05/medical-seo-768x512.jpg 2026/05/llms-txt-768x512.jpg 2026/05/SEO-for-Personal-Injury-Lawyers-768x512.jpg 2026/05/COMPARISON-PAGES-SEO-768x512.jpg 2026/05/Multi-Location-SEO-768x512.jpg 2026/05/WIKIDATA-768x512.jpg 2026/05/google-reviews-seo-768x512.jpg 2026/05/B2B-SAAS-768x512.jpg 2026/05/INTERNAL-LINKING-AUDIT-768x485.jpg 2026/05/HVAC-SEO-768x512.jpg 2026/05/AI-Overviews-768x512.jpg 2026/05/GEO-BLOG-768x512.jpg 2026/05/Local-Landing-Pages-Blog-768x512.jpg 2026/05/wikipedia-seo-768x512.jpg 2026/05/core-web-vitals-768x512.jpg 2026/05/real-estate-seo-768x512.jpg 2026/05/schema-markup-2026-768x512.jpg 2026/05/Multi-location-dental-practice-768x512.jpg 2026/05/Topical-Authority-768x512.jpg 2026/05/semantic-seo-768x512.jpg 2026/05/GPT-Citation-768x512.jpg 2026/05/google-business-profile-gbp-768x512.jpg 2026/05/seo-for-law-firms-768x512.jpg 2026/05/seo-bottlenecks-audit-findings-768x432.jpg 2025/01/core-web-vitals-in-webdesign-and-seo-768x432.jpg 2025/01/seo-friendly-landing-page-design-768x432.jpg 2025/01/schema-markup-boosting-seo-768x432.jpg 2025/01/google-business-profile-SEO-tips-1-768x432.jpg 2025/01/seo-tips-for-small-local-business-768x432.jpg 2025/01/complete-local-seo-guide-for-small-businesses-768x432.jpg 2024/11/1920x1080-768x432.png; do
+            curl -fsSL -A "Mozilla/5.0" "$base/$f" -o "public/images/blog/$(basename $f)" || echo "FAILED $f"
+          done
+          ls -la public/images/blog
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/blog
+          git commit -m "Save blog images locally" || echo "nothing to commit"
+          git pull --rebase
+          git push
