@@ -1,0 +1,265 @@
+---
+// CONTACT PAGE — /contact/
+// Phone, email, WhatsApp, Calendly: src/data/site.ts
+// Form: agar site.ts mein web3formsKey ho to message seedha email pe aata hai; khali ho to visitor ka email app khulta hai.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FaqList from '../../components/FaqList.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { site } from '../../data/site';
+
+const services = ["I'm not sure yet — need guidance", 'Rank-Ready Website Design', 'Semantic SEO', 'Local Landing Pages', 'GMB Management', 'AI &amp; GEO Optimization', 'SEO Audits'];
+const budgets = ['Under $1,000', '$1,000 – $3,000', '$3,000 – $5,000', '$5,000+'];
+
+const channels = [
+  { icon: '✉️', color: 'green', label: 'EMAIL', value: site.email, href: 'mailto:' + site.email },
+  { icon: '📞', color: 'purple', label: 'PHONE', value: site.phone, href: site.phoneLink },
+  { icon: '💬', color: 'wa', label: 'WHATSAPP', value: 'Chat with us →', href: site.whatsapp, ext: true },
+  { icon: '🌍', color: 'mix', label: 'HOURS', value: 'Working globally · 24/7' },
+];
+
+const reasons = [
+  { icon: '🧠', title: 'Senior Expertise', text: '8+ years, 500+ clients, hundreds of rankings earned. You work with the strategists — not trainees.' },
+  { icon: '✨', title: 'AI-Era Ready', text: 'GEO is our specialty. We get clients cited inside ChatGPT, Perplexity, and Google AI Overviews.' },
+  { icon: '🎯', title: 'Tailored Strategy', text: 'No templates. Every roadmap is built from scratch around your industry, geography, and goals.' },
+  { icon: '📊', title: '100% Transparent', text: 'Monthly reports in plain English. You’ll always know exactly what’s being done and what’s working.' },
+  { icon: '⚡', title: 'Fast Turnarounds', text: 'Senior-level speed. Audits in 48 hours. Strategy in a week. Website builds in 4-6 weeks.' },
+  { icon: '📈', title: 'Built to Scale', text: 'Start with one service. Grow with us. Our stack scales cleanly from small businesses to 500+ location brands.' },
+];
+
+const faqs = [
+  { q: 'How fast do you reply to inquiries?', a: 'Within 1 business day — and usually much faster. You’ll either get a direct response from a senior team member or a Calendly link to book a quick call, depending on what works best for your request.' },
+  { q: 'Do I need to have a budget in mind before contacting you?', a: 'No. We work with budgets ranging from small-business one-time audits to enterprise monthly retainers. The budget field on the form just helps us route you to the right conversation.' },
+  { q: 'Can I get a free audit without committing to anything?', a: 'Absolutely. Our free SEO + GEO audit is genuinely free and comes with no obligation. Most people who get one use it to fix things on their own — and some come back later when they want help implementing.' },
+];
+---
+<BaseLayout
+  title="Contact Rank Ready | Book a Free SEO Consultation"
+  description="Book a free 30-min strategy call or send a project brief. Reply within 1 business day. Working globally · 24/7. Email, phone, WhatsApp, or Calendly."
+>
+  <!-- 1. HERO -->
+  <section class="sec c-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner center">
+      <div class="badge"><span class="dot"></span>CONTACT</div>
+      <h1>Let’s make your business <span class="grad">unignorable.</span></h1>
+      <p class="lead">Whether you’re ready to start a project, need a free audit, or just want to sanity-check your current SEO strategy — we’d love to hear from you.</p>
+      <div class="h-pills">
+        <span>⚡ Reply within 1 business day</span>
+        <span>🌍 Working globally · 24/7</span>
+        <span>🔒 No spam, ever</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FORM + CONTACT DETAILS -->
+  <section class="form-sec">
+    <div class="row form-grid">
+      <div class="form-card">
+        <p class="eyebrow">GET IN TOUCH</p>
+        <h2>Tell us about your project.</h2>
+        <p class="f-sub">Share a few details and we’ll get back to you within one business day with a clear next step — usually a quick strategy call or a free audit.</p>
+
+        <form id="contact-form" data-key={site.web3formsKey} data-email={site.email} novalidate>
+          <div class="f-row">
+            <label class="fld"><span>First name <b>*</b></span><input name="first" placeholder="Jane" required autocomplete="given-name" /></label>
+            <label class="fld"><span>Last name <b>*</b></span><input name="last" placeholder="Doe" required autocomplete="family-name" /></label>
+          </div>
+          <div class="f-row">
+            <label class="fld"><span>Email <b>*</b></span><input name="email" type="email" placeholder="you@company.com" required autocomplete="email" /></label>
+            <label class="fld"><span>Phone <em>(optional)</em></span><input name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel" /></label>
+          </div>
+          <label class="fld"><span>Website / Company</span><input name="website" placeholder="yourcompany.com" autocomplete="organization" /></label>
+          <div class="f-row">
+            <label class="fld"><span>Which service are you interested in?</span>
+              <select name="service">{services.map((s) => <option set:html={s} />)}</select>
+            </label>
+            <label class="fld"><span>Monthly budget range</span>
+              <select name="budget">{budgets.map((b) => <option>{b}</option>)}</select>
+            </label>
+          </div>
+          <label class="fld"><span>Tell us about your project</span>
+            <textarea name="message" rows="5" placeholder="What are your biggest SEO or visibility challenges right now? What does success look like in one month?"></textarea>
+          </label>
+          <button type="submit" class="rr-btn rr-btn-primary rr-btn-lg f-btn"><span>Send Message</span><span class="rr-btn-arrow">→</span></button>
+          <p class="f-msg" id="f-msg" role="status" hidden></p>
+          <p class="f-note">🔒 Your details are only used to reply to your enquiry.</p>
+        </form>
+      </div>
+
+      <aside class="side">
+        <div class="avail">
+          <div class="av-glow"></div>
+          <div class="av-in">
+            <div class="av-badge"><span class="dot"></span>AVAILABLE NOW</div>
+            <div class="av-title">Prefer to skip the form?</div>
+            <p>Grab a 30-min strategy slot on our calendar. No pitch — just honest advice.</p>
+            <a href={site.calendly} class="rr-btn rr-btn-primary av-btn" target="_blank" rel="noopener"><span>Book a Free Call</span><span class="rr-btn-arrow">→</span></a>
+          </div>
+        </div>
+        <div class="channels">
+          {channels.map((c) => {
+            const inner = (<><div class:list={['ch-ico', c.color]}>{c.icon}</div><div><div class="ch-lbl">{c.label}</div><div class="ch-val">{c.value}</div></div></>);
+            return c.href
+              ? <a href={c.href} class="ch" target={c.ext ? '_blank' : undefined} rel={c.ext ? 'noopener' : undefined}>{inner}</a>
+              : <div class="ch">{inner}</div>;
+          })}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. WHY CHOOSE -->
+  <section class="sec why-sec">
+    <SectionHeading eyebrow="WHY CHOOSE RANK READY" title="Six reasons clients pick us — and stay for years." sub="We’re not the cheapest. We’re not the biggest. But we’re the team most likely to actually move your rankings — and tell you the truth about what it takes." />
+    <div class="row grid g-3 why-grid">
+      {reasons.map((r) => (
+        <div class="why"><div class="w-ico">{r.icon}</div><div class="w-title">{r.title}</div><div class="w-text">{r.text}</div></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 4. FAQ -->
+  <section class="sec faq-sec">
+    <SectionHeading eyebrow="QUICK ANSWERS" title="Before you send a message…" sub="The three questions we get most. If yours isn’t covered, just send us a note — we’ll reply fast." />
+    <FaqList faqs={faqs} />
+  </section>
+
+  <!-- 5. CTA -->
+  <CtaBanner />
+</BaseLayout>
+
+<script>
+  const f = document.getElementById('contact-form') as HTMLFormElement;
+  const msg = document.getElementById('f-msg') as HTMLElement;
+  const val = (n: string) => ((f.elements.namedItem(n) as HTMLInputElement | null)?.value || '').trim();
+  const show = (t: string, ok: boolean) => { msg.hidden = false; msg.textContent = t; msg.className = 'f-msg ' + (ok ? 'ok' : 'err'); };
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!val('first') || !val('last') || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('email'))) {
+      show('Please add your first name, last name and a valid email.', false);
+      return;
+    }
+    const lines = [
+      'Name: ' + val('first') + ' ' + val('last'),
+      'Email: ' + val('email'),
+      'Phone: ' + (val('phone') || '-'),
+      'Website / Company: ' + (val('website') || '-'),
+      'Service: ' + val('service'),
+      'Budget: ' + val('budget'),
+      '',
+      val('message'),
+    ];
+    const key = f.dataset.key;
+    if (!key) {
+      location.href = 'mailto:' + f.dataset.email + '?subject=' + encodeURIComponent('New enquiry from ' + val('first') + ' ' + val('last')) + '&body=' + encodeURIComponent(lines.join('\n'));
+      show('Your email app is opening with your message — just press send.', true);
+      return;
+    }
+    const btn = f.querySelector('button') as HTMLButtonElement;
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ access_key: key, subject: 'New website enquiry — ' + val('first') + ' ' + val('last'), from_name: 'Rank Ready website', email: val('email'), message: lines.join('\n') }),
+      });
+      if (res.ok) { show('Thank you! Your message has been sent — we’ll reply within one business day.', true); f.reset(); }
+      else show('Something went wrong. Please email us at ' + f.dataset.email + '.', false);
+    } catch { show('Something went wrong. Please email us at ' + f.dataset.email + '.', false); }
+    btn.disabled = false;
+  });
+</script>
+
+<style>
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  section { font-family: var(--inter); }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  section :global(.sec-title) { letter-spacing: -1px; }
+  section :global(.sh .eyebrow) { padding-bottom: 0; }
+
+  /* 1. Hero */
+  .c-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 110px 0 190px; overflow: hidden; }
+  .c-hero .row { max-width: 980px; }
+  .g1 { position: absolute; top: 10%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); filter: blur(60px); }
+  .g2 { position: absolute; bottom: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
+  .dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .c-hero h1 { font-size: 64px; font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: #fff; margin-bottom: 22px; padding: 0; }
+  .lead { font-size: 19px; line-height: 1.65; color: var(--slate-300); max-width: 720px; margin: 0 auto 30px; padding: 0; }
+  .h-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .h-pills span { font-size: 13.5px; color: var(--slate-300); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 8px 16px; line-height: 1.6; }
+
+  /* 2. Form */
+  .form-sec { position: relative; z-index: 2; margin-top: -120px; padding-bottom: 110px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 400px; gap: 36px; align-items: start; padding: 0; }
+  .form-card { background: #fff; border: 1px solid #E2E8F0; border-radius: 24px; padding: 48px 46px; box-shadow: 0 30px 70px -30px rgba(15,23,42,.3); }
+  .eyebrow { margin-bottom: 10px; padding: 0; }
+  .form-card h2 { font-size: 36px; font-weight: 800; line-height: 1.15; letter-spacing: -1px; color: var(--navy); margin-bottom: 12px; padding: 0; }
+  .f-sub { font-size: 16px; line-height: 1.7; color: var(--slate-500); margin-bottom: 30px; padding: 0; }
+  form { display: grid; gap: 18px; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .fld { display: grid; gap: 8px; }
+  .fld > span { font-size: 13.5px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+  .fld b { color: #EF4444; font-weight: 700; }
+  .fld em { font-style: normal; color: var(--slate-400); font-weight: 500; }
+  .fld input, .fld select, .fld textarea { width: 100%; font-family: var(--inter); font-size: 15px; color: var(--navy); background: var(--light-bg); border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
+  .fld textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+  .fld select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #64748B 50%), linear-gradient(135deg, #64748B 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 42px; cursor: pointer; }
+  .fld input:focus, .fld select:focus, .fld textarea:focus { border-color: var(--green); background-color: #fff; box-shadow: 0 0 0 4px rgba(16,185,129,.12); }
+  .fld ::placeholder { color: #94A3B8; }
+  .f-btn { width: 100%; justify-content: center; cursor: pointer; border: 0; font-family: var(--inter); margin-top: 4px; }
+  .f-btn:disabled { opacity: .6; cursor: wait; }
+  .f-msg { font-size: 14.5px; padding: 12px 16px; border-radius: 10px; line-height: 1.5; }
+  .f-msg.ok { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+  .f-msg.err { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+  .f-msg[hidden] { display: none; }
+  .f-note { font-size: 13px; color: var(--slate-400); text-align: center; padding: 0; }
+
+  .side { position: sticky; top: 100px; display: grid; gap: 20px; }
+  .avail { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: 22px; padding: 36px 32px; color: #fff; position: relative; overflow: hidden; }
+  .av-glow { position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(16,185,129,.22), transparent 70%); filter: blur(30px); }
+  .av-in { position: relative; }
+  .av-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 1.2px; margin-bottom: 20px; line-height: 1.7; }
+  .av-badge .dot { width: 6px; height: 6px; }
+  .av-title { font-size: 22px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .avail p { font-size: 14.5px; color: var(--slate-300); line-height: 1.6; margin-bottom: 22px; padding: 0; }
+  .av-btn { width: 100%; justify-content: center; }
+  .channels { display: grid; gap: 12px; }
+  .ch { display: flex; gap: 16px; align-items: center; padding: 18px 20px; background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; transition: all .2s; }
+  a.ch:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 14px 30px -16px rgba(15,23,42,.2); }
+  .ch-ico { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
+  .ch-ico.green { background: linear-gradient(135deg, #10B981, #059669); }
+  .ch-ico.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+  .ch-ico.wa { background: linear-gradient(135deg, #25D366, #128C7E); }
+  .ch-ico.mix { background: linear-gradient(135deg, #10B981, #8B5CF6); }
+  .ch-lbl { font-size: 11px; color: var(--slate-500); letter-spacing: 1.2px; font-weight: 600; margin-bottom: 2px; line-height: 1.6; }
+  .ch-val { font-size: 15.5px; color: var(--navy); font-weight: 600; line-height: 1.4; }
+
+  /* 3. Why */
+  .why-sec { background: var(--light-bg); }
+  .why-grid { row-gap: 28px; column-gap: 28px; }
+  .why { background: #fff; border: 1px solid #E2E8F0; border-radius: 18px; padding: 32px 28px; transition: all .3s; }
+  .why:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -18px rgba(15,23,42,.16); border-color: var(--green); }
+  .w-ico { display: inline-flex; width: 52px; height: 52px; border-radius: 14px; background: #ECFDF5; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+  .w-title { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.35; }
+  .w-text { font-size: 15px; color: var(--slate-500); line-height: 1.65; }
+
+  /* 4. FAQ */
+  .faq-sec { background: #fff; }
+
+  @media (max-width: 980px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .side { position: static; }
+  }
+  @media (max-width: 767px) {
+    .c-hero { padding: 60px 0 150px; }
+    .c-hero h1 { font-size: 38px; letter-spacing: -1px; }
+    .lead { font-size: 16.5px; }
+    .form-sec { margin-top: -100px; padding-bottom: 60px; }
+    .form-card { padding: 30px 22px; border-radius: 20px; }
+    .form-card h2 { font-size: 28px; }
+    .f-row { grid-template-columns: 1fr; }
+  }
+</style>
