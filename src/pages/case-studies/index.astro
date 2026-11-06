@@ -1,0 +1,224 @@
+---
+// CASE STUDIES PAGE — /case-studies/
+// Case study cards, filter buttons aur testimonials neeche arrays mein hain.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { site } from '../../data/site';
+
+const filters = [
+  { label: 'All Case Studies', href: '/case-studies/', active: true },
+  { label: 'Semantic SEO', href: '/services/semantic-seo-optimization-services/' },
+  { label: 'Local SEO', href: '/services/local-landing-pages/' },
+  { label: 'GEO / AI', href: '/services/ai-geo-optimization/' },
+  { label: 'Website Design', href: '/services/web-development/' },
+  { label: 'GMB', href: '/services/gmb-management-services/' },
+];
+
+// colors = card ke upar wale hisse ka gradient. featured: true = hara border + "FEATURED" badge.
+// link = "Read the case study" button (abhi '#', jab case study ka apna page banega to yahan URL daal dein).
+const cases = [
+  { icon: '⚖️', colors: ['#0F172A', '#1E293B'], featured: true,
+    tags: [['LEGAL', '/industries/legal/'], ['SEMANTIC SEO', '/services/semantic-seo-optimization-services/']],
+    title: 'From Page 4 to Position 2 in 90 Days',
+    text: 'A mid-sized law firm was buried on page 4 for their core practice area keywords. We rebuilt their content with entity-driven semantic architecture and strategic topical clusters. Within 90 days, they ranked #2 nationally for their primary service.',
+    stats: [['+312%', 'Organic traffic'], ['3.2×', 'Qualified leads']], link: '#' },
+  { icon: '🏠', colors: ['#7F1D1D', '#DC2626'],
+    tags: [['HOME SERVICES', '/industries/home-services/'], ['GMB', '/services/gmb-management-services/']],
+    title: '5× More Local Calls in 60 Days',
+    text: "A multi-location home services company was losing every 'near me' search to competitors with better-optimized Google Business Profiles. We restructured their GMB strategy, added geo-specific service pages, and automated review acquisition.",
+    stats: [['+480%', 'GMB actions'], ['5×', 'Call volume']], link: '#' },
+  { icon: '🚀', colors: ['#8B5CF6', '#5B21B6'],
+    tags: [['SAAS', '/industries/ecommerce-website-and-seo/'], ['GEO OPTIMIZATION', '/services/ai-geo-optimization/']],
+    title: 'Cited by ChatGPT in 3 Weeks',
+    text: 'A B2B SaaS company wanted to show up when prospects asked AI tools for recommendations in their category. We implemented schema optimization, authority content, and entity signaling across their domain — and earned citations across 4 major AI engines.',
+    stats: [['0 → 74%', 'AI visibility'], ['4 of 5', 'AI engines citing']], link: '#' },
+  { icon: '🛒', colors: ['#065F46', '#059669'],
+    tags: [['E-COMMERCE', '/industries/ecommerce-website-and-seo/'], ['WEBSITE', '/services/web-development/']],
+    title: 'Full Rebuild → #1 in 6 Months',
+    text: "A DTC brand had a beautiful Shopify store that couldn't rank. We rebuilt it on a Rank-Ready architecture with proper semantic structure, Core Web Vitals optimization, and a content strategy built around commercial intent clusters.",
+    stats: [['+$180K', 'Organic revenue'], ['340+', 'Page 1 keywords']], link: '#' },
+  { icon: '🦷', colors: ['#164E63', '#0E7490'],
+    tags: [['MEDICAL', '/industries/medical-dental/'], ['LOCAL SEO', '/services/local-landing-pages/']],
+    title: '120 Location Pages, Zero Duplicate Content',
+    text: 'A dental group with 120 locations needed unique, rankable pages for every city. Using semantic templates and local-intent research, we deployed 120 hyper-local pages with zero duplicate content penalties and dominant local pack visibility.',
+    stats: [['+890%', 'Local pack appearances'], ['+2,400', 'Monthly bookings']], link: '#' },
+  { icon: '🏡', colors: ['#78350F', '#D97706'],
+    tags: [['REAL ESTATE', '/industries/real-estate/'], ['SEO', '/services/semantic-seo-optimization-services/'], ['WEBSITE', '/services/web-development/']],
+    title: '$1.2M in Attributed Listings',
+    text: 'A boutique real estate agency wanted to rank for high-intent luxury keywords. We rebuilt their site with a semantic-first architecture and built out hyper-targeted neighborhood content. Six months later, they credited $1.2M in closed volume to organic search.',
+    stats: [['$1.2M', 'Attributed revenue'], ['48', 'Top-3 keywords']], link: '#' },
+];
+
+const reviews = [
+  { quote: 'Rank Ready took our firm from invisible to the first result for nearly every key term in our market. Inquiries tripled in four months. They’re the only SEO team I’d recommend without hesitation.', initials: 'JS', name: 'John Smith', role: 'Managing Partner, Smith &amp; Associates Law' },
+  { quote: 'We went from begging for referrals to turning away work. Their GMB and local page strategy is unmatched. Best investment we’ve made in the business.', initials: 'SK', name: 'Sarah Khan', role: 'Owner, Elite Home Services' },
+  { quote: 'I didn’t even know GEO was a thing. Now my brand gets cited by ChatGPT when people ask for recommendations in my industry. Rank Ready is years ahead of every other agency.', initials: 'DP', name: 'Daniel Park', role: 'Founder, NorthPeak SaaS' },
+];
+---
+<BaseLayout
+  title="SEO Case Studies | Real Results from Rank Ready Clients"
+  description="Real results, named clients. +312% legal traffic, 5× home services calls, 0→74% AI citations, $1.2M attributed revenue. See exactly how we did it."
+>
+  <!-- 1. HERO -->
+  <section class="sec c-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner">
+      <div class="badge-wrap"><div class="badge"><span class="dot"></span>CASE STUDIES</div></div>
+      <h1>Real businesses. <span class="grad">Real rankings. Real revenue.</span></h1>
+      <p class="lead">No fluff. No vanity metrics. Just honest breakdowns of what we did, what moved, and what your business can take away.</p>
+    </div>
+  </section>
+
+  <!-- 2. FILTERS + CASE STUDY CARDS -->
+  <section class="sec c-list">
+    <div class="row filters">
+      {filters.map((f) => <a href={f.href} class:list={['filter', { active: f.active }]}>{f.label}</a>)}
+    </div>
+    <div class="row grid cases">
+      {cases.map((c) => (
+        <div class:list={['case', { featured: c.featured }]}>
+          <div class="case-top" style={'background:linear-gradient(135deg,' + c.colors[0] + ' 0%,' + c.colors[1] + ' 100%)'}>
+            <div class="case-grid"></div>
+            <div class="case-ico">{c.icon}</div>
+            {c.featured && <div class="feat-badge">FEATURED</div>}
+          </div>
+          <div class="case-body">
+            <div class="tags">
+              {c.tags.map(([t, h], i) => <>{i > 0 && ' · '}<a href={h}>{t}</a></>)}
+            </div>
+            <div class="case-title" set:html={c.title} />
+            <div class="case-text" set:html={c.text} />
+            <div class="stats">
+              {c.stats.map(([v, l], i) => (
+                <div><div class:list={['st-val', i === 0 ? 'green' : 'purple']}>{v}</div><div class="st-lbl">{l}</div></div>
+              ))}
+            </div>
+            <a href={c.link} class="rr-btn rr-btn-outline case-btn"><span>Read the case study</span><span class="rr-btn-arrow">→</span></a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3. YOUR STORY HERE NEXT -->
+  <section class="sec c-story">
+    <div class="row story-row">
+      <div class="story">
+        <div class="s1"></div><div class="s2"></div>
+        <div class="story-in">
+          <div class="s-badge"><span class="dot"></span>YOUR STORY HERE NEXT</div>
+          <div class="s-title">Want results like these for your business?</div>
+          <div class="s-text">Book a free strategy call. We'll walk through your current rankings, opportunities, and exactly what we'd do to move the needle.</div>
+          <div class="rr-btn-group" style="justify-content:center">
+            <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Call</span><span class="rr-btn-arrow">→</span></a>
+            <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Send a Message</span><span class="rr-btn-arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TESTIMONIALS -->
+  <section class="sec c-rev">
+    <SectionHeading eyebrow="WHAT CLIENTS SAY" title="In their words." sub="The numbers matter. But so does what it actually felt like to work with us." />
+    <div class="row grid g-3">
+      {reviews.map((r) => (
+        <div class="rv">
+          <p class="stars">⭐⭐⭐⭐⭐</p>
+          <p class="quote">“{r.quote}”</p>
+          <div class="who">
+            <div class="av">{r.initials}</div>
+            <div><div class="nm">{r.name}</div><div class="rl" set:html={r.role} /></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 5. CTA -->
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .inner { z-index: 1; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  section { font-family: var(--inter); }
+
+  /* 1. Hero */
+  .c-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0 100px; overflow: hidden; }
+  .c-hero .row { max-width: 1100px; padding: 29px 0 28px; }
+  .g1 { position: absolute; top: 10%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); filter: blur(60px); }
+  .g2 { position: absolute; bottom: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+  .badge-wrap { display: flex; justify-content: center; height: 48px; margin-bottom: 25px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; }
+  .dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .c-hero h1 { font-size: 68px; font-weight: 800; line-height: 74.8px; letter-spacing: -2px; color: #fff; text-align: center; padding-bottom: 10px; margin-bottom: 14px; }
+  .lead { max-width: 720px; margin: 0 auto; font-size: 19px; font-weight: 500; line-height: 30.6px; color: var(--slate-300); text-align: center; padding: 0; }
+
+  /* 2. Filters + cards */
+  .c-list { background: #fff; padding: 60px 0 40px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 28.5px 0; }
+  .filter { padding: 10px 20px; border-radius: 100px; border: 1.5px solid #E2E8F0; background: #fff; color: var(--slate-500); font-size: 14px; font-weight: 600; line-height: 1.7; transition: all .2s; }
+  .filter:hover { border-color: var(--green); color: var(--green); }
+  .filter.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .cases { grid-template-columns: 1fr 1fr; column-gap: 5.5%; row-gap: 57px; padding: 68.5px 0 108.5px; align-items: stretch; }
+  .case { background: #fff; border-radius: 18px; border: 1px solid #E2E8F0; overflow: hidden; }
+  .case.featured { border: 2px solid var(--green); }
+  .case-top { position: relative; height: 220px; display: flex; align-items: center; justify-content: center; }
+  .case-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 30px 30px; }
+  .case-ico { position: relative; font-size: 96px; line-height: 1.7; filter: drop-shadow(0 10px 20px rgba(0,0,0,.2)); }
+  .feat-badge { position: absolute; top: 20px; right: 20px; background: var(--green); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; padding: 5px 12px; border-radius: 100px; line-height: 1.7; }
+  .case-body { padding: 32px 28px; }
+  .tags { font-size: 11px; color: var(--slate-500); letter-spacing: 1.5px; font-weight: 600; margin-bottom: 10px; line-height: 1.7; }
+  .tags a { color: var(--slate-500); }
+  .tags a:hover { color: var(--green); }
+  .case-title { font-size: 24px; color: var(--navy); font-weight: 700; line-height: 1.25; letter-spacing: -.3px; margin-bottom: 14px; }
+  .case-text { font-size: 15px; color: var(--slate-500); line-height: 1.65; margin-bottom: 24px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 20px; background: var(--light-bg); border-radius: 12px; margin-bottom: 22px; }
+  .st-val { font-size: 28px; font-weight: 800; letter-spacing: -.5px; line-height: 1; }
+  .st-val.green { color: var(--green); }
+  .st-val.purple { color: var(--purple); }
+  .st-lbl { font-size: 12px; color: var(--slate-500); margin-top: 6px; line-height: 1.3; }
+  .case-btn { padding: 12px 22px; font-size: 14px; }
+
+  /* 3. Your story */
+  .c-story { background: var(--light-bg); padding: 80px 0; }
+  .story-row { max-width: 1100px; padding: 28.5px 0; }
+  .story { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: 24px; padding: 56px 48px; position: relative; overflow: hidden; text-align: center; color: #fff; }
+  .s1 { position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(16,185,129,.2), transparent 70%); filter: blur(40px); }
+  .s2 { position: absolute; bottom: -50px; left: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(139,92,246,.2), transparent 70%); filter: blur(40px); }
+  .story-in { position: relative; }
+  .s-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; margin-bottom: 20px; line-height: 1.7; }
+  .s-title { font-size: 40px; font-weight: 800; line-height: 1.15; letter-spacing: -1.2px; margin-bottom: 16px; }
+  .s-text { font-size: 17px; color: var(--slate-300); max-width: 560px; margin: 0 auto 28px; line-height: 1.6; }
+
+  /* 4. Testimonials */
+  .c-rev { background: #fff; }
+  .c-rev :global(.sec-title) { letter-spacing: -1px; }
+  .c-rev :global(.sh .eyebrow) { padding-bottom: 0; }
+  .rv { background: var(--light-bg); padding: 36px 32px; border-radius: 16px; }
+  .stars { color: #FBBF24; font-size: 18px; line-height: 30.6px; margin-bottom: 16px; padding: 0; font-family: 'Open Sans', sans-serif; }
+  .quote { font-size: 16px; line-height: 30.6px; color: var(--navy); margin-bottom: 24px; padding: 0; }
+  .who { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid #E2E8F0; }
+  .av { width: 48px; height: 48px; flex: none; border-radius: 50%; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 18px; }
+  .nm { font-weight: 700; font-size: 14px; color: var(--navy); line-height: 1.7; }
+  .rl { font-size: 12px; color: var(--slate-500); line-height: 1.7; }
+
+  @media (max-width: 980px) {
+    .cases { grid-template-columns: 1fr; row-gap: 30px; }
+  }
+  @media (max-width: 767px) {
+    .c-hero { padding: 80px 0 60px; }
+    .c-hero h1 { font-size: 36px; line-height: 39.6px; }
+    .lead { font-size: 17px; }
+    .c-list { padding: 40px 0 20px; }
+    .cases { padding: 30px 0 60px; }
+    .c-story { padding: 60px 0; }
+    .story { padding: 40px 24px; }
+    .s-title { font-size: 30px; }
+    .case-btn { width: auto; }
+  }
+</style>
