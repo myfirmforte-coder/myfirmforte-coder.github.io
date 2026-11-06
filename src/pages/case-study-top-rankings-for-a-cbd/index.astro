@@ -1,0 +1,69 @@
+---
+// CASE STUDY — GMB (CBD dispensary, Honolulu) — /case-study-top-rankings-for-a-cbd/
+// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPage.astro';
+
+const data: CaseStudyData = {
+  meta: {
+    title: 'GMB Case Study: #1 in the Local 3-Pack for a CBD Dispensary in Honolulu | Rank Ready',
+    description: 'How a complete Google Business Profile, NLP-driven local SEO and a citation strategy took a Honolulu CBD dispensary from 6.1% to 59.2% share of local voice.',
+  },
+  path: '/case-study-top-rankings-for-a-cbd/',
+  hero: {
+    tag: 'GMB',
+    icon: '📍',
+    title: 'Top Google rankings for a CBD dispensary in <span class="grad">Honolulu, Hawaii.</span>',
+    lead: 'A CBD dispensary in one of Hawaii’s most competitive local markets wanted the top spot in Google Maps. With a fully optimized Google Business Profile, NLP-driven local content and a consistent multi-platform strategy, it reached <strong>#1 in the Local 3-Pack</strong> for its highest-intent searches.',
+  },
+  facts: [
+    { label: 'Client', value: 'CBD dispensary, Honolulu' },
+    { label: 'Industry', value: 'Retail · CBD products' },
+    { label: 'Market', value: 'Honolulu, Hawaii' },
+    { label: 'Services', value: 'GMB Management · Local SEO · Citations' },
+  ],
+  kpis: [
+    { value: '6.1% → 59.2%', label: 'share of local voice (SoLV)' },
+    { value: '500 → 3,200', label: 'monthly GMB views' },
+    { value: '15 → 200+', label: 'customer actions (calls / requests)' },
+    { value: '200+', label: 'new reviews at 4.9★ average' },
+  ],
+  overview: [
+    { title: 'The objective', text: 'The goal was to position a CBD dispensary at the <strong>top of Google Business Profile listings</strong> in the highly competitive Honolulu market — achieving significant visibility gains within four months using advanced <strong>Natural Language Processing (NLP) SEO</strong> techniques and a thorough optimization strategy.' },
+    { title: 'The challenge', text: 'Before the work started the business was barely visible in local search — just <strong>6.1% share of local voice</strong>, around <strong>500 profile views</strong> a month and only <strong>15 customer actions</strong>. Competitors owned the 3-Pack for the searches that mattered:' },
+  ],
+  challenges: [
+    'Weak local pack presence for high-intent searches like “CBD dispensary near me”.',
+    'An incomplete profile — categories, services and descriptions didn’t reflect what customers search for.',
+    'No consistent keyword strategy across the website, Google profile and social channels.',
+  ],
+  approach: [
+    { title: 'Accurate categorization &amp; complete profile', text: 'We rebuilt the Google Business Profile from the ground up so Google understands exactly what the business offers.', points: ['Most relevant primary and secondary categories, aligned with CBD search trends', 'Accurate NAP, business hours, attributes and service areas', 'Keyword-rich business description and a full breakdown of every product and service'] },
+    { title: 'Consistent keywords across every platform', text: 'Extensive research produced <strong>200+ target keywords</strong>, used consistently across the profile, the website and social media.', points: ['GMB posts, Q&amp;A and review responses', 'Website pages for each product and each Honolulu service area', 'Social media posts and bios linked back to the profile'] },
+    { title: 'Active GMB posting strategy', text: 'Regular posts kept the profile fresh and relevant to what locals were searching for.', points: ['Service highlights with local references', 'Customer testimonials and special offers', 'Posts timed to seasonal search trends'] },
+    { title: 'Authority: citations, backlinks &amp; Google stacking', text: 'We grew the profile’s authority signals with a structured off-site strategy.', points: ['50+ high-quality citations in CBD-specific and general business directories', 'Web 2.0 backlinks and an SEO-optimized YouTube video linking to the site and profile', 'Google properties (Sites, Drive, My Maps) with geo-targeted content'] },
+    { title: 'Modern SEO practices', text: 'Everything was tied together with <strong>semantic SEO</strong>, <strong>NLP content targeting</strong> and <strong>voice search optimization</strong>, plus smart interlinking between the profile, website, social pages and location pages.' },
+  ],
+  results: [
+    { value: '#1', title: 'In the Local 3-Pack', text: 'Top position for high-intent queries including “CBD dispensary near me” and “best CBD products in Honolulu”.' },
+    { value: '+250%', title: 'Organic website traffic', text: 'A substantial rise in local visitors, plus a 70% increase in direct brand searches and 40% more online order requests.' },
+    { value: '500+', title: 'New customer inquiries', text: 'Calls and messages generated through the Google profile, backed by 200+ new reviews at a 4.9★ average.' },
+  ],
+  table: {
+    before: 'Dec 31, 2023',
+    after: 'Jan 11, 2024',
+    rows: [
+      ['Share of local voice', '6.1%', '59.2%', '+53.1 pts'],
+      ['GMB views', '500 / month', '3,200 / month', '6.4×'],
+      ['Customer actions (calls / requests)', '15', '200+', '13×'],
+      ['Direction requests', '10', '180+', '18×'],
+    ],
+  },
+  takeaways: [
+    '<strong>Effective local SEO delivers real results.</strong> Targeted optimization can transform visibility even in a highly competitive market.',
+    '<strong>Consistency across platforms is crucial.</strong> Aligning the website, Google profile and social media creates one strong, cohesive presence.',
+    '<strong>Google Business Profile is a powerful growth tool.</strong> Proper optimization drives calls, directions and foot traffic directly.',
+    '<strong>Staying current pays off.</strong> NLP, semantic SEO and voice search optimization keep rankings strong long-term.',
+  ],
+};
+---
+<CaseStudyPage data={data} />
