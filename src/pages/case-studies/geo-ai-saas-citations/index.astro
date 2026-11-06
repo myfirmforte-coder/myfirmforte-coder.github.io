@@ -1,0 +1,62 @@
+---
+// CASE STUDY — GEO / AI (B2B SaaS) — /case-studies/geo-ai-saas-citations/
+// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../../components/CaseStudyPage.astro';
+
+const data: CaseStudyData = {
+  meta: {
+    title: 'GEO Case Study: Cited by ChatGPT in 3 Weeks, 0→74% AI Citation Rate | Rank Ready',
+    description: 'How NorthPeak SaaS went from invisible in AI answers to cited by 4 of 5 major AI engines — a 0→74% AI citation rate in 90 days with schema, authority content and entity signaling.',
+  },
+  path: '/case-studies/geo-ai-saas-citations/',
+  hero: {
+    tag: 'GEO / AI',
+    icon: '🚀',
+    title: 'Cited by ChatGPT <span class="grad">in 3 weeks.</span>',
+    lead: 'A B2B SaaS company wanted to show up when prospects asked AI tools for recommendations in their category. With schema optimization, authority content and entity signaling, it earned citations across <strong>4 of 5 major AI engines</strong> — and a <strong>0 → 74%</strong> AI citation rate in 90 days.',
+  },
+  facts: [
+    { label: 'Client', value: 'NorthPeak SaaS' },
+    { label: 'Industry', value: 'B2B SaaS' },
+    { label: 'Timeline', value: 'First citations in 3 weeks · 74% in 90 days' },
+    { label: 'Services', value: 'AI &amp; GEO Optimization · Semantic SEO' },
+  ],
+  kpis: [
+    { value: '0 → 74%', label: 'AI engine citation rate' },
+    { value: '4 of 5', label: 'major AI engines citing the brand' },
+    { value: '3 weeks', label: 'to the first ChatGPT citation' },
+    { value: '~2×', label: 'inbound demo requests' },
+  ],
+  overview: [
+    { title: 'Client overview', text: '<strong>NorthPeak SaaS</strong> is a B2B software company in a competitive category. Its buyers increasingly research vendors by asking ChatGPT, Perplexity, Claude and Gemini for recommendations — before they ever open Google.' },
+    { title: 'The challenge', text: 'NorthPeak wasn’t mentioned anywhere in AI answers for its category. However well it ranked on Google, it simply wasn’t in the consideration set when buyers asked AI:' },
+  ],
+  challenges: [
+    'Zero citations in AI-generated recommendations for its category.',
+    'Weak entity signals — AI engines couldn’t clearly identify the brand or what it does.',
+    'Content that wasn’t structured for AI engines to extract and cite.',
+  ],
+  approach: [
+    { title: 'AI visibility baseline', text: 'We tested the prompts NorthPeak’s buyers actually use across the major AI engines and recorded where the brand was mentioned, cited, recommended — or missing.' },
+    { title: 'Schema optimization', text: 'Structured data across the domain made the product, company and its claims machine-readable — easy for AI engines to understand and attribute.' },
+    { title: 'Authority content', text: 'Citation-worthy content built around the category: clear answers, comparisons and expert explanations that AI engines prefer to quote.' },
+    { title: 'Entity signaling', text: 'Consistent entity signals across the open web so every AI engine learns the same, accurate picture of who NorthPeak is and what it’s best for.' },
+  ],
+  results: [
+    { value: '74%', title: 'AI citation rate in 90 days', text: 'Up from zero — measured across the buyer prompts tracked in ChatGPT, Perplexity, Claude, Gemini and AI Overviews.' },
+    { value: '4 of 5', title: 'AI engines citing', text: 'Cited by ChatGPT, Perplexity and Claude when buyers ask for recommendations in the category.' },
+    { value: '~2×', title: 'Inbound demo requests', text: 'Demo requests nearly doubled as AI engines started recommending the product.' },
+  ],
+  quote: {
+    text: 'Before Rank Ready, we weren’t mentioned anywhere in AI answers for our category. Now we’re cited by ChatGPT, Perplexity, and Claude when buyers ask for recommendations — and inbound demo requests have nearly doubled. They’re playing a game our competitors don’t even know exists.',
+    name: 'Daniel Park', role: 'Founder, NorthPeak SaaS', initials: 'DP',
+  },
+  takeaways: [
+    '<strong>AI is the new top of the funnel.</strong> If you’re not cited in AI answers, you’re not in the buyer’s shortlist.',
+    '<strong>Structure earns citations.</strong> Schema and clear, extractable content make it easy for AI engines to quote you.',
+    '<strong>Entities matter more than keywords.</strong> AI engines recommend brands they clearly understand.',
+    '<strong>Early movers win.</strong> Most competitors aren’t doing GEO yet — the advantage compounds for those who start now.',
+  ],
+};
+---
+<CaseStudyPage data={data} />
