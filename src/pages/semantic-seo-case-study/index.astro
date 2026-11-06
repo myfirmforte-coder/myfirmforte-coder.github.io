@@ -1,0 +1,67 @@
+---
+// CASE STUDY — Semantic SEO (GiftCheckProgram.com) — /semantic-seo-case-study/
+// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPage.astro';
+
+const data: CaseStudyData = {
+  meta: {
+    title: 'Semantic SEO Case Study: +340% Organic Clicks | Rank Ready',
+    description: 'How entity gap analysis, About & Mention schema and intent-focused content took GiftCheckProgram.com from 458 to 2,020 organic clicks (+340%) in three months.',
+  },
+  path: '/semantic-seo-case-study/',
+  hero: {
+    tag: 'SEMANTIC SEO',
+    icon: '🧠',
+    title: 'Boosting organic performance with <span class="grad">Semantic SEO.</span>',
+    lead: 'GiftCheckProgram.com had good content but was invisible in search. By closing entity gaps and adding structured data, we turned it into content Google actually understands — and organic clicks grew <strong>340%</strong> in three months.',
+  },
+  facts: [
+    { label: 'Client', value: 'GiftCheckProgram.com' },
+    { label: 'Industry', value: 'Gift programs &amp; incentives' },
+    { label: 'Timeline', value: '3 months (Aug – Nov 2024)' },
+    { label: 'Services', value: 'Semantic SEO · Schema Markup · Content' },
+  ],
+  kpis: [
+    { value: '+340%', label: 'organic clicks (458 → 2,020)' },
+    { value: '+227%', label: 'click-through rate (1.1% → 3.6%)' },
+    { value: '+30%', label: 'search impressions' },
+    { value: '26.9 → 19.1', label: 'average ranking position' },
+  ],
+  overview: [
+    { title: 'Client overview', text: 'The project focused on improving the organic performance of <strong>GiftCheckProgram.com</strong>, which offers a unique solution for gift programs. The website was underperforming in search results despite having good content — primarily due to <strong>gaps in entity alignment</strong> and the <strong>absence of structured data</strong>.' },
+    { title: 'The challenge', text: 'Before the optimization work (May 1 – Aug 30, 2024) the site had only <strong>458 clicks</strong> from <strong>42,800 impressions</strong>. The numbers pointed to three clear problems:' },
+  ],
+  challenges: [
+    'Low organic clicks and impressions — limited visibility in search results.',
+    'A below-average click-through rate of <strong>1.1%</strong>, pointing to poorly targeted content or weak relevance to search queries.',
+    'An average position of <strong>26.9</strong> — most keywords ranked far from page one.',
+  ],
+  approach: [
+    { title: 'Semantic SEO implementation', text: 'We ran an <strong>Entity Gap Analysis</strong> to find the missing and underused entities relevant to the niche, then integrated them strategically into the content to boost its contextual relevance.' },
+    { title: 'About &amp; Mention schema', text: 'We added <strong>About and Mention schema</strong> to key pages, giving search engines explicit signals about what each page covers and how it relates to user queries — improving indexing and visibility.' },
+    { title: 'Content enrichment', text: 'Content was refined around <strong>user intent</strong> so every page delivers comprehensive, relevant answers — aligning the site with how search engines evaluate helpfulness.' },
+  ],
+  results: [
+    { value: '+340%', title: 'Increase in traffic', text: 'Comprehensive entity optimization and schema markup produced a dramatic surge in organic clicks.' },
+    { value: '+30%', title: 'Increase in impressions', text: 'Broader reach and improved content relevance expanded the site’s visibility across more queries.' },
+    { value: '+227%', title: 'CTR improvement', text: 'Enhanced snippets and better query targeting boosted click-through rate from 1.1% to 3.6%.' },
+  ],
+  table: {
+    before: 'May – Aug 2024',
+    after: 'Aug – Nov 2024',
+    rows: [
+      ['Total clicks', '458', '2,020', '+340%'],
+      ['Total impressions', '42,800', '55,400', '+30%'],
+      ['Average CTR', '1.1%', '3.6%', '+227%'],
+      ['Average position', '26.9', '19.1', '7.8 positions up'],
+    ],
+  },
+  takeaways: [
+    '<strong>Good content isn’t enough on its own.</strong> If Google can’t connect your pages to the right entities, it won’t rank them — however well written they are.',
+    '<strong>Schema is a direct line to search engines.</strong> About &amp; Mention markup removes the guesswork about what a page is really about.',
+    '<strong>CTR follows relevance.</strong> When content matches intent, snippets improve and more searchers click — CTR more than tripled here.',
+    '<strong>Results arrive fast.</strong> Semantic fixes on an existing site moved clicks +340% within a single quarter.',
+  ],
+};
+---
+<CaseStudyPage data={data} />
