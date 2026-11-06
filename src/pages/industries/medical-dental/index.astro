@@ -1,0 +1,102 @@
+---
+// INDUSTRY PAGE — /industries/medical-dental/
+// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+
+const data: IndustryData = {
+  meta: {
+    title: "SEO for Healthcare & Dental Practices | HIPAA-Compliant |",
+    description: "HIPAA-compliant SEO for medical and dental groups. Per-location pages, review systems, YMYL-grade content. 120 location pages deployed for one DSO.",
+  },
+  schema: { name: "SEO for Medical & Dental Practices", serviceType: "Healthcare SEO" },
+  hero: {
+    badge: "SEO FOR HEALTHCARE & DENTAL",
+    title: "SEO built for patient <span class='grad'>trust &amp; HIPAA compliance.</span>",
+    lead: "Healthcare SEO isn’t e-commerce with stethoscopes. You’re in a YMYL category, your content is held to medical accuracy standards, patient privacy is non-negotiable, and local search is where your practice lives or dies. We build healthcare SEO programs that respect all of it — and still drive new patient bookings.",
+    card: { value: "120", title: "unique location pages deployed", note: "MetroDental Group · Multi-state rollout with zero duplicate content flags" },
+  },
+  problem: {
+    eyebrow: "THE CHALLENGE",
+    title: "Why SEO in this vertical is different.",
+    sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
+    cards: [
+      { icon: "⚠️", title: "YMYL content quality bar is brutal", text: "Medical content is held to Your Money or Your Life quality standards — meaning Google evaluates E-E-A-T more strictly than in any other vertical. Shallow or inaccurate content gets demoted hard. We write to medical review standards." },
+      { icon: "🏥", title: "Multi-location = compounding complexity", text: "One dental practice is manageable. Twelve locations across three states means 12 GBPs, 12 sets of local pages, 12 review streams, and 12 chances to trigger duplicate content penalties if you're not careful." },
+      { icon: "🔒", title: "HIPAA makes review responses a minefield", text: "You can't confirm whether someone was a patient, can't discuss treatment details, and can't share specifics even in positive reviews. Every review response has to be crafted to comply — and most agencies have no idea." },
+    ],
+  },
+  approach: {
+    eyebrow: "THE APPROACH",
+    title: "Services we recommend for this industry, in order.",
+    sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
+    cards: [
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Unique, schema-rich landing pages per practice location. Each page has genuine local context, provider bios, services offered at that site, and zero duplicate content risk.", href: "/services/local-landing-pages/" },
+      { icon: "📍", color: "green", title: "GMB Management", text: "Per-location GBP management with HIPAA-compliant review responses, patient Q&amp;A handling, weekly posts, and geo-grid ranking reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
+      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Procedure and treatment authority content written to medical review standards, organized into clinical topical clusters that rank for long-tail patient research queries.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "🎨", color: "dark", title: "Rank-Ready Website Design", text: "WCAG 2.2 AA accessible sites (required for many medical providers), WCAG-compliant design, patient intake forms that respect HIPAA, and provider schema that signals E-E-A-T.", href: "/services/web-development/" },
+      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Patients increasingly research conditions and providers via ChatGPT before booking. GEO gets your practice cited when AI answers 'best [specialty] in [city]' queries.", href: "/services/ai-geo-optimization/" },
+      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Senior-led audit covering E-E-A-T signals, per-location GBP health, accessibility compliance gaps, and procedure-specific ranking opportunities.", href: "/services/seo-audits/" },
+    ],
+  },
+  why: {
+    eyebrow: "DEEPER CONTEXT",
+    title: "Why healthcare SEO has to be built from the ground up for your vertical.",
+    article: [
+      { title: "YMYL sets a higher bar for every page", text: "Medical and dental content falls under Google's <strong>YMYL (Your Money or Your Life) classification</strong>, meaning the quality guidelines are stricter. Treatment content needs medical accuracy. Provider profiles need credentials. Reviews need authenticity signals. Shortcuts that work in e-commerce or B2B SEO fail immediately in healthcare — we don't take them." },
+      { title: "Per-location GBPs are the patient-acquisition engine", text: "For most practices, <strong>Google Business Profile</strong> is the single highest-ROI marketing asset. Patients search 'dentist near me' or 'pediatrician [city]' and choose from the 3-pack. Each location needs its own optimized GBP with active reviews, fresh photos, weekly posts, and HIPAA-compliant responses. Multi-location practices with 10+ GBPs need systems, not one-off management." },
+      { title: "Procedure content is the long-tail goldmine", text: "Patients researching a procedure read <strong>8-12 content pieces</strong> before booking. If your site isn't in those 8-12, you're not in their consideration set. Procedure-specific pages (Invisalign, dental implants, Botox, LASIK, knee replacement) written with clinical depth and proper schema rank for hundreds of long-tail queries per page." },
+    ],
+    facts: [
+      { value: "76%", label: "of patients research providers online before booking" },
+      { value: "88%", label: "of health searches start on Google" },
+      { value: "120", label: "location pages deployed for MetroDental Group" },
+      { value: "+187%", label: "avg. patient inquiry lift for our healthcare clients" },
+    ],
+  },
+  result: {
+    value: "120",
+    title: "unique location pages deployed in 60 days",
+    note: "MetroDental Group · Multi-state dental service organization",
+    quote: "We went from fighting for visibility in two cities to dominating every market we serve. Rank Ready's system shipped 120 location pages in under two months — every single one ranks, every single one is genuinely unique, and our booking volume has never been higher.",
+    initials: "PS", name: "Dr. Priya Shah", role: "Founder, MetroDental Group",
+  },
+  audience: {
+    eyebrow: "INDUSTRY SUB-SEGMENTS",
+    title: "Healthcare specialties we work with.",
+    sub: "From solo practitioners to DSOs and regional hospital groups, we’ve built SEO programs across most of healthcare.",
+    cards: [
+      { icon: "🦷", title: "Dental Practices &amp; DSOs", text: "General, cosmetic, pediatric, orthodontic, Invisalign — single locations through 100+ office networks." },
+      { icon: "👁️", title: "Optometry &amp; Vision", text: "Eye care practices, LASIK centers, dry eye clinics — procedure-heavy content ecosystems." },
+      { icon: "💆", title: "Aesthetics &amp; Medspas", text: "Botox, fillers, laser, CoolSculpting — high-commercial-intent keyword landscapes." },
+      { icon: "🩺", title: "Primary &amp; Family Medicine", text: "Family practices, urgent care networks, concierge medicine — local trust signals drive it all." },
+      { icon: "🧠", title: "Specialty Medical", text: "Cardiology, dermatology, orthopedics, neurology — deep procedure content and specialist authority." },
+      { icon: "🧘", title: "Behavioral Health", text: "Therapy practices, psychiatric groups, addiction treatment — sensitive YMYL territory handled properly." },
+    ],
+  },
+  faq: {
+    eyebrow: "COMMON QUESTIONS",
+    title: "Questions specific to this industry.",
+    sub: "What business owners and marketing leads in this vertical most often ask us.",
+    items: [
+      { q: "How do you handle HIPAA compliance in review responses?", a: "Every response we write follows a <strong>strict HIPAA-compliant framework</strong>: we never confirm whether someone was a patient, never reference treatment details, never share specifics. Positive reviews get warm, generic thank-yous. Negative reviews get professional acknowledgment and an invitation to take the conversation offline. Every response is reviewed against a compliance checklist before posting." },
+      { q: "Do you write medical content yourselves, or does it need a clinician?", a: "We write content that’s <strong>medically accurate and citation-backed</strong>, but for anything involving specific clinical claims, treatment efficacy, or procedure risks we recommend (and many of our clients require) <strong>clinician review</strong> before publishing. We work directly with your in-house clinical team or can connect you with medical writers when needed. E-E-A-T benefits significantly from visible medical reviewers." },
+      { q: "How do you handle multi-location duplicate content?", a: "Every location page we build has <strong>genuinely unique content</strong> — not just a swapped city name. Each page includes location-specific context (neighborhoods served, practice hours, provider bios for that site, city-filtered testimonials, insurance accepted at that location). We’ve deployed 120-page rollouts without a single duplicate content flag. Our internal similarity threshold is well under Google’s penalty trigger." },
+      { q: "What's the right cadence for reviews per location?", a: "For most medical practices, <strong>10-30 new reviews per month per location</strong> is the target range. Dental practices sit higher (more patient touchpoints per month), specialty practices lower. Our review acquisition automation scales to your patient volume — every visit triggers a compliant request, with reasonable frequency caps. Results: our healthcare clients typically 3-5× their prior review velocity within 60 days." },
+      { q: "Are you familiar with healthcare-specific directories?", a: "Yes — Healthgrades, Zocdoc, Vitals, WebMD, Yelp, RateMDs, and specialty directories (like the AAD for dermatologists or ADA for dentists). Consistency across these platforms is part of NAP management. We also manage insurance directory listings, which most agencies skip and which drive meaningful new-patient volume." },
+      { q: "Can you help with accessibility compliance for ADA-sensitive practices?", a: "Yes. Every Rank-Ready website ships with <strong>WCAG 2.2 AA compliance</strong>, which is the standard regulators and plaintiffs’ attorneys evaluate against. We also run accessibility audits as a standalone service for existing sites. This isn’t just legal protection — accessibility signals correlate with SEO rankings and expand your addressable patient base." },
+      { q: "How long before new patient volume shifts?", a: "Our healthcare clients typically see <strong>first ranking movement in 30-60 days</strong> (GMB and location pages indexing), meaningful appointment volume lift by <strong>month 3-4</strong>, and fully compounded growth by <strong>month 6-9</strong>. Local-focused work (GBP, location pages) moves faster than semantic content depth; we sequence accordingly so you see early wins." },
+    ],
+  },
+  related: {
+    eyebrow: "START SOMEWHERE",
+    title: "Recommended next steps.",
+    sub: "If this industry fits, here’s the cleanest path forward.",
+    cards: [
+      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Per-location pages with genuinely unique content — the core play for multi-location healthcare.", href: "/services/local-landing-pages/" },
+      { icon: "📍", color: "purple", title: "GMB Management", text: "HIPAA-compliant review and post management across every location you operate.", href: "/services/gmb-management-services/" },
+      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Healthcare-aware audit covering E-E-A-T, accessibility, and per-location visibility.", href: "/services/seo-audits/" },
+    ],
+  },
+};
+---
+<IndustryPage data={data} />
