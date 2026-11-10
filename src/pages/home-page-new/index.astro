@@ -14,9 +14,9 @@ const stats = [
 ];
 
 const problems = [
-  { icon: '📉', title: 'Stuck on Page 3', text: 'No topical authority. No semantic depth. No real ranking strategy behind the scenes.' },
-  { icon: '🤖', title: 'Invisible to AI', text: 'ChatGPT and Perplexity don’t mention you. Your competitors get cited. You get skipped.' },
-  { icon: '📍', title: 'Zero Local Leads', text: 'Weak GMB. Thin location pages. You’re losing every “near me” search in your area.' },
+  { icon: 'fas fa-chart-line', title: 'Stuck on Page 3', text: 'No topical authority. No semantic depth. No real ranking strategy behind the scenes.' },
+  { icon: 'fas fa-robot', title: 'Invisible to AI', text: 'ChatGPT and Perplexity don’t mention you. Your competitors get cited. You get skipped.' },
+  { icon: 'fas fa-map-marker-alt', title: 'Zero Local Leads', text: 'Weak GMB. Thin location pages. You’re losing every “near me” search in your area.' },
 ];
 
 const pillars = [
@@ -45,9 +45,9 @@ const geoPoints = [
 ];
 
 const cases = [
-  { icon: '⚖️', colors: ['#0F172A', '#1E293B'], tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', value: '+312%', label: 'organic traffic', href: '/industries/legal/' },
-  { icon: '🏠', colors: ['#7F1D1D', '#DC2626'], tag: 'HOME SERVICES · GMB', title: '5× More Local Calls in 60 Days', value: '+480%', label: 'GMB actions', href: '/industries/home-services/' },
-  { icon: '🚀', colors: ['#8B5CF6', '#5B21B6'], tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', value: '0 → 74%', label: 'AI visibility', href: '/case-studies/geo-ai-saas-citations/' },
+  { icon: 'fas fa-balance-scale', colors: ['#0F172A', '#1E293B'], tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', value: '+312%', label: 'organic traffic', href: '/industries/legal/' },
+  { icon: 'fas fa-home', colors: ['#7F1D1D', '#DC2626'], tag: 'HOME SERVICES · GMB', title: '5× More Local Calls in 60 Days', value: '+480%', label: 'GMB actions', href: '/industries/home-services/' },
+  { icon: 'fas fa-rocket', colors: ['#8B5CF6', '#5B21B6'], tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', value: '0 → 74%', label: 'AI visibility', href: '/case-studies/geo-ai-saas-citations/' },
 ];
 
 const industries = [
@@ -106,8 +106,8 @@ const faqs = [
         <h1>Rank on Google.<br />Get cited by AI.<br /><span class="grad">Dominate both.</span></h1>
         <p class="lead">We build Rank-Ready websites engineered for traditional SEO <em>and</em> generative engines like ChatGPT, Perplexity, and Google AI Overviews — so your business wins the future of search, not just the past.</p>
         <div class="rr-btn-group">
-          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
-          <a href="#audit" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get My Free Audit</span><span class="rr-btn-arrow">→</span></a>
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+          <a href="#audit" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get My Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
         </div>
         <div class="trust">
           <div class="avs"><span class="av a1">JS</span><span class="av a2">SK</span><span class="av a3">DP</span><span class="av a4">+</span></div>
@@ -117,7 +117,7 @@ const faqs = [
 
       <div class="hero-visual" aria-hidden="true">
         <div class="vis-card g-card">
-          <div class="v-search"><span>🔍</span> best law firm near me</div>
+          <div class="v-search"><i class="fas fa-search"></i> best law firm near me</div>
           <div class="v-res">
             <div class="v-rank">#1</div>
             <div><div class="v-title">Smith &amp; Associates Law Firm</div><div class="v-url">smithlaw.com · ★★★★★ 4.9</div></div>
@@ -161,13 +161,13 @@ const faqs = [
         <p class="eyebrow red">THE HARD TRUTH</p>
         <h2 class="h2">Your website looks fine. <span class="muted">It just isn’t built to be found.</span></h2>
         <p class="sub">Most sites fail in search for the same three reasons. If any of these sound familiar, you’re leaving customers to your competitors every single day.</p>
-        <a href="/services/seo-audits/" class="rr-btn rr-btn-outline"><span>Find out what’s holding you back</span><span class="rr-btn-arrow">→</span></a>
+        <a href="/services/seo-audits/" class="rr-btn rr-btn-outline"><span>Find out what’s holding you back</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
       </div>
       <div class="prob-list">
         {problems.map((p, i) => (
           <div class="prob">
             <div class="prob-n">0{i + 1}</div>
-            <div class="prob-ico">{p.icon}</div>
+            <div class="prob-ico"><i class={p.icon}></i></div>
             <div><div class="prob-t">{p.title}</div><div class="prob-x" set:html={p.text} /></div>
           </div>
         ))}
@@ -202,7 +202,7 @@ const faqs = [
         <p class="eyebrow">WHAT WE DO</p>
         <h2 class="h2">Six services. Built to work together.</h2>
       </div>
-      <a href="/services/" class="rr-btn rr-btn-outline"><span>View all services</span><span class="rr-btn-arrow">→</span></a>
+      <a href="/services/" class="rr-btn rr-btn-outline"><span>View all services</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
     </div>
     <div class="row bento">
       {services.map((s) => (
@@ -214,7 +214,7 @@ const faqs = [
             <div class="t-title" set:html={s.title} />
             <div class="t-text" set:html={s.text} />
             {s.big && <ul class="t-list">{geoPoints.slice(0, 3).map((g) => <li set:html={g} />)}</ul>}
-            <div class="t-more">Explore service <span>→</span></div>
+            <div class="t-more">Explore service <i class="fas fa-arrow-right"></i></div>
           </div>
         </a>
       ))}
@@ -225,11 +225,11 @@ const faqs = [
   <section class="sec geo-sec">
     <div class="row geo-grid">
       <div>
-        <p class="eyebrow purple">⚡ THE FUTURE OF SEARCH</p>
+        <p class="eyebrow purple"><i class="fas fa-bolt"></i> THE FUTURE OF SEARCH</p>
         <h2 class="h2 light">Your next customer won’t Google you. <span class="purple-t">They’ll ask ChatGPT.</span></h2>
         <p class="sub light">Generative Engine Optimization (GEO) gets your brand cited <em>inside</em> AI-generated answers from ChatGPT, Perplexity, Claude, Google AI Overviews, and Gemini. It’s not SEO 2.0 — it’s a completely new playbook.</p>
         <ul class="geo-list">{geoPoints.map((p) => <li set:html={p} />)}</ul>
-        <a href="/services/ai-geo-optimization/" class="rr-btn rr-btn-violet"><span>Explore GEO Services</span><span class="rr-btn-arrow">→</span></a>
+        <a href="/services/ai-geo-optimization/" class="rr-btn rr-btn-primary"><span>Explore GEO Services</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
       </div>
       <div class="geo-vis">
         <div class="compare">
@@ -241,7 +241,7 @@ const faqs = [
             <div class="cmp-note">10 blue links · you compete for clicks</div>
           </div>
           <div class="cmp new">
-            <div class="cmp-h"><span class="sp">✦</span> Perplexity AI</div>
+            <div class="cmp-h"><span class="sp"><i class="fas fa-compass"></i></span> Perplexity AI</div>
             <p>For the best local SEO agency specializing in AI optimization, I’d recommend <strong>Rank Ready</strong>. They’re pioneers in Generative Engine Optimization…</p>
             <div class="chips"><span>rank-ready.com</span><span>forbes.com</span><span>searchengineland.com</span></div>
             <div class="cmp-note">1 answer · you’re the recommendation</div>
@@ -259,20 +259,20 @@ const faqs = [
         <p class="eyebrow">PROVEN RESULTS</p>
         <h2 class="h2">Real businesses. Real rankings.</h2>
       </div>
-      <a href="/case-studies/" class="rr-btn rr-btn-outline"><span>All case studies</span><span class="rr-btn-arrow">→</span></a>
+      <a href="/case-studies/" class="rr-btn rr-btn-outline"><span>All case studies</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
     </div>
     <div class="row cs-grid">
       {cases.map((c) => (
         <a href={c.href} class="cs">
           <div class="cs-top" style={'background:linear-gradient(135deg,' + c.colors[0] + ' 0%,' + c.colors[1] + ' 100%)'}>
             <div class="cs-gridlines"></div>
-            <span class="cs-ico">{c.icon}</span>
+            <span class="cs-ico"><i class={c.icon}></i></span>
             <div class="cs-metric"><b>{c.value}</b><span>{c.label}</span></div>
           </div>
           <div class="cs-body">
             <div class="cs-tag">{c.tag}</div>
             <div class="cs-title">{c.title}</div>
-            <div class="cs-more">Read the case study <span>→</span></div>
+            <div class="cs-more">Read the case study <i class="fas fa-arrow-right"></i></div>
           </div>
         </a>
       ))}
@@ -331,10 +331,10 @@ const faqs = [
           <p class="sub light">A free, no-strings audit of your technical SEO, semantic structure, local footprint, and your visibility inside AI search engines. Delivered in 48 hours.</p>
           <form class="au-form" data-key={site.web3formsKey} data-email={site.email}>
             <input type="email" name="email" required placeholder="Enter your work email" aria-label="Email" />
-            <button type="submit" class="rr-btn rr-btn-primary"><span>Get My Free Audit</span><span class="rr-btn-arrow">→</span></button>
+            <button type="submit" class="rr-btn rr-btn-primary"><span>Get My Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></button>
           </form>
           <p class="au-msg" hidden></p>
-          <div class="au-ticks"><span>✓ Free</span><span>✓ 48-hour delivery</span><span>✓ No sales pitch</span><span>✓ 100% actionable</span></div>
+          <div class="au-ticks"><span><i class="fas fa-check"></i> Free</span><span><i class="fas fa-check"></i> 48-hour delivery</span><span><i class="fas fa-check"></i> No sales pitch</span><span><i class="fas fa-check"></i> 100% actionable</span></div>
         </div>
         <div class="report">
           <div class="r-head"><span class="r-lbl">RANK READY AUDIT</span><span class="r-pill">Sample</span></div>
@@ -345,7 +345,7 @@ const faqs = [
               <div class="r-bar"><span class={r.c} style={'width:' + r.pct + '%'}></span></div>
             </div>
           ))}
-          <div class="r-note">📍 23 actionable recommendations inside</div>
+          <div class="r-note"><i class="fas fa-clipboard-check"></i> 23 actionable recommendations inside</div>
         </div>
       </div>
     </div>
@@ -358,16 +358,16 @@ const faqs = [
         <p class="eyebrow">INSIGHTS</p>
         <h2 class="h2">Latest from the Rank Ready blog.</h2>
       </div>
-      <a href="/blog/" class="rr-btn rr-btn-outline"><span>Visit the blog</span><span class="rr-btn-arrow">→</span></a>
+      <a href="/blog/" class="rr-btn rr-btn-outline"><span>Visit the blog</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
     </div>
     <div class="row blog-grid">
       {latest.map((p) => (
         <a href={'/' + p.slug + '/'} class="post">
-          <div class="p-img">{p.img ? <img src={'/images/blog/' + p.img} alt={p.title} width="768" height="512" loading="lazy" /> : <div class="ph">✍️</div>}</div>
+          <div class="p-img">{p.img ? <img src={'/images/blog/' + p.img} alt={p.title} width="768" height="512" loading="lazy" /> : <div class="ph"><i class="fas fa-pen-nib"></i></div>}</div>
           <div class="p-body">
             <div class="p-meta"><span class="chip">{p.cat}</span><span>{fmt(p.date)}</span></div>
             <div class="p-title">{p.title}</div>
-            <div class="p-more">Read article <span>→</span></div>
+            <div class="p-more">Read article <i class="fas fa-arrow-right"></i></div>
           </div>
         </a>
       ))}
@@ -384,7 +384,7 @@ const faqs = [
         <div class="faq-cta">
           <div class="fc-t">Still have questions?</div>
           <p>Book a free 30-minute call and get clear advice on your rankings.</p>
-          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Book a Free Call</span><span class="rr-btn-arrow">→</span></a>
+          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Book a Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
         </div>
       </div>
       <div class="faq-list"><FaqList faqs={faqs} /></div>
@@ -399,10 +399,10 @@ const faqs = [
       <h2>Ready to be <span class="grad">Rank Ready?</span></h2>
       <p class="lead c">Stop watching competitors who figured this out first. Let’s build you a site and a search footprint that wins Google, wins local, and wins AI — starting today.</p>
       <div class="rr-btn-group" style="justify-content:center">
-        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
-        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Custom Quote</span><span class="rr-btn-arrow">→</span></a>
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Strategy Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Custom Quote</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
       </div>
-      <div class="assure"><span>✓ No pressure</span><span>✓ No obligation</span><span>✓ 30-minute fit call</span></div>
+      <div class="assure"><span><i class="fas fa-check"></i> No pressure</span><span><i class="fas fa-check"></i> No obligation</span><span><i class="fas fa-check"></i> 30-minute fit call</span></div>
     </div>
   </section>
 </BaseLayout>
@@ -521,7 +521,7 @@ const faqs = [
   .prob { display: grid; grid-template-columns: auto auto 1fr; gap: 20px; align-items: center; padding: 26px 28px; border: 1px solid #E2E8F0; border-radius: 18px; background: #fff; transition: all .3s; }
   .prob:hover { border-color: #FCA5A5; box-shadow: 0 20px 40px -24px rgba(239,68,68,.35); transform: translateX(6px); }
   .prob-n { font-size: 13px; font-weight: 800; color: #CBD5E1; }
-  .prob-ico { width: 52px; height: 52px; border-radius: 14px; background: #FEF2F2; border: 1px solid #FECACA; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .prob-ico { width: 52px; height: 52px; border-radius: 14px; background: #FEF2F2; border: 1px solid #FECACA; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #DC2626; }
   .prob-t { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.35; }
   .prob-x { font-size: 15px; color: var(--slate-500); line-height: 1.6; }
 
@@ -547,7 +547,7 @@ const faqs = [
   .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: auto; gap: 20px; padding: 0; }
   .tile { position: relative; overflow: hidden; display: block; background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; transition: all .3s; }
   .tile:hover { transform: translateY(-5px); border-color: var(--green); box-shadow: 0 26px 50px -26px rgba(15,23,42,.25); }
-  .tile:hover .t-more span { transform: translateX(5px); }
+  .tile:hover .t-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
   .tile.big { grid-row: span 2; background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 100%); border-color: transparent; color: #fff; }
   .tile:not(.wide) { min-height: 250px; }
   .tile.wide { grid-column: 1 / -1; }
@@ -572,7 +572,7 @@ const faqs = [
   .t-list li { position: relative; padding-left: 28px; font-size: 14.5px; color: #E2E8F0; line-height: 1.5; }
   .t-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--green); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
   .t-more { margin-top: auto; font-size: 14px; font-weight: 700; color: var(--green); }
-  .t-more span { display: inline-block; transition: transform .3s; }
+  .t-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
 
   /* 7. GEO */
   .geo-sec { background: linear-gradient(135deg, #0F0A24 0%, #020617 100%); overflow: hidden; }
@@ -581,6 +581,7 @@ const faqs = [
   .geo-list { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 12px; }
   .geo-list li { position: relative; padding-left: 32px; font-size: 15.5px; color: #E2E8F0; line-height: 1.5; }
   .geo-list li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(139,92,246,.25); border: 1px solid rgba(139,92,246,.6); color: #C4B5FD; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
   :global(.rr-btn-violet) { background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%); color: #fff !important; box-shadow: 0 10px 30px -8px rgba(139,92,246,.55); }
   :global(.rr-btn-violet:hover) { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(139,92,246,.6); }
   .compare { display: grid; grid-template-columns: 1fr 1.25fr; gap: 16px; align-items: stretch; }
@@ -607,10 +608,10 @@ const faqs = [
   .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0; }
   .cs { display: block; border: 1px solid #E2E8F0; border-radius: 22px; overflow: hidden; background: #fff; transition: all .3s; }
   .cs:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -26px rgba(15,23,42,.25); border-color: var(--green); }
-  .cs:hover .cs-more span { transform: translateX(5px); }
+  .cs:hover .cs-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
   .cs-top { position: relative; height: 210px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; }
   .cs-gridlines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 28px 28px; }
-  .cs-ico { position: absolute; top: 22px; right: 24px; font-size: 52px; line-height: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,.25)); }
+  .cs-ico { position: absolute; top: 22px; right: 24px; font-size: 40px; color: rgba(255,255,255,.85); line-height: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,.25)); }
   .cs-metric { position: relative; }
   .cs-metric b { display: block; font-size: 46px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
   .cs-metric span { font-size: 14px; color: rgba(255,255,255,.75); }
@@ -618,7 +619,7 @@ const faqs = [
   .cs-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; color: var(--slate-400); margin-bottom: 8px; line-height: 1.7; }
   .cs-title { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 16px; letter-spacing: -.3px; }
   .cs-more { font-size: 14px; font-weight: 700; color: var(--green); }
-  .cs-more span { display: inline-block; transition: transform .3s; }
+  .cs-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
 
   /* 9. Process */
   .proc-sec { background: var(--light-bg); }
@@ -681,7 +682,7 @@ const faqs = [
   .post { display: block; border: 1px solid #E2E8F0; border-radius: 20px; overflow: hidden; background: #fff; transition: all .3s; }
   .post:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -24px rgba(15,23,42,.22); border-color: var(--green); }
   .post:hover .p-img img { transform: scale(1.04); }
-  .post:hover .p-more span { transform: translateX(5px); }
+  .post:hover .p-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
   .p-img { aspect-ratio: 16 / 10; overflow: hidden; background: #0F172A; }
   .p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
   .ph { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; }
@@ -690,7 +691,7 @@ const faqs = [
   .chip { font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #047857; background: #ECFDF5; border-radius: 100px; padding: 3px 10px; }
   .p-title { font-size: 18.5px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 14px; letter-spacing: -.2px; }
   .p-more { font-size: 14px; font-weight: 700; color: var(--green); }
-  .p-more span { display: inline-block; transition: transform .3s; }
+  .p-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
 
   /* 13. FAQ */
   .faq-sec { background: var(--light-bg); }
