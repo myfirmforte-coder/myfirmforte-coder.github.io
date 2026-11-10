@@ -235,15 +235,21 @@ const faqs = [
         <div class="compare">
           <div class="cmp old">
             <div class="cmp-h">Traditional search</div>
-            <div class="cmp-row"><span class="bar w90"></span></div>
-            <div class="cmp-row"><span class="bar w70"></span></div>
-            <div class="cmp-row"><span class="bar w80"></span></div>
+            <div class="g-q"><i class="fas fa-search"></i> best seo agency near me</div>
+            <div class="g-r"><div class="g-u"><span class="g-ad">Sponsored</span> topseoagency.com</div><div class="g-t">Top SEO Agency | Free Consultation</div></div>
+            <div class="g-r"><div class="g-u">clutch.co › seo-firms</div><div class="g-t">Top 50 SEO Companies — 2026 Rankings</div></div>
+            <div class="g-r"><div class="g-u">digitalgrowth.io</div><div class="g-t">SEO Services That Deliver Results</div></div>
+            <div class="g-r"><div class="g-u">localseopros.com</div><div class="g-t">Local SEO Experts | Get a Quote</div></div>
+            <div class="g-more">+ 6 more results on page 1</div>
             <div class="cmp-note">10 blue links · you compete for clicks</div>
           </div>
           <div class="cmp new">
             <div class="cmp-h"><span class="sp"><i class="fas fa-compass"></i></span> Perplexity AI</div>
+            <div class="g-q ai"><i class="fas fa-search"></i> best seo agency near me</div>
+            <div class="ai-lbl"><i class="fas fa-check-circle"></i> Answer</div>
             <p>For the best local SEO agency specializing in AI optimization, I’d recommend <strong>Rank Ready</strong>. They’re pioneers in Generative Engine Optimization…</p>
             <div class="chips"><span>rank-ready.com</span><span>forbes.com</span><span>searchengineland.com</span></div>
+            <div class="ai-cite"><span class="ai-cite-n">3</span> sources cited · Rank Ready ranked #1</div>
             <div class="cmp-note">1 answer · you’re the recommendation</div>
           </div>
         </div>
@@ -586,14 +592,25 @@ const faqs = [
   :global(.rr-btn-violet:hover) { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(16,185,129,.6); }
   .compare { display: grid; grid-template-columns: 1fr 1.25fr; gap: 16px; align-items: stretch; }
   .cmp { border-radius: 20px; padding: 24px; color: #fff; }
-  .cmp.old { background: rgba(255,255,255,.03); border: 1px dashed rgba(255,255,255,.15); opacity: .8; }
+  .cmp.old { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.1); }
   .cmp.new { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.5); box-shadow: 0 30px 60px -30px rgba(16,185,129,.6); }
   .cmp-h { font-size: 13px; font-weight: 700; letter-spacing: .5px; margin-bottom: 18px; color: var(--slate-300); }
   .cmp.new .cmp-h { color: #fff; }
   .sp { color: #34D399; }
-  .cmp-row { margin-bottom: 14px; }
-  .bar { display: block; height: 10px; border-radius: 6px; background: rgba(255,255,255,.1); }
-  .w90 { width: 90%; } .w70 { width: 70%; } .w80 { width: 80%; }
+  .g-q { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #CBD5E1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 8px 14px; margin-bottom: 16px; }
+  .g-q i { font-size: 11px; color: #94A3B8; }
+  .g-r { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .g-u { font-size: 11px; color: #94A3B8; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+  .g-ad { font-size: 9.5px; font-weight: 700; color: #CBD5E1; background: rgba(255,255,255,.1); border-radius: 4px; padding: 1px 6px; }
+  .g-t { font-size: 13.5px; font-weight: 600; color: #93C5FD; line-height: 1.4; }
+  .cmp { display: flex; flex-direction: column; }
+  .cmp .cmp-note { margin-top: auto; padding-top: 10px; }
+  .g-q.ai { background: rgba(16,185,129,.1); border-color: rgba(16,185,129,.3); color: #E2E8F0; }
+  .g-q.ai i { color: #6EE7B7; }
+  .ai-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6EE7B7; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .ai-cite { font-size: 12px; color: #CBD5E1; margin: 14px 0 4px; display: flex; align-items: center; gap: 8px; }
+  .ai-cite-n { width: 20px; height: 20px; border-radius: 50%; background: #10B981; color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .g-more { font-size: 11.5px; color: #64748B; padding: 10px 0 4px; }
   .cmp.new p { font-size: 14.5px; line-height: 1.65; color: #E2E8F0; padding: 0; margin-bottom: 14px; }
   .cmp.new strong { color: #6EE7B7; }
   .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
