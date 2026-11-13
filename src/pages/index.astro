@@ -1,35 +1,779 @@
 ---
-// HOME PAGE — sections upar se neeche isi tarteeb mein dikhte hain.
-// Kisi section ko hatana ho to us ki line delete kar dein; tarteeb badalni ho to lines upar neeche kar dein.
+// HOME PAGE — "/" (naya design). Purana design /home-page-old/ par rakha hai.
+// Har section ka text neeche arrays mein hai; design is file ke <style> mein.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/home/Hero.astro';
-import Problem from '../components/home/Problem.astro';
-import Method from '../components/home/Method.astro';
-import Services from '../components/home/Services.astro';
-import Geo from '../components/home/Geo.astro';
-import Results from '../components/home/Results.astro';
-import CaseStudies from '../components/home/CaseStudies.astro';
-import Industries from '../components/home/Industries.astro';
-import Process from '../components/home/Process.astro';
-import Testimonials from '../components/home/Testimonials.astro';
-import Audit from '../components/home/Audit.astro';
-import LatestBlog from '../components/home/LatestBlog.astro';
-import Faq from '../components/home/Faq.astro';
-import FinalCta from '../components/home/FinalCta.astro';
+import FaqList from '../components/FaqList.astro';
+import { site } from '../data/site';
+import { posts } from '../data/posts';
+
+const stats = [
+  { value: '+240%', label: 'average organic traffic lift in 6 months' },
+  { value: '120+', label: 'clients served across 15 industries' },
+  { value: '87%', label: 'reach page 1 within 90 days' },
+  { value: '4.9/5', label: 'average client satisfaction rating' },
+];
+
+const problems = [
+  { icon: 'fas fa-chart-line', title: 'Stuck on Page 3', text: 'No topical authority. No semantic depth. No real ranking strategy behind the scenes.' },
+  { icon: 'fas fa-robot', title: 'Invisible to AI', text: 'ChatGPT and Perplexity don’t mention you. Your competitors get cited. You get skipped.' },
+  { icon: 'fas fa-map-marker-alt', title: 'Zero Local Leads', text: 'Weak GMB. Thin location pages. You’re losing every “near me” search in your area.' },
+];
+
+const pillars = [
+  { n: '01', title: 'Foundation', text: 'Technically flawless. Fast, crawlable, and built on a Core Web Vitals–optimized architecture.' },
+  { n: '02', title: 'Semantic Depth', text: 'Entity-driven content and topical clusters that make search engines trust you as the authority.' },
+  { n: '03', title: 'Local Dominance', text: 'Precision location pages and GMB optimization working together as one integrated system.' },
+  { n: '04', title: 'GEO / AI Optimization', text: 'Schema, entity clarity, and citation-ready content that gets you mentioned inside AI answers.' },
+];
+
+// big: true = bento grid mein bara tile, wide: true = poori line wala lamba tile
+const services = [
+  { icon: 'fas fa-certificate', tag: 'NEXT FRONTIER', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, Claude, and Google AI Overviews when customers ask for a recommendation in your category.', href: '/services/ai-geo-optimization/', big: true },
+  { icon: 'fas fa-globe', tag: 'FOUNDATION', title: 'Rank-Ready Website Design', text: 'SEO-first websites built to rank from day one — not after 12 months of “fixes.”', href: '/services/web-development/' },
+  { icon: 'fas fa-brain', tag: 'AUTHORITY', title: 'Semantic SEO', text: 'Entity-driven content architecture that makes your site the definitive voice in your niche.', href: '/services/semantic-seo-optimization-services/' },
+  { icon: 'fas fa-map-marker-alt', tag: 'LOCAL', title: 'Local Landing Pages', text: 'Hyper-targeted, geo-specific pages engineered to dominate every city you serve.', href: '/services/local-landing-pages/' },
+  { icon: 'fas fa-store', tag: 'LOCAL PACK', title: 'GMB Management', text: 'Turn your Google Business Profile into a predictable local lead machine.', href: '/services/gmb-management-services/' },
+  { icon: 'fas fa-search', tag: 'DIAGNOSTIC', title: 'SEO + GEO Audits', text: 'Deep, no-fluff audits that uncover exactly what’s holding your rankings back. Senior-led, 48-hour turnaround — and your first audit is free.', href: '/services/seo-audits/', wide: true },
+];
+
+const geoPoints = [
+  'Entity &amp; schema optimization tuned for LLMs',
+  'Answer-engine-ready content structure',
+  'Citation-worthy authority signals',
+  'AI visibility tracking across 5+ engines',
+  'Monthly GEO reporting and optimization',
+];
+
+const cases = [
+  { icon: 'fas fa-balance-scale', colors: ['#0F172A', '#1E293B'], tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', value: '+312%', label: 'organic traffic', href: '/industries/legal/' },
+  { icon: 'fas fa-home', colors: ['#7F1D1D', '#DC2626'], tag: 'HOME SERVICES · GMB', title: '5× More Local Calls in 60 Days', value: '+480%', label: 'GMB actions', href: '/industries/home-services/' },
+  { icon: 'fas fa-rocket', colors: ['#064E3B', '#059669'], tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', value: '0 → 74%', label: 'AI visibility', href: '/case-studies/geo-ai-saas-citations/' },
+];
+
+const industries = [
+  { icon: 'fas fa-balance-scale', name: 'Legal &amp; Law Firms', href: '/industries/legal/' },
+  { icon: 'fas fa-tooth', name: 'Medical &amp; Dental', href: '/industries/medical-dental/' },
+  { icon: 'fas fa-tools', name: 'Home Services', href: '/industries/home-services/' },
+  { icon: 'fas fa-building', name: 'Real Estate', href: '/industries/real-estate/' },
+  { icon: 'fas fa-shopping-cart', name: 'E-commerce &amp; SaaS', href: '/industries/ecommerce-website-and-seo/' },
+];
+
+const steps = [
+  { title: 'Audit', text: 'Deep technical, semantic, and GEO audit of your existing footprint.' },
+  { title: 'Strategy', text: 'Custom roadmap built around your niche, geography, and growth targets.' },
+  { title: 'Build', text: 'Execution by senior strategists — content, schema, pages, and GMB.' },
+  { title: 'Launch', text: 'Careful launch with monitoring, stress testing, and team training.' },
+  { title: 'Scale', text: 'Monthly optimization, AI visibility tracking, and aggressive growth.' },
+];
+
+const reviews = [
+  { quote: 'Rank Ready took our firm from invisible to the first result for nearly every key term in our market. Inquiries tripled in four months. They’re the only SEO team I’d recommend without hesitation.', initials: 'JS', name: 'John Smith', role: 'Managing Partner, Smith &amp; Associates Law' },
+  { quote: 'We went from begging for referrals to turning away work. Their GMB and local page strategy is unmatched. Best investment we’ve made in the business.', initials: 'SK', name: 'Sarah Khan', role: 'Owner, Elite Home Services' },
+  { quote: 'I didn’t even know GEO was a thing. Now my brand gets cited by ChatGPT when people ask for recommendations in my industry. Rank Ready is years ahead of every other agency.', initials: 'DP', name: 'Daniel Park', role: 'Founder, NorthPeak SaaS' },
+];
+
+const report = [
+  { k: 'Technical SEO', v: '48/100', pct: 48, c: 'red' },
+  { k: 'Semantic Structure', v: '62/100', pct: 62, c: 'amber' },
+  { k: 'Local Signals', v: '31/100', pct: 31, c: 'red' },
+  { k: 'AI Visibility', v: '0%', pct: 3, c: 'red' },
+];
+
+const latest = posts.slice(0, 3);
+const fmt = (d: string) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const faqs = [
+  { q: 'How long does it take to see SEO results?', a: 'Most clients see measurable ranking movement within 30–60 days and major traffic lifts by month 3–6. SEO is a compounding investment — we build systems, not short-term spikes.' },
+  { q: 'What is GEO and how is it different from SEO?', a: 'SEO gets you ranked in Google’s blue links. GEO (Generative Engine Optimization) gets your brand cited inside the AI answer in ChatGPT, Perplexity, Google AI Overviews, and others. They work together, but GEO is a separate discipline.' },
+  { q: 'Do you work with clients globally?', a: 'Yes. We work with businesses across the US, UK, Canada, Australia, the EU, and the UAE. Everything is remote-first, with flexible meeting times, clear reporting, and scheduled strategy calls — so timezones are never a problem.' },
+  { q: 'What is included in the Rank-Ready website package?', a: 'Strategy, semantic architecture, on-page SEO, schema, Core Web Vitals optimization, local landing pages (if applicable), GMB setup, and a full launch plan. Every package is scoped to your business — no templates.' },
+  { q: 'Do you offer monthly retainers or one-time projects?', a: 'Both. Website builds and audits are one-time engagements. Semantic SEO, GEO, and GMB management are monthly retainers because they need continuous optimization to win.' },
+  { q: 'How do you track AI and GEO visibility?', a: 'We use a combination of proprietary tools, manual query monitoring across ChatGPT, Perplexity, and Gemini, and third-party tracking platforms. You get a monthly report showing exactly where you are cited and where we are pushing next.' },
+  { q: 'What industries do you specialize in?', a: 'Legal, medical and dental, home services, real estate, e-commerce, and SaaS. We take select clients outside these categories if we see strong fit.' },
+  { q: 'Do you offer any guarantees?', a: 'We guarantee the work, the process, and the reporting — but anyone promising guaranteed rankings is lying to you. SEO is influence, not a button. We promise best-in-class execution and full transparency.' },
+];
 ---
-<BaseLayout>
-  <Hero />
-  <Problem />
-  <Method />
-  <Services />
-  <Geo />
-  <Results />
-  <CaseStudies />
-  <Industries />
-  <Process />
-  <Testimonials />
-  <Audit />
-  <LatestBlog />
-  <Faq />
-  <FinalCta />
+<BaseLayout
+  title="Rank Ready — Websites That Come Pre-Ranked | SEO + GEO Agency"
+  description="Rank-Ready websites engineered for Google and AI search. Semantic SEO, GEO, local landing pages, GMB and audits. Get a free SEO + GEO audit in 48 hours."
+>
+  <!-- 1. HERO -->
+  <section class="n-hero">
+    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
+    <div class="row inner hero-grid">
+      <div class="hero-copy">
+        <div class="badge"><span class="dot"></span>NOW OPTIMIZING FOR AI SEARCH &amp; GOOGLE</div>
+        <h1>Rank on Google.<br />Get cited by AI.<br /><span class="grad">Dominate both.</span></h1>
+        <p class="lead">We build Rank-Ready websites engineered for traditional SEO <em>and</em> generative engines like ChatGPT, Perplexity, and Google AI Overviews — so your business wins the future of search, not just the past.</p>
+        <div class="rr-btn-group">
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+          <a href="#audit" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get My Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+        <div class="trust">
+          <div class="avs"><span class="av a1">JS</span><span class="av a2">SK</span><span class="av a3">DP</span><span class="av a4">+</span></div>
+          <div class="trust-txt"><div class="stars">★★★★★ <b>4.9/5</b></div><span>from 120+ clients in 15+ industries</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="vis-card g-card">
+          <div class="v-search"><i class="fas fa-search"></i> best law firm near me</div>
+          <div class="v-res">
+            <div class="v-rank">#1</div>
+            <div><div class="v-title">Smith &amp; Associates Law Firm</div><div class="v-url">smithlaw.com · ★★★★★ 4.9</div></div>
+          </div>
+          <div class="v-tag">GOOGLE · 1ST RESULT</div>
+        </div>
+        <div class="vis-card ai-card">
+          <div class="ai-head"><span class="ai-ico">AI</span><span>ChatGPT</span><span class="ai-live">● live answer</span></div>
+          <p>Based on recent reviews and expertise, I’d recommend <strong>Smith &amp; Associates</strong> as a top choice for…</p>
+          <div class="ai-src"><span>smithlaw.com</span><span>avvo.com</span><span>justia.com</span></div>
+        </div>
+        <div class="vis-card score-card">
+          <div class="ring"><svg viewBox="0 0 36 36"><path class="r-bg" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 1 1 0-31" /><path class="r-fg" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 1 1 0-31" /></svg><b>74%</b></div>
+          <div><div class="sc-t">AI Visibility Score</div><div class="sc-n">↑ from 0% in 90 days</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. STATS STRIP -->
+  <section class="stats-sec">
+    <div class="row stats">
+      {stats.map((s) => (<div class="stat"><div class="st-v grad">{s.value}</div><div class="st-l">{s.label}</div></div>))}
+    </div>
+  </section>
+
+  <!-- 3. INDUSTRIES STRIP -->
+  <section class="ind-sec">
+    <div class="row ind-row">
+      <p class="ind-lbl">Specialists in</p>
+      <div class="ind-list">
+        {industries.map((i) => (<a href={i.href} class="ind"><i class={i.icon}></i><span set:html={i.name} /></a>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE HARD TRUTH -->
+  <section class="sec prob-sec">
+    <div class="row prob-grid">
+      <div class="prob-head">
+        <p class="eyebrow red">THE HARD TRUTH</p>
+        <h2 class="h2">Your website looks fine. <span class="muted">It just isn’t built to be found.</span></h2>
+        <p class="sub">Most sites fail in search for the same three reasons. If any of these sound familiar, you’re leaving customers to your competitors every single day.</p>
+        <a href="/services/seo-audits/" class="rr-btn rr-btn-outline"><span>Find out what’s holding you back</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+      </div>
+      <div class="prob-list">
+        {problems.map((p, i) => (
+          <div class="prob">
+            <div class="prob-n">0{i + 1}</div>
+            <div class="prob-ico"><i class={p.icon}></i></div>
+            <div><div class="prob-t">{p.title}</div><div class="prob-x" set:html={p.text} /></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. METHOD -->
+  <section class="sec method-sec">
+    <div class="bg" aria-hidden="true"><div class="m-glow"></div><div class="gl"></div></div>
+    <div class="row inner center head">
+      <p class="eyebrow">THE RANK READY METHOD™</p>
+      <h2 class="h2 light">Four layers. <span class="grad">One system</span> that compounds.</h2>
+      <p class="sub light">Every engagement is built on the same four-layer foundation — each layer makes the next one stronger.</p>
+    </div>
+    <div class="row inner pillars">
+      {pillars.map((p, i) => (
+        <div class:list={['pillar', { hot: i === 3 }]}>
+          <div class="p-top"><span class="p-n">{p.n}</span><span class="p-line"></span></div>
+          <div class="p-t">{p.title}</div>
+          <div class="p-x">{p.text}</div>
+          {i === 3 && <span class="p-new">NEW</span>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 6. SERVICES (BENTO) -->
+  <section class="sec svc-sec">
+    <div class="row svc-head">
+      <div>
+        <p class="eyebrow">WHAT WE DO</p>
+        <h2 class="h2">Six services. Built to work together.</h2>
+      </div>
+      <a href="/services/" class="rr-btn rr-btn-outline"><span>View all services</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+    </div>
+    <div class="row bento">
+      {services.map((s) => (
+        <a href={s.href} class:list={['tile', { big: s.big, wide: s.wide }]}>
+          {s.big && <div class="tile-glow"></div>}
+          <div class="tile-in">
+            <div class="t-ico"><i class={s.icon}></i></div>
+            <div class="t-tag">{s.tag}</div>
+            <div class="t-title" set:html={s.title} />
+            <div class="t-text" set:html={s.text} />
+            {s.big && <ul class="t-list">{geoPoints.slice(0, 3).map((g) => <li set:html={g} />)}</ul>}
+            <div class="t-more">Explore service <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 7. GEO -->
+  <section class="sec geo-sec">
+    <div class="row geo-grid">
+      <div>
+        <p class="eyebrow purple"><i class="fas fa-bolt"></i> THE FUTURE OF SEARCH</p>
+        <h2 class="h2 light">Your next customer won’t Google you. <span class="purple-t">They’ll ask ChatGPT.</span></h2>
+        <p class="sub light">Generative Engine Optimization (GEO) gets your brand cited <em>inside</em> AI-generated answers from ChatGPT, Perplexity, Claude, Google AI Overviews, and Gemini. It’s not SEO 2.0 — it’s a completely new playbook.</p>
+        <ul class="geo-list">{geoPoints.map((p) => <li set:html={p} />)}</ul>
+        <a href="/services/ai-geo-optimization/" class="rr-btn rr-btn-primary"><span>Explore GEO Services</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+      </div>
+      <div class="geo-vis">
+        <div class="compare">
+          <div class="cmp old">
+            <div class="cmp-h">Traditional search</div>
+            <div class="g-q"><i class="fas fa-search"></i> best seo agency near me</div>
+            <div class="g-r"><div class="g-u"><span class="g-ad">Sponsored</span> topseoagency.com</div><div class="g-t">Top SEO Agency | Free Consultation</div></div>
+            <div class="g-r"><div class="g-u">clutch.co › seo-firms</div><div class="g-t">Top 50 SEO Companies — 2026 Rankings</div></div>
+            <div class="g-r"><div class="g-u">digitalgrowth.io</div><div class="g-t">SEO Services That Deliver Results</div></div>
+            <div class="g-r"><div class="g-u">localseopros.com</div><div class="g-t">Local SEO Experts | Get a Quote</div></div>
+            <div class="g-more">+ 6 more results on page 1</div>
+            <div class="cmp-note">10 blue links · you compete for clicks</div>
+          </div>
+          <div class="cmp new">
+            <div class="cmp-h"><span class="sp"><i class="fas fa-compass"></i></span> Perplexity AI</div>
+            <div class="g-q ai"><i class="fas fa-search"></i> best seo agency near me</div>
+            <div class="ai-lbl"><i class="fas fa-check-circle"></i> Answer</div>
+            <p>For the best local SEO agency specializing in AI optimization, I’d recommend <strong>Rank Ready</strong>. They’re pioneers in Generative Engine Optimization…</p>
+            <div class="chips"><span>rank-ready.com</span><span>forbes.com</span><span>searchengineland.com</span></div>
+            <div class="ai-cite"><span class="ai-cite-n">3</span> sources cited · Rank Ready ranked #1</div>
+            <div class="cmp-note">1 answer · you’re the recommendation</div>
+          </div>
+        </div>
+        <div class="geo-fact"><b>58%</b> of Google searches now end without a traditional click. If you’re not in the AI answer, you’re invisible.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CASE STUDIES -->
+  <section class="sec cs-sec">
+    <div class="row svc-head">
+      <div>
+        <p class="eyebrow">PROVEN RESULTS</p>
+        <h2 class="h2">Real businesses. Real rankings.</h2>
+      </div>
+      <a href="/case-studies/" class="rr-btn rr-btn-outline"><span>All case studies</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+    </div>
+    <div class="row cs-grid">
+      {cases.map((c) => (
+        <a href={c.href} class="cs">
+          <div class="cs-top" style={'background:linear-gradient(135deg,' + c.colors[0] + ' 0%,' + c.colors[1] + ' 100%)'}>
+            <div class="cs-gridlines"></div>
+            <span class="cs-ico"><i class={c.icon}></i></span>
+            <div class="cs-metric"><b>{c.value}</b><span>{c.label}</span></div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-tag">{c.tag}</div>
+            <div class="cs-title">{c.title}</div>
+            <div class="cs-more">Read the case study <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 9. PROCESS -->
+  <section class="sec proc-sec">
+    <div class="row center head">
+      <p class="eyebrow">HOW WE WORK</p>
+      <h2 class="h2">From audit to scale in five clear steps.</h2>
+      <p class="sub">No black boxes. You always know what we’re doing, why, and what comes next.</p>
+    </div>
+    <ol class="row steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <div class="s-dot">{i + 1}</div>
+          <div class="s-t">{s.title}</div>
+          <div class="s-x">{s.text}</div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- 10. TESTIMONIALS -->
+  <section class="sec rev-sec">
+    <div class="row rev-grid">
+      <div class="rev-feature">
+        <div class="q-mark">“</div>
+        <p class="rf-q">{reviews[0].quote}</p>
+        <div class="who"><div class="w-av">{reviews[0].initials}</div><div><div class="w-n">{reviews[0].name}</div><div class="w-r" set:html={reviews[0].role} /></div></div>
+        <div class="rf-badge">★★★★★ <span>4.9/5 average rating</span></div>
+      </div>
+      <div class="rev-side">
+        <p class="eyebrow">WHAT CLIENTS SAY</p>
+        <h2 class="h2">We let results — and clients — do the talking.</h2>
+        {reviews.slice(1).map((r) => (
+          <div class="rev">
+            <div class="stars sm">★★★★★</div>
+            <p>“{r.quote}”</p>
+            <div class="who sm"><div class="w-av">{r.initials}</div><div><div class="w-n">{r.name}</div><div class="w-r" set:html={r.role} /></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FREE AUDIT -->
+  <section class="sec audit-sec" id="audit">
+    <div class="row audit-card">
+      <div class="au-glow"></div>
+      <div class="au-grid">
+        <div>
+          <p class="eyebrow light-g">FREE 20-PAGE AUDIT</p>
+          <h2 class="h2 light">See exactly why you’re not ranking — and what to fix first.</h2>
+          <p class="sub light">A free, no-strings audit of your technical SEO, semantic structure, local footprint, and your visibility inside AI search engines. Delivered in 48 hours.</p>
+          <form class="au-form" data-key={site.web3formsKey} data-email={site.email}>
+            <input type="email" name="email" required placeholder="Enter your work email" aria-label="Email" />
+            <button type="submit" class="rr-btn rr-btn-primary"><span>Get My Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></button>
+          </form>
+          <p class="au-msg" hidden></p>
+          <div class="au-ticks"><span><i class="fas fa-check"></i> Free</span><span><i class="fas fa-check"></i> 48-hour delivery</span><span><i class="fas fa-check"></i> No sales pitch</span><span><i class="fas fa-check"></i> 100% actionable</span></div>
+        </div>
+        <div class="report">
+          <div class="r-head"><span class="r-lbl">RANK READY AUDIT</span><span class="r-pill">Sample</span></div>
+          <div class="r-title">Your SEO + GEO Health Report</div>
+          {report.map((r) => (
+            <div class="r-line">
+              <div class="r-top"><span>{r.k}</span><b class={r.c}>{r.v}</b></div>
+              <div class="r-bar"><span class={r.c} style={'width:' + r.pct + '%'}></span></div>
+            </div>
+          ))}
+          <div class="r-note"><i class="fas fa-clipboard-check"></i> 23 actionable recommendations inside</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. LATEST BLOG -->
+  <section class="sec blog-sec">
+    <div class="row svc-head">
+      <div>
+        <p class="eyebrow">INSIGHTS</p>
+        <h2 class="h2">Latest from the Rank Ready blog.</h2>
+      </div>
+      <a href="/blog/" class="rr-btn rr-btn-outline"><span>Visit the blog</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+    </div>
+    <div class="row blog-grid">
+      {latest.map((p) => (
+        <a href={'/' + p.slug + '/'} class="post">
+          <div class="p-img">{p.img ? <img src={'/images/blog/' + p.img} alt={p.title} width="768" height="512" loading="lazy" /> : <div class="ph"><i class="fas fa-pen-nib"></i></div>}</div>
+          <div class="p-body">
+            <div class="p-meta"><span class="chip">{p.cat}</span><span>{fmt(p.date)}</span></div>
+            <div class="p-title">{p.title}</div>
+            <div class="p-more">Read article <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 13. FAQ -->
+  <section class="sec faq-sec">
+    <div class="row faq-grid">
+      <div class="faq-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2">Questions, answered honestly.</h2>
+        <p class="sub">Still unsure? Talk to a senior strategist — no pitch, just straight answers.</p>
+        <div class="faq-cta">
+          <div class="fc-t">Still have questions?</div>
+          <p>Book a free 30-minute call and get clear advice on your rankings.</p>
+          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Book a Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+      </div>
+      <div class="faq-list"><FaqList faqs={faqs} /></div>
+    </div>
+  </section>
+
+  <!-- 14. FINAL CTA -->
+  <section class="final">
+    <div class="bg" aria-hidden="true"><div class="f1"></div><div class="f2"></div><div class="gl"></div></div>
+    <div class="row inner center">
+      <div class="badge"><span class="dot"></span>LET’S BUILD THE FUTURE OF YOUR SEARCH PRESENCE</div>
+      <h2>Ready to be <span class="grad">Rank Ready?</span></h2>
+      <p class="lead c">Stop watching competitors who figured this out first. Let’s build you a site and a search footprint that wins Google, wins local, and wins AI — starting today.</p>
+      <div class="rr-btn-group" style="justify-content:center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Strategy Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Request a Custom Quote</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+      </div>
+      <div class="assure"><span><i class="fas fa-check"></i> No pressure</span><span><i class="fas fa-check"></i> No obligation</span><span><i class="fas fa-check"></i> 30-minute fit call</span></div>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  const f = document.querySelector('.au-form') as HTMLFormElement;
+  const msg = document.querySelector('.au-msg') as HTMLElement;
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (f.elements.namedItem('email') as HTMLInputElement).value;
+    const key = f.dataset.key;
+    if (!key) {
+      location.href = 'mailto:' + f.dataset.email + '?subject=' + encodeURIComponent('Free SEO + GEO Audit Request') + '&body=' + encodeURIComponent('Please send a free audit to: ' + email);
+      return;
+    }
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ access_key: key, subject: 'Free Audit Request', email }),
+    });
+    msg.hidden = false;
+    msg.textContent = res.ok ? 'Thank you! Your audit request has been received.' : 'Something went wrong. Please email us instead.';
+    if (res.ok) f.reset();
+  });
+</script>
+
+<style>
+  section { font-family: var(--inter); position: relative; }
+  .grad { background: linear-gradient(135deg, #6EE7B7 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .inner { z-index: 1; position: relative; }
+  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 11.5px; font-weight: 600; color: var(--green); letter-spacing: 1.4px; line-height: 1.7; margin-bottom: 26px; }
+  .dot { display: inline-block; width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
+  .eyebrow { margin-bottom: 12px; padding: 0; }
+  .eyebrow.red { color: #EF4444; }
+  .eyebrow.purple { color: #34D399; }
+  .eyebrow.light-g { color: #6EE7B7; }
+  .h2 { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; color: var(--navy); margin-bottom: 18px; padding: 0; }
+  .h2.light { color: #fff; }
+  .h2 .muted { color: #94A3B8; }
+  .sub { font-size: 17px; line-height: 1.7; color: var(--slate-500); padding: 0; margin-bottom: 28px; }
+  .sub.light { color: var(--slate-300); }
+  .head { padding: 0 0 56px; }
+  .head .sub { max-width: 640px; margin: 0 auto; }
+  .stars { color: #FBBF24; letter-spacing: 1px; }
+
+  /* 1. Hero */
+  .n-hero { background: radial-gradient(1200px 600px at 80% -10%, rgba(16,185,129,.18), transparent 60%), linear-gradient(135deg, #0B1224 0%, #020617 100%); padding: 100px 0 170px; overflow: hidden; }
+  .g1 { position: absolute; top: -10%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(16,185,129,.16) 0%, transparent 70%); filter: blur(80px); }
+  .g2 { position: absolute; bottom: -30%; right: 10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(16,185,129,.16) 0%, transparent 70%); filter: blur(90px); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 60px; align-items: center; }
+  .n-hero h1 { font-size: 66px; font-weight: 800; line-height: 1.04; letter-spacing: -2.4px; color: #fff; margin-bottom: 24px; padding: 0; }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--slate-300); margin-bottom: 34px; padding: 0; max-width: 580px; }
+  .lead em { color: #fff; font-style: normal; font-weight: 600; }
+  .trust { display: flex; align-items: center; gap: 16px; margin-top: 34px; }
+  .avs { display: flex; }
+  .av { width: 38px; height: 38px; border-radius: 50%; border: 2px solid #0B1224; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+  .av + .av { margin-left: -10px; }
+  .a1 { background: linear-gradient(135deg, #10B981, #059669); }
+  .a2 { background: linear-gradient(135deg, #10B981, #059669); }
+  .a3 { background: linear-gradient(135deg, #F59E0B, #D97706); }
+  .a4 { background: #1E293B; color: var(--slate-300); }
+  .trust-txt { line-height: 1.5; }
+  .trust-txt .stars { font-size: 14px; }
+  .trust-txt b { color: #fff; margin-left: 4px; }
+  .trust-txt span { font-size: 13.5px; color: var(--slate-400); }
+
+  .hero-visual { position: relative; height: 470px; }
+  .vis-card { position: absolute; background: rgba(15,23,42,.72); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; backdrop-filter: blur(16px); box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); color: #fff; }
+  .g-card { top: 0; left: 0; right: 60px; padding: 24px; }
+  .v-search { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 100px; padding: 10px 18px; font-size: 14px; color: var(--slate-300); margin-bottom: 18px; }
+  .v-res { display: flex; gap: 14px; align-items: center; }
+  .v-rank { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, #10B981, #059669); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 17px; flex: none; }
+  .v-title { font-size: 16px; font-weight: 700; color: #93C5FD; line-height: 1.4; }
+  .v-url { font-size: 12.5px; color: var(--slate-400); }
+  .v-tag { position: absolute; top: -12px; right: 20px; background: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.2px; padding: 5px 10px; border-radius: 100px; }
+  .ai-card { top: 170px; left: 60px; right: 0; padding: 24px; border-color: rgba(16,185,129,.35); }
+  .ai-head { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .ai-ico { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, #047857, #34D399); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+  .ai-live { margin-left: auto; color: #6EE7B7; font-size: 11.5px; font-weight: 600; }
+  .ai-card p { font-size: 14.5px; line-height: 1.65; color: #E2E8F0; padding: 0; margin-bottom: 14px; }
+  .ai-card strong { color: #6EE7B7; }
+  .ai-src { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ai-src span { font-size: 11px; color: var(--slate-300); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 100px; padding: 4px 10px; }
+  .score-card { bottom: 0; left: 0; display: flex; gap: 16px; align-items: center; padding: 18px 24px 18px 18px; }
+  .ring { position: relative; width: 64px; height: 64px; }
+  .ring svg { width: 64px; height: 64px; transform: rotate(-90deg); }
+  .ring path { fill: none; stroke-width: 3.2; }
+  .r-bg { stroke: rgba(255,255,255,.1); }
+  .r-fg { stroke: #10B981; stroke-dasharray: 72 100; stroke-linecap: round; }
+  .ring b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+  .sc-t { font-size: 15px; font-weight: 700; }
+  .sc-n { font-size: 12.5px; color: #6EE7B7; }
+
+  /* 2. Stats */
+  .stats-sec { z-index: 2; margin-top: -84px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.3); padding: 0; overflow: hidden; }
+  .stat { padding: 30px 30px 28px; }
+  .stat + .stat { border-left: 1px solid #E2E8F0; }
+  .st-v { font-size: 42px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.05; margin-bottom: 8px; }
+  .st-l { font-size: 14px; color: var(--slate-500); line-height: 1.5; }
+
+  /* 3. Industries strip */
+  .ind-sec { padding: 56px 0 0; background: #fff; }
+  .ind-row { display: flex; align-items: center; gap: 24px; padding: 0; flex-wrap: wrap; justify-content: center; }
+  .ind-lbl { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate-400); padding: 0; }
+  .ind-list { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .ind { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border: 1px solid #E2E8F0; border-radius: 100px; font-size: 14.5px; font-weight: 600; color: var(--navy); transition: all .2s; line-height: 1.5; }
+  .ind i { color: var(--green); font-size: 14px; }
+  .ind:hover { border-color: var(--green); background: #F0FDF8; }
+
+  /* 4. Problems */
+  .prob-sec { background: #fff; }
+  .prob-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; padding: 0; }
+  .prob-list { display: grid; gap: 16px; }
+  .prob { display: grid; grid-template-columns: auto auto 1fr; gap: 20px; align-items: center; padding: 26px 28px; border: 1px solid #E2E8F0; border-radius: 18px; background: #fff; transition: all .3s; }
+  .prob:hover { border-color: #FCA5A5; box-shadow: 0 20px 40px -24px rgba(239,68,68,.35); transform: translateX(6px); }
+  .prob-n { font-size: 13px; font-weight: 800; color: #CBD5E1; }
+  .prob-ico { width: 52px; height: 52px; border-radius: 14px; background: #FEF2F2; border: 1px solid #FECACA; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #DC2626; }
+  .prob-t { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.35; }
+  .prob-x { font-size: 15px; color: var(--slate-500); line-height: 1.6; }
+
+  /* 5. Method */
+  .method-sec { background: linear-gradient(180deg, #0B1224 0%, #020617 100%); overflow: hidden; }
+  .m-glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(ellipse, rgba(16,185,129,.14), transparent 65%); filter: blur(50px); }
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0; }
+  .pillar { position: relative; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 30px 26px; transition: all .3s; }
+  .pillar:hover { background: rgba(255,255,255,.05); border-color: rgba(16,185,129,.4); transform: translateY(-4px); }
+  .pillar.hot { background: linear-gradient(160deg, rgba(16,185,129,.18), rgba(16,185,129,.08)); border-color: rgba(16,185,129,.45); }
+  .p-top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+  .p-n { font-size: 14px; font-weight: 800; color: var(--green); letter-spacing: 1px; }
+  .pillar.hot .p-n { color: #34D399; }
+  .p-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(16,185,129,.5), transparent); }
+  .p-t { font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+  .p-x { font-size: 14.5px; color: var(--slate-400); line-height: 1.65; }
+  .p-new { position: absolute; top: 18px; right: 18px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: #fff; background: var(--green); padding: 4px 9px; border-radius: 100px; }
+
+  /* 6. Bento services */
+  .svc-sec { background: var(--light-bg); }
+  .svc-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 0 0 40px; }
+  .svc-head .h2 { margin: 0; }
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: auto; gap: 20px; padding: 0; }
+  .tile { position: relative; overflow: hidden; display: block; background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; transition: all .3s; }
+  .tile:hover { transform: translateY(-5px); border-color: var(--green); box-shadow: 0 26px 50px -26px rgba(15,23,42,.25); }
+  .tile:hover .t-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
+  .tile.big { grid-row: span 2; background: linear-gradient(160deg, #064E3B 0%, #0F172A 100%); border-color: transparent; color: #fff; }
+  .tile:not(.wide) { min-height: 250px; }
+  .tile.wide { grid-column: 1 / -1; }
+  .tile.wide .tile-in { display: grid; grid-template-columns: auto 1fr auto; gap: 2px 24px; align-items: center; padding: 28px 30px; }
+  .tile.wide .t-ico { margin: 0; grid-row: 1 / span 3; grid-column: 1; }
+  .tile.wide .t-tag, .tile.wide .t-title, .tile.wide .t-text { grid-column: 2; }
+  .tile.wide .t-title { margin-bottom: 4px; }
+  .tile.wide .t-text { margin: 0; }
+  .tile.wide .t-more { grid-column: 3; grid-row: 1 / span 3; margin: 0; white-space: nowrap; }
+  .tile-glow { position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(16,185,129,.45), transparent 70%); filter: blur(40px); }
+  .tile-in { position: relative; padding: 30px 28px; display: flex; flex-direction: column; height: 100%; }
+  .tile.big .tile-in { padding: 38px 34px; }
+  .t-ico { width: 50px; height: 50px; border-radius: 14px; background: #ECFDF5; color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
+  .tile.big .t-ico { width: 60px; height: 60px; font-size: 24px; background: linear-gradient(135deg, #047857, #34D399); color: #fff; }
+  .t-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--slate-400); margin-bottom: 6px; line-height: 1.7; }
+  .tile.big .t-tag { color: #34D399; }
+  .t-title { font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 10px; letter-spacing: -.3px; }
+  .tile.big .t-title { font-size: 32px; color: #fff; letter-spacing: -.8px; line-height: 1.15; }
+  .t-text { font-size: 14.5px; color: var(--slate-500); line-height: 1.65; margin-bottom: 18px; }
+  .tile.big .t-text { color: var(--slate-300); font-size: 16px; }
+  .t-list { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+  .t-list li { position: relative; padding-left: 28px; font-size: 14.5px; color: #E2E8F0; line-height: 1.5; }
+  .t-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--green); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .t-more { margin-top: auto; font-size: 14px; font-weight: 700; color: var(--green); }
+  .t-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
+
+  /* 7. GEO */
+  .geo-sec { background: linear-gradient(135deg, #053D2F 0%, #0F172A 55%, #020617 100%); overflow: hidden; }
+  .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 0; }
+  .purple-t { color: #34D399; }
+  .geo-list { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 12px; }
+  .geo-list li { position: relative; padding-left: 32px; font-size: 15.5px; color: #E2E8F0; line-height: 1.5; }
+  .geo-list li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(16,185,129,.25); border: 1px solid rgba(16,185,129,.6); color: #6EE7B7; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
+  :global(.rr-btn-violet) { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #fff !important; box-shadow: 0 10px 30px -8px rgba(16,185,129,.55); }
+  :global(.rr-btn-violet:hover) { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(16,185,129,.6); }
+  .compare { display: grid; grid-template-columns: 1fr 1.25fr; gap: 16px; align-items: stretch; }
+  .cmp { border-radius: 20px; padding: 24px; color: #fff; }
+  .cmp.old { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.1); }
+  .cmp.new { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.5); box-shadow: 0 30px 60px -30px rgba(16,185,129,.6); }
+  .cmp-h { font-size: 13px; font-weight: 700; letter-spacing: .5px; margin-bottom: 18px; color: var(--slate-300); }
+  .cmp.new .cmp-h { color: #fff; }
+  .sp { color: #34D399; }
+  .g-q { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #CBD5E1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 8px 14px; margin-bottom: 16px; }
+  .g-q i { font-size: 11px; color: #94A3B8; }
+  .g-r { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .g-u { font-size: 11px; color: #94A3B8; margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+  .g-ad { font-size: 9.5px; font-weight: 700; color: #CBD5E1; background: rgba(255,255,255,.1); border-radius: 4px; padding: 1px 6px; }
+  .g-t { font-size: 13.5px; font-weight: 600; color: #93C5FD; line-height: 1.4; }
+  .cmp { display: flex; flex-direction: column; }
+  .cmp .cmp-note { margin-top: auto; padding-top: 10px; }
+  .g-q.ai { background: rgba(16,185,129,.1); border-color: rgba(16,185,129,.3); color: #E2E8F0; }
+  .g-q.ai i { color: #6EE7B7; }
+  .ai-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6EE7B7; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .ai-cite { font-size: 12px; color: #CBD5E1; margin: 14px 0 4px; display: flex; align-items: center; gap: 8px; }
+  .ai-cite-n { width: 20px; height: 20px; border-radius: 50%; background: #10B981; color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .g-more { font-size: 11.5px; color: #64748B; padding: 10px 0 4px; }
+  .cmp.new p { font-size: 14.5px; line-height: 1.65; color: #E2E8F0; padding: 0; margin-bottom: 14px; }
+  .cmp.new strong { color: #6EE7B7; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .chips span { font-size: 11px; color: #A7F3D0; background: rgba(16,185,129,.18); border-radius: 100px; padding: 4px 9px; }
+  .cmp-note { font-size: 12px; color: var(--slate-400); margin-top: 6px; }
+  .cmp.new .cmp-note { color: #6EE7B7; font-weight: 600; }
+  .geo-fact { margin-top: 18px; padding: 18px 22px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); font-size: 14.5px; color: var(--slate-300); line-height: 1.6; }
+  .geo-fact b { color: #fff; font-size: 22px; margin-right: 6px; }
+
+  /* 8. Case studies */
+  .cs-sec { background: #fff; }
+  .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0; }
+  .cs { display: block; border: 1px solid #E2E8F0; border-radius: 22px; overflow: hidden; background: #fff; transition: all .3s; }
+  .cs:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -26px rgba(15,23,42,.25); border-color: var(--green); }
+  .cs:hover .cs-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
+  .cs-top { position: relative; height: 210px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; }
+  .cs-gridlines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 28px 28px; }
+  .cs-ico { position: absolute; top: 22px; right: 24px; font-size: 40px; color: rgba(255,255,255,.85); line-height: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,.25)); }
+  .cs-metric { position: relative; }
+  .cs-metric b { display: block; font-size: 46px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
+  .cs-metric span { font-size: 14px; color: rgba(255,255,255,.75); }
+  .cs-body { padding: 24px 26px 26px; }
+  .cs-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; color: var(--slate-400); margin-bottom: 8px; line-height: 1.7; }
+  .cs-title { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 16px; letter-spacing: -.3px; }
+  .cs-more { font-size: 14px; font-weight: 700; color: var(--green); }
+  .cs-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
+
+  /* 9. Process */
+  .proc-sec { background: var(--light-bg); }
+  .steps { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0; position: relative; margin-top: 0; margin-bottom: 0; }
+  .steps::before { content: ""; position: absolute; top: 26px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, #34D399, #047857); opacity: .35; }
+  .step { position: relative; text-align: center; padding: 0 6px; }
+  .s-dot { position: relative; width: 54px; height: 54px; margin: 0 auto 20px; border-radius: 16px; background: #fff; border: 2px solid var(--green); color: var(--green); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 19px; box-shadow: 0 10px 24px -12px rgba(16,185,129,.6); }
+  .step:last-child .s-dot { background: linear-gradient(135deg, #34D399, #047857); color: #fff; border: 0; }
+  .s-t { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .s-x { font-size: 14.5px; color: var(--slate-500); line-height: 1.6; }
+
+  /* 10. Testimonials */
+  .rev-sec { background: #fff; }
+  .rev-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; padding: 0; }
+  .rev-feature { position: relative; background: linear-gradient(150deg, #0F172A 0%, #1E293B 100%); border-radius: 26px; padding: 52px 50px; color: #fff; overflow: hidden; }
+  .rev-feature::after { content: ""; position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%); filter: blur(40px); }
+  .q-mark { font-family: Georgia, serif; font-size: 100px; line-height: .7; font-weight: 800; background: linear-gradient(135deg, #34D399, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; }
+  .rf-q { position: relative; font-size: 23px; line-height: 1.55; font-weight: 500; color: #F1F5F9; padding: 0; margin-bottom: 30px; letter-spacing: -.2px; }
+  .who { position: relative; display: flex; align-items: center; gap: 14px; }
+  .w-av { width: 50px; height: 50px; flex: none; border-radius: 50%; background: linear-gradient(135deg, #34D399, #047857); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; }
+  .w-n { font-size: 15.5px; font-weight: 700; line-height: 1.5; }
+  .w-r { font-size: 13px; color: var(--slate-400); line-height: 1.5; }
+  .rf-badge { position: relative; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); color: #FBBF24; font-size: 15px; }
+  .rf-badge span { color: var(--slate-300); margin-left: 8px; font-size: 13.5px; }
+  .rev { padding: 22px 0; border-top: 1px solid #E2E8F0; }
+  .rev .stars.sm { font-size: 13px; margin-bottom: 8px; }
+  .rev p { font-size: 15.5px; color: #334155; line-height: 1.7; padding: 0; margin-bottom: 14px; }
+  .who.sm .w-av { width: 40px; height: 40px; font-size: 13px; }
+  .who.sm .w-n { color: var(--navy); font-size: 14.5px; }
+  .who.sm .w-r { color: var(--slate-500); }
+
+  /* 11. Audit */
+  .audit-sec { background: var(--light-bg); }
+  .audit-card { position: relative; background: linear-gradient(135deg, #064E3B 0%, #065F46 45%, #0F172A 100%); border-radius: 30px; padding: 64px 60px; overflow: hidden; }
+  .au-glow { position: absolute; top: -100px; right: -60px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(16,185,129,.4), transparent 70%); filter: blur(60px); }
+  .au-grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .au-form { display: flex; gap: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 6px; max-width: 520px; }
+  .au-form input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #fff; font-family: var(--inter); font-size: 15px; padding: 12px 14px; }
+  .au-form input::placeholder { color: rgba(255,255,255,.55); }
+  .au-form button { border: 0; cursor: pointer; font-family: var(--inter); flex: none; }
+  .au-msg { color: #A7F3D0; font-size: 14.5px; padding: 12px 0 0; }
+  .au-msg[hidden] { display: none; }
+  .au-ticks { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 13.5px; color: #A7F3D0; }
+  .report { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.5); transform: rotate(2deg); }
+  .r-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .r-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--green); }
+  .r-pill { font-size: 11px; color: var(--slate-500); background: var(--light-bg); border-radius: 100px; padding: 3px 10px; }
+  .r-title { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 20px; letter-spacing: -.3px; }
+  .r-line { margin-bottom: 14px; }
+  .r-top { display: flex; justify-content: space-between; font-size: 14px; color: #334155; margin-bottom: 6px; }
+  .r-top b.red { color: #DC2626; } .r-top b.amber { color: #D97706; }
+  .r-bar { height: 7px; border-radius: 6px; background: #F1F5F9; overflow: hidden; }
+  .r-bar span { display: block; height: 100%; border-radius: 6px; }
+  .r-bar span.red { background: #EF4444; } .r-bar span.amber { background: #F59E0B; }
+  .r-note { margin-top: 18px; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 13.5px; color: var(--slate-500); }
+
+  /* 12. Blog */
+  .blog-sec { background: #fff; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0; }
+  .post { display: block; border: 1px solid #E2E8F0; border-radius: 20px; overflow: hidden; background: #fff; transition: all .3s; }
+  .post:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -24px rgba(15,23,42,.22); border-color: var(--green); }
+  .post:hover .p-img img { transform: scale(1.04); }
+  .post:hover .p-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
+  .p-img { aspect-ratio: 16 / 10; overflow: hidden; background: #0F172A; }
+  .p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .ph { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .p-body { padding: 22px 24px 24px; }
+  .p-meta { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--slate-400); margin-bottom: 12px; }
+  .chip { font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #047857; background: #ECFDF5; border-radius: 100px; padding: 3px 10px; }
+  .p-title { font-size: 18.5px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 14px; letter-spacing: -.2px; }
+  .p-more { font-size: 14px; font-weight: 700; color: var(--green); }
+  .p-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
+
+  /* 13. FAQ */
+  .faq-sec { background: var(--light-bg); }
+  .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; padding: 0; }
+  .faq-head { position: sticky; top: 110px; }
+  .faq-cta { background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 26px; }
+  .fc-t { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .faq-cta p { font-size: 14.5px; color: var(--slate-500); line-height: 1.6; padding: 0; margin-bottom: 18px; }
+  .faq-list :global(.row) { width: 100%; max-width: none; padding: 0; }
+
+  /* 14. Final CTA */
+  .final { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #064E3B 100%); padding: 130px 0; overflow: hidden; }
+  .f1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 500px; background: radial-gradient(ellipse, rgba(16,185,129,.15) 0%, transparent 60%); filter: blur(60px); }
+  .f2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16,185,129,.2) 0%, transparent 70%); filter: blur(80px); }
+  .final h2 { font-size: 72px; font-weight: 800; line-height: 1.05; letter-spacing: -2.5px; color: #fff; margin-bottom: 22px; padding: 0; }
+  .lead.c { margin: 0 auto 34px; max-width: 640px; }
+  .assure { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-top: 26px; font-size: 14px; color: var(--slate-400); }
+
+  @media (max-width: 1100px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 560px; width: 100%; margin: 0 auto; }
+  }
+  @media (max-width: 980px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid #E2E8F0; }
+    .prob-grid, .geo-grid, .rev-grid, .au-grid, .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .tile.big { grid-column: span 2; grid-row: auto; }
+    .tile.wide .tile-in { grid-template-columns: auto 1fr; }
+    .tile.wide .t-more { grid-column: 2; grid-row: auto; }
+    .cs-grid, .blog-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 22px; }
+    .steps::before { display: none; }
+    .step { display: grid; grid-template-columns: 54px 1fr; gap: 6px 18px; text-align: left; }
+    .s-dot { margin: 0; grid-row: span 2; }
+    .faq-head { position: static; }
+    .report { transform: none; }
+  }
+  @media (max-width: 767px) {
+    .n-hero { padding: 56px 0 140px; }
+    .n-hero h1 { font-size: 40px; letter-spacing: -1.4px; }
+    .lead { font-size: 16.5px; }
+    .hero-visual { height: 430px; }
+    .g-card { right: 20px; } .ai-card { left: 20px; top: 175px; }
+    .stats-sec { margin-top: -90px; }
+    .stat { padding: 22px 18px; }
+    .st-v { font-size: 30px; }
+    .h2 { font-size: 31px; letter-spacing: -.8px; }
+    .svc-head { flex-direction: column; align-items: flex-start; }
+    .prob { grid-template-columns: auto 1fr; padding: 22px 20px; }
+    .prob-n { display: none; }
+    .pillars, .bento { grid-template-columns: 1fr; }
+    .tile.big { grid-column: auto; }
+    .tile.wide .tile-in { display: flex; align-items: flex-start; }
+    .tile.wide .t-ico { margin-bottom: 20px; }
+    .tile.wide .t-text { margin-bottom: 18px; }
+    .tile.big .t-title { font-size: 26px; }
+    .compare { grid-template-columns: 1fr; }
+    .rev-feature { padding: 36px 26px; }
+    .rf-q { font-size: 18.5px; }
+    .audit-card { padding: 40px 24px; border-radius: 22px; }
+    .au-form { flex-direction: column; }
+    .final { padding: 80px 0; }
+    .final h2 { font-size: 42px; letter-spacing: -1.4px; }
+  }
+</style>
