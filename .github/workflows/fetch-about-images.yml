@@ -1,0 +1,34 @@
+# Ek dafa chalne wala kaam: about page ke liye Unsplash se photos utha ke public/images/about/ mein save karta hai.
+name: Save about page images
+
+on:
+  push:
+    paths: ['.github/workflows/fetch-about-images.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images
+        run: |
+          mkdir -p public/images/about
+          for pair in \
+            team-1:1522071820081-009f0129c71c team-2:1600880292203-757bb62b4baf team-3:1552664730-d307ca884978 team-4:1521737604893-d14cc237f11d \
+            work-1:1497366216548-37526070297c work-2:1531482615713-2afd69097998 work-3:1542744173-8e7e53415bb0 work-4:1556761175-b413da4baf72; do
+            name="${pair%%:*}"; id="${pair#*:}"
+            curl -fsSL "https://images.unsplash.com/photo-$id?w=1200&h=900&fit=crop&q=72&fm=jpg" -o "public/images/about/$name.jpg" || echo "FAILED $name"
+          done
+          ls -la public/images/about
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/about
+          git commit -m "Save about page images" || echo "nothing to commit"
+          git pull --rebase
+          git push
