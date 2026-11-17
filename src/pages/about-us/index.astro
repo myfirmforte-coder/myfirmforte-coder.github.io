@@ -27,13 +27,14 @@ const values = [
 ];
 
 // Team: naya member add karna ho to yahan ek line add karein. Link na ho to '#' rehne dein (icon nahi dikhega).
+// photo: tasveer public/images/team/ mein rakh kar uska naam likhein, jaise photo: 'lareb.jpg'. Khali ('') ho to initials dikhte hain.
 const team = [
-  { initials: 'L', role: 'Founder', name: 'Lareb', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'US', role: 'Managing Director', name: 'Umair Sabir', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'SH', role: 'Digital Marketer', name: 'Shahroz Hassan', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'MZ', role: 'Project Manager', name: 'Mehmood Zaigham', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'MZ', role: 'Social Media Strategist', name: 'Muhammad Zeeshan', linkedin: '#', x: '#', facebook: 'https://www.facebook.com/share/1C7gKU2apa/' },
-  { initials: 'F', role: 'UI/UX Designer', name: 'Farran', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'L', role: 'Founder', name: 'Lareb', photo: '', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'US', role: 'Managing Director', name: 'Umair Sabir', photo: '', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'SH', role: 'Digital Marketer', name: 'Shahroz Hassan', photo: '', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'MZ', role: 'Project Manager', name: 'Mehmood Zaigham', photo: '', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'MZ', role: 'Social Media Strategist', name: 'Muhammad Zeeshan', photo: '', linkedin: '#', x: '#', facebook: 'https://www.facebook.com/share/1C7gKU2apa/' },
+  { initials: 'F', role: 'UI/UX Designer', name: 'Farran', photo: '', linkedin: '#', x: '#', facebook: '#' },
 ];
 
 const reasons = [
@@ -139,7 +140,10 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
     <div class="row team-grid">
       {team.map((m) => (
         <div class="member">
-          <div class="mono">{m.initials}</div>
+          <div class="m-photo">
+            {m.photo ? <img src={'/images/team/' + m.photo} alt={m.name + ', ' + m.role + ' at Rank Ready'} width="600" height="720" loading="lazy" /> : <span class="m-ph" aria-hidden="true">{m.initials}</span>}
+          </div>
+          <div class="m-body">
           <div class="m-info">
             <div class="m-name">{m.name}</div>
             <div class="m-role">{m.role}</div>
@@ -148,6 +152,7 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
             {m.linkedin !== '#' && <a href={m.linkedin} aria-label={m.name + ' on LinkedIn'} target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>}
             {m.x !== '#' && <a href={m.x} aria-label={m.name + ' on X'} target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>}
             {m.facebook !== '#' && <a href={m.facebook} aria-label={m.name + ' on Facebook'} target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>}
+          </div>
           </div>
         </div>
       ))}
@@ -273,13 +278,17 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
   .team { padding: 100px 0; background: #fff; }
   .team-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 48px; }
   .team-head .h2 { margin-bottom: 0; }
-  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .member { display: flex; align-items: center; gap: 16px; border: 1px solid #E2E8F0; border-radius: 18px; padding: 20px 22px; transition: border-color .3s, transform .3s; }
-  .member:hover { border-color: #A7F3D0; transform: translateY(-3px); }
-  .mono { width: 58px; height: 58px; flex: none; border-radius: 50%; background: #0F172A; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; letter-spacing: .5px; box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px #10B981; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .member { background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; padding: 10px; transition: box-shadow .35s, transform .35s; }
+  .member:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(15,23,42,.3); }
+  .m-photo { position: relative; aspect-ratio: 5 / 6; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #E8EEF4 0%, #DCE4EC 100%); display: flex; align-items: center; justify-content: center; }
+  .m-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .6s ease; }
+  .member:hover .m-photo img { transform: scale(1.04); }
+  .m-ph { font-size: 76px; font-weight: 800; letter-spacing: -2px; color: #fff; text-shadow: 0 2px 0 rgba(15,23,42,.04); }
+  .m-body { display: flex; align-items: center; gap: 12px; padding: 18px 12px 10px; }
   .m-info { flex: 1; min-width: 0; }
-  .m-name { font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.35; }
-  .m-role { font-size: 14px; color: var(--slate-500); line-height: 1.5; }
+  .m-name { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.35; letter-spacing: -.2px; }
+  .m-role { font-size: 14.5px; color: #059669; font-weight: 600; line-height: 1.5; }
   .m-social { display: flex; gap: 6px; }
   .m-social a { width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; color: #475569; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .25s; }
   .m-social a:hover { background: #10B981; border-color: #10B981; color: #fff; }
@@ -342,7 +351,14 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
     .stat { padding: 22px 20px; }
     .s-v { font-size: 30px; }
     .s-l { font-size: 13px; }
-    .team-grid, .why-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .member { padding: 6px; border-radius: 16px; }
+    .m-photo { border-radius: 12px; }
+    .m-ph { font-size: 44px; }
+    .m-body { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 8px 8px; }
+    .m-name { font-size: 15px; }
+    .m-role { font-size: 12.5px; }
     .reason, .reason:nth-child(n) { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
     .reason:last-child { border-bottom: 0; padding-bottom: 0; }
     .why { padding: 0 0 70px; }
