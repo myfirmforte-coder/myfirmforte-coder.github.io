@@ -24,7 +24,8 @@ jobs:
             ind-shop:1556742049-0cfed4f6a45d ind-store:1472851294608-062f824d29cc ind-city:1486406146926-c627a92ad1ab ind-office:1497366811353-6870744d04b2 \
             seo-1:1432888622747-4eb9a8efeb07 seo-2:1460925895917-afdab827c52f geo-1:1677442136019-21780ecad995 audit-1:1454165804606-c3d57bc86b40 \
             ind-news:1504711434969-e33886168f5c ind-edu:1523240795612-9a054b0db644 \
-            loc-map:1524661135-423995f22d0b loc-rest:1517248135467-4c7edcad34c4 loc-phone:1569336415962-a4bd9f69cd83 loc-street:1480714378408-67cf0d13bc1b; do
+            loc-map:1524661135-423995f22d0b loc-rest:1517248135467-4c7edcad34c4 loc-phone:1569336415962-a4bd9f69cd83 loc-street:1480714378408-67cf0d13bc1b \
+            gmb-phone:1512941937669-90a1b58e7e9c gmb-owner:1556740758-90de374c12ad gmb-shop:1556745757-8d76bdb6984b auto-1:1487754180451-c456f719a1fc auto-2:1625047509248-ec889cbff17f; do
             name="${pair%%:*}"; id="${pair#*:}"
             curl -fsSL "https://images.unsplash.com/photo-$id?w=1200&h=850&fit=crop&q=72&fm=jpg" -o "public/images/services/$name.jpg" || echo "FAILED $name"
           done
