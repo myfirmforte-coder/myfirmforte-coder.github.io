@@ -38,6 +38,19 @@ Green `#10B981` (buttons `#0BA976`), purple `#8B5CF6`, navy `#0F172A`, header `#
 footer `#020617`, light bg `#F8FAFC`, muted text `#64748B`. Sections: 100px vertical padding
 (60px on mobile). Rows: 90% wide, max 1280px. Columns stack at ≤980px; mobile type at ≤767px.
 
+## New design style (owner-approved, use on every redesigned page)
+Pages already in this style: Home (`/`), About, Services hub. Old home design kept at `/home-page-old/`.
+- No purple and no emoji anywhere — real Font Awesome icons only.
+- Highlighted heading words: two-shade green text gradient
+  `linear-gradient(90deg, #6EE7B7 0%, #059669 100%)` + `background-clip: text` + `box-decoration-break: clone`.
+- Icon tiles: same two-shade gradient (`135deg, #6EE7B7 → #059669`), white icon, radius ~14px,
+  shadow `0 12px 24px -12px rgba(5,150,105,.6), inset 0 1px 0 rgba(255,255,255,.35)`.
+  Small check marks use the same gradient. "Problem" icons may use red two-shade (`#FCA5A5 → #DC2626`).
+- Dark hero (`#0B1224 → #020617`), white stats strip overlapping the hero, dark-green feature card
+  (`#064E3B → #065F46 → #0F172A`), final CTA `#020617 → #0F172A → #064E3B`.
+- Button arrows: `<i class="fas fa-arrow-right rr-btn-arrow"></i>`.
+- Photos: real photos in `public/images/...` (fetched once via a GitHub Actions workflow), never hotlinked.
+
 ## Rules for changes
 1. New page → `src/pages/<slug>/index.astro` using `BaseLayout`, reuse `.sec`/`.row`/`SectionHeading` and the same look.
 2. Keep old WordPress URLs. If a URL must change, add a redirect.
