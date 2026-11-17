@@ -45,9 +45,9 @@ const geoPoints = [
 ];
 
 const cases = [
-  { icon: 'fas fa-balance-scale', colors: ['#0F172A', '#1E293B'], tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', value: '+312%', label: 'organic traffic', href: '/industries/legal/' },
-  { icon: 'fas fa-home', colors: ['#7F1D1D', '#DC2626'], tag: 'HOME SERVICES · GMB', title: '5× More Local Calls in 60 Days', value: '+480%', label: 'GMB actions', href: '/industries/home-services/' },
-  { icon: 'fas fa-rocket', colors: ['#064E3B', '#059669'], tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', value: '0 → 74%', label: 'AI visibility', href: '/case-studies/geo-ai-saas-citations/' },
+  { icon: 'fas fa-balance-scale', img: 'legal-1', tag: 'LEGAL · SEMANTIC SEO', title: 'From Page 4 to Position 2 in 90 Days', value: '+312%', label: 'organic traffic', href: '/industries/legal/' },
+  { icon: 'fas fa-home', img: 'home-2', tag: 'HOME SERVICES · GMB', title: '5× More Local Calls in 60 Days', value: '+480%', label: 'GMB actions', href: '/industries/home-services/' },
+  { icon: 'fas fa-rocket', img: 'saas-2', tag: 'SAAS · GEO OPTIMIZATION', title: 'Cited by ChatGPT in 3 Weeks', value: '0 → 74%', label: 'AI visibility', href: '/case-studies/geo-ai-saas-citations/' },
 ];
 
 const industries = [
@@ -270,8 +270,9 @@ const faqs = [
     <div class="row cs-grid">
       {cases.map((c) => (
         <a href={c.href} class="cs">
-          <div class="cs-top" style={'background:linear-gradient(135deg,' + c.colors[0] + ' 0%,' + c.colors[1] + ' 100%)'}>
-            <div class="cs-gridlines"></div>
+          <div class="cs-top">
+            <img class="cs-bg" src={'/images/cases/' + c.img + '.jpg'} alt="" width="900" height="560" loading="lazy" />
+            <div class="cs-shade"></div>
             <span class="cs-ico"><i class={c.icon}></i></span>
             <div class="cs-metric"><b>{c.value}</b><span>{c.label}</span></div>
           </div>
@@ -627,7 +628,12 @@ const faqs = [
   .cs:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -26px rgba(15,23,42,.25); border-color: var(--green); }
   .cs:hover .cs-more i { font-size: 12px; margin-left: 4px; transform: translateX(5px); }
   .cs-top { position: relative; height: 210px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; }
-  .cs-gridlines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 28px 28px; }
+  .cs-top { overflow: hidden; background: #0F172A; }
+  .cs-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .cs:hover .cs-bg { transform: scale(1.06); }
+  .cs-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,.25) 0%, rgba(2,6,23,.45) 45%, rgba(2,6,23,.88) 100%); }
+  .cs-top > .cs-ico, .cs-top > .cs-metric { position: relative; z-index: 1; }
+  .cs-top > .cs-ico { position: absolute; }
   .cs-ico { position: absolute; top: 22px; right: 24px; font-size: 40px; color: rgba(255,255,255,.85); line-height: 1; filter: drop-shadow(0 10px 20px rgba(0,0,0,.25)); }
   .cs-metric { position: relative; }
   .cs-metric b { display: block; font-size: 46px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
