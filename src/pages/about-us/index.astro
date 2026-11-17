@@ -1,260 +1,356 @@
 ---
-// ABOUT US PAGE — /about-us/
+// ABOUT US PAGE — /about-us/  (naya design, home page jaisa)
 // Text, team members, values sab neeche arrays mein hain. Wahan se badlein.
+// Photos: public/images/about/ (hero, story, quote) — file ka naam neeche "photos" mein badlein.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
 import { site } from '../../data/site';
 
+const photos = { hero: 'team-1', story: 'team-3', quote: 'team-2' };
+
 const stats = [
-  { value: '8+', label: 'Years helping businesses rank higher', style: 'dark', color: 'grad' },
-  { value: '500+', label: 'Happy clients served globally', style: 'light', color: '#10B981' },
-  { value: '15+', label: 'Industries we specialize in', style: 'light', color: '#8B5CF6' },
-  { value: '★ 4.9', label: 'Average client rating since day one', style: 'dark', color: '#FBBF24', small: true },
+  { value: '8+', label: 'years helping businesses rank higher' },
+  { value: '500+', label: 'happy clients served globally' },
+  { value: '15+', label: 'industries we specialize in' },
+  { value: '4.9', label: 'average client rating since day one', star: true },
+];
+
+const journey = [
+  { when: '2018', title: 'Started on Fiverr', text: 'Built our reputation as a Top-Rated Seller, one client at a time.' },
+  { when: 'Next', title: 'Hundreds of clients', text: 'Served businesses across the US, UK, Canada, Australia, the EU and the Middle East.' },
+  { when: 'Today', title: 'Full-service SEO + GEO agency', text: 'Websites, semantic SEO, local SEO, GMB, audits and AI search optimization.' },
 ];
 
 const values = [
-  { icon: 'fab fa-codepen', title: 'Honest Pricing', text: 'Fair, transparent rates with no hidden fees. You’ll always know exactly what you’re paying for — and why it’s worth it.' },
-  { icon: 'fas fa-poll', title: 'Real Results', text: 'Rankings, traffic, and revenue — not vanity metrics. Every engagement tied to outcomes your business actually cares about.' },
+  { icon: 'fas fa-tags', title: 'Honest Pricing', text: 'Fair, transparent rates with no hidden fees. You’ll always know exactly what you’re paying for — and why it’s worth it.' },
+  { icon: 'fas fa-chart-line', title: 'Real Results', text: 'Rankings, traffic, and revenue — not vanity metrics. Every engagement tied to outcomes your business actually cares about.' },
   { icon: 'fas fa-handshake', title: 'Partnership First', text: 'We’re not a vendor you manage — we’re an extension of your team. Long-term relationships, not one-off transactions.' },
 ];
 
-// Team: naya member add karna ho to yahan ek line add karein. accent: 'green' ya 'purple'.
+// Team: naya member add karna ho to yahan ek line add karein. Link na ho to '#' rehne dein (icon nahi dikhega).
 const team = [
-  { initials: 'L', role: 'FOUNDER', name: 'Lareb', accent: 'green', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'US', role: 'MANAGING DIRECTOR', name: 'Umair Sabir', accent: 'purple', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'SH', role: 'DIGITAL MARKETER', name: 'Shahroz Hassan', accent: 'green', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'MZ', role: 'PROJECT MANAGER', name: 'Mehmood Zaigham', accent: 'purple', linkedin: '#', x: '#', facebook: '#' },
-  { initials: 'MZ', role: 'Social Media Strategist', name: 'Muhammad Zeeshan', accent: 'green', linkedin: '#', x: '#', facebook: 'https://www.facebook.com/share/1C7gKU2apa/' },
-  { initials: 'F', role: 'UI/UX DESIGNER', name: 'Farran', accent: 'purple', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'L', role: 'Founder', name: 'Lareb', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'US', role: 'Managing Director', name: 'Umair Sabir', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'SH', role: 'Digital Marketer', name: 'Shahroz Hassan', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'MZ', role: 'Project Manager', name: 'Mehmood Zaigham', linkedin: '#', x: '#', facebook: '#' },
+  { initials: 'MZ', role: 'Social Media Strategist', name: 'Muhammad Zeeshan', linkedin: '#', x: '#', facebook: 'https://www.facebook.com/share/1C7gKU2apa/' },
+  { initials: 'F', role: 'UI/UX Designer', name: 'Farran', linkedin: '#', x: '#', facebook: '#' },
 ];
 
 const reasons = [
-  [
-    { icon: '⚡', color: 'green', title: 'Senior-Only Team', text: 'Every client is served by senior strategists with 5+ years of experience. No juniors practicing on your site.' },
-    { icon: '🎯', color: 'purple', title: 'GEO-First Thinking', text: "We're already doing AI search optimization while most agencies are still arguing about keyword density." },
-    { icon: '📊', color: 'green', title: 'Transparent Reporting', text: "Monthly reports that show exactly what moved, what didn't, and what's next. No jargon. No smoke." },
-  ],
-  [
-    { icon: '🌍', color: 'purple', title: 'Global Clients, Global Standards', text: 'Serving clients across the US, UK, Canada, Australia, EU, and the Middle East — remote-first, always on.' },
-    { icon: '💡', color: 'green', title: 'Semantic-First SEO', text: 'Entity-driven architecture, not keyword stuffing. The only way to win modern search engines.' },
-    { icon: '✋', color: 'purple', title: 'No Long-Term Lock-ins', text: 'Month-to-month retainers. Stay because the work is worth it — not because you signed a 12-month contract.' },
-  ],
+  { icon: 'fas fa-user-tie', title: 'Senior-Only Team', text: 'Every client is served by senior strategists with 5+ years of experience. No juniors practicing on your site.' },
+  { icon: 'fas fa-robot', title: 'GEO-First Thinking', text: 'We’re already doing AI search optimization while most agencies are still arguing about keyword density.' },
+  { icon: 'fas fa-file-alt', title: 'Transparent Reporting', text: 'Monthly reports that show exactly what moved, what didn’t, and what’s next. No jargon. No smoke.' },
+  { icon: 'fas fa-globe-americas', title: 'Global Clients, Global Standards', text: 'Serving clients across the US, UK, Canada, Australia, EU, and the Middle East — remote-first, always on.' },
+  { icon: 'fas fa-project-diagram', title: 'Semantic-First SEO', text: 'Entity-driven architecture, not keyword stuffing. The only way to win modern search engines.' },
+  { icon: 'fas fa-unlock-alt', title: 'No Long-Term Lock-ins', text: 'Month-to-month retainers. Stay because the work is worth it — not because you signed a 12-month contract.' },
 ];
+
+const quote = { text: 'Rank Ready took our firm from invisible to the first result for nearly every key term in our market. Inquiries tripled in four months. They’re the only SEO team I’d recommend without hesitation.', initials: 'JS', name: 'John Smith', role: 'Managing Partner, Smith &amp; Associates Law' };
 ---
 <BaseLayout
   title="About Rank Ready | Global SEO & GEO Agency Since 2018"
   description="Global SEO agency since 2018. 500+ clients across legal, healthcare, home services, SaaS. Senior-led, no junior dump, zero vendor lock-in. Meet the team."
 >
   <!-- 1. HERO -->
-  <section class="sec a-hero">
-    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
-    <div class="row center inner">
-      <div class="badge-wrap"><div class="badge"><span class="dot"></span>ABOUT RANK READY</div></div>
-      <h1>Eight years of helping businesses <span class="grad">dominate search.</span></h1>
-      <p class="lead">We’re a small, senior team obsessed with one thing: making your business the obvious choice when someone searches for what you do — on Google, on ChatGPT, and everywhere in between.</p>
+  <section class="ab-hero">
+    <div class="row hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">About Rank Ready</p>
+        <h1>Eight years of helping businesses <span class="g">dominate search.</span></h1>
+        <p class="lead">We’re a small, senior team obsessed with one thing: making your business the obvious choice when someone searches for what you do — on Google, on ChatGPT, and everywhere in between.</p>
+        <div class="btns">
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Work With Us</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+          <a href="/case-studies/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>See Our Work</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src={'/images/about/' + photos.hero + '.jpg'} alt="The Rank Ready team working together" width="1200" height="900" />
+        <div class="since">
+          <div class="since-y">2018</div>
+          <div class="since-t"><b>Since 2018</b><span>Started as a Top-Rated Seller on Fiverr</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 2. WHO WE ARE -->
-  <section class="sec who">
-    <div class="row who-row">
-      <div>
-        <p class="eyebrow" style="margin-bottom:16px">WHO WE ARE</p>
-        <h2>Small team. <span style="color:#10B981">Senior work.</span> Honest pricing.</h2>
-        <div class="body">
-          <p>Rank Ready has been helping businesses grow online for over 8 years. We built our reputation as a Top-Rated Seller on Fiverr — serving hundreds of clients globally — before transitioning into a full-service SEO and GEO agency.</p>
-          <p>We’re intentionally small. No account executives, no bloated agency overhead, no juniors doing senior work. When you hire us, you get the actual people doing the strategy, writing the content, and shipping the results.</p>
-          <p>We believe in transparent pricing, real deliverables, and work you can verify — not retainers that disappear into black boxes.</p>
-        </div>
-        <div class="rr-btn-group">
-          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Work With Us</span><span class="rr-btn-arrow">→</span></a>
-          <a href="/case-studies/" class="rr-btn rr-btn-outline"><span>See Our Work</span><span class="rr-btn-arrow">→</span></a>
-        </div>
+  <!-- 2. STATS -->
+  <div class="row stats">
+    {stats.map((s) => (
+      <div class="stat">
+        <div class="s-v">{s.value}{s.star && <i class="fas fa-star"></i>}</div>
+        <div class="s-l">{s.label}</div>
       </div>
-      <div class="stats">
-        {stats.map((s) => (
-          <div class:list={['stat', s.style]}>
-            <div class:list={['val', { grad: s.color === 'grad', small: s.small }]} style={s.color !== 'grad' ? `color:${s.color}` : undefined}>{s.value}</div>
-            <div class="lbl">{s.label}</div>
+    ))}
+  </div>
+
+  <!-- 3. WHO WE ARE -->
+  <section class="story">
+    <div class="row story-grid">
+      <div class="story-photo">
+        <img src={'/images/about/' + photos.story + '.jpg'} alt="Strategy session at Rank Ready" width="1200" height="900" loading="lazy" />
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">WHO WE ARE</p>
+        <h2 class="h2">Small team. Senior work. <span class="g-dark">Honest pricing.</span></h2>
+        <p>Rank Ready has been helping businesses grow online for over 8 years. We built our reputation as a Top-Rated Seller on Fiverr — serving hundreds of clients globally — before transitioning into a full-service SEO and GEO agency.</p>
+        <p>We’re intentionally small. No account executives, no bloated agency overhead, no juniors doing senior work. When you hire us, you get the actual people doing the strategy, writing the content, and shipping the results.</p>
+        <p>We believe in transparent pricing, real deliverables, and work you can verify — not retainers that disappear into black boxes.</p>
+        <ol class="journey">
+          {journey.map((j) => (
+            <li>
+              <span class="j-when">{j.when}</span>
+              <div><b>{j.title}</b><span>{j.text}</span></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MISSION -->
+  <section class="mission">
+    <div class="row mission-grid">
+      <div class="mission-head">
+        <p class="eyebrow">OUR MISSION</p>
+        <h2 class="h2">Quality digital work shouldn’t be a luxury.</h2>
+        <p class="sub">We believe every business — whether a one-person law firm or a 50-person SaaS — deserves access to real, results-driven SEO and website work. Not inflated retainers. Not cookie-cutter templates. Not promises that never materialize.</p>
+      </div>
+      <div class="values">
+        {values.map((v, i) => (
+          <div class="value">
+            <div class="v-top"><i class={v.icon}></i><span>0{i + 1}</span></div>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- 3. OUR MISSION -->
-  <section class="sec mission">
-    <SectionHeading
-      eyebrow="OUR MISSION"
-      title="Quality digital work shouldn’t be a luxury."
-      sub="We believe every business — whether a one-person law firm or a 50-person SaaS — deserves access to real, results-driven SEO and website work. Not inflated retainers. Not cookie-cutter templates. Not promises that never materialize."
-    />
-    <div class="row grid g-3">
-      {values.map((v) => (
-        <div class="vcard">
-          <i class={v.icon}></i>
-          <h3>{v.title}</h3>
-          <p>{v.text}</p>
-        </div>
-      ))}
+  <!-- 5. TEAM -->
+  <section class="team">
+    <div class="row team-head">
+      <div>
+        <p class="eyebrow">OUR TEAM</p>
+        <h2 class="h2">The people doing the work.</h2>
+      </div>
+      <p class="sub">Every Rank Ready client works directly with senior strategists. No outsourced handoffs. No account managers you’ve never spoken to making decisions for you.</p>
     </div>
-  </section>
-
-  <!-- 4. OUR TEAM -->
-  <section class="sec team">
-    <SectionHeading
-      eyebrow="OUR TEAM"
-      title="The people doing the work."
-      sub="Every Rank Ready client works directly with senior strategists. No outsourced handoffs. No account managers you’ve never spoken to making decisions for you."
-    />
-    <div class="row grid g-3 team-grid">
+    <div class="row team-grid">
       {team.map((m) => (
         <div class="member">
-          <div class:list={['photo', m.accent]}>
-            <div class="photo-grid"></div>
-            <div class="avatar">{m.initials}</div>
+          <div class="mono">{m.initials}</div>
+          <div class="m-info">
+            <div class="m-name">{m.name}</div>
+            <div class="m-role">{m.role}</div>
           </div>
-          <div class="info">
-            <div class="role">{m.role}</div>
-            <div class="name">{m.name}</div>
-            <div class="socials">
-              <a href={m.linkedin} aria-label="LinkedIn">in</a>
-              <a href={m.x} aria-label="X">𝕏</a>
-              <a href={m.facebook} aria-label="Facebook" target={m.facebook !== '#' ? '_blank' : undefined} rel="noopener">f</a>
-            </div>
+          <div class="m-social">
+            {m.linkedin !== '#' && <a href={m.linkedin} aria-label={m.name + ' on LinkedIn'} target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>}
+            {m.x !== '#' && <a href={m.x} aria-label={m.name + ' on X'} target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>}
+            {m.facebook !== '#' && <a href={m.facebook} aria-label={m.name + ' on Facebook'} target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>}
           </div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- 5. WHY RANK READY -->
-  <section class="sec why on-dark">
-    <SectionHeading
-      eyebrow="WHY RANK READY"
-      title="Most agencies sell retainers. We sell results."
-      sub="Six things that separate us from the typical SEO shop — and why our clients stay for years."
-    />
-    <div class="row grid g-2 why-row">
-      {reasons.map((col) => (
-        <div class="why-col">
-          {col.map((r) => (
+  <!-- 6. WHY RANK READY -->
+  <section class="why">
+    <div class="row">
+      <div class="why-card">
+        <div class="why-head">
+          <p class="eyebrow light">WHY RANK READY</p>
+          <h2 class="h2 light">Most agencies sell retainers. We sell results.</h2>
+          <p class="sub light">Six things that separate us from the typical SEO shop — and why our clients stay for years.</p>
+        </div>
+        <div class="why-grid">
+          {reasons.map((r) => (
             <div class="reason">
-              <div class:list={['r-ico', r.color]}>{r.icon}</div>
-              <div>
-                <div class="r-title">{r.title}</div>
-                <div class="r-text">{r.text}</div>
-              </div>
+              <div class="r-ico"><i class={r.icon}></i></div>
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
             </div>
           ))}
         </div>
-      ))}
+      </div>
     </div>
   </section>
 
-  <!-- 6. FINAL CTA -->
-  <section class="sec a-cta">
-    <div class="bg" aria-hidden="true"><div class="c1"></div><div class="c2"></div></div>
-    <div class="row row-narrow center inner">
-      <h2>Let’s make you <span class="grad">Rank Ready.</span></h2>
-      <p class="lead">Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
-      <div class="rr-btn-group" style="justify-content:center">
-        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><span class="rr-btn-arrow">→</span></a>
-        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><span class="rr-btn-arrow">→</span></a>
+  <!-- 7. CLIENT QUOTE -->
+  <section class="quote">
+    <div class="row quote-grid">
+      <div class="q-photo">
+        <img src={'/images/about/' + photos.quote + '.jpg'} alt="Rank Ready working session" width="1200" height="900" loading="lazy" />
+      </div>
+      <figure class="q-body">
+        <i class="fas fa-quote-left q-mark"></i>
+        <blockquote set:html={quote.text} />
+        <figcaption>
+          <span class="q-av">{quote.initials}</span>
+          <span><b>{quote.name}</b><span set:html={quote.role} /></span>
+        </figcaption>
+        <a href="/case-studies/" class="q-link">Read our case studies <i class="fas fa-arrow-right"></i></a>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 8. FINAL CTA -->
+  <section class="final">
+    <div class="row final-in">
+      <h2>Let’s make you <span class="g">Rank Ready.</span></h2>
+      <p>Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
+      <div class="btns center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .inner { z-index: 1; }
-  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  section { font-family: var(--inter); position: relative; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
+  .g { color: #34D399; }
+  .g-dark { color: #059669; }
+  .eyebrow { margin-bottom: 14px; padding: 0; }
+  .eyebrow.light { color: #6EE7B7; }
+  .h2 { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; color: var(--navy); margin-bottom: 20px; padding: 0; }
+  .h2.light { color: #fff; }
+  .sub { font-size: 17px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+  .sub.light { color: var(--slate-300); }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btns.center { justify-content: center; }
 
   /* 1. Hero */
-  .a-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0 100px; font-family: var(--inter); }
-  .a-hero .row { max-width: 1100px; }
-  .g1 { position: absolute; top: 10%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(16,185,129,.12) 0%, transparent 70%); filter: blur(60px); }
-  .g2 { position: absolute; bottom: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
-  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
-  .badge-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
-  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; }
-  .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
-  .a-hero h1 { font-size: 68px; font-weight: 800; line-height: 74.8px; letter-spacing: -2px; color: #fff; margin-bottom: 24px; }
-  .a-hero .lead { max-width: 720px; margin: 0 auto; font-size: 19px; line-height: 30.6px; color: var(--slate-300); }
+  .ab-hero { background: linear-gradient(135deg, #0B1224 0%, #020617 100%); padding: 96px 0 150px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .kicker { font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #6EE7B7; padding: 0 0 0 34px; margin-bottom: 22px; position: relative; }
+  .kicker::before { content: ""; position: absolute; left: 0; top: 50%; width: 24px; height: 2px; background: #10B981; }
+  .ab-hero h1 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2.2px; color: #fff; margin-bottom: 24px; padding: 0; }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--slate-300); margin-bottom: 34px; padding: 0; max-width: 560px; }
+  .hero-photo { position: relative; }
+  .hero-photo img { display: block; width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; border-radius: 22px; }
+  .since { position: absolute; left: -32px; bottom: -28px; display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 16px; padding: 16px 22px 16px 16px; box-shadow: 0 24px 50px -20px rgba(2,6,23,.55); }
+  .since-y { width: 56px; height: 56px; border-radius: 12px; background: #ECFDF5; color: #047857; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; letter-spacing: -.3px; }
+  .since-t { display: flex; flex-direction: column; line-height: 1.45; }
+  .since-t b { font-size: 15px; color: var(--navy); }
+  .since-t span { font-size: 13px; color: var(--slate-500); max-width: 210px; }
 
-  /* 2. Who we are */
-  .who { background: #fff; padding: 120px 0 100px; font-family: var(--inter); }
-  .who-row { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8%; align-items: start; }
-  .who h2 { font-size: 44px; font-weight: 800; line-height: 50.6px; letter-spacing: -1px; color: var(--navy); margin-bottom: 24px; }
-  .who .body { font-size: 17px; line-height: 30.6px; color: var(--slate-500); margin-bottom: 24px; }
-  .who .body p { padding-bottom: 17px; }
-  .who .body p:last-child { padding-bottom: 0; }
-  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .stat { padding: 32px 24px; border-radius: 16px; }
-  .stat.dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
-  .stat.light { background: var(--light-bg); border: 1px solid #E2E8F0; }
-  .val { font-size: 48px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 10px; }
-  .val.small { font-size: 40px; }
-  .lbl { font-size: 14px; line-height: 1.5; color: var(--slate-500); }
-  .dark .lbl { color: var(--slate-400); }
+  /* 2. Stats */
+  .stats { position: relative; z-index: 2; margin-top: -70px; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.25); display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 30px 32px; font-family: var(--inter); }
+  .stat + .stat { border-left: 1px solid #F1F5F9; }
+  .s-v { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.1; color: var(--navy); display: flex; align-items: center; gap: 8px; }
+  .s-v i { font-size: 24px; color: #FBBF24; }
+  .s-l { font-size: 14px; line-height: 1.5; color: var(--slate-500); margin-top: 6px; }
 
-  /* 3. Mission */
-  .mission { background: var(--light-bg); padding: 120px 0; }
-  .vcard { background: #fff; padding: 36px 28px; border-radius: 16px; box-shadow: 6px 6px 40px 0 rgba(15,23,42,.06); font-family: var(--inter); }
-  .vcard i { display: block; font-size: 47px; color: var(--green); margin-bottom: 30px; }
-  .vcard h3 { font-size: 20px; font-weight: 700; line-height: 20px; color: var(--navy); margin-bottom: 12px; }
-  .vcard p { font-size: 15px; line-height: 30.6px; color: var(--slate-500); }
+  /* 3. Story */
+  .story { padding: 110px 0 100px; background: #fff; }
+  .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
+  .story-photo { position: sticky; top: 110px; }
+  .story-photo img { display: block; width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; border-radius: 22px; }
+  .story-copy > p:not(.eyebrow) { font-size: 16.5px; line-height: 1.8; color: #475569; padding: 0; margin-bottom: 18px; }
+  .journey { list-style: none; margin: 34px 0 0; padding: 0; border-top: 1px solid #E2E8F0; }
+  .journey li { display: grid; grid-template-columns: 80px 1fr; gap: 18px; padding: 20px 0; border-bottom: 1px solid #E2E8F0; }
+  .j-when { font-size: 14px; font-weight: 700; color: #059669; padding-top: 1px; }
+  .journey b { display: block; font-size: 16px; color: var(--navy); margin-bottom: 3px; }
+  .journey li span:not(.j-when) { font-size: 14.5px; line-height: 1.6; color: var(--slate-500); }
 
-  /* 4. Team */
-  .team { background: #fff; padding: 120px 0; }
-  .team-grid { row-gap: 57px; }
-  .member { background: #fff; border-radius: 16px; box-shadow: 6px 6px 40px 0 rgba(15,23,42,.08); font-family: var(--inter); }
-  .photo { height: 280px; border-radius: 16px 16px 0 0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .photo.green { background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #10B98122 100%); }
-  .photo.purple { background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #8B5CF622 100%); }
-  .photo-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 30px 30px; }
-  .avatar { position: relative; width: 130px; height: 130px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 48px; letter-spacing: -1px; box-shadow: 0 20px 40px -10px rgba(0,0,0,.4), 0 0 0 4px rgba(255,255,255,.08); }
-  .green .avatar { background: linear-gradient(135deg, #10B981, #8B5CF6); }
-  .purple .avatar { background: var(--purple); }
-  .info { padding: 28px; }
-  .role { font-size: 11px; color: var(--slate-500); letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; line-height: 1.7; }
-  .name { font-size: 22px; color: var(--navy); font-weight: 700; margin-bottom: 14px; line-height: 1.7; }
-  .socials { display: flex; gap: 10px; }
-  .socials a { width: 32px; height: 32px; background: var(--light-bg); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: var(--slate-500); font-size: 13px; font-weight: 700; transition: all .3s; }
-  .socials a:hover { background: var(--green); color: #fff; }
+  /* 4. Mission */
+  .mission { padding: 100px 0; background: var(--light-bg); }
+  .mission-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; align-items: start; }
+  .mission-head { position: sticky; top: 110px; }
+  .values { display: grid; gap: 18px; }
+  .value { background: #fff; border: 1px solid #E2E8F0; border-radius: 18px; padding: 28px 30px; transition: border-color .3s, box-shadow .3s; }
+  .value:hover { border-color: #A7F3D0; box-shadow: 0 20px 40px -24px rgba(15,23,42,.2); }
+  .v-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .v-top i { width: 46px; height: 46px; border-radius: 12px; background: #ECFDF5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .v-top span { font-size: 13px; font-weight: 700; color: #CBD5E1; letter-spacing: 1px; }
+  .value h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 8px; padding: 0; line-height: 1.3; }
+  .value p { font-size: 15.5px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
 
-  /* 5. Why */
-  .why { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0; }
-  .why-row { max-width: 1100px; }
-  .why-col { background: var(--slate-800); padding: 32px 28px; border-radius: 16px; font-family: var(--inter); }
-  .reason { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 27px; }
-  .reason:last-child { margin-bottom: 0; }
-  .r-ico { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; }
-  .r-ico.green { background: linear-gradient(135deg, #10B981, #059669); }
-  .r-ico.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
-  .r-title { font-weight: 700; font-size: 18px; color: #fff; margin-bottom: 8px; line-height: 1.7; }
-  .r-text { font-size: 14.5px; color: var(--slate-400); line-height: 1.7; }
+  /* 5. Team */
+  .team { padding: 100px 0; background: #fff; }
+  .team-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 48px; }
+  .team-head .h2 { margin-bottom: 0; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .member { display: flex; align-items: center; gap: 16px; border: 1px solid #E2E8F0; border-radius: 18px; padding: 20px 22px; transition: border-color .3s, transform .3s; }
+  .member:hover { border-color: #A7F3D0; transform: translateY(-3px); }
+  .mono { width: 58px; height: 58px; flex: none; border-radius: 50%; background: #0F172A; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; letter-spacing: .5px; box-shadow: inset 0 0 0 3px #fff, 0 0 0 2px #10B981; }
+  .m-info { flex: 1; min-width: 0; }
+  .m-name { font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.35; }
+  .m-role { font-size: 14px; color: var(--slate-500); line-height: 1.5; }
+  .m-social { display: flex; gap: 6px; }
+  .m-social a { width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; color: #475569; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .25s; }
+  .m-social a:hover { background: #10B981; border-color: #10B981; color: #fff; }
 
-  /* 6. CTA */
-  .a-cta { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%); padding: 120px 0; font-family: var(--inter); overflow: hidden; }
-  .c1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(16,185,129,.12) 0%, transparent 60%); filter: blur(60px); }
-  .c2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
-  .a-cta h2 { font-size: 64px; font-weight: 800; line-height: 70.4px; letter-spacing: -1.5px; color: #fff; margin-bottom: 24px; }
-  .a-cta .lead { max-width: 640px; margin: 0 auto 36px; font-size: 18px; line-height: 30.6px; color: var(--slate-300); }
+  /* 6. Why */
+  .why { padding: 20px 0 100px; background: #fff; }
+  .why-card { background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #0F172A 100%); border-radius: 30px; padding: 70px 64px; }
+  .why-head { max-width: 640px; margin-bottom: 50px; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.12); }
+  .reason { padding: 30px 30px 30px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-child(3n+2), .reason:nth-child(3n) { padding-left: 30px; border-left: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-last-child(-n+3) { border-bottom: 0; padding-bottom: 0; }
+  .r-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #6EE7B7; display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 18px; }
+  .reason h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; padding: 0; line-height: 1.35; }
+  .reason p { font-size: 15px; line-height: 1.7; color: #CBD5E1; padding: 0; margin: 0; }
+
+  /* 7. Quote */
+  .quote { padding: 0 0 110px; background: #fff; }
+  .quote-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
+  .q-photo img { display: block; width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: 22px; }
+  .q-body { margin: 0; }
+  .q-mark { font-size: 34px; color: #10B981; margin-bottom: 20px; display: block; }
+  .q-body blockquote { font-size: 26px; line-height: 1.5; font-weight: 600; letter-spacing: -.4px; color: var(--navy); margin: 0 0 28px; padding: 0; border: 0; font-style: normal; }
+  .q-body figcaption { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .q-av { width: 48px; height: 48px; border-radius: 50%; background: #0F172A; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .q-body figcaption b { display: block; font-size: 16px; color: var(--navy); }
+  .q-body figcaption span span { font-size: 14px; color: var(--slate-500); }
+  .q-link { font-size: 15px; font-weight: 700; color: #059669; }
+  .q-link i { font-size: 12px; margin-left: 4px; transition: transform .3s; }
+  .q-link:hover i { transform: translateX(4px); }
+
+  /* 8. Final */
+  .final { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #064E3B 100%); padding: 120px 0; }
+  .final-in { text-align: center; max-width: 820px; }
+  .final h2 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2px; color: #fff; margin-bottom: 20px; padding: 0; }
+  .final p { font-size: 18px; line-height: 1.7; color: var(--slate-300); max-width: 620px; margin: 0 auto 36px; padding: 0; }
 
   @media (max-width: 980px) {
-    .who-row { grid-template-columns: 1fr; row-gap: 40px; }
-    .team-grid { row-gap: 30px; }
+    .hero-grid, .story-grid, .mission-grid, .quote-grid, .team-head { grid-template-columns: 1fr; gap: 44px; }
+    .ab-hero { padding: 70px 0 130px; }
+    .hero-photo { max-width: 620px; }
+    .since { left: 16px; bottom: -24px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
+    .story-photo, .mission-head { position: static; }
+    .story-photo img { aspect-ratio: 16 / 10; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .reason, .reason:nth-child(n) { padding: 26px 24px 26px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:nth-child(2n) { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.12); }
+    .reason:nth-last-child(-n+2) { border-bottom: 0; }
   }
   @media (max-width: 767px) {
-    .a-hero { padding: 60px 0; }
-    .a-hero h1 { font-size: 40px; line-height: 44px; letter-spacing: -1px; }
-    .who, .mission, .team, .why, .a-cta { padding: 60px 0; }
-    .who h2 { font-size: 32px; line-height: 38px; }
-    .a-cta h2 { font-size: 40px; line-height: 44px; }
-    .val { font-size: 36px; }
-    .stats { gap: 12px; }
-    .stat { padding: 24px 18px; }
+    .ab-hero h1 { font-size: 40px; letter-spacing: -1.3px; }
+    .lead { font-size: 16.5px; }
+    .h2 { font-size: 32px; letter-spacing: -1px; }
+    .story, .mission, .team { padding: 70px 0; }
+    .stats { margin-top: -60px; }
+    .stat { padding: 22px 20px; }
+    .s-v { font-size: 30px; }
+    .s-l { font-size: 13px; }
+    .team-grid, .why-grid { grid-template-columns: 1fr; }
+    .reason, .reason:nth-child(n) { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:last-child { border-bottom: 0; padding-bottom: 0; }
+    .why { padding: 0 0 70px; }
+    .why-card { padding: 44px 24px; border-radius: 22px; }
+    .quote { padding-bottom: 70px; }
+    .q-body blockquote { font-size: 20px; }
+    .final { padding: 80px 0; }
+    .final h2 { font-size: 38px; letter-spacing: -1.2px; }
+    .since { position: static; margin-top: 16px; box-shadow: 0 10px 30px -12px rgba(2,6,23,.4); }
   }
 </style>
