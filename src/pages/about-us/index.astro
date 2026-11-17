@@ -26,7 +26,7 @@ const values = [
   { icon: 'fas fa-handshake', title: 'Partnership First', text: 'We’re not a vendor you manage — we’re an extension of your team. Long-term relationships, not one-off transactions.' },
 ];
 
-// Team: naya member add karna ho to yahan ek line add karein. Link na ho to '#' rehne dein (icon nahi dikhega).
+// Team: naya member add karna ho to yahan ek line add karein. Social links abhi '#' hain — asli link milne par yahan badal dein.
 // photo: tasveer public/images/team/ mein rakh kar uska naam likhein, jaise photo: 'lareb.jpg'. Khali ('') ho to initials dikhte hain.
 const team = [
   { initials: 'L', role: 'Founder', name: 'Lareb', photo: '', linkedin: '#', x: '#', facebook: '#' },
@@ -149,9 +149,9 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
             <div class="m-role">{m.role}</div>
           </div>
           <div class="m-social">
-            {m.linkedin !== '#' && <a href={m.linkedin} aria-label={m.name + ' on LinkedIn'} target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>}
-            {m.x !== '#' && <a href={m.x} aria-label={m.name + ' on X'} target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>}
-            {m.facebook !== '#' && <a href={m.facebook} aria-label={m.name + ' on Facebook'} target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>}
+            <a href={m.linkedin} class="s-in" aria-label={m.name + ' on LinkedIn'} target={m.linkedin !== '#' ? '_blank' : undefined} rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+            <a href={m.x} class="s-x" aria-label={m.name + ' on X'} target={m.x !== '#' ? '_blank' : undefined} rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M18.9 1.2h3.7l-8 9.2L24 22.8h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.4h2L6.5 3.3H4.3l13.3 17.3z"/></svg></a>
+            <a href={m.facebook} class="s-fb" aria-label={m.name + ' on Facebook'} target={m.facebook !== '#' ? '_blank' : undefined} rel="noopener"><i class="fab fa-facebook-f"></i></a>
           </div>
           </div>
         </div>
@@ -281,17 +281,23 @@ const quote = { text: 'Rank Ready took our firm from invisible to the first resu
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .member { background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; padding: 10px; transition: box-shadow .35s, transform .35s; }
   .member:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(15,23,42,.3); }
-  .m-photo { position: relative; aspect-ratio: 5 / 6; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #E8EEF4 0%, #DCE4EC 100%); display: flex; align-items: center; justify-content: center; }
+  .m-photo { position: relative; aspect-ratio: 5 / 6; border-radius: 16px; overflow: hidden; background: linear-gradient(160deg, #1E293B 0%, #0F172A 55%, #064E3B 100%); display: flex; align-items: center; justify-content: center; }
   .m-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .6s ease; }
   .member:hover .m-photo img { transform: scale(1.04); }
-  .m-ph { font-size: 76px; font-weight: 800; letter-spacing: -2px; color: #fff; text-shadow: 0 2px 0 rgba(15,23,42,.04); }
+  .m-ph { font-size: 76px; font-weight: 800; letter-spacing: -2px; color: #fff; opacity: .92; }
   .m-body { display: flex; align-items: center; gap: 12px; padding: 18px 12px 10px; }
   .m-info { flex: 1; min-width: 0; }
   .m-name { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.35; letter-spacing: -.2px; }
   .m-role { font-size: 14.5px; color: #059669; font-weight: 600; line-height: 1.5; }
   .m-social { display: flex; gap: 6px; }
-  .m-social a { width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; color: #475569; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .25s; }
-  .m-social a:hover { background: #10B981; border-color: #10B981; color: #fff; }
+  .m-social a { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all .25s; }
+  .m-social a:hover { color: #fff; transform: translateY(-2px); }
+  .s-in { background: #E8F1FB; color: #0A66C2; }
+  .s-in:hover { background: #0A66C2; }
+  .s-x { background: #EEF0F3; color: #0F172A; }
+  .s-x:hover { background: #0F172A; }
+  .s-fb { background: #E7F0FE; color: #1877F2; }
+  .s-fb:hover { background: #1877F2; }
 
   /* 6. Why */
   .why { padding: 20px 0 100px; background: #fff; }
