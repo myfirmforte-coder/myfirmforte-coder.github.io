@@ -1,8 +1,8 @@
 ---
 // SEMANTIC SEO SERVICES — /services/semantic-seo-optimization-services/
 // (Purana URL /services/semantic-seo/ yahan redirect hota hai.)
-// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
-import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+// Sirf text yahan hai; design src/components/ServicePageV2.astro (naya design) mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePageV2.astro';
 
 const data: ServiceData = {
   meta: {
@@ -15,17 +15,19 @@ const data: ServiceData = {
     badge: 'SEMANTIC SEO SERVICES',
     title: 'SEO built around entities, <span class="grad">not just keywords.</span>',
     lead: 'Google stopped matching strings in 2013. Every agency still obsessing over keyword density is fighting the last war. We build semantic architectures that teach Google what your business actually is — and then rank you for the hundreds of queries your buyers are actually typing.',
+    photo: '/images/services/web-5.jpg',
     card: { value: '+312%', title: 'avg. organic traffic lift within 6 months', note: 'measured across 30+ semantic SEO engagements since 2022' },
   },
 
   problem: {
+    photo: '/images/services/seo-2.jpg',
     eyebrow: 'WHY KEYWORD-FIRST SEO FAILS IN 2026',
     title: 'Your current SEO strategy is probably optimizing for a Google that no longer exists.',
     sub: 'If your agency is still producing 2,000-word blog posts around single keywords, here’s why your rankings aren’t moving.',
     cards: [
-      { icon: '🔤', title: "Keywords don't rank pages. Entities do.", text: 'Google uses the Knowledge Graph, BERT, and MUM to understand topics as interconnected entities — people, places, concepts, and their relationships. Content that targets a single keyword without establishing entity context gets buried.' },
-      { icon: '📝', title: 'Thin content gets quietly demoted', text: 'Helpful Content updates have devastated sites that pumped out surface-level articles. Google now rewards depth, expertise, and comprehensiveness. Pages that look AI-generated, templated, or shallow lose rankings — even when the keywords match.' },
-      { icon: '🕸️', title: "Without topical authority, you can't break out of page 2", text: 'Google measures how thoroughly you cover a subject area, not just how well a single page ranks. If your site has 5 pages on a topic and a competitor has 50, their topical authority wins — even if your individual pages are better written.' },
+      { icon: 'fas fa-font', title: "Keywords don't rank pages. Entities do.", text: 'Google uses the Knowledge Graph, BERT, and MUM to understand topics as interconnected entities — people, places, concepts, and their relationships. Content that targets a single keyword without establishing entity context gets buried.' },
+      { icon: 'fas fa-file-alt', title: 'Thin content gets quietly demoted', text: 'Helpful Content updates have devastated sites that pumped out surface-level articles. Google now rewards depth, expertise, and comprehensiveness. Pages that look AI-generated, templated, or shallow lose rankings — even when the keywords match.' },
+      { icon: 'fas fa-project-diagram', title: "Without topical authority, you can't break out of page 2", text: 'Google measures how thoroughly you cover a subject area, not just how well a single page ranks. If your site has 5 pages on a topic and a competitor has 50, their topical authority wins — even if your individual pages are better written.' },
     ],
   },
 
@@ -34,15 +36,15 @@ const data: ServiceData = {
     title: 'A full semantic SEO engagement, from research to ranking.',
     sub: 'Semantic SEO is methodical work. Here’s exactly what goes into every engagement — no mystery deliverables, no vanity reports.',
     cards: [
-      { icon: '🧠', title: 'Entity Research &amp; Knowledge Graph Audit', text: 'We identify every entity relevant to your business — products, services, concepts, competitors, people — and map how Google currently understands (or misunderstands) you.' },
-      { icon: '🗺️', title: 'Topical Map &amp; Content Architecture', text: 'A complete content blueprint: core topics, subtopics, pillar pages, cluster content, and the internal linking structure that knits them into topical authority.' },
-      { icon: '🎯', title: 'Intent-Matched Keyword Research', text: 'Keywords grouped by intent (informational, navigational, commercial, transactional) with priority scoring based on your funnel stage and competition gap.' },
-      { icon: '📊', title: 'Competitive Topical Gap Analysis', text: "Side-by-side entity and topic coverage vs. your top 3-5 competitors. We'll show you exactly which topics they own that you don't — and where your moat opportunities live." },
-      { icon: '✍️', title: 'Expert Content Briefs', text: "Every piece of content starts with a semantic brief: target entity, related concepts, required subheadings, schema, internal links, and depth requirements. Writers aren't guessing." },
-      { icon: '🧩', title: 'Schema &amp; Structured Data Implementation', text: 'Article, FAQPage, HowTo, Product, Organization, Person, BreadcrumbList — every schema type that signals entity relationships to Google and LLMs.' },
-      { icon: '🔗', title: 'Internal Linking Strategy', text: 'A documented linking map that passes authority up the pillar hierarchy and distributes crawl depth efficiently. Implemented across every existing and new page.' },
-      { icon: '📈', title: 'Monthly Performance Reporting', text: 'Rankings, organic traffic, conversion tracking, topical authority growth, and a plain-English breakdown of what moved and why. Every month, without fail.' },
-      { icon: '🔄', title: 'Quarterly Strategic Reviews', text: 'Deep-dive sessions every 90 days to reassess priorities, explore new topic areas, and recalibrate based on algorithm changes and your business evolution.' },
+      { icon: 'fas fa-brain', title: 'Entity Research &amp; Knowledge Graph Audit', text: 'We identify every entity relevant to your business — products, services, concepts, competitors, people — and map how Google currently understands (or misunderstands) you.' },
+      { icon: 'fas fa-sitemap', title: 'Topical Map &amp; Content Architecture', text: 'A complete content blueprint: core topics, subtopics, pillar pages, cluster content, and the internal linking structure that knits them into topical authority.' },
+      { icon: 'fas fa-bullseye', title: 'Intent-Matched Keyword Research', text: 'Keywords grouped by intent (informational, navigational, commercial, transactional) with priority scoring based on your funnel stage and competition gap.' },
+      { icon: 'fas fa-chart-bar', title: 'Competitive Topical Gap Analysis', text: "Side-by-side entity and topic coverage vs. your top 3-5 competitors. We'll show you exactly which topics they own that you don't — and where your moat opportunities live." },
+      { icon: 'fas fa-pen-nib', title: 'Expert Content Briefs', text: "Every piece of content starts with a semantic brief: target entity, related concepts, required subheadings, schema, internal links, and depth requirements. Writers aren't guessing." },
+      { icon: 'fas fa-file-code', title: 'Schema &amp; Structured Data Implementation', text: 'Article, FAQPage, HowTo, Product, Organization, Person, BreadcrumbList — every schema type that signals entity relationships to Google and LLMs.' },
+      { icon: 'fas fa-link', title: 'Internal Linking Strategy', text: 'A documented linking map that passes authority up the pillar hierarchy and distributes crawl depth efficiently. Implemented across every existing and new page.' },
+      { icon: 'fas fa-chart-line', title: 'Monthly Performance Reporting', text: 'Rankings, organic traffic, conversion tracking, topical authority growth, and a plain-English breakdown of what moved and why. Every month, without fail.' },
+      { icon: 'fas fa-sync-alt', title: 'Quarterly Strategic Reviews', text: 'Deep-dive sessions every 90 days to reassess priorities, explore new topic areas, and recalibrate based on algorithm changes and your business evolution.' },
     ],
   },
 
@@ -60,6 +62,7 @@ const data: ServiceData = {
   },
 
   why: {
+    photo: '/images/about/work-3.jpg',
     eyebrow: 'WHY SEMANTIC SEO WINS',
     title: 'Google doesn’t match words. It models meaning.',
     article: [
@@ -81,16 +84,17 @@ const data: ServiceData = {
     title: 'Who benefits most from a semantic SEO engagement.',
     sub: 'Semantic SEO works for any business — but the return on investment varies. Here’s where it shines.',
     cards: [
-      { icon: '⚖️', title: 'Law Firms &amp; Legal', text: 'High-intent practice area keywords, deep topical silos, and E-E-A-T-sensitive verticals where authority matters most.' },
-      { icon: '🏥', title: 'Medical &amp; Healthcare', text: 'Treatment-based content, YMYL topics, and competitive local + national keyword landscapes.' },
-      { icon: '🚀', title: 'B2B SaaS', text: 'Category-defining content, comparison pages, integration pages, and deep product-led SEO strategies.' },
-      { icon: '📰', title: 'Publishers &amp; Media', text: 'Editorial sites competing on news, evergreen, and trending topic coverage where topical authority drives everything.' },
-      { icon: '🛒', title: 'E-commerce at Scale', text: 'Category pages, buying guides, comparison content, and PLP optimization that captures high-intent commercial keywords.' },
-      { icon: '🎓', title: 'Education &amp; Courses', text: 'Knowledge-heavy sites where topical depth and expertise signaling make or break organic acquisition.' },
+      { icon: 'fas fa-balance-scale', photo: '/images/cases/legal-1.jpg', title: 'Law Firms &amp; Legal', text: 'High-intent practice area keywords, deep topical silos, and E-E-A-T-sensitive verticals where authority matters most.' },
+      { icon: 'fas fa-hospital', photo: '/images/services/ind-medical.jpg', title: 'Medical &amp; Healthcare', text: 'Treatment-based content, YMYL topics, and competitive local + national keyword landscapes.' },
+      { icon: 'fas fa-rocket', photo: '/images/services/web-9.jpg', title: 'B2B SaaS', text: 'Category-defining content, comparison pages, integration pages, and deep product-led SEO strategies.' },
+      { icon: 'fas fa-newspaper', photo: '/images/services/ind-news.jpg', title: 'Publishers &amp; Media', text: 'Editorial sites competing on news, evergreen, and trending topic coverage where topical authority drives everything.' },
+      { icon: 'fas fa-shopping-cart', photo: '/images/services/ind-shop.jpg', title: 'E-commerce at Scale', text: 'Category pages, buying guides, comparison content, and PLP optimization that captures high-intent commercial keywords.' },
+      { icon: 'fas fa-graduation-cap', photo: '/images/services/ind-edu.jpg', title: 'Education &amp; Courses', text: 'Knowledge-heavy sites where topical depth and expertise signaling make or break organic acquisition.' },
     ],
   },
 
   result: {
+    photo: '/images/about/work-4.jpg',
     value: '+312%',
     title: 'organic traffic growth in 6 months',
     note: 'Smith &amp; Associates Law · Semantic content architecture + topical authority build-out',
@@ -119,9 +123,9 @@ const data: ServiceData = {
     title: 'Services that pair perfectly with this one.',
     sub: 'Most clients start with one service and expand as results come in. Here’s what tends to work well together.',
     cards: [
-      { icon: '🎨', color: 'green', title: 'Rank-Ready Website Design', text: 'The technical foundation that makes semantic SEO possible — built for ranking from day one.', href: '/services/web-development/' },
-      { icon: '🚀', color: 'purple', title: 'AI &amp; GEO Optimization', text: 'Semantic SEO + GEO = the complete modern search stack. Cited by Google AND by AI.', href: '/services/ai-geo-optimization/' },
-      { icon: '📊', color: 'dark', title: 'Free SEO &amp; GEO Audit', text: 'Not sure if semantic SEO is your bottleneck? Get a free audit and find out exactly.', href: '/services/seo-audits/' },
+      { icon: 'fas fa-laptop-code', color: 'green', photo: '/images/services/web-1.jpg', title: 'Rank-Ready Website Design', text: 'The technical foundation that makes semantic SEO possible — built for ranking from day one.', href: '/services/web-development/' },
+      { icon: 'fas fa-robot', color: 'green', photo: '/images/services/geo-1.jpg', title: 'AI &amp; GEO Optimization', text: 'Semantic SEO + GEO = the complete modern search stack. Cited by Google AND by AI.', href: '/services/ai-geo-optimization/' },
+      { icon: 'fas fa-search', color: 'green', photo: '/images/services/audit-1.jpg', title: 'Free SEO &amp; GEO Audit', text: 'Not sure if semantic SEO is your bottleneck? Get a free audit and find out exactly.', href: '/services/seo-audits/' },
     ],
   },
 };
