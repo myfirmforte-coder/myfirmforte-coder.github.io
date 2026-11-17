@@ -1,0 +1,37 @@
+# Ek dafa chalne wala kaam: service pages ke liye Unsplash se photos utha ke public/images/services/ mein save karta hai.
+name: Save service page images
+
+on:
+  push:
+    paths: ['.github/workflows/fetch-service-images.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images
+        run: |
+          mkdir -p public/images/services
+          for pair in \
+            web-1:1547658719-da2b51169166 web-2:1498050108023-c5249f4df085 web-3:1461749280684-dccba630e2f6 web-4:1559028012-481c04fa702d \
+            web-5:1581291518857-4e27b48ff24e web-6:1555066931-4365d14bab8c web-7:1517694712202-14dd9538aa97 web-8:1504868584819-f8e8b4b6d7e3 \
+            web-9:1551434678-e076c223a692 web-10:1586717791821-3f44a563fa4c ind-dental:1606811971618-4486d14f3f99 ind-medical:1519494026892-80bbd2d6fd0d \
+            ind-shop:1556742049-0cfed4f6a45d ind-store:1472851294608-062f824d29cc ind-city:1486406146926-c627a92ad1ab ind-office:1497366811353-6870744d04b2 \
+            seo-1:1432888622747-4eb9a8efeb07 seo-2:1460925895917-afdab827c52f geo-1:1677442136019-21780ecad995 audit-1:1454165804606-c3d57bc86b40; do
+            name="${pair%%:*}"; id="${pair#*:}"
+            curl -fsSL "https://images.unsplash.com/photo-$id?w=1200&h=850&fit=crop&q=72&fm=jpg" -o "public/images/services/$name.jpg" || echo "FAILED $name"
+          done
+          ls -la public/images/services
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/services
+          git commit -m "Save service page images" || echo "nothing to commit"
+          git pull --rebase
+          git push
