@@ -1,28 +1,28 @@
 ---
 // SERVICES PAGE — /services/
-// 6 service cards, method steps, "why us", stats aur FAQs sab neeche arrays mein hain.
+// Naya design (home/about jaisa). 6 service cards, method steps, "why us", stats aur FAQs sab neeche arrays mein hain.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
+import FaqList from '../../components/FaqList.astro';
 import { site } from '../../data/site';
 
-// color: 'green' | 'purple' | 'dark'. featured: true = hara border + "NEW" badge.
+// Har service ka card. featured: true = dark green card (GEO). id = page par anchor (#geo waghera).
 const services = [
-  { icon: '🎨', color: 'green', tag: 'FOUNDATION', title: 'Rank-Ready Website Design', href: '/services/rank-ready-website-design/',
+  { id: 'web', icon: 'fas fa-laptop-code', tag: 'FOUNDATION', title: 'Rank-Ready Website Design', href: '/services/web-development/',
     text: 'Most agencies design a pretty site and wish you luck with SEO. We build the two things as one thing — semantic HTML, schema, CWV, and conversion UX baked in from day one.',
     points: ['Semantic architecture &amp; schema markup', 'Core Web Vitals optimized (90+ Lighthouse)', 'SEO-ready CMS with custom fields', '6-8 week timelines, zero vendor lock-in'] },
-  { icon: '🧠', color: 'green', tag: 'AUTHORITY', title: 'Semantic SEO', href: '/services/semantic-seo/',
+  { id: 'semantic', icon: 'fas fa-project-diagram', tag: 'AUTHORITY', title: 'Semantic SEO', href: '/services/semantic-seo-optimization-services/',
     text: 'Google stopped matching strings in 2013. We build entity-driven topical authority that ranks for hundreds of related queries per page, not one.',
     points: ['Entity &amp; topical gap research', 'Content architecture &amp; clusters', 'Internal linking &amp; schema strategy', '+312% avg. traffic growth in 6 months'] },
-  { icon: '🗺️', color: 'green', tag: 'LOCAL', title: 'Local Landing Pages', href: '/services/local-landing-pages/',
+  { id: 'local', icon: 'fas fa-map-marked-alt', tag: 'LOCAL', title: 'Local Landing Pages', href: '/services/local-landing-pages/',
     text: "One city, one service, one page that wins. We've shipped 120+ genuinely unique city pages for multi-location clients — zero duplicate content, full local schema.",
     points: ['Genuinely unique content per city', 'LocalBusiness + Service schema per page', 'NAP consistency across citations', '+480% avg. local pack appearances'] },
-  { icon: '📍', color: 'green', tag: 'LOCAL PACK', title: 'GMB Management', href: '/services/gmb-management/',
+  { id: 'gmb', icon: 'fas fa-store', tag: 'LOCAL PACK', title: 'GMB Management', href: '/services/gmb-management-services/',
     text: 'Your Google Business Profile is the most valuable digital real estate you own. We manage every signal Google uses to rank local businesses — end-to-end.',
     points: ['Weekly posts, monthly photo strategy', 'Review acquisition &amp; response system', 'Q&amp;A management, NAP monitoring', '5× avg. call volume in 90 days'] },
-  { icon: '🚀', color: 'purple', tag: 'NEXT FRONTIER', title: 'AI &amp; GEO Optimization', href: '/services/ai-geo-optimization/', featured: true,
+  { id: 'geo', icon: 'fas fa-robot', tag: 'NEXT FRONTIER', title: 'AI &amp; GEO Optimization', href: '/services/ai-geo-optimization/', featured: true,
     text: "The next search frontier isn't Google — it's generative engines. We get your brand cited by ChatGPT, Perplexity, Claude, and Google AI Overviews.",
     points: ['Entity establishment across open web', 'AI visibility audits &amp; citation monitoring', 'llms.txt &amp; schema for LLMs', '74% avg. AI citation rate in 90 days'] },
-  { icon: '📊', color: 'dark', tag: 'DIAGNOSTIC', title: 'SEO + GEO Audits', href: '/services/seo-audits/',
+  { id: 'audits', icon: 'fas fa-search', tag: 'DIAGNOSTIC', title: 'SEO + GEO Audits', href: '/services/seo-audits/',
     text: 'Senior-led audits that actually diagnose the problem. No 80-page PDFs full of noise — just focused findings, a prioritized action plan, and a path forward.',
     points: ['10 layers: technical, content, semantic, GEO', '48-hour turnaround available', 'Free first audit, no obligation', 'Action plan with impact + effort scoring'] },
 ];
@@ -35,12 +35,12 @@ const method = [
 ];
 
 const why = [
-  { icon: '🧬', title: 'Semantic SEO specialists', text: "While most agencies still chase keywords, we build entity-driven topical authority. It's the only approach that works long-term in 2026." },
-  { icon: '🚀', title: 'Real GEO expertise', text: "We've been executing GEO since 2023 — not since last month when ChatGPT got popular. We've banked the data, the methodology, and the proven playbooks." },
-  { icon: '👨‍💼', title: 'Senior-led, not junior-dumped', text: 'Every engagement gets senior strategic oversight. No junior teams executing from templates while the senior you signed up for takes the next sales call.' },
-  { icon: '🎯', title: 'Results over reports', text: "Monthly summaries under 5 pages. Quarterly strategy calls. No 40-page PDFs designed to look impressive — just clear updates on what moved and what's next." },
-  { icon: '🔓', title: 'Zero vendor lock-in', text: "Everything we build is yours — code, content, schemas, tracking. Move to another agency tomorrow and it all still works. Transparency isn't optional." },
-  { icon: '⚡', title: 'Ship velocity', text: "We don't drag out timelines to justify retainers. Websites ship in 6-8 weeks. Audits turn around in 5-7 days. Movement shows up fast, because speed compounds." },
+  { icon: 'fas fa-project-diagram', title: 'Semantic SEO specialists', text: "While most agencies still chase keywords, we build entity-driven topical authority. It's the only approach that works long-term in 2026." },
+  { icon: 'fas fa-robot', title: 'Real GEO expertise', text: "We've been executing GEO since 2023 — not since last month when ChatGPT got popular. We've banked the data, the methodology, and the proven playbooks." },
+  { icon: 'fas fa-user-tie', title: 'Senior-led, not junior-dumped', text: 'Every engagement gets senior strategic oversight. No junior teams executing from templates while the senior you signed up for takes the next sales call.' },
+  { icon: 'fas fa-bullseye', title: 'Results over reports', text: "Monthly summaries under 5 pages. Quarterly strategy calls. No 40-page PDFs designed to look impressive — just clear updates on what moved and what's next." },
+  { icon: 'fas fa-unlock-alt', title: 'Zero vendor lock-in', text: "Everything we build is yours — code, content, schemas, tracking. Move to another agency tomorrow and it all still works. Transparency isn't optional." },
+  { icon: 'fas fa-bolt', title: 'Ship velocity', text: "We don't drag out timelines to justify retainers. Websites ship in 6-8 weeks. Audits turn around in 5-7 days. Movement shows up fast, because speed compounds." },
 ];
 
 const numbers = [
@@ -61,240 +61,290 @@ const faqs = [
   { q: 'Do you sign NDAs?', a: 'Always. We also don’t publish client logos or case studies without explicit written permission. The results you see on our site are from clients who opted in — many more fly completely under the radar. We respect discretion.' },
 ];
 
-const faqSchema = {
-  '@context': 'https://schema.org', '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') } })),
-};
 ---
 <BaseLayout
   title="SEO Services | Rank Ready — Semantic SEO, GEO, GMB, Local & Web"
   description="Six integrated services for ranking in Google AND AI. Semantic SEO, GEO, Local Pages, GMB, Web Design, Audits. Pick one or stack them. Free audit."
 >
   <!-- 1. HERO -->
-  <section class="sec s-hero">
-    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
-    <div class="row inner">
-      <div class="badge"><span class="dot"></span>OUR SERVICES</div>
-      <h1>Six services. <span class="grad">One system</span> for ranking.</h1>
-      <p class="lead">Every service we offer is part of one integrated system — because SEO in 2026 isn’t about keywords or backlinks or content or GMB or GEO in isolation. It’s about getting all of it working together. Here’s how we do that.</p>
-      <div class="rr-btn-group" style="justify-content:center">
-        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><span class="rr-btn-arrow">→</span></a>
-        <a href="#services-grid" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Explore Services</span><span class="rr-btn-arrow">↓</span></a>
+  <section class="sv-hero">
+    <div class="row hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Our Services</p>
+        <h1>Six services. <span class="g">One system</span> for ranking.</h1>
+        <p class="lead">Every service we offer is part of one integrated system — because SEO in 2026 isn’t about keywords or backlinks or content or GMB or GEO in isolation. It’s about getting all of it working together. Here’s how we do that.</p>
+        <div class="btns">
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book a Free Strategy Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+          <a href="#services-grid" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Explore Services</span><i class="fas fa-arrow-down rr-btn-arrow"></i></a>
+        </div>
       </div>
+      <nav class="index" aria-label="Services on this page">
+        <div class="ix-h">What we do</div>
+        {services.map((s, i) => (
+          <a href={'#' + s.id} class="ix-row">
+            <span class="ix-n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="ix-t" set:html={s.title} />
+            {s.featured && <span class="ix-new">NEW</span>}
+            <i class="fas fa-arrow-right ix-a"></i>
+          </a>
+        ))}
+      </nav>
     </div>
   </section>
 
-  <!-- 2. SIX SERVICES -->
-  <section class="sec s-grid" id="services-grid">
-    <SectionHeading
-      eyebrow="PICK YOUR STARTING POINT"
-      title="The six services, in plain English."
-      sub="Most clients start with one service, see results, then expand into adjacent areas. Here’s everything we do, with enough detail for you to self-select."
-    />
-    <div class="row grid g-2 svc-grid">
-      {services.map((s) => (
-        <a href={s.href} class:list={['svc', { featured: s.featured }]}>
-          {s.featured && <div class="new">⚡ NEW · GEO INSIDE</div>}
-          <div class="svc-head">
-            <div class:list={['svc-ico', s.color]}>{s.icon}</div>
-            <div>
-              <div class="svc-tag">{s.tag}</div>
-              <div class="svc-title" set:html={s.title} />
-            </div>
+  <!-- 2. NUMBERS -->
+  <div class="row stats">
+    {numbers.map((n) => (
+      <div class="stat">
+        <div class="s-v">{n.value}</div>
+        <div class="s-l">{n.label}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- 3. SIX SERVICES -->
+  <section class="svcs" id="services-grid">
+    <div class="row sec-head">
+      <div>
+        <p class="eyebrow">PICK YOUR STARTING POINT</p>
+        <h2 class="h2">The six services, in plain English.</h2>
+      </div>
+      <p class="sub">Most clients start with one service, see results, then expand into adjacent areas. Here’s everything we do, with enough detail for you to self-select.</p>
+    </div>
+    <div class="row svc-grid">
+      {services.map((s, i) => (
+        <a href={s.href} id={s.id} class:list={['svc', { featured: s.featured }]}>
+          <div class="svc-top">
+            <div class="svc-ico"><i class={s.icon}></i></div>
+            <span class="svc-n">{String(i + 1).padStart(2, '0')}</span>
           </div>
-          <div class="svc-text">{s.text}</div>
+          <div class="svc-tag">{s.tag}{s.featured && <span class="svc-new">NEW · GEO INSIDE</span>}</div>
+          <h3 class="svc-title" set:html={s.title} />
+          <p class="svc-text">{s.text}</p>
           <ul>
-            {s.points.map((p) => <li><span class="tick">✓</span><span set:html={p} /></li>)}
+            {s.points.map((p) => <li><i class="fas fa-check"></i><span set:html={p} /></li>)}
           </ul>
-          <div class="svc-more">Explore this service <span>→</span></div>
+          <div class="svc-more">Explore this service <i class="fas fa-arrow-right"></i></div>
         </a>
       ))}
     </div>
   </section>
 
-  <!-- 3. METHOD -->
-  <section class="sec s-method">
-    <SectionHeading
-      eyebrow="THE RANK READY METHOD™"
-      title="How we work across every engagement."
-      sub="Whether you hire us for one service or all six, the underlying methodology is the same. It’s what makes the results compound."
-    />
-    <div class="row grid g-4">
-      {method.map((m, i) => (
-        <div class="step">
-          <div class="num">{String(i + 1).padStart(2, '0')}</div>
-          <div class="step-title" set:html={m.title} />
-          <div class="step-text">{m.text}</div>
-        </div>
-      ))}
+  <!-- 4. METHOD -->
+  <section class="method">
+    <div class="row method-grid">
+      <div class="method-head">
+        <p class="eyebrow">THE RANK READY METHOD™</p>
+        <h2 class="h2">How we work across every engagement.</h2>
+        <p class="sub">Whether you hire us for one service or all six, the underlying methodology is the same. It’s what makes the results compound.</p>
+      </div>
+      <ol class="steps">
+        {method.map((m, i) => (
+          <li class="step">
+            <span class="st-n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 set:html={m.title} />
+              <p>{m.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
-  <!-- 4. WHY CHOOSE -->
-  <section class="sec s-why on-dark">
-    <SectionHeading
-      class="why-head"
-      eyebrow="WHY CHOOSE RANK READY"
-      title="What makes us different from the other 10,000 SEO agencies."
-      sub="Six things our clients consistently tell us we do better than every agency they’ve worked with before."
-    />
-    <div class="row grid g-3 why-grid">
-      {why.map((w) => (
-        <div class="why-card">
-          <div class="w-ico">{w.icon}</div>
-          <div class="w-title">{w.title}</div>
-          <div class="w-text">{w.text}</div>
+  <!-- 5. WHY CHOOSE -->
+  <section class="why">
+    <div class="row">
+      <div class="why-card">
+        <div class="why-head">
+          <p class="eyebrow light">WHY CHOOSE RANK READY</p>
+          <h2 class="h2 light">What makes us different from the other 10,000 SEO agencies.</h2>
+          <p class="sub light">Six things our clients consistently tell us we do better than every agency they’ve worked with before.</p>
         </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- 5. NUMBERS -->
-  <section class="sec s-num">
-    <div class="row row-narrow center num-head">
-      <p class="eyebrow" style="margin-bottom:14px">THE NUMBERS</p>
-      <h2>Results that show up on the P&amp;L.</h2>
-    </div>
-    <div class="row grid g-4">
-      {numbers.map((n) => (
-        <div class="stat">
-          <div class="val grad">{n.value}</div>
-          <div class="lbl">{n.label}</div>
+        <div class="why-grid">
+          {why.map((w) => (
+            <div class="reason">
+              <div class="r-ico"><i class={w.icon}></i></div>
+              <h3>{w.title}</h3>
+              <p>{w.text}</p>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   </section>
 
   <!-- 6. FAQ -->
-  <section class="sec s-faq">
-    <SectionHeading
-      eyebrow="COMMON QUESTIONS"
-      title="How we work, priced &amp; packaged."
-      sub="The most common questions we get from founders and marketing leads evaluating whether Rank Ready is the right fit."
-    />
-    <div class="row faq-list">
-      {faqs.map((f, i) => (
-        <details class="tg" open={i === 0}>
-          <summary><h5>{f.q}</h5></summary>
-          <p set:html={f.a} />
-        </details>
-      ))}
+  <section class="faq-sec">
+    <div class="row faq-grid">
+      <div class="faq-head">
+        <p class="eyebrow">COMMON QUESTIONS</p>
+        <h2 class="h2">How we work, priced &amp; packaged.</h2>
+        <p class="sub">The most common questions we get from founders and marketing leads evaluating whether Rank Ready is the right fit.</p>
+        <div class="faq-cta">
+          <div class="fc-t">Not sure where to start?</div>
+          <p>Get a free audit and we’ll tell you honestly which service will move the needle first.</p>
+          <a href="/services/seo-audits/" class="rr-btn rr-btn-primary"><span>Get a Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+      </div>
+      <div class="faq-list"><FaqList faqs={faqs} /></div>
     </div>
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </section>
 
   <!-- 7. FINAL CTA -->
-  <section class="sec s-cta">
-    <div class="bg" aria-hidden="true"><div class="c1"></div><div class="c2"></div></div>
-    <div class="row row-narrow center inner">
-      <h2>Let’s make you <span class="grad">Rank Ready.</span></h2>
-      <p class="lead">Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
-      <div class="rr-btn-group" style="justify-content:center">
-        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><span class="rr-btn-arrow">→</span></a>
-        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><span class="rr-btn-arrow">→</span></a>
+  <section class="final">
+    <div class="row final-in">
+      <h2>Let’s make you <span class="g">Rank Ready.</span></h2>
+      <p>Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
+      <div class="btns center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .inner { z-index: 1; }
-  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  section { font-family: var(--inter); position: relative; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
+  :global(html) { scroll-behavior: smooth; }
+  .g { background: linear-gradient(90deg, #6EE7B7 0%, #059669 100%); -webkit-box-decoration-break: clone; box-decoration-break: clone; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #34D399; }
+  .eyebrow { margin-bottom: 14px; padding: 0; }
+  .eyebrow.light { color: #6EE7B7; }
+  .h2 { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; color: var(--navy); margin-bottom: 20px; padding: 0; }
+  .h2.light { color: #fff; }
+  .sub { font-size: 17px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+  .sub.light { color: var(--slate-300); }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btns.center { justify-content: center; }
 
   /* 1. Hero */
-  .s-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 140px 0; font-family: var(--inter); overflow: hidden; }
-  .s-hero .row { max-width: 1000px; }
-  .g1 { position: absolute; top: 5%; left: -8%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(16,185,129,.18) 0%, transparent 70%); filter: blur(80px); }
-  .g2 { position: absolute; bottom: -15%; right: -8%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(139,92,246,.2) 0%, transparent 70%); filter: blur(90px); }
-  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
-  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
-  .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
-  .s-hero h1 { font-size: 68px; font-weight: 800; line-height: 74.8px; letter-spacing: -2px; color: #fff; text-align: center; margin-bottom: 28px; }
-  .s-hero .lead { max-width: 760px; margin: 0 auto 40px; font-size: 20px; line-height: 30.6px; color: var(--slate-300); }
+  .sv-hero { background: linear-gradient(135deg, #0B1224 0%, #020617 100%); padding: 96px 0 150px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
+  .kicker { font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #6EE7B7; padding: 0 0 0 34px; margin-bottom: 22px; position: relative; }
+  .kicker::before { content: ""; position: absolute; left: 0; top: 50%; width: 24px; height: 2px; background: #10B981; }
+  .sv-hero h1 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2.2px; color: #fff; margin-bottom: 24px; padding: 0; }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--slate-300); margin-bottom: 34px; padding: 0; max-width: 600px; }
+  .index { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 22px; padding: 10px 10px 8px; }
+  .ix-h { font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--slate-400); padding: 14px 16px 10px; }
+  .ix-row { display: flex; align-items: center; gap: 14px; padding: 15px 16px; border-radius: 12px; color: #E2E8F0; transition: background .25s; }
+  .ix-row + .ix-row { border-top: 1px solid rgba(255,255,255,.06); }
+  .ix-row:hover { background: rgba(16,185,129,.1); color: #fff; }
+  .ix-n { font-size: 13px; font-weight: 700; color: #34D399; width: 22px; }
+  .ix-t { font-size: 16px; font-weight: 600; flex: 1; }
+  .ix-new { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: #052e22; background: #34D399; border-radius: 100px; padding: 3px 8px; }
+  .ix-a { font-size: 12px; color: var(--slate-400); transition: transform .25s, color .25s; }
+  .ix-row:hover .ix-a { transform: translateX(4px); color: #34D399; }
 
-  /* 2. Services grid */
-  .s-grid { background: var(--light-bg); padding: 120px 0 100px; }
-  .svc-grid { row-gap: 57px; align-items: stretch; }
-  .svc { display: block; position: relative; height: 100%; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 40px 36px; font-family: var(--inter); box-shadow: 0 4px 20px rgba(15,23,42,.04); transition: all .35s ease; }
-  .svc:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(15,23,42,.15); }
-  .svc.featured { border: 2px solid var(--green); }
-  .new { position: absolute; top: -14px; right: 24px; background: linear-gradient(135deg, #10B981, #8B5CF6); color: #fff; font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 100px; letter-spacing: 1px; line-height: 1.7; }
-  .svc-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
-  .svc-ico { width: 64px; height: 64px; flex: none; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; }
-  .svc-ico.green { background: linear-gradient(135deg, #10B981, #059669); box-shadow: 0 10px 24px -8px #10B98166; }
-  .svc-ico.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); box-shadow: 0 10px 24px -8px #8B5CF666; }
-  .svc-ico.dark { background: linear-gradient(135deg, #0F172A, #1E293B); box-shadow: 0 10px 24px -8px #0F172A66; }
-  .svc-tag { font-size: 11px; letter-spacing: 2px; color: var(--slate-500); font-weight: 600; line-height: 1.7; }
-  .svc-title { font-size: 24px; font-weight: 800; color: var(--navy); margin-top: 4px; letter-spacing: -.5px; line-height: 1.2; }
-  .svc-text { font-size: 15.5px; color: var(--slate-500); line-height: 1.7; margin-bottom: 22px; }
-  .svc ul { list-style: none; padding: 0; margin: 0 0 26px; }
-  .svc li { padding: 8px 0; color: var(--slate-500); font-size: 14.5px; line-height: 1.6; display: flex; gap: 12px; align-items: flex-start; }
-  .tick { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .svc-more { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 600; font-size: 14.5px; padding-top: 20px; border-top: 1px solid #E2E8F0; line-height: 1.7; }
-  .svc-more span { transition: transform .3s; }
-  .svc:hover .svc-more span { transform: translateX(5px); }
+  /* 2. Numbers */
+  .stats { position: relative; z-index: 2; margin-top: -70px; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.25); display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 30px 32px; font-family: var(--inter); }
+  .stat + .stat { border-left: 1px solid #F1F5F9; }
+  .s-v { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.1; color: var(--navy); }
+  .s-l { font-size: 14px; line-height: 1.5; color: var(--slate-500); margin-top: 6px; }
 
-  /* 3. Method */
-  .s-method { background: #fff; padding: 120px 0; }
-  .step { font-family: var(--inter); }
-  .num { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg, #10B981, #8B5CF6); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 24px; margin-bottom: 22px; letter-spacing: -.5px; box-shadow: 0 10px 24px -8px rgba(16,185,129,.4); }
-  .step-title { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 12px; }
-  .step-text { font-size: 14.5px; color: var(--slate-500); line-height: 1.75; }
+  /* 3. Services */
+  .svcs { padding: 110px 0 100px; background: #fff; scroll-margin-top: 40px; }
+  .sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
+  .sec-head .h2 { margin-bottom: 0; }
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .svc { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 22px; padding: 34px 34px 30px; color: inherit; scroll-margin-top: 120px; transition: border-color .3s, box-shadow .3s, transform .3s; }
+  .svc:hover { border-color: #A7F3D0; transform: translateY(-4px); box-shadow: 0 30px 60px -32px rgba(15,23,42,.28); }
+  .svc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+  .svc-ico { width: 52px; height: 52px; border-radius: 14px; background: #ECFDF5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .svc-n { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #CBD5E1; }
+  .svc-tag { font-size: 12px; font-weight: 700; letter-spacing: 1.4px; color: #059669; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .svc-new { font-size: 10px; letter-spacing: 1px; color: #052e22; background: #34D399; border-radius: 100px; padding: 3px 9px; }
+  .svc-title { font-size: 26px; font-weight: 800; letter-spacing: -.6px; line-height: 1.25; color: var(--navy); margin-bottom: 12px; padding: 0; }
+  .svc-text { font-size: 15.5px; line-height: 1.7; color: var(--slate-500); padding: 0; margin-bottom: 22px; }
+  .svc ul { list-style: none; margin: 0 0 26px; padding: 20px 0 0; border-top: 1px solid #F1F5F9; display: grid; gap: 11px; }
+  .svc li { display: flex; gap: 11px; font-size: 15px; line-height: 1.5; color: #334155; padding: 0; }
+  .svc li i { flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%; background: #ECFDF5; color: #059669; font-size: 9px; display: flex; align-items: center; justify-content: center; }
+  .svc-more { margin-top: auto; font-size: 15px; font-weight: 700; color: #059669; }
+  .svc-more i { font-size: 12px; margin-left: 4px; transition: transform .3s; }
+  .svc:hover .svc-more i { transform: translateX(5px); }
+  .svc.featured { background: linear-gradient(135deg, #064E3B 0%, #065F46 45%, #0F172A 100%); border-color: transparent; }
+  .svc.featured .svc-ico { background: rgba(255,255,255,.1); color: #6EE7B7; }
+  .svc.featured .svc-n { color: rgba(255,255,255,.35); }
+  .svc.featured .svc-tag { color: #6EE7B7; }
+  .svc.featured .svc-title { color: #fff; }
+  .svc.featured .svc-text { color: #CBD5E1; }
+  .svc.featured ul { border-top-color: rgba(255,255,255,.12); }
+  .svc.featured li { color: #E2E8F0; }
+  .svc.featured li i { background: rgba(52,211,153,.18); color: #6EE7B7; }
+  .svc.featured .svc-more { color: #6EE7B7; }
 
-  /* 4. Why */
-  .s-why { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 120px 0; }
-  :global(.why-head) { padding-bottom: 40px !important; }
-  .s-why :global(.sec-title) { letter-spacing: -1.5px; }
-  .s-why :global(.sec-sub) { font-size: 17px; color: var(--slate-400); max-width: 720px; margin: 0 auto; }
-  .why-grid { row-gap: 30px; }
-  .why-card { background: rgba(255,255,255,.03); border: .8px solid rgba(255,255,255,.08); padding: 32px 28px; border-radius: 16px; font-family: var(--inter); }
-  .w-ico { font-size: 32px; margin-bottom: 18px; line-height: 1.7; }
-  .w-title { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -.3px; line-height: 1.7; }
-  .w-text { font-size: 15px; color: var(--slate-400); line-height: 1.7; }
+  /* 4. Method */
+  .method { padding: 100px 0; background: var(--light-bg); }
+  .method-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; align-items: start; }
+  .method-head { position: sticky; top: 110px; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+  .step { display: grid; grid-template-columns: 74px 1fr; gap: 10px; padding: 30px 0; border-top: 1px solid #E2E8F0; }
+  .step:last-child { border-bottom: 1px solid #E2E8F0; }
+  .st-n { font-size: 34px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #10B981; }
+  .step h3 { font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 8px; padding: 0; }
+  .step p { font-size: 15.5px; line-height: 1.75; color: var(--slate-500); padding: 0; margin: 0; }
 
-  /* 5. Numbers */
-  .s-num { background: #fff; font-family: var(--inter); }
-  .num-head { padding-bottom: 40px; }
-  .num-head h2 { font-size: 44px; font-weight: 800; line-height: 50.6px; letter-spacing: -1px; color: var(--navy); margin-bottom: 16px; }
-  .stat { text-align: center; padding: 20px 0; }
-  .val { font-size: 64px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 10px; }
-  .lbl { font-size: 14px; color: var(--slate-500); line-height: 1.5; }
+  /* 5. Why */
+  .why { padding: 100px 0; background: #fff; }
+  .why-card { background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #0F172A 100%); border-radius: 30px; padding: 70px 64px; }
+  .why-head { max-width: 700px; margin-bottom: 50px; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.12); }
+  .reason { padding: 30px 30px 30px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-child(3n+2), .reason:nth-child(3n) { padding-left: 30px; border-left: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-last-child(-n+3) { border-bottom: 0; padding-bottom: 0; }
+  .r-ico { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #6EE7B7; display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 18px; }
+  .reason h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; padding: 0; line-height: 1.35; }
+  .reason p { font-size: 15px; line-height: 1.7; color: #CBD5E1; padding: 0; margin: 0; }
 
   /* 6. FAQ */
-  .s-faq { background: #fff; padding: 120px 0; }
-  .s-faq :global(.sec-title) { letter-spacing: -1px; }
-  .faq-list { max-width: 860px; font-family: var(--inter); }
-  .tg { background: #fff; border: .8px solid #E2E8F0; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
-  .tg[open] { background: var(--light-bg); }
-  summary { list-style: none; cursor: pointer; position: relative; padding-right: 50px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
-  .tg[open] summary::after { content: '−'; }
-  h5 { font-size: 17px; font-weight: 700; line-height: 1.3; color: var(--navy); padding-bottom: 0; }
-  .tg p { font-size: 15px; line-height: 26.25px; color: var(--slate-500); padding-top: 14px; }
-  .tg p :global(strong) { font-weight: 700; }
-  .tg p :global(a) { color: var(--green); }
+  .faq-sec { padding: 100px 0; background: var(--light-bg); }
+  .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+  .faq-head { position: sticky; top: 110px; }
+  .faq-head .sub { margin-bottom: 28px; }
+  .faq-cta { background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 26px; }
+  .fc-t { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .faq-cta p { font-size: 14.5px; color: var(--slate-500); line-height: 1.6; padding: 0; margin-bottom: 18px; }
+  .faq-list :global(.row) { width: 100%; max-width: none; padding: 0; }
 
-  /* 7. CTA */
-  .s-cta { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E1B4B 100%); padding: 120px 0; font-family: var(--inter); overflow: hidden; }
-  .c1 { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(16,185,129,.12) 0%, transparent 60%); filter: blur(60px); }
-  .c2 { position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,.15) 0%, transparent 70%); filter: blur(80px); }
-  .s-cta h2 { font-size: 64px; font-weight: 800; line-height: 70.4px; letter-spacing: -1.5px; color: #fff; margin-bottom: 24px; }
-  .s-cta .lead { max-width: 640px; margin: 0 auto 36px; font-size: 18px; line-height: 30.6px; color: var(--slate-300); }
+  /* 7. Final */
+  .final { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #064E3B 100%); padding: 120px 0; }
+  .final-in { text-align: center; max-width: 820px; }
+  .final h2 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2px; color: #fff; margin-bottom: 20px; padding: 0; }
+  .final p { font-size: 18px; line-height: 1.7; color: var(--slate-300); max-width: 620px; margin: 0 auto 36px; padding: 0; }
 
   @media (max-width: 980px) {
-    .svc-grid { row-gap: 30px; }
+    .hero-grid, .sec-head, .method-grid, .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .sv-hero { padding: 70px 0 130px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
+    .method-head, .faq-head { position: static; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .reason, .reason:nth-child(n) { padding: 26px 24px 26px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:nth-child(2n) { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.12); }
+    .reason:nth-last-child(-n+2) { border-bottom: 0; }
   }
   @media (max-width: 767px) {
-    .s-hero { padding: 70px 0; }
-    .s-hero h1 { font-size: 40px; line-height: 44px; letter-spacing: -1px; }
-    .s-hero .lead { font-size: 17px; }
-    .s-grid, .s-method, .s-why, .s-faq, .s-cta { padding: 60px 0; }
-    .svc { padding: 32px 24px; }
-    .svc-title { font-size: 21px; }
-    .num-head h2 { font-size: 30px; line-height: 36px; }
-    .val { font-size: 48px; }
-    .s-cta h2 { font-size: 40px; line-height: 44px; }
+    .sv-hero h1 { font-size: 40px; letter-spacing: -1.3px; }
+    .lead { font-size: 16.5px; }
+    .h2 { font-size: 32px; letter-spacing: -1px; }
+    .svcs, .method, .faq-sec { padding: 70px 0; }
+    .stats { margin-top: -60px; }
+    .stat { padding: 22px 20px; }
+    .s-v { font-size: 30px; }
+    .s-l { font-size: 13px; }
+    .svc-grid { grid-template-columns: 1fr; gap: 16px; }
+    .svc { padding: 26px 22px 24px; }
+    .svc-title { font-size: 22px; }
+    .step { grid-template-columns: 52px 1fr; padding: 24px 0; }
+    .st-n { font-size: 26px; }
+    .why { padding: 70px 0; }
+    .why-grid { grid-template-columns: 1fr; }
+    .reason, .reason:nth-child(n) { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:last-child { border-bottom: 0; padding-bottom: 0; }
+    .why-card { padding: 44px 24px; border-radius: 22px; }
+    .final { padding: 80px 0; }
+    .final h2 { font-size: 38px; letter-spacing: -1.2px; }
   }
 </style>
