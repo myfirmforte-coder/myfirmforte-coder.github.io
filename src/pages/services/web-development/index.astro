@@ -45,12 +45,12 @@ const facts = [
 ];
 
 const audience = [
-  { icon: 'fas fa-balance-scale', title: 'Professional Services', text: 'Law firms, accountants, consultants, and agencies where organic search is a primary lead channel.' },
-  { icon: 'fas fa-tooth', title: 'Healthcare &amp; Dental', text: 'Medical practices, dental groups, cosmetic clinics, and specialists competing in local markets.' },
-  { icon: 'fas fa-tools', title: 'Home &amp; Local Services', text: "Plumbing, HVAC, roofing, landscaping, and any business where 'near me' searches drive revenue." },
-  { icon: 'fas fa-shopping-cart', title: 'E-commerce &amp; DTC', text: 'Shopify, WooCommerce, and headless brands where category and product pages must rank on commercial keywords.' },
-  { icon: 'fas fa-rocket', title: 'B2B &amp; SaaS', text: 'Software companies and B2B service brands competing in content-heavy, high-intent keyword landscapes.' },
-  { icon: 'fas fa-building', title: 'Multi-Location Brands', text: 'Franchise groups, regional chains, and national brands needing scalable architectures for 10+ location pages.' },
+  { icon: 'fas fa-balance-scale', title: 'Professional Services', text: 'Law firms, accountants, consultants, and agencies where organic search is a primary lead channel.', photo: '/images/cases/legal-1.jpg' },
+  { icon: 'fas fa-tooth', title: 'Healthcare &amp; Dental', text: 'Medical practices, dental groups, cosmetic clinics, and specialists competing in local markets.', photo: '/images/services/ind-medical.jpg' },
+  { icon: 'fas fa-tools', title: 'Home &amp; Local Services', text: "Plumbing, HVAC, roofing, landscaping, and any business where 'near me' searches drive revenue.", photo: '/images/cases/home-2.jpg' },
+  { icon: 'fas fa-shopping-cart', title: 'E-commerce &amp; DTC', text: 'Shopify, WooCommerce, and headless brands where category and product pages must rank on commercial keywords.', photo: '/images/services/ind-shop.jpg' },
+  { icon: 'fas fa-rocket', title: 'B2B &amp; SaaS', text: 'Software companies and B2B service brands competing in content-heavy, high-intent keyword landscapes.', photo: '/images/services/web-9.jpg' },
+  { icon: 'fas fa-building', title: 'Multi-Location Brands', text: 'Franchise groups, regional chains, and national brands needing scalable architectures for 10+ location pages.', photo: '/images/services/ind-city.jpg' },
 ];
 
 const faqs = [
@@ -66,9 +66,9 @@ const faqs = [
 ];
 
 const related = [
-  { icon: 'fas fa-project-diagram', color: 'green', title: 'Semantic SEO', text: 'Content and entity-driven SEO to dominate your topical niche once the site is live.', href: '/services/semantic-seo-optimization-services/' },
-  { icon: 'fas fa-robot', color: 'green', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, and Google AI Overviews — the new search frontier.', href: '/services/ai-geo-optimization/' },
-  { icon: 'fas fa-search', color: 'green', title: 'Free SEO &amp; GEO Audit', text: "Know exactly what's holding your current site back — and what it would take to fix it.", href: '/services/seo-audits/' },
+  { icon: 'fas fa-project-diagram', color: 'green', title: 'Semantic SEO', text: 'Content and entity-driven SEO to dominate your topical niche once the site is live.', href: '/services/semantic-seo-optimization-services/', photo: '/images/services/web-10.jpg' },
+  { icon: 'fas fa-robot', color: 'green', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, and Google AI Overviews — the new search frontier.', href: '/services/ai-geo-optimization/', photo: '/images/services/geo-1.jpg' },
+  { icon: 'fas fa-search', color: 'green', title: 'Free SEO &amp; GEO Audit', text: "Know exactly what's holding your current site back — and what it would take to fix it.", href: '/services/seo-audits/', photo: '/images/services/audit-1.jpg' },
 ];
 
 const data: ServiceData = {
@@ -81,7 +81,7 @@ const data: ServiceData = {
     badge: 'RANK-READY WEBSITE DESIGN',
     title: 'Websites that come <span class="grad">pre-ranked.</span>',
     lead: 'Most agencies design a pretty website, hand you the keys, and wish you luck with SEO. We build the two things as one thing — so your site ranks from the day it goes live, not six months later.',
-    photo: '/images/about/work-2.jpg',
+    photo: '/images/services/web-1.jpg',
     card: { value: '4.2×', title: 'avg. organic traffic lift within 90 days of launch', note: 'measured across 40+ Rank-Ready website builds since 2022' },
   },
   problem: {
@@ -89,6 +89,7 @@ const data: ServiceData = {
     title: 'A beautiful website that doesn’t rank is a very expensive brochure.',
     sub: 'If you’ve built a site in the last 3 years and your traffic didn’t move, this is why.',
     cards: problems,
+    photo: '/images/services/web-4.jpg',
   },
   included: {
     eyebrow: 'WHAT’S INCLUDED',
@@ -105,6 +106,7 @@ const data: ServiceData = {
   why: {
     eyebrow: 'WHY THIS MATTERS IN 2026',
     title: 'The gap between ‘has a website’ and ‘has a ranking website’ has never been wider.',
+    photo: '/images/services/web-8.jpg',
     article: matters,
     facts,
   },
@@ -115,6 +117,7 @@ const data: ServiceData = {
     cards: audience,
   },
   result: {
+    photo: '/images/services/web-9.jpg',
     value: '+312%',
     title: 'organic traffic within 6 months of launch',
     note: 'Smith &amp; Associates Law · Rank-Ready website rebuild + semantic SEO',
