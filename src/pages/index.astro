@@ -437,7 +437,7 @@ const faqs = [
 
 <style>
   section { font-family: var(--inter); position: relative; }
-  .grad { background: linear-gradient(135deg, #6EE7B7 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .grad { background: linear-gradient(90deg, #6EE7B7 0%, #059669 100%); -webkit-box-decoration-break: clone; box-decoration-break: clone; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .inner { z-index: 1; position: relative; }
   .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
   .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
@@ -518,7 +518,7 @@ const faqs = [
   .ind-lbl { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate-400); padding: 0; }
   .ind-list { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
   .ind { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border: 1px solid #E2E8F0; border-radius: 100px; font-size: 14.5px; font-weight: 600; color: var(--navy); transition: all .2s; line-height: 1.5; }
-  .ind i { color: var(--green); font-size: 14px; }
+  .ind i { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
   .ind:hover { border-color: var(--green); background: #F0FDF8; }
 
   /* 4. Problems */
@@ -528,7 +528,7 @@ const faqs = [
   .prob { display: grid; grid-template-columns: auto auto 1fr; gap: 20px; align-items: center; padding: 26px 28px; border: 1px solid #E2E8F0; border-radius: 18px; background: #fff; transition: all .3s; }
   .prob:hover { border-color: #FCA5A5; box-shadow: 0 20px 40px -24px rgba(239,68,68,.35); transform: translateX(6px); }
   .prob-n { font-size: 13px; font-weight: 800; color: #CBD5E1; }
-  .prob-ico { width: 52px; height: 52px; border-radius: 14px; background: #FEF2F2; border: 1px solid #FECACA; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #DC2626; }
+  .prob-ico { width: 52px; height: 52px; border-radius: 15px; background: linear-gradient(135deg, #FCA5A5 0%, #DC2626 100%); box-shadow: 0 12px 24px -12px rgba(220,38,38,.6), inset 0 1px 0 rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-size: 21px; color: #fff; }
   .prob-t { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.35; }
   .prob-x { font-size: 15px; color: var(--slate-500); line-height: 1.6; }
 
@@ -567,8 +567,8 @@ const faqs = [
   .tile-glow { position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(16,185,129,.45), transparent 70%); filter: blur(40px); }
   .tile-in { position: relative; padding: 30px 28px; display: flex; flex-direction: column; height: 100%; }
   .tile.big .tile-in { padding: 38px 34px; }
-  .t-ico { width: 50px; height: 50px; border-radius: 14px; background: #ECFDF5; color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
-  .tile.big .t-ico { width: 60px; height: 60px; font-size: 24px; background: linear-gradient(135deg, #047857, #34D399); color: #fff; }
+  .t-ico { width: 52px; height: 52px; border-radius: 15px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), inset 0 1px 0 rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
+  .tile.big .t-ico { width: 60px; height: 60px; font-size: 24px; }
   .t-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--slate-400); margin-bottom: 6px; line-height: 1.7; }
   .tile.big .t-tag { color: #34D399; }
   .t-title { font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 10px; letter-spacing: -.3px; }
@@ -577,7 +577,7 @@ const faqs = [
   .tile.big .t-text { color: var(--slate-300); font-size: 16px; }
   .t-list { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
   .t-list li { position: relative; padding-left: 28px; font-size: 14.5px; color: #E2E8F0; line-height: 1.5; }
-  .t-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: var(--green); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .t-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
   .t-more { margin-top: auto; font-size: 14px; font-weight: 700; color: var(--green); }
   .t-more i { font-size: 12px; margin-left: 4px; display: inline-block; transition: transform .3s; }
 
@@ -587,7 +587,7 @@ const faqs = [
   .purple-t { color: #34D399; }
   .geo-list { list-style: none; padding: 0; margin: 0 0 32px; display: grid; gap: 12px; }
   .geo-list li { position: relative; padding-left: 32px; font-size: 15.5px; color: #E2E8F0; line-height: 1.5; }
-  .geo-list li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(16,185,129,.25); border: 1px solid rgba(16,185,129,.6); color: #6EE7B7; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .geo-list li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); border: 0; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
   :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
   :global(.rr-btn-violet) { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #fff !important; box-shadow: 0 10px 30px -8px rgba(16,185,129,.55); }
   :global(.rr-btn-violet:hover) { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(16,185,129,.6); }
