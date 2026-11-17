@@ -7,18 +7,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FaqList from './FaqList.astro';
 import { site } from '../data/site';
 
-type Card = { icon: string; title: string; text: string };
+type Card = { icon: string; title: string; text: string; photo?: string };
 type Head = { eyebrow: string; title: string; sub: string };
 export interface ServiceData {
   meta: { title: string; description: string };
   schema: { name: string; serviceType: string };
   hero: { badge: string; title: string; lead: string; buttons?: [string, string]; photo?: string; card: { value: string; title: string; note: string } };
-  problem: Head & { cards: Card[] };
+  problem: Head & { cards: Card[]; photo?: string };
   included: Head & { cards: Card[] };
   steps: Head & { items: { title: string; text: string }[] };
-  why: { eyebrow: string; title: string; article: { title: string; text: string }[]; facts: { value: string; label: string }[] };
+  why: { eyebrow: string; title: string; photo?: string; article: { title: string; text: string }[]; facts: { value: string; label: string }[] };
   audience: Head & { cards: Card[] };
-  result: { value: string; title: string; note: string; quote: string; initials: string; name: string; role: string };
+  result: { photo?: string; value: string; title: string; note: string; quote: string; initials: string; name: string; role: string };
   faq: Head & { items: { q: string; a: string }[] };
   related: Head & { cards: (Card & { color?: string; href: string })[] };
 }
@@ -78,6 +78,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
         <p class="eyebrow red">{d.problem.eyebrow}</p>
         <h2 class="h2" set:html={d.problem.title} />
         <p class="sub">{d.problem.sub}</p>
+        {d.problem.photo && <img class="side-photo" src={d.problem.photo} alt="" width="1200" height="850" loading="lazy" />}
       </div>
       <div class="prob-list">
         {d.problem.cards.map((p, i) => (
@@ -136,9 +137,12 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   <section class="why">
     <div class="row">
       <div class="why-card">
-        <div class="why-head">
-          <p class="eyebrow light">{d.why.eyebrow}</p>
-          <h2 class="h2 light" set:html={d.why.title} />
+        <div class:list={['why-top', { 'has-photo': d.why.photo }]}>
+          <div class="why-head">
+            <p class="eyebrow light">{d.why.eyebrow}</p>
+            <h2 class="h2 light" set:html={d.why.title} />
+          </div>
+          {d.why.photo && <img class="why-photo" src={d.why.photo} alt="" width="1200" height="850" loading="lazy" />}
         </div>
         <div class="why-grid">
           {d.why.article.map((m, i) => (
@@ -164,7 +168,8 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
     </div>
     <div class="row who-grid">
       {d.audience.cards.map((a) => (
-        <div class="aud">
+        <div class:list={['aud', { 'with-photo': a.photo }]}>
+          {a.photo && <div class="card-photo"><img src={a.photo} alt="" width="1200" height="850" loading="lazy" /></div>}
           <div class="ico"><i class={a.icon}></i></div>
           <div>
             <h3 set:html={a.title} />
@@ -178,7 +183,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   <!-- 8. FEATURED RESULT -->
   <section class="result">
     <div class="row res-grid">
-      <div class="res-metric">
+      <div class="res-metric" style={d.result.photo ? 'background-image: linear-gradient(160deg, rgba(15,23,42,.88) 0%, rgba(6,78,59,.9) 100%), url(' + d.result.photo + ')' : undefined}>
         <div class="rc-lbl">Featured result</div>
         <div class="rm-val">{d.result.value}</div>
         <div class="rm-title">{d.result.title}</div>
@@ -223,7 +228,8 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
     </div>
     <div class="row rel-grid">
       {d.related.cards.map((r) => (
-        <a href={r.href} class="rel">
+        <a href={r.href} class:list={['rel', { 'with-photo': r.photo }]}>
+          {r.photo && <div class="card-photo"><img src={r.photo} alt="" width="1200" height="850" loading="lazy" /></div>}
           <div class="ico"><i class={r.icon}></i></div>
           <h3 set:html={r.title} />
           <p set:html={r.text} />
@@ -294,6 +300,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   .problem { padding: 110px 0 100px; background: #fff; }
   .split { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; align-items: start; }
   .split-head { position: sticky; top: 110px; }
+  .side-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; margin-top: 34px; }
   .prob-list { display: grid; gap: 16px; }
   .prob { display: flex; gap: 22px; border: 1px solid #E2E8F0; border-radius: 20px; padding: 28px 30px; transition: border-color .3s, box-shadow .3s; }
   .prob:hover { border-color: #FECACA; box-shadow: 0 20px 40px -26px rgba(15,23,42,.25); }
@@ -323,6 +330,9 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   .why { padding: 20px 0 100px; background: #fff; }
   .why-card { background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #0F172A 100%); border-radius: 30px; padding: 70px 64px; }
   .why-head { max-width: 760px; margin-bottom: 46px; }
+  .why-top.has-photo { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; margin-bottom: 46px; }
+  .why-top.has-photo .why-head { margin-bottom: 0; }
+  .why-photo { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); }
   .why-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.12); }
   .reason { padding: 34px 40px 34px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
   .reason:nth-child(2n) { padding-left: 40px; padding-right: 0; border-left: 1px solid rgba(255,255,255,.12); }
@@ -337,13 +347,20 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .aud { display: flex; gap: 18px; border: 1px solid #E2E8F0; border-radius: 20px; padding: 26px; transition: border-color .3s; }
   .aud:hover { border-color: #A7F3D0; }
+  .card-photo { overflow: hidden; border-radius: 14px; aspect-ratio: 16 / 10; }
+  .card-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .aud.with-photo { flex-direction: column; gap: 0; padding: 10px 10px 24px; position: relative; transition: border-color .3s, transform .3s, box-shadow .3s; }
+  .aud.with-photo:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
+  .aud.with-photo:hover .card-photo img, .rel.with-photo:hover .card-photo img { transform: scale(1.05); }
+  .aud.with-photo .ico { margin: -26px 0 14px 16px; position: relative; z-index: 1; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), 0 0 0 4px #fff; }
+  .aud.with-photo > div:last-child { padding: 0 16px; }
   .aud h3 { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 6px; }
   .aud p { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); padding: 0; margin: 0; }
 
   /* 8. Result */
   .result { padding: 100px 0; background: var(--light-bg); }
   .res-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 0; background: #fff; border: 1px solid #E2E8F0; border-radius: 26px; overflow: hidden; }
-  .res-metric { background: linear-gradient(135deg, #0F172A 0%, #064E3B 100%); padding: 50px 46px; color: #fff; }
+  .res-metric { background: linear-gradient(135deg, #0F172A 0%, #064E3B 100%); background-size: cover; background-position: center; padding: 50px 46px; color: #fff; }
   .res-metric .rc-lbl { color: #6EE7B7; }
   .rm-val { font-size: 76px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin: 6px 0 14px; background: linear-gradient(90deg, #6EE7B7 0%, #10B981 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #34D399; }
   .rm-title { font-size: 19px; font-weight: 700; line-height: 1.4; margin-bottom: 14px; }
@@ -372,6 +389,9 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   .rel { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px; color: inherit; transition: transform .3s, box-shadow .3s, border-color .3s; }
   .rel:hover { transform: translateY(-4px); border-color: #A7F3D0; box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
   .rel .ico { margin-bottom: 22px; }
+  .rel.with-photo { padding: 10px 10px 26px; }
+  .rel.with-photo .ico { margin: -26px 0 16px 20px; position: relative; z-index: 1; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), 0 0 0 4px #fff; }
+  .rel.with-photo h3, .rel.with-photo p, .rel.with-photo .rel-more { margin-left: 20px; margin-right: 20px; }
   .rel h3 { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
   .rel p { font-size: 15px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0 0 20px; }
   .rel-more { margin-top: auto; font-size: 15px; font-weight: 700; color: #059669; }
@@ -394,6 +414,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
     .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
     .split-head, .faq-head { position: static; }
     .incl-grid, .who-grid, .rel-grid { grid-template-columns: 1fr 1fr; }
+    .why-top.has-photo { grid-template-columns: 1fr; gap: 30px; }
     .steps { grid-template-columns: 1fr; gap: 0; max-width: 620px; }
     .steps::before { top: 0; bottom: 0; left: 27px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, #6EE7B7, #059669); }
     .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; text-align: left; padding: 0 0 30px; }
