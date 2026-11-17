@@ -43,7 +43,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
       <div class="hero-copy">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/services/">Services</a><i class="fas fa-chevron-right"></i><span>{d.hero.badge}</span></nav>
         <h1 set:html={d.hero.title} />
-        <p class="lead">{d.hero.lead}</p>
+        <p class="lead" set:html={d.hero.lead} />
         <div class="btns">
           <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>{d.hero.buttons?.[0] ?? 'Get a Free Strategy Call'}</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
           <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>{d.hero.buttons?.[1] ?? 'Request a Quote'}</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
@@ -77,7 +77,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
       <div class="split-head">
         <p class="eyebrow red">{d.problem.eyebrow}</p>
         <h2 class="h2" set:html={d.problem.title} />
-        <p class="sub">{d.problem.sub}</p>
+        <p class="sub" set:html={d.problem.sub} />
         {d.problem.photo && <img class="side-photo" src={d.problem.photo} alt="" width="1200" height="850" loading="lazy" />}
       </div>
       <div class="prob-list">
@@ -102,7 +102,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
         <p class="eyebrow">{d.included.eyebrow}</p>
         <h2 class="h2" set:html={d.included.title} />
       </div>
-      <p class="sub">{d.included.sub}</p>
+      <p class="sub" set:html={d.included.sub} />
     </div>
     <div class="row incl-grid">
       {d.included.cards.map((f) => (
@@ -120,7 +120,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
     <div class="row head-c">
       <p class="eyebrow">{d.steps.eyebrow}</p>
       <h2 class="h2" set:html={d.steps.title} />
-      <p class="sub">{d.steps.sub}</p>
+      <p class="sub" set:html={d.steps.sub} />
     </div>
     <ol class="row steps" style={'--n:' + d.steps.items.length}>
       {d.steps.items.map((s, i) => (
@@ -164,7 +164,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
         <p class="eyebrow">{d.audience.eyebrow}</p>
         <h2 class="h2" set:html={d.audience.title} />
       </div>
-      <p class="sub">{d.audience.sub}</p>
+      <p class="sub" set:html={d.audience.sub} />
     </div>
     <div class="row who-grid">
       {d.audience.cards.map((a) => (
@@ -206,7 +206,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
       <div class="faq-head">
         <p class="eyebrow">{d.faq.eyebrow}</p>
         <h2 class="h2" set:html={d.faq.title} />
-        <p class="sub">{d.faq.sub}</p>
+        <p class="sub" set:html={d.faq.sub} />
         <div class="faq-cta">
           <div class="fc-t">Still have questions?</div>
           <p>Book a free 30-minute call and get straight answers from a senior strategist.</p>
@@ -224,7 +224,7 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
         <p class="eyebrow">{d.related.eyebrow}</p>
         <h2 class="h2" set:html={d.related.title} />
       </div>
-      <p class="sub">{d.related.sub}</p>
+      <p class="sub" set:html={d.related.sub} />
     </div>
     <div class="row rel-grid">
       {d.related.cards.map((r) => (
