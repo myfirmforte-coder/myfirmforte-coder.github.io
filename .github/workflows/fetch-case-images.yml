@@ -1,0 +1,35 @@
+# Ek dafa chalne wala kaam: home page ke case study cards ke liye Unsplash se photos utha ke public/images/cases/ mein save karta hai.
+name: Save case study images
+
+on:
+  push:
+    paths: ['.github/workflows/fetch-case-images.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images
+        run: |
+          mkdir -p public/images/cases
+          for pair in \
+            legal-1:1589829545856-d10d557cf95f legal-2:1505664194779-8beaceb93744 legal-3:1589994965851-a8f479c573a9 legal-4:1450101499163-c8848c66ca85 \
+            home-1:1585704032915-c3400ca199e7 home-2:1621905251189-08b45d6a269e home-3:1600585154340-be6161a56a0c home-4:1564013799919-ab600027ffc6 \
+            saas-1:1551288049-bebda4e38f71 saas-2:1460925895917-afdab827c52f saas-3:1677442136019-21780ecad995 saas-4:1518186285589-2f7649de83e0; do
+            name="${pair%%:*}"; id="${pair#*:}"
+            curl -fsSL "https://images.unsplash.com/photo-$id?w=900&h=560&fit=crop&q=72&fm=jpg" -o "public/images/cases/$name.jpg" || echo "FAILED $name"
+          done
+          ls -la public/images/cases
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/cases
+          git commit -m "Save case study images" || echo "nothing to commit"
+          git pull --rebase
+          git push
