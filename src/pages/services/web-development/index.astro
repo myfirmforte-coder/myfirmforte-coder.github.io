@@ -1,25 +1,25 @@
 ---
 // WEB DEVELOPMENT SERVICES — /services/web-development/
 // (Purana URL /services/rank-ready-website-design/ yahan redirect hota hai.)
-// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
-import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+// Sirf text yahan hai; design src/components/ServicePageV2.astro (naya design) mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePageV2.astro';
 
 const problems = [
-  { icon: '🎨', title: 'Designed for judges, not search engines', text: 'Awwwards-style sites win design awards and lose organic traffic. Without semantic HTML, proper heading hierarchy, and crawlable structure, Google sees an empty shell where your content should be.' },
-  { icon: '🐌', title: 'Core Web Vitals failures killing rankings', text: 'Heavy page builders, uncompressed images, render-blocking scripts. Google penalizes slow sites by pushing them down the SERP. Most Divi, Elementor, and WordPress theme builds fail CWV out of the box.' },
-  { icon: '🏗️', title: 'No schema, no entity signals, no architecture', text: "Modern search runs on structured data and semantic relationships. If your pages don't tell Google what they're about in machine-readable terms, you're invisible to rich results, AI Overviews, and entity-based ranking." },
+  { icon: 'fas fa-paint-brush', title: 'Designed for judges, not search engines', text: 'Awwwards-style sites win design awards and lose organic traffic. Without semantic HTML, proper heading hierarchy, and crawlable structure, Google sees an empty shell where your content should be.' },
+  { icon: 'fas fa-hourglass-half', title: 'Core Web Vitals failures killing rankings', text: 'Heavy page builders, uncompressed images, render-blocking scripts. Google penalizes slow sites by pushing them down the SERP. Most Divi, Elementor, and WordPress theme builds fail CWV out of the box.' },
+  { icon: 'fas fa-code', title: 'No schema, no entity signals, no architecture', text: "Modern search runs on structured data and semantic relationships. If your pages don't tell Google what they're about in machine-readable terms, you're invisible to rich results, AI Overviews, and entity-based ranking." },
 ];
 
 const included = [
-  { icon: '🧱', title: 'Semantic HTML Architecture', text: 'Properly structured H1-H6 hierarchy, clean article/section tags, accessible landmarks, and a DOM tree search engines can actually parse.' },
-  { icon: '⚡', title: 'Core Web Vitals Optimization', text: 'Target: 90+ Lighthouse across LCP, INP, and CLS. Optimized images (WebP/AVIF), lazy loading, deferred scripts, and preloaded critical assets.' },
-  { icon: '🧩', title: 'Schema Markup (JSON-LD)', text: 'Organization, WebSite, WebPage, Service, LocalBusiness, Article, FAQPage, BreadcrumbList, and Review schemas configured per page type.' },
-  { icon: '📱', title: 'Mobile-First, Fully Responsive', text: 'Designed mobile-up, not desktop-down. Every breakpoint tested. Touch targets, font sizes, and navigation built around how people actually use phones.' },
-  { icon: '🎯', title: 'Conversion-Focused UX', text: 'Hero CTAs above the fold, trust signals placed by decision points, strategic whitespace, and forms engineered for completion rates above industry average.' },
-  { icon: '♿', title: 'WCAG 2.2 AA Accessibility', text: 'Color contrast, keyboard navigation, screen reader compatibility, skip links, and ARIA labels — which also happen to correlate with better rankings.' },
-  { icon: '📊', title: 'GA4 + GTM + Search Console Setup', text: 'Full analytics stack configured from day one. Event tracking, goal conversions, enhanced measurement, and Google Search Console verified and submitted.' },
-  { icon: '🔒', title: 'Security, HTTPS &amp; Hardening', text: 'SSL, HSTS headers, security plugin configuration, login hardening, rate limiting, and regular security scans baked into the handoff checklist.' },
-  { icon: '✍️', title: 'SEO-Ready Content CMS', text: 'A content management system your team can actually use — with built-in fields for meta titles, descriptions, schema, OG images, and custom excerpts.' },
+  { icon: 'fas fa-sitemap', title: 'Semantic HTML Architecture', text: 'Properly structured H1-H6 hierarchy, clean article/section tags, accessible landmarks, and a DOM tree search engines can actually parse.' },
+  { icon: 'fas fa-tachometer-alt', title: 'Core Web Vitals Optimization', text: 'Target: 90+ Lighthouse across LCP, INP, and CLS. Optimized images (WebP/AVIF), lazy loading, deferred scripts, and preloaded critical assets.' },
+  { icon: 'fas fa-file-code', title: 'Schema Markup (JSON-LD)', text: 'Organization, WebSite, WebPage, Service, LocalBusiness, Article, FAQPage, BreadcrumbList, and Review schemas configured per page type.' },
+  { icon: 'fas fa-mobile-alt', title: 'Mobile-First, Fully Responsive', text: 'Designed mobile-up, not desktop-down. Every breakpoint tested. Touch targets, font sizes, and navigation built around how people actually use phones.' },
+  { icon: 'fas fa-bullseye', title: 'Conversion-Focused UX', text: 'Hero CTAs above the fold, trust signals placed by decision points, strategic whitespace, and forms engineered for completion rates above industry average.' },
+  { icon: 'fas fa-universal-access', title: 'WCAG 2.2 AA Accessibility', text: 'Color contrast, keyboard navigation, screen reader compatibility, skip links, and ARIA labels — which also happen to correlate with better rankings.' },
+  { icon: 'fas fa-chart-bar', title: 'GA4 + GTM + Search Console Setup', text: 'Full analytics stack configured from day one. Event tracking, goal conversions, enhanced measurement, and Google Search Console verified and submitted.' },
+  { icon: 'fas fa-shield-alt', title: 'Security, HTTPS &amp; Hardening', text: 'SSL, HSTS headers, security plugin configuration, login hardening, rate limiting, and regular security scans baked into the handoff checklist.' },
+  { icon: 'fas fa-edit', title: 'SEO-Ready Content CMS', text: 'A content management system your team can actually use — with built-in fields for meta titles, descriptions, schema, OG images, and custom excerpts.' },
 ];
 
 const steps = [
@@ -45,12 +45,12 @@ const facts = [
 ];
 
 const audience = [
-  { icon: '⚖️', title: 'Professional Services', text: 'Law firms, accountants, consultants, and agencies where organic search is a primary lead channel.' },
-  { icon: '🏥', title: 'Healthcare &amp; Dental', text: 'Medical practices, dental groups, cosmetic clinics, and specialists competing in local markets.' },
-  { icon: '🏠', title: 'Home &amp; Local Services', text: "Plumbing, HVAC, roofing, landscaping, and any business where 'near me' searches drive revenue." },
-  { icon: '🛒', title: 'E-commerce &amp; DTC', text: 'Shopify, WooCommerce, and headless brands where category and product pages must rank on commercial keywords.' },
-  { icon: '🚀', title: 'B2B &amp; SaaS', text: 'Software companies and B2B service brands competing in content-heavy, high-intent keyword landscapes.' },
-  { icon: '🏢', title: 'Multi-Location Brands', text: 'Franchise groups, regional chains, and national brands needing scalable architectures for 10+ location pages.' },
+  { icon: 'fas fa-balance-scale', title: 'Professional Services', text: 'Law firms, accountants, consultants, and agencies where organic search is a primary lead channel.' },
+  { icon: 'fas fa-tooth', title: 'Healthcare &amp; Dental', text: 'Medical practices, dental groups, cosmetic clinics, and specialists competing in local markets.' },
+  { icon: 'fas fa-tools', title: 'Home &amp; Local Services', text: "Plumbing, HVAC, roofing, landscaping, and any business where 'near me' searches drive revenue." },
+  { icon: 'fas fa-shopping-cart', title: 'E-commerce &amp; DTC', text: 'Shopify, WooCommerce, and headless brands where category and product pages must rank on commercial keywords.' },
+  { icon: 'fas fa-rocket', title: 'B2B &amp; SaaS', text: 'Software companies and B2B service brands competing in content-heavy, high-intent keyword landscapes.' },
+  { icon: 'fas fa-building', title: 'Multi-Location Brands', text: 'Franchise groups, regional chains, and national brands needing scalable architectures for 10+ location pages.' },
 ];
 
 const faqs = [
@@ -66,9 +66,9 @@ const faqs = [
 ];
 
 const related = [
-  { icon: '🧠', color: 'green', title: 'Semantic SEO', text: 'Content and entity-driven SEO to dominate your topical niche once the site is live.', href: '/services/semantic-seo-optimization-services/' },
-  { icon: '🚀', color: 'purple', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, and Google AI Overviews — the new search frontier.', href: '/services/ai-geo-optimization/' },
-  { icon: '📊', color: 'dark', title: 'Free SEO &amp; GEO Audit', text: "Know exactly what's holding your current site back — and what it would take to fix it.", href: '/services/seo-audits/' },
+  { icon: 'fas fa-project-diagram', color: 'green', title: 'Semantic SEO', text: 'Content and entity-driven SEO to dominate your topical niche once the site is live.', href: '/services/semantic-seo-optimization-services/' },
+  { icon: 'fas fa-robot', color: 'green', title: 'AI &amp; GEO Optimization', text: 'Get cited by ChatGPT, Perplexity, and Google AI Overviews — the new search frontier.', href: '/services/ai-geo-optimization/' },
+  { icon: 'fas fa-search', color: 'green', title: 'Free SEO &amp; GEO Audit', text: "Know exactly what's holding your current site back — and what it would take to fix it.", href: '/services/seo-audits/' },
 ];
 
 const data: ServiceData = {
@@ -81,6 +81,7 @@ const data: ServiceData = {
     badge: 'RANK-READY WEBSITE DESIGN',
     title: 'Websites that come <span class="grad">pre-ranked.</span>',
     lead: 'Most agencies design a pretty website, hand you the keys, and wish you luck with SEO. We build the two things as one thing — so your site ranks from the day it goes live, not six months later.',
+    photo: '/images/about/work-2.jpg',
     card: { value: '4.2×', title: 'avg. organic traffic lift within 90 days of launch', note: 'measured across 40+ Rank-Ready website builds since 2022' },
   },
   problem: {
