@@ -1,7 +1,7 @@
 ---
 // LOCAL LANDING PAGES — /services/local-landing-pages/
-// Sirf text yahan hai; design src/components/ServicePage.astro mein hai.
-import ServicePage, { type ServiceData } from '../../../components/ServicePage.astro';
+// Sirf text yahan hai; design src/components/ServicePageV2.astro (naya design) mein hai.
+import ServicePage, { type ServiceData } from '../../../components/ServicePageV2.astro';
 
 const data: ServiceData = {
   meta: {
@@ -15,17 +15,19 @@ const data: ServiceData = {
     title: 'Local Landing Pages Services that <span class="grad">Rank &amp; Generate Leads.</span>',
     lead: 'If your business serves multiple locations, a generic ‘Service Areas’ page won’t cut it. We build dedicated, genuinely unique landing pages for every city you serve — architected to rank locally, load fast, and convert the people you actually want as customers.',
     buttons: ['Book Free Call', 'Request a Quote'],
+    photo: '/images/services/loc-street.jpg',
     card: { value: '+480%', title: 'avg. local pack appearances after rollout', note: 'measured across multi-location clients in past 18 months' },
   },
 
   problem: {
+    photo: '/images/services/web-2.jpg',
     eyebrow: 'WHY MOST LOCATION PAGES FAIL',
     title: 'The templated location page is dead. Google caught on years ago.',
     sub: 'Your competitors aren’t smarter — they’re just using better local landing pages.<br />If your “Locations” page isn’t bringing leads, here’s what’s going wrong.',
     cards: [
-      { icon: '📄', title: 'Duplicate content penalties', text: 'Most agencies create city landing pages by copying one template and swapping the location. Google easily detects this duplicate content — and those pages rarely rank. Instead of helping, they can weaken your entire SEO performance.' },
-      { icon: '🏚️', title: 'No real local relevance', text: 'Just adding a city name isn’t enough to rank in competitive U.S. markets. Without real local SEO signals like neighborhoods, landmarks, and local proof, Google won’t prioritize your pages. That’s why competitors in places like Houston outperform generic pages.' },
-      { icon: '🧱', title: 'Thin content, missing schema, weak internal linking', text: 'Pages with thin content, no schema, and poor internal linking fail to rank. Without proper LocalBusiness optimization and structure, Google has no reason to trust or show your page. That means no visibility — and no leads.' },
+      { icon: 'fas fa-copy', title: 'Duplicate content penalties', text: 'Most agencies create city landing pages by copying one template and swapping the location. Google easily detects this duplicate content — and those pages rarely rank. Instead of helping, they can weaken your entire SEO performance.' },
+      { icon: 'fas fa-map-marker-alt', title: 'No real local relevance', text: 'Just adding a city name isn’t enough to rank in competitive U.S. markets. Without real local SEO signals like neighborhoods, landmarks, and local proof, Google won’t prioritize your pages. That’s why competitors in places like Houston outperform generic pages.' },
+      { icon: 'fas fa-unlink', title: 'Thin content, missing schema, weak internal linking', text: 'Pages with thin content, no schema, and poor internal linking fail to rank. Without proper LocalBusiness optimization and structure, Google has no reason to trust or show your page. That means no visibility — and no leads.' },
     ],
   },
 
@@ -34,15 +36,15 @@ const data: ServiceData = {
     title: 'Everything that goes into a winning local landing page system.',
     sub: 'Whether you need 5 city pages or 500, the deliverables are the same — built to scale without sacrificing quality or triggering duplicate content issues.',
     cards: [
-      { icon: '🔍', title: 'Per-Location Keyword Research', text: 'Unique keyword maps for every city you target. Local search volume, intent analysis, and competitive difficulty scored at the ZIP-code level.' },
-      { icon: '✍️', title: 'Genuinely Unique Content Per Page', text: 'No template duplication. Each page includes city-specific context, local market insights, and service nuances that reflect real on-the-ground knowledge.' },
-      { icon: '🗺️', title: 'LocalBusiness + Service Schema', text: 'Full JSON-LD implementation per page — LocalBusiness, Service, Place, GeoCoordinates, PostalAddress, and review aggregation schemas.' },
-      { icon: '📍', title: 'NAP Consistency Audit', text: 'Name, Address, Phone consistency across every page, your GMB, and major citations. Discrepancies silently kill local rankings — we find and fix them.' },
-      { icon: '💬', title: 'Location-Specific Testimonials', text: 'Real customer reviews filtered and placed by city, so each page has locally relevant social proof. Review schema implemented for star ratings in SERPs.' },
-      { icon: '🗂️', title: 'URL Structure &amp; Information Architecture', text: 'Clean, hierarchical URLs that signal relationships (e.g. /service-areas/austin/), XML sitemaps, breadcrumb schema, and crawl-efficient linking.' },
-      { icon: '🔗', title: 'Inter-Page Linking Strategy', text: 'Hub-and-spoke architecture with smart cross-linking between service pages, location pages, and related cities that passes authority efficiently.' },
-      { icon: '⚡', title: 'Core Web Vitals Optimized', text: 'Every page ships with 90+ Lighthouse scores. Optimized images, lazy loading, minimal JS, and fast TTFB — because slow local pages lose to fast competitors.' },
-      { icon: '🎯', title: 'Conversion-Focused Design', text: 'Click-to-call CTAs, form placements tested per industry, service-specific offers, and trust signals positioned at decision points. Design serves conversion.' },
+      { icon: 'fas fa-search-location', title: 'Per-Location Keyword Research', text: 'Unique keyword maps for every city you target. Local search volume, intent analysis, and competitive difficulty scored at the ZIP-code level.' },
+      { icon: 'fas fa-pen-nib', title: 'Genuinely Unique Content Per Page', text: 'No template duplication. Each page includes city-specific context, local market insights, and service nuances that reflect real on-the-ground knowledge.' },
+      { icon: 'fas fa-file-code', title: 'LocalBusiness + Service Schema', text: 'Full JSON-LD implementation per page — LocalBusiness, Service, Place, GeoCoordinates, PostalAddress, and review aggregation schemas.' },
+      { icon: 'fas fa-address-card', title: 'NAP Consistency Audit', text: 'Name, Address, Phone consistency across every page, your GMB, and major citations. Discrepancies silently kill local rankings — we find and fix them.' },
+      { icon: 'fas fa-comment-dots', title: 'Location-Specific Testimonials', text: 'Real customer reviews filtered and placed by city, so each page has locally relevant social proof. Review schema implemented for star ratings in SERPs.' },
+      { icon: 'fas fa-sitemap', title: 'URL Structure &amp; Information Architecture', text: 'Clean, hierarchical URLs that signal relationships (e.g. /service-areas/austin/), XML sitemaps, breadcrumb schema, and crawl-efficient linking.' },
+      { icon: 'fas fa-link', title: 'Inter-Page Linking Strategy', text: 'Hub-and-spoke architecture with smart cross-linking between service pages, location pages, and related cities that passes authority efficiently.' },
+      { icon: 'fas fa-tachometer-alt', title: 'Core Web Vitals Optimized', text: 'Every page ships with 90+ Lighthouse scores. Optimized images, lazy loading, minimal JS, and fast TTFB — because slow local pages lose to fast competitors.' },
+      { icon: 'fas fa-bullseye', title: 'Conversion-Focused Design', text: 'Click-to-call CTAs, form placements tested per industry, service-specific offers, and trust signals positioned at decision points. Design serves conversion.' },
     ],
   },
 
@@ -60,6 +62,7 @@ const data: ServiceData = {
   },
 
   why: {
+    photo: '/images/services/loc-phone.jpg',
     eyebrow: 'WHY LOCAL LANDING PAGES MATTER',
     title: '46% of all Google searches are local. You need pages that win them.',
     article: [
@@ -81,16 +84,17 @@ const data: ServiceData = {
     title: 'Who benefits most from a local landing page rollout.',
     sub: 'Local landing pages are transformative for multi-location businesses and service-area operators. Here’s where the ROI is highest.',
     cards: [
-      { icon: '🏠', title: 'Home Services', text: 'Plumbing, HVAC, roofing, electrical, landscaping — any service business that operates across multiple cities or ZIP codes.' },
-      { icon: '🦷', title: 'Medical &amp; Dental Groups', text: 'Multi-location practices, dental service organizations (DSOs), specialty medical groups, and clinic networks.' },
-      { icon: '⚖️', title: 'Law Firms', text: 'Firms with multiple offices, regional practice areas, or attorneys serving distinct geographic markets.' },
-      { icon: '🏡', title: 'Real Estate', text: 'Brokerages and agents needing neighborhood-level pages, city pages, and hyper-targeted buyer/seller funnels.' },
-      { icon: '🍴', title: 'Restaurant &amp; Hospitality Groups', text: 'Restaurant chains, hotel groups, catering businesses — anywhere each location has its own local search presence.' },
-      { icon: '🏢', title: 'Franchises', text: 'Franchise networks where each location competes in its own local market — scalable templates without cannibalization.' },
+      { icon: 'fas fa-tools', photo: '/images/cases/home-2.jpg', title: 'Home Services', text: 'Plumbing, HVAC, roofing, electrical, landscaping — any service business that operates across multiple cities or ZIP codes.' },
+      { icon: 'fas fa-tooth', photo: '/images/services/ind-medical.jpg', title: 'Medical &amp; Dental Groups', text: 'Multi-location practices, dental service organizations (DSOs), specialty medical groups, and clinic networks.' },
+      { icon: 'fas fa-balance-scale', photo: '/images/cases/legal-1.jpg', title: 'Law Firms', text: 'Firms with multiple offices, regional practice areas, or attorneys serving distinct geographic markets.' },
+      { icon: 'fas fa-home', photo: '/images/cases/home-4.jpg', title: 'Real Estate', text: 'Brokerages and agents needing neighborhood-level pages, city pages, and hyper-targeted buyer/seller funnels.' },
+      { icon: 'fas fa-utensils', photo: '/images/services/loc-rest.jpg', title: 'Restaurant &amp; Hospitality Groups', text: 'Restaurant chains, hotel groups, catering businesses — anywhere each location has its own local search presence.' },
+      { icon: 'fas fa-building', photo: '/images/services/ind-city.jpg', title: 'Franchises', text: 'Franchise networks where each location competes in its own local market — scalable templates without cannibalization.' },
     ],
   },
 
   result: {
+    photo: '/images/about/team-4.jpg',
     value: '+890%',
     title: 'local pack appearances in 12 months',
     note: 'Multi-location dental group · 120 unique city pages deployed with zero duplicate content flags',
@@ -119,9 +123,9 @@ const data: ServiceData = {
     title: 'Services that pair perfectly with this one.',
     sub: 'Most clients start with one service and expand as results come in. Here’s what tends to work well together.',
     cards: [
-      { icon: '📍', color: 'green', title: 'GMB Management', text: 'Local pages + optimized Google Business Profile = 3-pack domination.', href: '/services/gmb-management-services/' },
-      { icon: '🧠', color: 'purple', title: 'Semantic SEO', text: 'Compound the power of your local pages with topical authority across your whole site.', href: '/services/semantic-seo-optimization-services/' },
-      { icon: '📊', color: 'dark', title: 'Free SEO Audit', text: 'Not sure where to start? Get a free audit that shows which cities offer the biggest opportunity.', href: '/services/seo-audits/' },
+      { icon: 'fas fa-store', color: 'green', photo: '/images/services/ind-store.jpg', title: 'GMB Management', text: 'Local pages + optimized Google Business Profile = 3-pack domination.', href: '/services/gmb-management-services/' },
+      { icon: 'fas fa-project-diagram', color: 'green', photo: '/images/services/web-10.jpg', title: 'Semantic SEO', text: 'Compound the power of your local pages with topical authority across your whole site.', href: '/services/semantic-seo-optimization-services/' },
+      { icon: 'fas fa-search', color: 'green', photo: '/images/services/audit-1.jpg', title: 'Free SEO Audit', text: 'Not sure where to start? Get a free audit that shows which cities offer the biggest opportunity.', href: '/services/seo-audits/' },
     ],
   },
 };
