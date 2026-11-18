@@ -1,0 +1,439 @@
+---
+// INDUSTRY PAGE TEMPLATE (NAYA DESIGN) — services pages jaisa style, photos ke saath.
+// Jo industry page is design par shift ho chuka hai woh "IndustryPageV2" import karta hai.
+// Baqi industry pages abhi purana IndustryPage.astro use karte hain; shift karne ke liye import badlein,
+// icons ko Font Awesome ('fas fa-...') mein badlein aur photo fields add karein.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FaqList from './FaqList.astro';
+import { site } from '../data/site';
+
+type Card = { icon: string; title: string; text: string; photo?: string };
+type Head = { eyebrow: string; title: string; sub: string };
+export interface IndustryData {
+  meta: { title: string; description: string };
+  schema: { name: string; serviceType: string };
+  hero: { badge: string; title: string; lead: string; buttons?: [string, string]; photo?: string; card: { value: string; title: string; note: string } };
+  problem: Head & { cards: Card[]; photo?: string };
+  approach: Head & { cards: (Card & { color?: string; href: string })[] };
+  why: { eyebrow: string; title: string; photo?: string; article: { title: string; text: string }[]; facts: { value: string; label: string }[] };
+  audience: Head & { cards: Card[] };
+  result: { photo?: string; value: string; title: string; note: string; quote: string; initials: string; name: string; role: string };
+  faq: Head & { items: { q: string; a: string }[] };
+  related: Head & { cards: (Card & { color?: string; href: string })[] };
+}
+interface Props { data: IndustryData }
+const { data: d } = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: d.schema.name,
+  serviceType: d.schema.serviceType,
+  provider: { '@type': 'ProfessionalService', name: site.name, url: Astro.site?.toString() },
+  areaServed: 'Worldwide',
+};
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<BaseLayout title={d.meta.title} description={d.meta.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- 1. HERO -->
+  <section class="sp-hero">
+    <div class="row hero-grid">
+      <div class="hero-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/industries/">Industries</a><i class="fas fa-chevron-right"></i><span>{d.hero.badge}</span></nav>
+        <h1 set:html={d.hero.title} />
+        <p class="lead" set:html={d.hero.lead} />
+        <div class="btns">
+          <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>{d.hero.buttons?.[0] ?? 'Get a Free Strategy Call'}</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+          <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>{d.hero.buttons?.[1] ?? 'Request a Quote'}</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+      </div>
+      <div class:list={['hero-visual', { 'no-photo': !d.hero.photo }]}>
+        {d.hero.photo && <img src={d.hero.photo} alt="" width="1200" height="900" />}
+        <div class="res-card">
+          <div class="rc-lbl">Average client result</div>
+          <div class="rc-val">{d.hero.card.value}</div>
+          <div class="rc-title">{d.hero.card.title}</div>
+          <div class="rc-note">{d.hero.card.note}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FACTS STRIP -->
+  <div class="row stats">
+    {d.why.facts.map((f) => (
+      <div class="stat">
+        <div class="s-v">{f.value}</div>
+        <div class="s-l">{f.label}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- 3. THE PROBLEM -->
+  <section class="problem">
+    <div class="row split">
+      <div class="split-head">
+        <p class="eyebrow red">{d.problem.eyebrow}</p>
+        <h2 class="h2" set:html={d.problem.title} />
+        <p class="sub" set:html={d.problem.sub} />
+        {d.problem.photo && <img class="side-photo" src={d.problem.photo} alt="" width="1200" height="850" loading="lazy" />}
+      </div>
+      <div class="prob-list">
+        {d.problem.cards.map((p, i) => (
+          <div class="prob">
+            <div class="ico red"><i class={p.icon}></i></div>
+            <div>
+              <div class="prob-n">{pad(i)}</div>
+              <h3 set:html={p.title} />
+              <p set:html={p.text} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE APPROACH (services in priority order) -->
+  <section class="incl">
+    <div class="row sec-head">
+      <div>
+        <p class="eyebrow">{d.approach.eyebrow}</p>
+        <h2 class="h2" set:html={d.approach.title} />
+      </div>
+      <p class="sub" set:html={d.approach.sub} />
+    </div>
+    <div class="row appr-grid">
+      {d.approach.cards.map((c, i) => (
+        <a href={c.href} class="feat appr">
+          <div class="appr-top"><div class="ico"><i class={c.icon}></i></div><span class="pri">PRIORITY {i + 1}</span></div>
+          <h3 set:html={c.title} />
+          <p set:html={c.text} />
+          <span class="rel-more">Explore this service <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 5. WHY THIS MATTERS -->
+  <section class="why">
+    <div class="row">
+      <div class="why-card">
+        <div class:list={['why-top', { 'has-photo': d.why.photo }]}>
+          <div class="why-head">
+            <p class="eyebrow light">{d.why.eyebrow}</p>
+            <h2 class="h2 light" set:html={d.why.title} />
+          </div>
+          {d.why.photo && <img class="why-photo" src={d.why.photo} alt="" width="1200" height="850" loading="lazy" />}
+        </div>
+        <div class="why-grid">
+          {d.why.article.map((m, i) => (
+            <div class="reason">
+              <span class="r-n">{pad(i)}</span>
+              <h3 set:html={m.title} />
+              <p set:html={m.text} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. WHO IT IS FOR -->
+  <section class="who">
+    <div class="row sec-head">
+      <div>
+        <p class="eyebrow">{d.audience.eyebrow}</p>
+        <h2 class="h2" set:html={d.audience.title} />
+      </div>
+      <p class="sub" set:html={d.audience.sub} />
+    </div>
+    <div class="row who-grid">
+      {d.audience.cards.map((a) => (
+        <div class:list={['aud', { 'with-photo': a.photo }]}>
+          {a.photo && <div class="card-photo"><img src={a.photo} alt="" width="1200" height="850" loading="lazy" /></div>}
+          <div class="ico"><i class={a.icon}></i></div>
+          <div>
+            <h3 set:html={a.title} />
+            <p set:html={a.text} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 7. FEATURED RESULT -->
+  <section class="result">
+    <div class="row res-grid">
+      <div class="res-metric" style={d.result.photo ? 'background-image: linear-gradient(160deg, rgba(15,23,42,.88) 0%, rgba(6,78,59,.9) 100%), url(' + d.result.photo + ')' : undefined}>
+        <div class="rc-lbl">Featured result</div>
+        <div class="rm-val">{d.result.value}</div>
+        <div class="rm-title">{d.result.title}</div>
+        <div class="rm-note" set:html={d.result.note} />
+      </div>
+      <figure class="res-quote">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <blockquote set:html={d.result.quote} />
+        <figcaption>
+          <span class="q-av">{d.result.initials}</span>
+          <span><b>{d.result.name}</b><span set:html={d.result.role} /></span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="faq-sec">
+    <div class="row faq-grid">
+      <div class="faq-head">
+        <p class="eyebrow">{d.faq.eyebrow}</p>
+        <h2 class="h2" set:html={d.faq.title} />
+        <p class="sub" set:html={d.faq.sub} />
+        <div class="faq-cta">
+          <div class="fc-t">Still have questions?</div>
+          <p>Book a free 30-minute call and get straight answers from a senior strategist.</p>
+          <a href={site.calendly} class="rr-btn rr-btn-primary" target="_blank" rel="noopener"><span>Book a Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        </div>
+      </div>
+      <div class="faq-list"><FaqList faqs={d.faq.items} /></div>
+    </div>
+  </section>
+
+  <!-- 9. EXPLORE MORE -->
+  <section class="more">
+    <div class="row sec-head">
+      <div>
+        <p class="eyebrow">{d.related.eyebrow}</p>
+        <h2 class="h2" set:html={d.related.title} />
+      </div>
+      <p class="sub" set:html={d.related.sub} />
+    </div>
+    <div class="row rel-grid">
+      {d.related.cards.map((r) => (
+        <a href={r.href} class:list={['rel', { 'with-photo': r.photo }]}>
+          {r.photo && <div class="card-photo"><img src={r.photo} alt="" width="1200" height="850" loading="lazy" /></div>}
+          <div class="ico"><i class={r.icon}></i></div>
+          <h3 set:html={r.title} />
+          <p set:html={r.text} />
+          <span class="rel-more">Learn more <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 10. FINAL CTA -->
+  <section class="final">
+    <div class="row final-in">
+      <h2>Let’s make you <span class="g">Rank Ready.</span></h2>
+      <p>Book a free 30-minute strategy call. No pressure, no pitch — just clear advice on what’s holding your rankings back and how to fix it.</p>
+      <div class="btns center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  section { font-family: var(--inter); position: relative; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
+  .g, .sp-hero h1 :global(.grad), .h2 :global(.grad) { background: linear-gradient(90deg, #6EE7B7 0%, #059669 100%); -webkit-box-decoration-break: clone; box-decoration-break: clone; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #34D399; }
+  .eyebrow { margin-bottom: 14px; padding: 0; }
+  .eyebrow.red { color: #DC2626; }
+  .eyebrow.light { color: #6EE7B7; }
+  .h2 { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; color: var(--navy); margin-bottom: 20px; padding: 0; }
+  .h2.light { color: #fff; }
+  .sub { font-size: 17px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btns.center { justify-content: center; }
+  .sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
+  .sec-head .h2 { margin-bottom: 0; }
+  .head-c { text-align: center; max-width: 760px; margin-bottom: 60px; }
+  h3 { padding: 0; }
+  .ico { flex: none; width: 52px; height: 52px; border-radius: 15px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), inset 0 1px 0 rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .ico.red { background: linear-gradient(135deg, #FCA5A5 0%, #DC2626 100%); box-shadow: 0 12px 24px -12px rgba(220,38,38,.6), inset 0 1px 0 rgba(255,255,255,.35); }
+
+  /* 1. Hero */
+  .sp-hero { background: linear-gradient(135deg, #0B1224 0%, #020617 100%); padding: 90px 0 150px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .crumbs { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px; color: #6EE7B7; }
+  .crumbs a { color: var(--slate-400); }
+  .crumbs a:hover { color: #fff; }
+  .crumbs i { font-size: 9px; color: var(--slate-500); }
+  .sp-hero h1 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2.2px; color: #fff; margin-bottom: 24px; padding: 0; }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--slate-300); margin-bottom: 34px; padding: 0; max-width: 580px; }
+  .hero-visual { position: relative; padding-bottom: 40px; }
+  .hero-visual img { display: block; width: 88%; margin-left: auto; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: 22px; }
+  .res-card { position: absolute; left: 0; bottom: 0; width: 300px; background: #fff; border-radius: 18px; padding: 24px 26px; box-shadow: 0 30px 60px -24px rgba(2,6,23,.6); }
+  .no-photo .res-card { position: static; width: auto; max-width: 420px; margin-left: auto; }
+  .rc-lbl { font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--slate-400); margin-bottom: 8px; }
+  .rc-val { font-size: 54px; font-weight: 800; letter-spacing: -2px; line-height: 1; background: linear-gradient(90deg, #10B981 0%, #047857 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #059669; margin-bottom: 10px; }
+  .rc-title { font-size: 15.5px; font-weight: 700; color: var(--navy); line-height: 1.45; margin-bottom: 6px; }
+  .rc-note { font-size: 13px; color: var(--slate-500); line-height: 1.5; }
+
+  /* 2. Stats */
+  .stats { position: relative; z-index: 2; margin-top: -70px; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.25); display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 28px 30px; font-family: var(--inter); }
+  .stat + .stat { border-left: 1px solid #F1F5F9; }
+  .s-v { font-size: 38px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.1; color: var(--navy); }
+  .s-l { font-size: 14px; line-height: 1.5; color: var(--slate-500); margin-top: 6px; }
+
+  /* 3. Problem */
+  .problem { padding: 110px 0 100px; background: #fff; }
+  .split { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; align-items: start; }
+  .split-head { position: sticky; top: 110px; }
+  .side-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; margin-top: 34px; }
+  .prob-list { display: grid; gap: 16px; }
+  .prob { display: flex; gap: 22px; border: 1px solid #E2E8F0; border-radius: 20px; padding: 28px 30px; transition: border-color .3s, box-shadow .3s; }
+  .prob:hover { border-color: #FECACA; box-shadow: 0 20px 40px -26px rgba(15,23,42,.25); }
+  .prob-n { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #CBD5E1; margin-bottom: 4px; }
+  .prob h3 { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
+  .prob p { font-size: 15.5px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+
+  /* 4. Included */
+  .incl { padding: 100px 0; background: var(--light-bg); }
+  .incl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feat { background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px; transition: transform .3s, box-shadow .3s, border-color .3s; }
+  .feat:hover { transform: translateY(-4px); border-color: #A7F3D0; box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
+  .feat .ico { margin-bottom: 22px; }
+  .appr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .appr { display: flex; flex-direction: column; color: inherit; }
+  .appr-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+  .appr-top .ico { margin: 0; }
+  .pri { font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; color: #059669; background: #ECFDF5; border-radius: 100px; padding: 5px 12px; }
+  .appr p { margin-bottom: 20px !important; }
+  .appr .rel-more { margin-top: auto; }
+  .appr:hover .rel-more i { transform: translateX(5px); }
+  .feat h3 { font-size: 19px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
+  .feat p { font-size: 15px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+
+  /* 5. How */
+  .how { padding: 100px 0; background: #fff; }
+  .steps { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 24px; position: relative; }
+  .steps::before { content: ""; position: absolute; top: 27px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg, #6EE7B7, #059669); opacity: .35; }
+  .step { position: relative; text-align: center; padding: 0 6px; }
+  .st-dot { position: relative; z-index: 1; width: 56px; height: 56px; margin: 0 auto 22px; border-radius: 16px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), 0 0 0 6px #fff; }
+  .step h3 { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
+  .step p { font-size: 14.5px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+
+  /* 6. Why */
+  .why { padding: 20px 0 100px; background: #fff; }
+  .why-card { background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #0F172A 100%); border-radius: 30px; padding: 70px 64px; }
+  .why-head { max-width: 760px; margin-bottom: 46px; }
+  .why-top.has-photo { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; margin-bottom: 46px; }
+  .why-top.has-photo .why-head { margin-bottom: 0; }
+  .why-photo { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.12); }
+  .reason { padding: 34px 40px 34px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-child(2n) { padding-left: 40px; padding-right: 0; border-left: 1px solid rgba(255,255,255,.12); }
+  .reason:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
+  .r-n { display: inline-block; font-size: 13px; font-weight: 700; color: #6EE7B7; letter-spacing: 1px; margin-bottom: 12px; }
+  .reason h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.35; }
+  .reason p { font-size: 15px; line-height: 1.75; color: #CBD5E1; padding: 0; margin: 0; }
+  .reason p :global(strong) { color: #fff; }
+
+  /* 7. Who */
+  .who { padding: 0 0 100px; background: #fff; }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .aud { display: flex; gap: 18px; border: 1px solid #E2E8F0; border-radius: 20px; padding: 26px; transition: border-color .3s; }
+  .aud:hover { border-color: #A7F3D0; }
+  .card-photo { overflow: hidden; border-radius: 14px; aspect-ratio: 16 / 10; }
+  .card-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .aud.with-photo { flex-direction: column; gap: 0; padding: 10px 10px 24px; position: relative; transition: border-color .3s, transform .3s, box-shadow .3s; }
+  .aud.with-photo:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
+  .aud.with-photo:hover .card-photo img, .rel.with-photo:hover .card-photo img { transform: scale(1.05); }
+  .aud.with-photo .ico { margin: -26px 0 14px 16px; position: relative; z-index: 1; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), 0 0 0 4px #fff; }
+  .aud.with-photo > div:last-child { padding: 0 16px; }
+  .aud h3 { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 6px; }
+  .aud p { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); padding: 0; margin: 0; }
+
+  /* 8. Result */
+  .result { padding: 100px 0; background: var(--light-bg); }
+  .res-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 0; background: #fff; border: 1px solid #E2E8F0; border-radius: 26px; overflow: hidden; }
+  .res-metric { background: linear-gradient(135deg, #0F172A 0%, #064E3B 100%); background-size: cover; background-position: center; padding: 50px 46px; color: #fff; }
+  .res-metric .rc-lbl { color: #6EE7B7; }
+  .rm-val { font-size: 76px; font-weight: 800; letter-spacing: -3px; line-height: 1; margin: 6px 0 14px; background: linear-gradient(90deg, #6EE7B7 0%, #10B981 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #34D399; }
+  .rm-title { font-size: 19px; font-weight: 700; line-height: 1.4; margin-bottom: 14px; }
+  .rm-note { font-size: 14px; color: var(--slate-300); line-height: 1.6; }
+  .res-quote { margin: 0; padding: 50px 54px; display: flex; flex-direction: column; justify-content: center; }
+  .stars { color: #FBBF24; font-size: 14px; display: flex; gap: 3px; margin-bottom: 18px; }
+  .res-quote blockquote { font-size: 22px; line-height: 1.55; font-weight: 600; letter-spacing: -.3px; color: var(--navy); margin: 0 0 26px; padding: 0; border: 0; font-style: normal; }
+  .res-quote figcaption { display: flex; align-items: center; gap: 14px; }
+  .q-av { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .res-quote figcaption b { display: block; font-size: 16px; color: var(--navy); }
+  .res-quote figcaption span span { font-size: 14px; color: var(--slate-500); }
+
+  /* 9. FAQ */
+  .faq-sec { padding: 100px 0; background: #fff; }
+  .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+  .faq-head { position: sticky; top: 110px; }
+  .faq-head .sub { margin-bottom: 28px; }
+  .faq-cta { background: var(--light-bg); border: 1px solid #E2E8F0; border-radius: 20px; padding: 26px; }
+  .fc-t { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .faq-cta p { font-size: 14.5px; color: var(--slate-500); line-height: 1.6; padding: 0; margin-bottom: 18px; }
+  .faq-list :global(.row) { width: 100%; max-width: none; padding: 0; }
+
+  /* 10. More */
+  .more { padding: 100px 0; background: var(--light-bg); }
+  .rel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rel { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 30px; color: inherit; transition: transform .3s, box-shadow .3s, border-color .3s; }
+  .rel:hover { transform: translateY(-4px); border-color: #A7F3D0; box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
+  .rel .ico { margin-bottom: 22px; }
+  .rel.with-photo { padding: 10px 10px 26px; }
+  .rel.with-photo .ico { margin: -26px 0 16px 20px; position: relative; z-index: 1; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), 0 0 0 4px #fff; }
+  .rel.with-photo h3, .rel.with-photo p, .rel.with-photo .rel-more { margin-left: 20px; margin-right: 20px; }
+  .rel h3 { font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 8px; }
+  .rel p { font-size: 15px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0 0 20px; }
+  .rel-more { margin-top: auto; font-size: 15px; font-weight: 700; color: #059669; }
+  .rel-more i { font-size: 12px; margin-left: 4px; transition: transform .3s; }
+  .rel:hover .rel-more i { transform: translateX(5px); }
+
+  /* 11. Final */
+  .final { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #064E3B 100%); padding: 120px 0; }
+  .final-in { text-align: center; max-width: 820px; }
+  .final h2 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2px; color: #fff; margin-bottom: 20px; padding: 0; }
+  .final p { font-size: 18px; line-height: 1.7; color: var(--slate-300); max-width: 620px; margin: 0 auto 36px; padding: 0; }
+
+  @media (max-width: 980px) {
+    .hero-grid, .sec-head, .split, .faq-grid, .res-grid { grid-template-columns: 1fr; gap: 40px; }
+    .res-grid { gap: 0; }
+    .sp-hero { padding: 64px 0 130px; }
+    .hero-visual { max-width: 620px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
+    .split-head, .faq-head { position: static; }
+    .incl-grid, .who-grid, .rel-grid, .appr-grid { grid-template-columns: 1fr 1fr; }
+    .why-top.has-photo { grid-template-columns: 1fr; gap: 30px; }
+    .steps { grid-template-columns: 1fr; gap: 0; max-width: 620px; }
+    .steps::before { top: 0; bottom: 0; left: 27px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, #6EE7B7, #059669); }
+    .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; text-align: left; padding: 0 0 30px; }
+    .st-dot { margin: 0; grid-row: span 2; }
+  }
+  @media (max-width: 767px) {
+    .sp-hero h1 { font-size: 40px; letter-spacing: -1.3px; }
+    .lead { font-size: 16.5px; }
+    .h2 { font-size: 32px; letter-spacing: -1px; }
+    .problem, .incl, .how, .result, .faq-sec, .more { padding: 70px 0; }
+    .who { padding: 0 0 70px; }
+    .hero-visual img { width: 100%; }
+    .res-card { position: relative; width: auto; margin: -50px 16px 0; }
+    .hero-visual { padding-bottom: 0; }
+    .stats { margin-top: -60px; }
+    .stat { padding: 20px 18px; }
+    .s-v { font-size: 28px; }
+    .s-l { font-size: 12.5px; }
+    .prob { flex-direction: column; gap: 16px; padding: 24px 22px; }
+    .incl-grid, .who-grid, .rel-grid, .appr-grid { grid-template-columns: 1fr; }
+    .why { padding: 0 0 70px; }
+    .why-card { padding: 44px 24px; border-radius: 22px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .reason, .reason:nth-child(2n) { padding: 26px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:last-child { border-bottom: 0; padding-bottom: 0; }
+    .res-metric, .res-quote { padding: 34px 26px; }
+    .rm-val { font-size: 56px; }
+    .res-quote blockquote { font-size: 18px; }
+    .final { padding: 80px 0; }
+    .final h2 { font-size: 38px; letter-spacing: -1.2px; }
+  }
+</style>
