@@ -27,7 +27,9 @@ jobs:
             loc-map:1524661135-423995f22d0b loc-rest:1517248135467-4c7edcad34c4 loc-phone:1569336415962-a4bd9f69cd83 loc-street:1480714378408-67cf0d13bc1b \
             gmb-phone:1512941937669-90a1b58e7e9c gmb-owner:1556740758-90de374c12ad gmb-shop:1556745757-8d76bdb6984b auto-1:1487754180451-c456f719a1fc auto-2:1625047509248-ec889cbff17f \
             ai-hand:1620712943543-bcc4688e7485 ai-robot:1485827404703-89b55fcc595e ai-abstract:1531746790731-6c087fecd65a ai-chat:1676299081847-824916de030a \
-            ai-woman:1573164713988-8665fc963095 speaker:1507146153580-69a1fe6d8aa1 ent-meet:1556761175-5973dc0f32e7; do
+            ai-woman:1573164713988-8665fc963095 speaker:1507146153580-69a1fe6d8aa1 ent-meet:1556761175-5973dc0f32e7 \
+            leg-gavel:1589216532372-1c2a367900d9 leg-family:1511895426328-dc8714191300 leg-car:1532751203793-812308a10d8e leg-worker:1504307651254-35680f356dfd \
+            leg-plane:1436491865332-7a61a109cc05 leg-passport:1569154941061-e231b4725ef1 leg-handshake:1521791136064-7986c2920216; do
             name="${pair%%:*}"; id="${pair#*:}"
             curl -fsSL "https://images.unsplash.com/photo-$id?w=1200&h=850&fit=crop&q=72&fm=jpg" -o "public/images/services/$name.jpg" || echo "FAILED $name"
           done
