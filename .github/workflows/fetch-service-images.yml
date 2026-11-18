@@ -32,7 +32,9 @@ jobs:
             leg-plane:1436491865332-7a61a109cc05 leg-passport:1569154941061-e231b4725ef1 leg-handshake:1521791136064-7986c2920216 \
             med-dentist:1588776814546-1ffcf47267a5 med-doctor:1559839734-2b71ea197ec2 med-eye:1574258495973-f010dfbb5371 med-spa:1570172619644-dfd03ed5d881 \
             med-steth:1505751172876-fa1923c5c528 med-therapy:1573497019940-1c28c88b4f3e med-tablet:1576091160550-2173dba999ef \
-            dent-2:1629909613654-28e377c37b09 dent-3:1606811841689-23dfddce3e95 dent-4:1609840114035-3c981b782dfe dent-5:1588776814546-daab30f310ce; do
+            dent-2:1629909613654-28e377c37b09 dent-3:1606811841689-23dfddce3e95 dent-4:1609840114035-3c981b782dfe dent-5:1588776814546-daab30f310ce \
+            hs-plumb:1607472586893-edb57bdc0e39 hs-hvac:1621905252507-b35492cc74b4 hs-roof:1632759145351-1d592919f522 hs-lawn:1558904541-efa843a96f01 \
+            hs-pest:1632935190508-3a2b9ec3e7e2 hs-van:1600880292089-90a7e086ee0c hs-tools:1581578731548-c64695cc6952; do
             name="${pair%%:*}"; id="${pair#*:}"
             curl -fsSL "https://images.unsplash.com/photo-$id?w=1200&h=850&fit=crop&q=72&fm=jpg" -o "public/images/services/$name.jpg" || echo "FAILED $name"
           done
