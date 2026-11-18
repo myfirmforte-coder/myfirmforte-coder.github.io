@@ -1,7 +1,7 @@
 ---
 // INDUSTRY PAGE — /industries/real-estate/
-// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
-import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+// Sirf text yahan hai; design src/components/IndustryPageV2.astro (naya design) mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPageV2.astro';
 
 const data: IndustryData = {
   meta: {
@@ -13,16 +13,18 @@ const data: IndustryData = {
     badge: "SEO FOR REAL ESTATE",
     title: "SEO for brokerages <span class='grad'>&amp; agents that still works.</span>",
     lead: "Zillow, Redfin, and Realtor.com own most real estate search terms. But there’s a whole layer of high-intent, locally-specific, buyer-and-seller queries they can’t dominate — and that’s exactly where we build. Neighborhood-level authority, agent-level authority, and hyperlocal content your competitors can’t touch.",
+    photo: "/images/services/re-lux.jpg",
     card: { value: "$1.2M", title: "attributed revenue in 12 months", note: "Regional brokerage · 40 neighborhood pages + semantic content strategy" },
   },
   problem: {
+    photo: "/images/services/re-keys.jpg",
     eyebrow: "THE CHALLENGE",
     title: "Why SEO in this vertical is different.",
     sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
     cards: [
-      { icon: "🏢", title: "Zillow &amp; Redfin own the transactional keywords", text: "Trying to rank for 'homes for sale in Austin' against a portal with a $1B marketing budget is a losing game. You need a different search layer — neighborhood guides, market reports, agent-specific authority — where portals can't compete." },
-      { icon: "📍", title: "Neighborhood-level content is where wins hide", text: "Portals have city pages. They don't have 'Clarksville Austin real estate,' 'Tarrytown market report,' or 'Hyde Park family homes' — all high-intent queries with commercial volume, easy wins, and no portal competition." },
-      { icon: "🎯", title: "Agent SEO vs. brokerage SEO requires different strategies", text: "An individual agent building personal brand SEO has different priorities than a brokerage running team-wide SEO. We architect programs that don't have agents cannibalizing their own brokerage or vice versa." },
+      { icon: "fas fa-building", title: "Zillow &amp; Redfin own the transactional keywords", text: "Trying to rank for 'homes for sale in Austin' against a portal with a $1B marketing budget is a losing game. You need a different search layer — neighborhood guides, market reports, agent-specific authority — where portals can't compete." },
+      { icon: "fas fa-map-marker-alt", title: "Neighborhood-level content is where wins hide", text: "Portals have city pages. They don't have 'Clarksville Austin real estate,' 'Tarrytown market report,' or 'Hyde Park family homes' — all high-intent queries with commercial volume, easy wins, and no portal competition." },
+      { icon: "fas fa-bullseye", title: "Agent SEO vs. brokerage SEO requires different strategies", text: "An individual agent building personal brand SEO has different priorities than a brokerage running team-wide SEO. We architect programs that don't have agents cannibalizing their own brokerage or vice versa." },
     ],
   },
   approach: {
@@ -30,15 +32,16 @@ const data: IndustryData = {
     title: "Services we recommend for this industry, in order.",
     sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
     cards: [
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "The core play: neighborhood pages at scale. Each neighborhood gets its own page with market data, school info, local character, featured listings, and agent info — all unique, all ranking.", href: "/services/local-landing-pages/" },
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Market reports, buyer guides, seller guides, neighborhood deep dives, school reviews — topical authority that makes you the local market expert Google trusts.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "IDX-integrated site with fast search, neighborhood landing architecture, agent bio system, and CWV-optimized for the mobile-first home buyer.", href: "/services/web-development/" },
-      { icon: "📍", color: "dark", title: "GMB Management", text: "Brokerage and individual agent GBPs, review acquisition after every closing, weekly posts featuring listings and neighborhood content.", href: "/services/gmb-management-services/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited when buyers ask ChatGPT 'best neighborhoods in [city]' or 'best realtor in [area].' Early-mover advantage while competitors are still obsessing over Zillow.", href: "/services/ai-geo-optimization/" },
-      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Real-estate-aware audit covering neighborhood coverage gaps, IDX SEO health, agent-vs-brokerage architecture, and content opportunities.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", title: "Local Landing Pages", text: "The core play: neighborhood pages at scale. Each neighborhood gets its own page with market data, school info, local character, featured listings, and agent info — all unique, all ranking.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-project-diagram", color: "green", title: "Semantic SEO", text: "Market reports, buyer guides, seller guides, neighborhood deep dives, school reviews — topical authority that makes you the local market expert Google trusts.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-laptop-code", color: "green", title: "Rank-Ready Website Design", text: "IDX-integrated site with fast search, neighborhood landing architecture, agent bio system, and CWV-optimized for the mobile-first home buyer.", href: "/services/web-development/" },
+      { icon: "fas fa-store", color: "green", title: "GMB Management", text: "Brokerage and individual agent GBPs, review acquisition after every closing, weekly posts featuring listings and neighborhood content.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-robot", color: "green", title: "AI &amp; GEO Optimization", text: "Get cited when buyers ask ChatGPT 'best neighborhoods in [city]' or 'best realtor in [area].' Early-mover advantage while competitors are still obsessing over Zillow.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-search", color: "green", title: "Free SEO + GEO Audit", text: "Real-estate-aware audit covering neighborhood coverage gaps, IDX SEO health, agent-vs-brokerage architecture, and content opportunities.", href: "/services/seo-audits/" },
     ],
   },
   why: {
+    photo: "/images/services/re-sold.jpg",
     eyebrow: "DEEPER CONTEXT",
     title: "Why real estate SEO looks nothing like other verticals.",
     article: [
@@ -54,6 +57,7 @@ const data: IndustryData = {
     ],
   },
   result: {
+    photo: "/images/cases/home-3.jpg",
     value: "$1.2M",
     title: "attributed revenue in 12 months",
     note: "Regional brokerage · 40 neighborhood pages + market report content strategy",
@@ -65,12 +69,12 @@ const data: IndustryData = {
     title: "Real estate segments we work with.",
     sub: "We’ve built SEO programs across the real estate spectrum — from solo agents to regional brokerage networks.",
     cards: [
-      { icon: "🏢", title: "Brokerages &amp; Teams", text: "Independent brokerages, Keller Williams / Compass / EXP / Berkshire teams, indie shops." },
-      { icon: "👤", title: "Individual Agents", text: "Top producers building personal brand SEO alongside brokerage presence." },
-      { icon: "🏘️", title: "New Construction &amp; Builders", text: "Residential developers selling new build communities and master-planned neighborhoods." },
-      { icon: "🏡", title: "Luxury Real Estate", text: "High-end markets where trust signals, photography, and positioning matter more than volume." },
-      { icon: "🏭", title: "Commercial Real Estate", text: "Office, retail, industrial, multifamily — longer sales cycles with research-heavy buyers." },
-      { icon: "🏖️", title: "Vacation &amp; Investment Properties", text: "Short-term rental markets, second home destinations, investment-property buyer content." },
+      { icon: "fas fa-users", photo: "/images/about/team-1.jpg", title: "Brokerages &amp; Teams", text: "Independent brokerages, Keller Williams / Compass / EXP / Berkshire teams, indie shops." },
+      { icon: "fas fa-user-tie", photo: "/images/services/re-agent.jpg", title: "Individual Agents", text: "Top producers building personal brand SEO alongside brokerage presence." },
+      { icon: "fas fa-hard-hat", photo: "/images/services/re-build.jpg", title: "New Construction &amp; Builders", text: "Residential developers selling new build communities and master-planned neighborhoods." },
+      { icon: "fas fa-gem", photo: "/images/cases/home-4.jpg", title: "Luxury Real Estate", text: "High-end markets where trust signals, photography, and positioning matter more than volume." },
+      { icon: "fas fa-city", photo: "/images/services/re-comm.jpg", title: "Commercial Real Estate", text: "Office, retail, industrial, multifamily — longer sales cycles with research-heavy buyers." },
+      { icon: "fas fa-umbrella-beach", photo: "/images/services/re-beach.jpg", title: "Vacation &amp; Investment Properties", text: "Short-term rental markets, second home destinations, investment-property buyer content." },
     ],
   },
   faq: {
@@ -92,9 +96,9 @@ const data: IndustryData = {
     title: "Recommended next steps.",
     sub: "If this industry fits, here’s the cleanest path forward.",
     cards: [
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Neighborhood pages at scale — the core play for real estate SEO.", href: "/services/local-landing-pages/" },
-      { icon: "🧠", color: "purple", title: "Semantic SEO", text: "Market reports, buyer guides, neighborhood authority — everything Zillow can't compete on.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Real-estate-aware audit covering IDX health, neighborhood coverage, and agent architecture.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", photo: "/images/services/loc-street.jpg", title: "Local Landing Pages", text: "Neighborhood pages at scale — the core play for real estate SEO.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-project-diagram", color: "green", photo: "/images/services/web-10.jpg", title: "Semantic SEO", text: "Market reports, buyer guides, neighborhood authority — everything Zillow can't compete on.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-search", color: "green", photo: "/images/services/audit-1.jpg", title: "Free SEO Audit", text: "Real-estate-aware audit covering IDX health, neighborhood coverage, and agent architecture.", href: "/services/seo-audits/" },
     ],
   },
 };
