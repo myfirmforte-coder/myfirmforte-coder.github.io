@@ -1,7 +1,7 @@
 ---
 // INDUSTRY PAGE — /industries/home-services/
-// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
-import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+// Sirf text yahan hai; design src/components/IndustryPageV2.astro (naya design) mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPageV2.astro';
 
 const data: IndustryData = {
   meta: {
@@ -13,16 +13,18 @@ const data: IndustryData = {
     badge: "SEO FOR HOME SERVICES",
     title: "SEO that keeps the <span class='grad'>phone ringing.</span>",
     lead: "Home services SEO lives or dies in the 3-pack. Homeowners searching ’emergency plumber near me’ at 2am aren’t scrolling to page two — they’re tapping the first three results. We’ve built SEO programs for plumbing, HVAC, roofing, and electrical companies that own their local markets and ring constantly.",
+    photo: "/images/cases/home-3.jpg",
     card: { value: "5×", title: "call volume in 60 days", note: "Elite Home Services · GMB + local landing page rollout across 9 cities" },
   },
   problem: {
+    photo: "/images/cases/home-1.jpg",
     eyebrow: "THE CHALLENGE",
     title: "Why SEO in this vertical is different.",
     sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
     cards: [
-      { icon: "⏰", title: "Emergency searches convert in seconds", text: "'Water heater leaking' searches don't scroll, read blog posts, or compare five options. They tap the first phone number in the 3-pack. If you're in position 4, you don't exist for that customer." },
-      { icon: "🗺️", title: "Service area confusion tanks rankings", text: "Most home services businesses serve 5-20 cities but have one 'Service Areas' page. Google can't decide which city you serve best, so it ranks you weakly in all of them instead of dominantly in each." },
-      { icon: "📆", title: "Seasonal demand swings punish passive strategies", text: "HVAC companies need to be ranking BEFORE the heat wave, not during it. Roofers need storm-season authority banked months in advance. Reactive SEO loses to proactive semantic authority." },
+      { icon: "fas fa-stopwatch", title: "Emergency searches convert in seconds", text: "'Water heater leaking' searches don't scroll, read blog posts, or compare five options. They tap the first phone number in the 3-pack. If you're in position 4, you don't exist for that customer." },
+      { icon: "fas fa-map-marker-alt", title: "Service area confusion tanks rankings", text: "Most home services businesses serve 5-20 cities but have one 'Service Areas' page. Google can't decide which city you serve best, so it ranks you weakly in all of them instead of dominantly in each." },
+      { icon: "fas fa-calendar-alt", title: "Seasonal demand swings punish passive strategies", text: "HVAC companies need to be ranking BEFORE the heat wave, not during it. Roofers need storm-season authority banked months in advance. Reactive SEO loses to proactive semantic authority." },
     ],
   },
   approach: {
@@ -30,15 +32,16 @@ const data: IndustryData = {
     title: "Services we recommend for this industry, in order.",
     sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
     cards: [
-      { icon: "📍", color: "green", title: "GMB Management", text: "The single highest-leverage service for home services. Aggressive review acquisition, weekly posts, photo strategy, and geo-grid reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "A dedicated page for every service area you cover. 'Emergency plumber in Austin,' 'AC repair in Round Rock' — each uniquely written and built to rank independently.", href: "/services/local-landing-pages/" },
-      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "Mobile-first, click-to-call optimized, Core Web Vitals passing. Emergency service forms that convert at 2am, trust signals placed where homeowners need them.", href: "/services/web-development/" },
-      { icon: "🧠", color: "dark", title: "Semantic SEO", text: "Service + topical authority content that banks ranking power before seasonal peaks. Maintenance content, troubleshooting guides, cost calculators — all built to rank.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited when ChatGPT or Perplexity answers 'best [service] company in [city].' Early-mover advantage in a channel your local competitors haven't even started on.", href: "/services/ai-geo-optimization/" },
-      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Audit of your GBP, service area coverage, review velocity, and local pack positioning across every city you serve. 48-hour turnaround.", href: "/services/seo-audits/" },
+      { icon: "fas fa-store", color: "green", title: "GMB Management", text: "The single highest-leverage service for home services. Aggressive review acquisition, weekly posts, photo strategy, and geo-grid reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-map-marked-alt", color: "green", title: "Local Landing Pages", text: "A dedicated page for every service area you cover. 'Emergency plumber in Austin,' 'AC repair in Round Rock' — each uniquely written and built to rank independently.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-laptop-code", color: "green", title: "Rank-Ready Website Design", text: "Mobile-first, click-to-call optimized, Core Web Vitals passing. Emergency service forms that convert at 2am, trust signals placed where homeowners need them.", href: "/services/web-development/" },
+      { icon: "fas fa-project-diagram", color: "green", title: "Semantic SEO", text: "Service + topical authority content that banks ranking power before seasonal peaks. Maintenance content, troubleshooting guides, cost calculators — all built to rank.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-robot", color: "green", title: "AI &amp; GEO Optimization", text: "Get cited when ChatGPT or Perplexity answers 'best [service] company in [city].' Early-mover advantage in a channel your local competitors haven't even started on.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-search", color: "green", title: "Free SEO + GEO Audit", text: "Audit of your GBP, service area coverage, review velocity, and local pack positioning across every city you serve. 48-hour turnaround.", href: "/services/seo-audits/" },
     ],
   },
   why: {
+    photo: "/images/services/gmb-phone.jpg",
     eyebrow: "DEEPER CONTEXT",
     title: "Why home services SEO is 80% local, 20% everything else.",
     article: [
@@ -54,6 +57,7 @@ const data: IndustryData = {
     ],
   },
   result: {
+    photo: "/images/cases/home-4.jpg",
     value: "5×",
     title: "phone call volume in 60 days",
     note: "Elite Home Services · GMB optimization + 9 city pages + review acquisition",
@@ -65,12 +69,12 @@ const data: IndustryData = {
     title: "Home service trades we work with.",
     sub: "Any service business where homeowners search ‘near me’ and the phone needs to ring. Here’s where we’ve done the deepest work.",
     cards: [
-      { icon: "🚰", title: "Plumbing", text: "Emergency plumbing, drain cleaning, water heater install, repipe — high urgency queries." },
-      { icon: "❄️", title: "HVAC", text: "AC repair, furnace install, maintenance plans — seasonal cycles that reward early SEO." },
-      { icon: "🏠", title: "Roofing", text: "Storm damage, full replacements, inspections — storm-response SEO and insurance claim content." },
-      { icon: "⚡", title: "Electrical", text: "Panel upgrades, emergency service, EV chargers, rewiring — mixed urgency and project work." },
-      { icon: "🌿", title: "Landscaping &amp; Lawn", text: "Maintenance, installation, hardscape — seasonal traffic patterns and visual content wins." },
-      { icon: "🐛", title: "Pest Control", text: "Termite, rodents, ants, quarterly maintenance — high recurring-revenue potential." },
+      { icon: "fas fa-faucet", photo: "/images/services/hs-plumb.jpg", title: "Plumbing", text: "Emergency plumbing, drain cleaning, water heater install, repipe — high urgency queries." },
+      { icon: "fas fa-fan", photo: "/images/services/hs-hvac.jpg", title: "HVAC", text: "AC repair, furnace install, maintenance plans — seasonal cycles that reward early SEO." },
+      { icon: "fas fa-home", photo: "/images/services/hs-roof.jpg", title: "Roofing", text: "Storm damage, full replacements, inspections — storm-response SEO and insurance claim content." },
+      { icon: "fas fa-bolt", photo: "/images/cases/home-2.jpg", title: "Electrical", text: "Panel upgrades, emergency service, EV chargers, rewiring — mixed urgency and project work." },
+      { icon: "fas fa-leaf", photo: "/images/services/hs-lawn.jpg", title: "Landscaping &amp; Lawn", text: "Maintenance, installation, hardscape — seasonal traffic patterns and visual content wins." },
+      { icon: "fas fa-bug", photo: "/images/services/hs-tools.jpg", title: "Pest Control", text: "Termite, rodents, ants, quarterly maintenance — high recurring-revenue potential." },
     ],
   },
   faq: {
@@ -92,9 +96,9 @@ const data: IndustryData = {
     title: "Recommended next steps.",
     sub: "If this industry fits, here’s the cleanest path forward.",
     cards: [
-      { icon: "📍", color: "green", title: "GMB Management", text: "The single highest-leverage service for home services — 60-70% of clicks live here.", href: "/services/gmb-management-services/" },
-      { icon: "🗺️", color: "purple", title: "Local Landing Pages", text: "A page for every city you serve — uniquely written, schema-rich, built to rank.", href: "/services/local-landing-pages/" },
-      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Home-services-aware audit covering GBP health, service area coverage, review velocity.", href: "/services/seo-audits/" },
+      { icon: "fas fa-store", color: "green", photo: "/images/services/gmb-owner.jpg", title: "GMB Management", text: "The single highest-leverage service for home services — 60-70% of clicks live here.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-map-marked-alt", color: "green", photo: "/images/services/loc-street.jpg", title: "Local Landing Pages", text: "A page for every city you serve — uniquely written, schema-rich, built to rank.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-search", color: "green", photo: "/images/services/audit-1.jpg", title: "Free SEO Audit", text: "Home-services-aware audit covering GBP health, service area coverage, review velocity.", href: "/services/seo-audits/" },
     ],
   },
 };
