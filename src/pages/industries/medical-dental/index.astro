@@ -1,7 +1,7 @@
 ---
 // INDUSTRY PAGE — /industries/medical-dental/
-// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
-import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+// Sirf text yahan hai; design src/components/IndustryPageV2.astro (naya design) mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPageV2.astro';
 
 const data: IndustryData = {
   meta: {
@@ -13,16 +13,18 @@ const data: IndustryData = {
     badge: "SEO FOR HEALTHCARE & DENTAL",
     title: "SEO built for patient <span class='grad'>trust &amp; HIPAA compliance.</span>",
     lead: "Healthcare SEO isn’t e-commerce with stethoscopes. You’re in a YMYL category, your content is held to medical accuracy standards, patient privacy is non-negotiable, and local search is where your practice lives or dies. We build healthcare SEO programs that respect all of it — and still drive new patient bookings.",
+    photo: "/images/services/med-dentist.jpg",
     card: { value: "120", title: "unique location pages deployed", note: "MetroDental Group · Multi-state rollout with zero duplicate content flags" },
   },
   problem: {
+    photo: "/images/services/ind-medical.jpg",
     eyebrow: "THE CHALLENGE",
     title: "Why SEO in this vertical is different.",
     sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
     cards: [
-      { icon: "⚠️", title: "YMYL content quality bar is brutal", text: "Medical content is held to Your Money or Your Life quality standards — meaning Google evaluates E-E-A-T more strictly than in any other vertical. Shallow or inaccurate content gets demoted hard. We write to medical review standards." },
-      { icon: "🏥", title: "Multi-location = compounding complexity", text: "One dental practice is manageable. Twelve locations across three states means 12 GBPs, 12 sets of local pages, 12 review streams, and 12 chances to trigger duplicate content penalties if you're not careful." },
-      { icon: "🔒", title: "HIPAA makes review responses a minefield", text: "You can't confirm whether someone was a patient, can't discuss treatment details, and can't share specifics even in positive reviews. Every review response has to be crafted to comply — and most agencies have no idea." },
+      { icon: "fas fa-exclamation-triangle", title: "YMYL content quality bar is brutal", text: "Medical content is held to Your Money or Your Life quality standards — meaning Google evaluates E-E-A-T more strictly than in any other vertical. Shallow or inaccurate content gets demoted hard. We write to medical review standards." },
+      { icon: "fas fa-clinic-medical", title: "Multi-location = compounding complexity", text: "One dental practice is manageable. Twelve locations across three states means 12 GBPs, 12 sets of local pages, 12 review streams, and 12 chances to trigger duplicate content penalties if you're not careful." },
+      { icon: "fas fa-user-shield", title: "HIPAA makes review responses a minefield", text: "You can't confirm whether someone was a patient, can't discuss treatment details, and can't share specifics even in positive reviews. Every review response has to be crafted to comply — and most agencies have no idea." },
     ],
   },
   approach: {
@@ -30,15 +32,16 @@ const data: IndustryData = {
     title: "Services we recommend for this industry, in order.",
     sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
     cards: [
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Unique, schema-rich landing pages per practice location. Each page has genuine local context, provider bios, services offered at that site, and zero duplicate content risk.", href: "/services/local-landing-pages/" },
-      { icon: "📍", color: "green", title: "GMB Management", text: "Per-location GBP management with HIPAA-compliant review responses, patient Q&amp;A handling, weekly posts, and geo-grid ranking reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Procedure and treatment authority content written to medical review standards, organized into clinical topical clusters that rank for long-tail patient research queries.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🎨", color: "dark", title: "Rank-Ready Website Design", text: "WCAG 2.2 AA accessible sites (required for many medical providers), WCAG-compliant design, patient intake forms that respect HIPAA, and provider schema that signals E-E-A-T.", href: "/services/web-development/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Patients increasingly research conditions and providers via ChatGPT before booking. GEO gets your practice cited when AI answers 'best [specialty] in [city]' queries.", href: "/services/ai-geo-optimization/" },
-      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Senior-led audit covering E-E-A-T signals, per-location GBP health, accessibility compliance gaps, and procedure-specific ranking opportunities.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", title: "Local Landing Pages", text: "Unique, schema-rich landing pages per practice location. Each page has genuine local context, provider bios, services offered at that site, and zero duplicate content risk.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-store", color: "green", title: "GMB Management", text: "Per-location GBP management with HIPAA-compliant review responses, patient Q&amp;A handling, weekly posts, and geo-grid ranking reporting across every ZIP you serve.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-project-diagram", color: "green", title: "Semantic SEO", text: "Procedure and treatment authority content written to medical review standards, organized into clinical topical clusters that rank for long-tail patient research queries.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-laptop-code", color: "green", title: "Rank-Ready Website Design", text: "WCAG 2.2 AA accessible sites (required for many medical providers), WCAG-compliant design, patient intake forms that respect HIPAA, and provider schema that signals E-E-A-T.", href: "/services/web-development/" },
+      { icon: "fas fa-robot", color: "green", title: "AI &amp; GEO Optimization", text: "Patients increasingly research conditions and providers via ChatGPT before booking. GEO gets your practice cited when AI answers 'best [specialty] in [city]' queries.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-search", color: "green", title: "Free SEO + GEO Audit", text: "Senior-led audit covering E-E-A-T signals, per-location GBP health, accessibility compliance gaps, and procedure-specific ranking opportunities.", href: "/services/seo-audits/" },
     ],
   },
   why: {
+    photo: "/images/services/med-tablet.jpg",
     eyebrow: "DEEPER CONTEXT",
     title: "Why healthcare SEO has to be built from the ground up for your vertical.",
     article: [
@@ -54,6 +57,7 @@ const data: IndustryData = {
     ],
   },
   result: {
+    photo: "/images/services/med-doctor.jpg",
     value: "120",
     title: "unique location pages deployed in 60 days",
     note: "MetroDental Group · Multi-state dental service organization",
@@ -65,12 +69,12 @@ const data: IndustryData = {
     title: "Healthcare specialties we work with.",
     sub: "From solo practitioners to DSOs and regional hospital groups, we’ve built SEO programs across most of healthcare.",
     cards: [
-      { icon: "🦷", title: "Dental Practices &amp; DSOs", text: "General, cosmetic, pediatric, orthodontic, Invisalign — single locations through 100+ office networks." },
-      { icon: "👁️", title: "Optometry &amp; Vision", text: "Eye care practices, LASIK centers, dry eye clinics — procedure-heavy content ecosystems." },
-      { icon: "💆", title: "Aesthetics &amp; Medspas", text: "Botox, fillers, laser, CoolSculpting — high-commercial-intent keyword landscapes." },
-      { icon: "🩺", title: "Primary &amp; Family Medicine", text: "Family practices, urgent care networks, concierge medicine — local trust signals drive it all." },
-      { icon: "🧠", title: "Specialty Medical", text: "Cardiology, dermatology, orthopedics, neurology — deep procedure content and specialist authority." },
-      { icon: "🧘", title: "Behavioral Health", text: "Therapy practices, psychiatric groups, addiction treatment — sensitive YMYL territory handled properly." },
+      { icon: "fas fa-tooth", photo: "/images/services/ind-dental.jpg", title: "Dental Practices &amp; DSOs", text: "General, cosmetic, pediatric, orthodontic, Invisalign — single locations through 100+ office networks." },
+      { icon: "fas fa-eye", photo: "/images/services/med-eye.jpg", title: "Optometry &amp; Vision", text: "Eye care practices, LASIK centers, dry eye clinics — procedure-heavy content ecosystems." },
+      { icon: "fas fa-spa", photo: "/images/services/med-spa.jpg", title: "Aesthetics &amp; Medspas", text: "Botox, fillers, laser, CoolSculpting — high-commercial-intent keyword landscapes." },
+      { icon: "fas fa-stethoscope", photo: "/images/services/med-steth.jpg", title: "Primary &amp; Family Medicine", text: "Family practices, urgent care networks, concierge medicine — local trust signals drive it all." },
+      { icon: "fas fa-heartbeat", photo: "/images/services/med-doctor.jpg", title: "Specialty Medical", text: "Cardiology, dermatology, orthopedics, neurology — deep procedure content and specialist authority." },
+      { icon: "fas fa-hands-helping", photo: "/images/services/med-therapy.jpg", title: "Behavioral Health", text: "Therapy practices, psychiatric groups, addiction treatment — sensitive YMYL territory handled properly." },
     ],
   },
   faq: {
@@ -92,9 +96,9 @@ const data: IndustryData = {
     title: "Recommended next steps.",
     sub: "If this industry fits, here’s the cleanest path forward.",
     cards: [
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "Per-location pages with genuinely unique content — the core play for multi-location healthcare.", href: "/services/local-landing-pages/" },
-      { icon: "📍", color: "purple", title: "GMB Management", text: "HIPAA-compliant review and post management across every location you operate.", href: "/services/gmb-management-services/" },
-      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Healthcare-aware audit covering E-E-A-T, accessibility, and per-location visibility.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", photo: "/images/services/loc-street.jpg", title: "Local Landing Pages", text: "Per-location pages with genuinely unique content — the core play for multi-location healthcare.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-store", color: "green", photo: "/images/services/gmb-owner.jpg", title: "GMB Management", text: "HIPAA-compliant review and post management across every location you operate.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-search", color: "green", photo: "/images/services/audit-1.jpg", title: "Free SEO Audit", text: "Healthcare-aware audit covering E-E-A-T, accessibility, and per-location visibility.", href: "/services/seo-audits/" },
     ],
   },
 };
