@@ -323,10 +323,10 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
   .why-top.has-photo { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; margin-bottom: 46px; }
   .why-top.has-photo .why-head { margin-bottom: 0; }
   .why-photo { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.12); }
-  .reason { padding: 34px 40px 34px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
-  .reason:nth-child(2n) { padding-left: 40px; padding-right: 0; border-left: 1px solid rgba(255,255,255,.12); }
-  .reason:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.12); }
+  .reason { padding: 36px 34px 4px; border-left: 1px solid rgba(255,255,255,.12); }
+  .reason:first-child { padding-left: 0; border-left: 0; }
+  .reason:last-child { padding-right: 0; }
   .r-n { display: inline-block; font-size: 13px; font-weight: 700; color: #6EE7B7; letter-spacing: 1px; margin-bottom: 12px; }
   .reason h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.35; }
   .reason p { font-size: 15px; line-height: 1.75; color: #CBD5E1; padding: 0; margin: 0; }
@@ -404,6 +404,9 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
     .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
     .split-head, .faq-head { position: static; }
     .incl-grid, .who-grid, .rel-grid, .appr-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .reason, .reason:first-child, .reason:last-child { padding: 28px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .reason:last-child { border-bottom: 0; padding-bottom: 0; }
     .why-top.has-photo { grid-template-columns: 1fr; gap: 30px; }
     .steps { grid-template-columns: 1fr; gap: 0; max-width: 620px; }
     .steps::before { top: 0; bottom: 0; left: 27px; right: auto; width: 2px; height: auto; background: linear-gradient(180deg, #6EE7B7, #059669); }
