@@ -1,7 +1,7 @@
 ---
 // INDUSTRY PAGE — /industries/legal/
-// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
-import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+// Sirf text yahan hai; design src/components/IndustryPageV2.astro (naya design) mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPageV2.astro';
 
 const data: IndustryData = {
   meta: {
@@ -13,16 +13,18 @@ const data: IndustryData = {
     badge: "SEO FOR LAW FIRMS",
     title: "SEO for law firms <span class='grad'>that actually converts cases.</span>",
     lead: "Legal SEO isn’t content marketing with a gavel emoji. Practice areas compete on the most expensive CPCs in Google, state bar rules restrict what you can say, and trust is everything. We build systems that handle all three — and put your firm on page one for the cases you actually want.",
+    photo: "/images/cases/legal-2.jpg",
     card: { value: "+312%", title: "organic traffic in 6 months", note: "Smith & Associates Law · Full rebuild + semantic SEO engagement" },
   },
   problem: {
+    photo: "/images/services/leg-gavel.jpg",
     eyebrow: "THE CHALLENGE",
     title: "Why SEO in this vertical is different.",
     sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
     cards: [
-      { icon: "💸", title: "Absurd keyword CPCs on paid ads", text: "Legal keywords are the most expensive in Google Ads — 'personal injury lawyer' regularly hits $150+ per click. Organic SEO is the only sustainable channel for long-term inquiries at scale." },
-      { icon: "🏢", title: "Mega-firms with bottomless SEO budgets", text: "You're competing against firms spending six figures monthly on SEO. Without a sharper strategy — practice area depth, local targeting, semantic authority — you get buried by volume you can't outspend." },
-      { icon: "⚖️", title: "Bar rules restrict what you can advertise", text: "State bar compliance limits testimonials, guarantees, and certain claim types. Your SEO has to drive serious inquiries while staying compliant with ABA Model Rules and your jurisdiction's specific restrictions." },
+      { icon: "fas fa-dollar-sign", title: "Absurd keyword CPCs on paid ads", text: "Legal keywords are the most expensive in Google Ads — 'personal injury lawyer' regularly hits $150+ per click. Organic SEO is the only sustainable channel for long-term inquiries at scale." },
+      { icon: "fas fa-building", title: "Mega-firms with bottomless SEO budgets", text: "You're competing against firms spending six figures monthly on SEO. Without a sharper strategy — practice area depth, local targeting, semantic authority — you get buried by volume you can't outspend." },
+      { icon: "fas fa-gavel", title: "Bar rules restrict what you can advertise", text: "State bar compliance limits testimonials, guarantees, and certain claim types. Your SEO has to drive serious inquiries while staying compliant with ABA Model Rules and your jurisdiction's specific restrictions." },
     ],
   },
   approach: {
@@ -30,15 +32,16 @@ const data: IndustryData = {
     title: "Services we recommend for this industry, in order.",
     sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
     cards: [
-      { icon: "🗺️", color: "green", title: "Local Landing Pages", text: "A page for every city × practice area combination you serve. 'Divorce lawyer Austin,' 'DUI attorney Dallas,' 'workers comp Houston' — each genuinely unique, schema-rich, and built to rank locally.", href: "/services/local-landing-pages/" },
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Topical authority across each practice area. Deep pillar content, cluster pages on procedure questions, and entity architecture that makes you Google's answer for your practice areas.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "📍", color: "green", title: "GMB Management", text: "Lawyers in the 3-pack get the calls. We manage GBP signals, review acquisition (compliant with bar rules), posts, and Q&amp;A to dominate local legal searches.", href: "/services/gmb-management-services/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Clients increasingly ask ChatGPT 'best family lawyer in [city]' before Googling. We get your firm cited in those conversations before your competitors know GEO exists.", href: "/services/ai-geo-optimization/" },
-      { icon: "🎨", color: "dark", title: "Rank-Ready Website Design", text: "A semantic, schema-rich site built for E-E-A-T. Attorney bio schema, credential markup, case result displays that comply with bar rules, and Core Web Vitals optimization.", href: "/services/web-development/" },
-      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "Senior-led audit of your current legal SEO presence, practice area coverage gaps, local visibility per market, and specific compliance-safe opportunities.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", title: "Local Landing Pages", text: "A page for every city × practice area combination you serve. 'Divorce lawyer Austin,' 'DUI attorney Dallas,' 'workers comp Houston' — each genuinely unique, schema-rich, and built to rank locally.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-project-diagram", color: "green", title: "Semantic SEO", text: "Topical authority across each practice area. Deep pillar content, cluster pages on procedure questions, and entity architecture that makes you Google's answer for your practice areas.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-store", color: "green", title: "GMB Management", text: "Lawyers in the 3-pack get the calls. We manage GBP signals, review acquisition (compliant with bar rules), posts, and Q&amp;A to dominate local legal searches.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-robot", color: "green", title: "AI &amp; GEO Optimization", text: "Clients increasingly ask ChatGPT 'best family lawyer in [city]' before Googling. We get your firm cited in those conversations before your competitors know GEO exists.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-laptop-code", color: "green", title: "Rank-Ready Website Design", text: "A semantic, schema-rich site built for E-E-A-T. Attorney bio schema, credential markup, case result displays that comply with bar rules, and Core Web Vitals optimization.", href: "/services/web-development/" },
+      { icon: "fas fa-search", color: "green", title: "Free SEO + GEO Audit", text: "Senior-led audit of your current legal SEO presence, practice area coverage gaps, local visibility per market, and specific compliance-safe opportunities.", href: "/services/seo-audits/" },
     ],
   },
   why: {
+    photo: "/images/cases/legal-4.jpg",
     eyebrow: "DEEPER CONTEXT",
     title: "Why legal SEO is its own discipline entirely.",
     article: [
@@ -54,6 +57,7 @@ const data: IndustryData = {
     ],
   },
   result: {
+    photo: "/images/services/leg-handshake.jpg",
     value: "+312%",
     title: "organic traffic in 6 months",
     note: "Smith &amp; Associates Law · Rank-Ready rebuild + semantic SEO",
@@ -65,12 +69,12 @@ const data: IndustryData = {
     title: "Which legal practices we work with.",
     sub: "From solo practitioners to regional firms with multiple offices, we’ve built SEO programs across the practice spectrum.",
     cards: [
-      { icon: "💔", title: "Family &amp; Divorce", text: "Divorce, custody, alimony, adoption — emotionally-driven long-tail content is gold here." },
-      { icon: "🚗", title: "Personal Injury", text: "Auto accidents, slip &amp; fall, medical malpractice — the most competitive legal SEO category there is." },
-      { icon: "🏢", title: "Business &amp; Commercial", text: "Contracts, LLC formation, M&amp;A, commercial disputes — B2B-style legal SEO with extended sales cycles." },
-      { icon: "⛓️", title: "Criminal Defense", text: "DUI, drug charges, white-collar — time-sensitive urgent-intent queries." },
-      { icon: "🏗️", title: "Workers' Comp &amp; Disability", text: "Claims, appeals, SSDI — high-commercial-intent local queries across metros." },
-      { icon: "🛂", title: "Immigration", text: "Green cards, visas, asylum, citizenship — multi-language SEO opportunities and E-E-A-T sensitive." },
+      { icon: "fas fa-users", photo: "/images/services/leg-family.jpg", title: "Family &amp; Divorce", text: "Divorce, custody, alimony, adoption — emotionally-driven long-tail content is gold here." },
+      { icon: "fas fa-car-crash", photo: "/images/services/leg-car.jpg", title: "Personal Injury", text: "Auto accidents, slip &amp; fall, medical malpractice — the most competitive legal SEO category there is." },
+      { icon: "fas fa-briefcase", photo: "/images/services/ent-meet.jpg", title: "Business &amp; Commercial", text: "Contracts, LLC formation, M&amp;A, commercial disputes — B2B-style legal SEO with extended sales cycles." },
+      { icon: "fas fa-balance-scale", photo: "/images/cases/legal-3.jpg", title: "Criminal Defense", text: "DUI, drug charges, white-collar — time-sensitive urgent-intent queries." },
+      { icon: "fas fa-hard-hat", photo: "/images/services/leg-worker.jpg", title: "Workers' Comp &amp; Disability", text: "Claims, appeals, SSDI — high-commercial-intent local queries across metros." },
+      { icon: "fas fa-passport", photo: "/images/services/leg-plane.jpg", title: "Immigration", text: "Green cards, visas, asylum, citizenship — multi-language SEO opportunities and E-E-A-T sensitive." },
     ],
   },
   faq: {
@@ -92,9 +96,9 @@ const data: IndustryData = {
     title: "Recommended next steps.",
     sub: "If this industry fits, here’s the cleanest path forward.",
     cards: [
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Practice area authority and topical depth — the core play for competitive legal keywords.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🗺️", color: "purple", title: "Local Landing Pages", text: "City × practice area pages that unlock the 80% of search volume you're not capturing yet.", href: "/services/local-landing-pages/" },
-      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "Get a legal-industry-aware audit showing exactly where your firm stands.", href: "/services/seo-audits/" },
+      { icon: "fas fa-project-diagram", color: "green", photo: "/images/services/web-10.jpg", title: "Semantic SEO", text: "Practice area authority and topical depth — the core play for competitive legal keywords.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-map-marked-alt", color: "green", photo: "/images/services/loc-street.jpg", title: "Local Landing Pages", text: "City × practice area pages that unlock the 80% of search volume you're not capturing yet.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-search", color: "green", photo: "/images/services/audit-1.jpg", title: "Free SEO Audit", text: "Get a legal-industry-aware audit showing exactly where your firm stands.", href: "/services/seo-audits/" },
     ],
   },
 };
