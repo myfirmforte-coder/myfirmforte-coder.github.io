@@ -1,7 +1,7 @@
 ---
 // INDUSTRY PAGE — /industries/ecommerce-website-and-seo/
-// Sirf text yahan hai; design src/components/IndustryPage.astro mein hai.
-import IndustryPage, { type IndustryData } from '../../../components/IndustryPage.astro';
+// Sirf text yahan hai; design src/components/IndustryPageV2.astro (naya design) mein hai.
+import IndustryPage, { type IndustryData } from '../../../components/IndustryPageV2.astro';
 
 const data: IndustryData = {
   meta: {
@@ -13,16 +13,18 @@ const data: IndustryData = {
     badge: "SEO FOR E-COMMERCE & SAAS",
     title: "SEO for brands that live <span class='grad'>or die by organic growth.</span>",
     lead: "E-commerce and SaaS have the highest SEO ROI of any verticals — and the most competitive keyword landscapes. Category page optimization for DTC, product-led SEO for SaaS, and above all, getting cited by ChatGPT when buyers research alternatives. We do all three.",
+    photo: "/images/services/ec-pack.jpg",
     card: { value: "0→74%", title: "AI engine citation rate in 90 days", note: "NorthPeak SaaS · Semantic SEO + GEO integrated engagement" },
   },
   problem: {
+    photo: "/images/services/ec-cart.jpg",
     eyebrow: "THE CHALLENGE",
     title: "Why SEO in this vertical is different.",
     sub: "Before we tell you what works, here’s what makes this industry’s SEO uniquely difficult — and why generic agencies fail at it.",
     cards: [
-      { icon: "🛒", title: "E-comm category pages are almost always underbuilt", text: "DTC brands pour budget into product pages but ignore category pages — which is where most commercial-intent organic search volume lives. 'Best [category]' and 'buy [category] online' queries go to competitors with better category page SEO." },
-      { icon: "💻", title: "SaaS keyword landscapes are murderous", text: "You're fighting Wikipedia, G2, Capterra, and 20 competitors all running aggressive SEO programs. Breaking into page 1 on commercial SaaS terms requires semantic depth most agencies can't actually deliver." },
-      { icon: "🤖", title: "Buyers now ask AI before Google", text: "For SaaS especially — and increasingly for considered e-commerce purchases — buyers ask ChatGPT for recommendations before searching Google. If you're not cited in those AI responses, you're not in the consideration set, regardless of your Google rankings." },
+      { icon: "fas fa-shopping-cart", title: "E-comm category pages are almost always underbuilt", text: "DTC brands pour budget into product pages but ignore category pages — which is where most commercial-intent organic search volume lives. 'Best [category]' and 'buy [category] online' queries go to competitors with better category page SEO." },
+      { icon: "fas fa-laptop", title: "SaaS keyword landscapes are murderous", text: "You're fighting Wikipedia, G2, Capterra, and 20 competitors all running aggressive SEO programs. Breaking into page 1 on commercial SaaS terms requires semantic depth most agencies can't actually deliver." },
+      { icon: "fas fa-robot", title: "Buyers now ask AI before Google", text: "For SaaS especially — and increasingly for considered e-commerce purchases — buyers ask ChatGPT for recommendations before searching Google. If you're not cited in those AI responses, you're not in the consideration set, regardless of your Google rankings." },
     ],
   },
   approach: {
@@ -30,15 +32,16 @@ const data: IndustryData = {
     title: "Services we recommend for this industry, in order.",
     sub: "Not every service fits every vertical equally. Here’s the priority order we recommend based on what actually moves the needle for businesses like yours.",
     cards: [
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "The core play for both DTC and SaaS: category-level topical authority, comparison content, buyer guides, alternatives pages — all built around entity and intent architecture.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Particularly critical for SaaS. Get cited when ChatGPT answers 'best [category] software' or 'alternatives to [competitor]' — the new top-of-funnel for B2B buyers.", href: "/services/ai-geo-optimization/" },
-      { icon: "🎨", color: "green", title: "Rank-Ready Website Design", text: "Semantic architecture, Product &amp; SoftwareApplication schema, Core Web Vitals optimization, CMS configured for SEO-ready content velocity.", href: "/services/web-development/" },
-      { icon: "📊", color: "dark", title: "Free SEO + GEO Audit", text: "E-comm: category coverage, product page schema, internal linking, CWV. SaaS: comparison content gaps, competitor keyword overlap, AI citation baseline.", href: "/services/seo-audits/" },
-      { icon: "🗺️", color: "dark", title: "Local Landing Pages", text: "For e-comm brands with physical retail or SaaS companies targeting specific regional markets — less common, but high-impact when it applies.", href: "/services/local-landing-pages/" },
-      { icon: "📍", color: "dark", title: "GMB Management", text: "Only relevant for e-comm with physical retail locations or service-area SaaS setups. Most DTC and pure SaaS skip this service.", href: "/services/gmb-management-services/" },
+      { icon: "fas fa-project-diagram", color: "green", title: "Semantic SEO", text: "The core play for both DTC and SaaS: category-level topical authority, comparison content, buyer guides, alternatives pages — all built around entity and intent architecture.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-robot", color: "green", title: "AI &amp; GEO Optimization", text: "Particularly critical for SaaS. Get cited when ChatGPT answers 'best [category] software' or 'alternatives to [competitor]' — the new top-of-funnel for B2B buyers.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-laptop-code", color: "green", title: "Rank-Ready Website Design", text: "Semantic architecture, Product &amp; SoftwareApplication schema, Core Web Vitals optimization, CMS configured for SEO-ready content velocity.", href: "/services/web-development/" },
+      { icon: "fas fa-search", color: "green", title: "Free SEO + GEO Audit", text: "E-comm: category coverage, product page schema, internal linking, CWV. SaaS: comparison content gaps, competitor keyword overlap, AI citation baseline.", href: "/services/seo-audits/" },
+      { icon: "fas fa-map-marked-alt", color: "green", title: "Local Landing Pages", text: "For e-comm brands with physical retail or SaaS companies targeting specific regional markets — less common, but high-impact when it applies.", href: "/services/local-landing-pages/" },
+      { icon: "fas fa-store", color: "green", title: "GMB Management", text: "Only relevant for e-comm with physical retail locations or service-area SaaS setups. Most DTC and pure SaaS skip this service.", href: "/services/gmb-management-services/" },
     ],
   },
   why: {
+    photo: "/images/cases/saas-1.jpg",
     eyebrow: "DEEPER CONTEXT",
     title: "Why e-commerce & SaaS SEO requires different playbooks than anything else.",
     article: [
@@ -54,6 +57,7 @@ const data: IndustryData = {
     ],
   },
   result: {
+    photo: "/images/cases/saas-4.jpg",
     value: "0 → 74%",
     title: "AI engine citation rate in 90 days",
     note: "NorthPeak SaaS · Semantic SEO + GEO integrated engagement",
@@ -65,12 +69,12 @@ const data: IndustryData = {
     title: "E-commerce & SaaS segments we work with.",
     sub: "From bootstrapped DTC brands to Series B SaaS companies — if your business lives on organic growth, we have a playbook.",
     cards: [
-      { icon: "👕", title: "DTC Fashion &amp; Apparel", text: "Category-page SEO, seasonal content, buyer-guide production, Product schema at scale." },
-      { icon: "💄", title: "Beauty &amp; Personal Care", text: "Ingredient content, routine guides, YMYL-sensitive claims handled correctly." },
-      { icon: "🏋️", title: "Health, Fitness &amp; Wellness", text: "Supplements, equipment, apparel — high-volume informational + commercial hybrid queries." },
-      { icon: "🏠", title: "Home Goods &amp; Decor", text: "Visual-driven categories with strong 'ideas' and 'inspiration' content funnels." },
-      { icon: "🛠️", title: "B2B SaaS", text: "Category-defining, comparison, alternatives, integrations, use cases — the standard SaaS content stack." },
-      { icon: "📚", title: "EdTech &amp; Courses", text: "High-intent 'learn X' queries, certification content, comparison to alternatives." },
+      { icon: "fas fa-tshirt", photo: "/images/services/ec-fashion.jpg", title: "DTC Fashion &amp; Apparel", text: "Category-page SEO, seasonal content, buyer-guide production, Product schema at scale." },
+      { icon: "fas fa-magic", photo: "/images/services/ec-beauty.jpg", title: "Beauty &amp; Personal Care", text: "Ingredient content, routine guides, YMYL-sensitive claims handled correctly." },
+      { icon: "fas fa-dumbbell", photo: "/images/services/ec-fit.jpg", title: "Health, Fitness &amp; Wellness", text: "Supplements, equipment, apparel — high-volume informational + commercial hybrid queries." },
+      { icon: "fas fa-couch", photo: "/images/services/ec-home.jpg", title: "Home Goods &amp; Decor", text: "Visual-driven categories with strong 'ideas' and 'inspiration' content funnels." },
+      { icon: "fas fa-cloud", photo: "/images/services/web-9.jpg", title: "B2B SaaS", text: "Category-defining, comparison, alternatives, integrations, use cases — the standard SaaS content stack." },
+      { icon: "fas fa-graduation-cap", photo: "/images/services/ind-edu.jpg", title: "EdTech &amp; Courses", text: "High-intent 'learn X' queries, certification content, comparison to alternatives." },
     ],
   },
   faq: {
@@ -92,9 +96,9 @@ const data: IndustryData = {
     title: "Recommended next steps.",
     sub: "If this industry fits, here’s the cleanest path forward.",
     cards: [
-      { icon: "🧠", color: "green", title: "Semantic SEO", text: "Category and comparison content built on topical authority — the core e-comm and SaaS play.", href: "/services/semantic-seo-optimization-services/" },
-      { icon: "🚀", color: "purple", title: "AI &amp; GEO Optimization", text: "Get cited by ChatGPT and Perplexity — now foundational for SaaS, increasingly important for considered DTC.", href: "/services/ai-geo-optimization/" },
-      { icon: "📊", color: "dark", title: "Free SEO Audit", text: "E-comm or SaaS aware audit showing exactly where your biggest opportunities are.", href: "/services/seo-audits/" },
+      { icon: "fas fa-project-diagram", color: "green", photo: "/images/services/web-10.jpg", title: "Semantic SEO", text: "Category and comparison content built on topical authority — the core e-comm and SaaS play.", href: "/services/semantic-seo-optimization-services/" },
+      { icon: "fas fa-robot", color: "green", photo: "/images/services/geo-1.jpg", title: "AI &amp; GEO Optimization", text: "Get cited by ChatGPT and Perplexity — now foundational for SaaS, increasingly important for considered DTC.", href: "/services/ai-geo-optimization/" },
+      { icon: "fas fa-search", color: "green", photo: "/images/services/audit-1.jpg", title: "Free SEO Audit", text: "E-comm or SaaS aware audit showing exactly where your biggest opportunities are.", href: "/services/seo-audits/" },
     ],
   },
 };
