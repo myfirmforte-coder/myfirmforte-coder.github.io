@@ -12,9 +12,9 @@ export const caseTabs = [
 
 // "More case studies" cards (har case study page ke neeche dikhte hain).
 export const caseSummaries = [
-  { href: '/semantic-seo-case-study/', icon: '🧠', colors: ['#065F46', '#10B981'], tag: 'SEMANTIC SEO', title: 'Boosting Organic Performance with Semantic SEO', stat: '+340%', statLabel: 'organic clicks' },
-  { href: '/case-studies/local-seo-dental-group/', icon: '🦷', colors: ['#164E63', '#0E7490'], tag: 'LOCAL SEO', title: '120 Location Pages, Zero Duplicate Content', stat: '+890%', statLabel: 'local pack appearances' },
-  { href: '/case-studies/geo-ai-saas-citations/', icon: '🚀', colors: ['#8B5CF6', '#5B21B6'], tag: 'GEO / AI', title: 'Cited by ChatGPT in 3 Weeks', stat: '0 → 74%', statLabel: 'AI citation rate' },
-  { href: '/case-studies/website-design-dtc-rebuild/', icon: '🛒', colors: ['#0F172A', '#1E293B'], tag: 'WEBSITE DESIGN', title: 'Full Rebuild → #1 in 6 Months', stat: '+$180K', statLabel: 'organic revenue' },
-  { href: '/case-study-top-rankings-for-a-cbd/', icon: '📍', colors: ['#78350F', '#D97706'], tag: 'GMB', title: 'Top Google Rankings for a CBD Dispensary in Honolulu', stat: '6.1% → 59.2%', statLabel: 'share of local voice' },
+  { href: '/semantic-seo-case-study/', icon: 'fas fa-project-diagram', photo: '/images/services/seo-2.jpg', tag: 'SEMANTIC SEO', title: 'Boosting Organic Performance with Semantic SEO', stat: '+340%', statLabel: 'organic clicks' },
+  { href: '/case-studies/local-seo-dental-group/', icon: 'fas fa-tooth', photo: '/images/services/dent-3.jpg', tag: 'LOCAL SEO', title: '120 Location Pages, Zero Duplicate Content', stat: '+890%', statLabel: 'local pack appearances' },
+  { href: '/case-studies/geo-ai-saas-citations/', icon: 'fas fa-robot', photo: '/images/services/ai-woman.jpg', tag: 'GEO / AI', title: 'Cited by ChatGPT in 3 Weeks', stat: '0 → 74%', statLabel: 'AI citation rate' },
+  { href: '/case-studies/website-design-dtc-rebuild/', icon: 'fas fa-shopping-bag', photo: '/images/services/ec-pack.jpg', tag: 'WEBSITE DESIGN', title: 'Full Rebuild → #1 in 6 Months', stat: '+$180K', statLabel: 'organic revenue' },
+  { href: '/case-study-top-rankings-for-a-cbd/', icon: 'fas fa-map-marker-alt', photo: '/images/services/gmb-shop.jpg', tag: 'GMB', title: 'Top Google Rankings for a CBD Dispensary in Honolulu', stat: '6.1% → 59.2%', statLabel: 'share of local voice' },
 ];
