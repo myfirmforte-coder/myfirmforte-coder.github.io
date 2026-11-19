@@ -33,7 +33,7 @@ const year = new Date().getFullYear();
       <p class="txt">We build websites and search systems engineered to win Google, local, and AI search — all at once.</p>
       <ul class="social">
         {socials.map(([icon, name, href]) => (
-          <li><a href={href} title={`Follow on ${name}`} target="_blank" rel="noopener"><i class={`fab fa-${icon}`}></i></a></li>
+          <li><a href={href} class={'s-' + icon} title={'Follow on ' + name} aria-label={name} target="_blank" rel="noopener"><i class={'fab fa-' + icon}></i></a></li>
         ))}
       </ul>
     </div>
@@ -65,9 +65,14 @@ const year = new Date().getFullYear();
   .ftr-top { margin-bottom: 48px; }
   .brand { font-size: 24px; font-weight: 800; line-height: 24px; color: #fff; margin-bottom: 16px; }
   .txt { font-size: 14px; line-height: 30.6px; color: var(--slate-400); margin-bottom: 20px; }
-  .social { list-style: none; padding: 10px; margin: 0; display: flex; gap: 8px; background: var(--slate-800); width: fit-content; }
-  .social a { width: 32px; height: 32px; border-radius: 50%; background: var(--slate-800); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: color .3s; }
-  .social a:hover { color: var(--green); }
+  .social { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  .social a { width: 42px; height: 42px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 8px 18px -8px rgba(0,0,0,.6); transition: transform .3s, box-shadow .3s; }
+  .social a:hover { transform: translateY(-3px); box-shadow: 0 12px 22px -8px rgba(0,0,0,.7); }
+  .s-facebook-f { background: #1877F2; }
+  .s-twitter { background: #1DA1F2; }
+  .s-instagram { background: radial-gradient(circle at 30% 107%, #FDF497 0%, #FDF497 5%, #FD5949 45%, #D6249F 60%, #285AEB 90%); }
+  .s-linkedin-in { background: #0A66C2; }
+  .s-youtube { background: #FF0000; }
   .head { font-size: 14px; font-weight: 700; line-height: 14px; letter-spacing: 1.5px; color: #fff; margin-bottom: 20px; }
   .links { font-size: 14px; line-height: 30.8px; color: var(--slate-400); }
   .links a { text-transform: uppercase; transition: color .3s; }
