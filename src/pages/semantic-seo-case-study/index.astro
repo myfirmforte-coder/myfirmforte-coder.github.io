@@ -1,9 +1,10 @@
 ---
 // CASE STUDY — Semantic SEO (GiftCheckProgram.com) — /semantic-seo-case-study/
-// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
-import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPage.astro';
+// Sirf text yahan hai; design src/components/CaseStudyPageV2.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPageV2.astro';
 
 const data: CaseStudyData = {
+  storyPhoto: '/images/about/work-2.jpg',
   meta: {
     title: 'Semantic SEO Case Study: +340% Organic Clicks | Rank Ready',
     description: 'How entity gap analysis, About & Mention schema and intent-focused content took GiftCheckProgram.com from 458 to 2,020 organic clicks (+340%) in three months.',
@@ -11,7 +12,8 @@ const data: CaseStudyData = {
   path: '/semantic-seo-case-study/',
   hero: {
     tag: 'SEMANTIC SEO',
-    icon: '🧠',
+    icon: 'fas fa-project-diagram',
+    photo: '/images/services/seo-2.jpg',
     title: 'Boosting organic performance with <span class="grad">Semantic SEO.</span>',
     lead: 'GiftCheckProgram.com had good content but was invisible in search. By closing entity gaps and adding structured data, we turned it into content Google actually understands — and organic clicks grew <strong>340%</strong> in three months.',
   },
