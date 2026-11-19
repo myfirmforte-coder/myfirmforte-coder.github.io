@@ -1,17 +1,28 @@
 ---
-// BLOG PAGE — /blog/
+// BLOG PAGE — /blog/ (new design)
 // Posts ki list: src/data/posts.ts (naya post wahan sab se upar add karein).
-// Images: public/images/blog/
+// Images: public/images/blog/ (post ki img khali ho to topic ki photo dikhti hai).
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CtaBanner from '../../components/CtaBanner.astro';
 import { site } from '../../data/site';
 import { posts, blogCategories } from '../../data/posts';
 
 const fmt = (d: string) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-const img = (f: string) => (f ? '/images/blog/' + f : '');
+const noImg = ['', '1920x1080-768x432.png'];
+const fallback: Record<string, string> = {
+  'Technical SEO': '/images/services/seo-2.jpg',
+  'Local SEO': '/images/services/loc-street.jpg',
+  'Semantic SEO': '/images/services/ai-abstract.jpg',
+  'Website Design': '/images/services/web-3.jpg',
+};
+const img = (p: { img: string; cat: string }) => (noImg.includes(p.img) ? fallback[p.cat] ?? '/images/services/seo-2.jpg' : '/images/blog/' + p.img);
 const featured = posts[0];
-const rest = posts.slice(1);
 const counts = Object.fromEntries(blogCategories.map((c) => [c, posts.filter((p) => p.cat === c).length]));
+const topics = [
+  { cat: 'Technical SEO', icon: 'fas fa-cogs', text: 'Audits, Core Web Vitals, schema, internal linking and the fixes that move rankings.' },
+  { cat: 'Local SEO', icon: 'fas fa-map-marker-alt', text: 'Google Business Profile, citations, reviews and location pages that win the map pack.' },
+  { cat: 'Semantic SEO', icon: 'fas fa-project-diagram', text: 'Entities, topical authority and content Google and AI engines actually understand.' },
+  { cat: 'Website Design', icon: 'fas fa-laptop-code', text: 'Fast, SEO-ready websites and landing pages built to turn visitors into leads.' },
+];
 const PAGE = 12; // pehli dafa kitne posts dikhen; baqi "Load more" se
 ---
 <BaseLayout
@@ -19,94 +30,143 @@ const PAGE = 12; // pehli dafa kitne posts dikhen; baqi "Load more" se
   description="Sharp, no-fluff articles on semantic SEO, GEO, Core Web Vitals, GMB, and the search shifts that actually matter. New tactics published every Tuesday."
 >
   <!-- 1. HERO -->
-  <section class="sec b-hero">
-    <div class="bg" aria-hidden="true"><div class="g1"></div><div class="g2"></div><div class="gl"></div></div>
-    <div class="row inner center">
-      <div class="badge"><span class="dot"></span>THE RANK READY BLOG</div>
-      <h1>SEO &amp; GEO insights <span class="grad">that actually move rankings.</span></h1>
-      <p class="lead">Sharp, no-fluff articles on semantic SEO, GEO, Core Web Vitals, GMB, and the search shifts that actually matter. New tactics published every Tuesday.</p>
-      <div class="h-stats">
-        <div><strong>{posts.length}</strong><span>articles</span></div>
-        <div><strong>{blogCategories.length}</strong><span>topics</span></div>
-        <div><strong>Weekly</strong><span>new tactics</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. FEATURED POST -->
-  <section class="feat-sec">
-    <div class="row">
-      <a href={'/' + featured.slug + '/'} class="feat">
-        <div class="feat-img">
-          {featured.img ? <img src={img(featured.img)} alt={featured.title} width="768" height="512" /> : <div class="ph">✍️</div>}
-          <span class="new">LATEST</span>
+  <section class="b-hero">
+    <div class="row hero-grid">
+      <div class="hero-copy">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><i class="fas fa-chevron-right"></i><span>Blog</span></nav>
+        <h1>SEO &amp; GEO insights <span class="g">that actually move rankings.</span></h1>
+        <p class="lead">Sharp, no-fluff articles on semantic SEO, GEO, Core Web Vitals, GMB and the search shifts that matter. Written from real client audits, published every Tuesday.</p>
+        <form class="h-search" id="hsearch" role="search">
+          <i class="fas fa-search"></i>
+          <input type="search" id="hq" placeholder="Search 40+ articles, e.g. schema, GMB, AI Overviews" aria-label="Search articles" />
+          <button type="submit" class="rr-btn rr-btn-primary"><span>Search</span></button>
+        </form>
+        <div class="h-tags">
+          <span>Popular:</span>
+          <button type="button" data-q="schema">Schema</button>
+          <button type="button" data-q="google business">Google Business Profile</button>
+          <button type="button" data-q="ai">AI &amp; GEO</button>
+          <button type="button" data-q="core web vitals">Core Web Vitals</button>
         </div>
-        <div class="feat-body">
-          <div class="meta"><span class="chip">{featured.cat}</span><span class="date">{fmt(featured.date)}</span></div>
+      </div>
+      <a href={'/' + featured.slug + '/'} class="feat">
+        <div class="f-img"><img src={img(featured)} alt={featured.title} width="768" height="512" /><span class="new"><i class="fas fa-bolt"></i>Latest article</span></div>
+        <div class="f-body">
+          <div class="meta"><span class="chip">{featured.cat}</span><span class="date"><i class="far fa-calendar"></i>{fmt(featured.date)}</span></div>
           <h2>{featured.title}</h2>
           <p>{featured.excerpt}</p>
-          <span class="read">Read the article <span>→</span></span>
+          <span class="read">Read the article <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- 3. FILTERS + SEARCH + GRID -->
-  <section class="sec list-sec">
-    <div class="row toolbar">
-      <div class="cats" role="tablist">
-        <button class="cat active" data-cat="all">All articles <em>{posts.length}</em></button>
-        {blogCategories.map((c) => <button class="cat" data-cat={c}>{c} <em>{counts[c]}</em></button>)}
+  <!-- 2. STATS STRIP -->
+  <div class="row stats">
+    <div class="stat"><div class="s-v">{posts.length}</div><div class="s-l">in-depth articles</div></div>
+    <div class="stat"><div class="s-v">{blogCategories.length}</div><div class="s-l">core topics covered</div></div>
+    <div class="stat"><div class="s-v">Weekly</div><div class="s-l">new tactics every Tuesday</div></div>
+    <div class="stat"><div class="s-v">100+</div><div class="s-l">client audits behind the advice</div></div>
+  </div>
+
+  <!-- 3. TOPICS -->
+  <section class="topics">
+    <div class="row sec-head">
+      <div>
+        <p class="eyebrow">EXPLORE BY TOPIC</p>
+        <h2 class="h2">Find exactly <span class="g">what you need.</span></h2>
+      </div>
+      <p class="sub">Every article is filed under one of four topics. Pick the one closest to your problem and start there.</p>
+    </div>
+    <div class="row topic-grid">
+      {topics.map((t) => (
+        <button type="button" class="topic" data-go={t.cat}>
+          <span class="ico"><i class={t.icon}></i></span>
+          <span class="t-name">{t.cat}</span>
+          <span class="t-text">{t.text}</span>
+          <span class="t-count">{counts[t.cat]} {counts[t.cat] === 1 ? 'article' : 'articles'} <i class="fas fa-arrow-right"></i></span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- 5. ALL ARTICLES: FILTERS + SEARCH + GRID -->
+  <section class="list-sec" id="articles">
+    <div class="row list-head">
+      <div>
+        <p class="eyebrow">ALL ARTICLES</p>
+        <h2 class="h2">Browse the <span class="g">full library.</span></h2>
       </div>
       <label class="search">
-        <span aria-hidden="true">🔍</span>
-        <input type="search" id="q" placeholder="Search articles…" aria-label="Search articles" />
+        <i class="fas fa-search"></i>
+        <input type="search" id="q" placeholder="Search articles" aria-label="Search articles" />
       </label>
+    </div>
+    <div class="row cats" role="tablist">
+      <button class="cat active" data-cat="all">All articles <em>{posts.length}</em></button>
+      {blogCategories.map((c) => <button class="cat" data-cat={c}>{c} <em>{counts[c]}</em></button>)}
     </div>
 
     <div class="row grid-posts" id="posts">
-      {rest.map((p, i) => (
-        <a href={'/' + p.slug + '/'} class="post" data-cat={p.cat} data-title={p.title.toLowerCase()} data-i={i} hidden={i >= PAGE}>
-          <div class="p-img">
-            {p.img ? <img src={img(p.img)} alt={p.title} width="768" height="512" loading="lazy" /> : <div class="ph">✍️</div>}
-          </div>
+      {posts.map((p, i) => (
+        <a href={'/' + p.slug + '/'} class="post" data-cat={p.cat} data-title={(p.title + ' ' + p.excerpt).toLowerCase()} hidden={i >= PAGE}>
+          <div class="p-img"><img src={img(p)} alt={p.title} width="768" height="512" loading="lazy" /></div>
           <div class="p-body">
-            <div class="meta"><span class="chip">{p.cat}</span><span class="date">{fmt(p.date)}</span></div>
+            <div class="meta"><span class="chip">{p.cat}</span><span class="date"><i class="far fa-calendar"></i>{fmt(p.date)}</span></div>
             <h3>{p.title}</h3>
             <p>{p.excerpt}</p>
-            <span class="read">Read more <span>→</span></span>
+            <span class="read">Read more <i class="fas fa-arrow-right"></i></span>
           </div>
         </a>
       ))}
     </div>
-    <p class="row empty" id="empty" hidden>No articles match your search.</p>
-    <div class="row center more-row">
-      <button class="rr-btn rr-btn-outline" id="more"><span>Load more articles</span><span class="rr-btn-arrow">↓</span></button>
+    <div class="row empty" id="empty" hidden>
+      <span class="ico"><i class="fas fa-search"></i></span>
+      <p>No articles match your search. Try a shorter word, or <button type="button" id="reset">show all articles</button>.</p>
+    </div>
+    <div class="row more-row">
+      <p class="count" id="count"></p>
+      <button class="rr-btn rr-btn-outline" id="more"><span>Load more articles</span><i class="fas fa-arrow-down rr-btn-arrow"></i></button>
     </div>
   </section>
 
-  <!-- 4. AUDIT CTA -->
-  <section class="sec audit-sec">
-    <div class="row audit-row">
+  <!-- 6. AUDIT CTA -->
+  <section class="audit-sec">
+    <div class="row">
       <div class="audit">
-        <div class="a1"></div><div class="a2"></div>
+        <img class="a-bg" src="/images/services/audit-1.jpg" alt="" width="1200" height="850" loading="lazy" />
+        <div class="a-shade"></div>
         <div class="audit-in">
           <div>
-            <div class="a-badge"><span class="dot"></span>FREE SEO + GEO AUDIT</div>
-            <h2>Reading is good. A plan for your site is better.</h2>
-            <p>Get a senior-led audit of your rankings, local visibility and AI citations — with the 3 things actually holding you back.</p>
+            <p class="eyebrow light">FREE SEO + GEO AUDIT</p>
+            <h2>Reading is good. <span class="g">A plan for your site is better.</span></h2>
+            <p>Get a senior-led audit of your rankings, local visibility and AI citations, with the 3 things actually holding you back.</p>
+            <ul class="a-list">
+              <li><i class="fas fa-check"></i>Technical + on-page review</li>
+              <li><i class="fas fa-check"></i>Local and map pack check</li>
+              <li><i class="fas fa-check"></i>AI citation visibility</li>
+            </ul>
           </div>
-          <div class="rr-btn-group">
-            <a href="/services/seo-audits/" class="rr-btn rr-btn-primary rr-btn-lg"><span>Get My Free Audit</span><span class="rr-btn-arrow">→</span></a>
-            <a href={site.calendly} class="rr-btn rr-btn-ghost rr-btn-lg" target="_blank" rel="noopener"><span>Book a Call</span><span class="rr-btn-arrow">→</span></a>
+          <div class="btns">
+            <a href="/services/seo-audits/" class="rr-btn rr-btn-primary rr-btn-lg"><span>Get My Free Audit</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+            <a href={site.calendly} class="rr-btn rr-btn-ghost rr-btn-lg" target="_blank" rel="noopener"><span>Book a Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. CTA -->
-  <CtaBanner />
+  <!-- 7. FINAL CTA -->
+  <section class="final">
+    <div class="row final-in">
+      <h2>Let’s make you <span class="g">Rank Ready.</span></h2>
+      <p>Book a free 30-minute strategy call. No pressure, no pitch, just clear advice on what is holding your rankings back and how to fix it.</p>
+      <div class="btns center">
+        <a href={site.calendly} class="rr-btn rr-btn-primary rr-btn-lg" target="_blank" rel="noopener"><span>Book Your Free Call</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+        <a href="/contact/" class="rr-btn rr-btn-ghost rr-btn-lg"><span>Get in Touch</span><i class="fas fa-arrow-right rr-btn-arrow"></i></a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>
@@ -116,7 +176,11 @@ const PAGE = 12; // pehli dafa kitne posts dikhen; baqi "Load more" se
   const cards = [...document.querySelectorAll<HTMLElement>('#posts .post')];
   const more = document.getElementById('more') as HTMLElement;
   const empty = document.getElementById('empty') as HTMLElement;
+  const count = document.getElementById('count') as HTMLElement;
   const q = document.getElementById('q') as HTMLInputElement;
+  const hq = document.getElementById('hq') as HTMLInputElement;
+  const list = document.getElementById('articles') as HTMLElement;
+  const catBtns = [...document.querySelectorAll<HTMLElement>('.cat')];
   function render() {
     const term = q.value.trim().toLowerCase();
     const match = cards.filter((c) => (cat === 'all' || c.dataset.cat === cat) && (!term || (c.dataset.title || '').includes(term)));
@@ -124,122 +188,188 @@ const PAGE = 12; // pehli dafa kitne posts dikhen; baqi "Load more" se
     match.slice(0, shown).forEach((c) => (c.hidden = false));
     more.hidden = match.length <= shown;
     empty.hidden = match.length > 0;
+    count.textContent = match.length ? 'Showing ' + Math.min(shown, match.length) + ' of ' + match.length + ' articles' : '';
   }
-  document.querySelectorAll<HTMLElement>('.cat').forEach((b) => b.addEventListener('click', () => {
-    document.querySelectorAll('.cat').forEach((x) => x.classList.remove('active'));
-    b.classList.add('active');
-    cat = b.dataset.cat || 'all';
+  function setCat(c: string) {
+    cat = c;
+    catBtns.forEach((x) => x.classList.toggle('active', x.dataset.cat === c));
     shown = PAGE;
     render();
+  }
+  catBtns.forEach((b) => b.addEventListener('click', () => setCat(b.dataset.cat || 'all')));
+  document.querySelectorAll<HTMLElement>('[data-go]').forEach((b) => b.addEventListener('click', () => {
+    q.value = '';
+    setCat(b.dataset.go || 'all');
+    list.scrollIntoView({ behavior: 'smooth' });
   }));
+  function search(term: string) {
+    q.value = term;
+    setCat('all');
+    list.scrollIntoView({ behavior: 'smooth' });
+  }
+  (document.getElementById('hsearch') as HTMLFormElement).addEventListener('submit', (e) => { e.preventDefault(); search(hq.value); });
+  document.querySelectorAll<HTMLElement>('[data-q]').forEach((b) => b.addEventListener('click', () => { hq.value = b.dataset.q || ''; search(hq.value); }));
+  (document.getElementById('reset') as HTMLElement).addEventListener('click', () => { q.value = ''; setCat('all'); });
   q.addEventListener('input', () => { shown = PAGE; render(); });
   more.addEventListener('click', () => { shown += PAGE; render(); });
   render();
 </script>
 
 <style>
-  .grad { background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  section { font-family: var(--inter); }
-  .inner { z-index: 1; }
-  .bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  section, .stats { font-family: var(--inter); position: relative; }
+  :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
+  .g { background: linear-gradient(90deg, #6EE7B7 0%, #059669 100%); -webkit-box-decoration-break: clone; box-decoration-break: clone; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #34D399; }
+  .eyebrow { margin-bottom: 14px; padding: 0; }
+  .eyebrow.light { color: #6EE7B7; }
+  .h2 { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: -1.4px; color: var(--navy); margin-bottom: 0; padding: 0; }
+  .sub { font-size: 17px; line-height: 1.7; color: var(--slate-500); padding: 0; margin: 0; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btns.center { justify-content: center; }
+  .sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 48px; }
+  h3 { padding: 0; }
+  .ico { flex: none; width: 52px; height: 52px; border-radius: 15px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; box-shadow: 0 12px 24px -12px rgba(5,150,105,.6), inset 0 1px 0 rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; font-size: 21px; }
+
+  /* shared post bits */
+  .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; color: #047857; background: #ECFDF5; border-radius: 100px; padding: 4px 11px; line-height: 1.5; }
+  .date { font-size: 13px; color: var(--slate-400); display: inline-flex; align-items: center; gap: 6px; }
+  .date i { font-size: 12px; }
+  .read { margin-top: auto; font-size: 15px; font-weight: 700; color: #059669; }
+  .read i { font-size: 12px; margin-left: 4px; transition: transform .3s; }
 
   /* 1. Hero */
-  .b-hero { background: linear-gradient(135deg, #0F172A 0%, #020617 100%); padding: 110px 0 170px; overflow: hidden; }
-  .b-hero .row { max-width: 980px; }
-  .g1 { position: absolute; top: 5%; left: -8%; width: 550px; height: 550px; background: radial-gradient(circle, rgba(16,185,129,.14) 0%, transparent 70%); filter: blur(70px); }
-  .g2 { position: absolute; bottom: -20%; right: -8%; width: 650px; height: 650px; background: radial-gradient(circle, rgba(139,92,246,.18) 0%, transparent 70%); filter: blur(80px); }
-  .gl { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
-  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; line-height: 1.7; margin-bottom: 24px; }
-  .dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 12px var(--green); }
-  .b-hero h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: #fff; margin-bottom: 22px; padding: 0; }
-  .lead { font-size: 18.5px; line-height: 1.7; color: var(--slate-300); max-width: 720px; margin: 0 auto 34px; padding: 0; }
-  .h-stats { display: inline-flex; gap: 0; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); border-radius: 16px; overflow: hidden; }
-  .h-stats div { padding: 14px 28px; display: flex; flex-direction: column; align-items: center; line-height: 1.3; }
-  .h-stats div + div { border-left: 1px solid rgba(255,255,255,.1); }
-  .h-stats strong { color: #fff; font-size: 22px; font-weight: 800; }
-  .h-stats span { color: var(--slate-400); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .b-hero { background: linear-gradient(135deg, #0B1224 0%, #020617 100%); padding: 90px 0 150px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .hero-grid > * { min-width: 0; }
+  .crumbs { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px; color: #6EE7B7; }
+  .crumbs a { color: var(--slate-400); }
+  .crumbs a:hover { color: #fff; }
+  .crumbs i { font-size: 9px; color: var(--slate-500); }
+  .b-hero h1 { font-size: 58px; font-weight: 800; line-height: 1.07; letter-spacing: -2.1px; color: #fff; margin-bottom: 24px; padding: 0; }
+  .lead { font-size: 18px; line-height: 1.7; color: var(--slate-300); margin-bottom: 30px; padding: 0; max-width: 580px; }
+  .h-search { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 16px; padding: 7px 7px 7px 20px; max-width: 580px; box-shadow: 0 24px 50px -24px rgba(0,0,0,.7); }
+  .h-search > i { color: var(--slate-400); font-size: 16px; }
+  .h-search input { flex: 1; min-width: 0; border: 0; outline: 0; font: inherit; font-size: 15.5px; color: var(--navy); background: transparent; padding: 10px 0; }
+  .h-search .rr-btn { flex: none; }
+  .h-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 18px; font-size: 13.5px; color: var(--slate-400); }
+  .h-tags button { font: inherit; font-size: 13px; font-weight: 600; color: #CBD5E1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 6px 13px; cursor: pointer; transition: border-color .25s, color .25s; }
+  .h-tags button:hover { border-color: #6EE7B7; color: #fff; }
+  .feat { display: flex; flex-direction: column; background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); transition: transform .35s; }
+  .feat:hover { transform: translateY(-5px); }
+  .f-img { position: relative; aspect-ratio: 768 / 430; overflow: hidden; }
+  .f-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+  .feat:hover .f-img img { transform: scale(1.04); }
+  .new { position: absolute; top: 16px; left: 16px; display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; border-radius: 999px; padding: 6px 13px; box-shadow: 0 10px 22px -10px rgba(5,150,105,.8); }
+  .f-body { padding: 26px 28px 28px; }
+  .f-body h2 { font-size: 23px; font-weight: 800; line-height: 1.3; letter-spacing: -.5px; color: var(--navy); margin-bottom: 10px; padding: 0; }
+  .f-body p { font-size: 15px; line-height: 1.65; color: var(--slate-500); padding: 0; margin: 0 0 16px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .feat:hover .read i { transform: translateX(5px); }
 
-  /* shared bits */
-  .meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-  .chip { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #047857; background: #ECFDF5; border-radius: 100px; padding: 4px 12px; line-height: 1.6; }
-  .date { font-size: 13px; color: var(--slate-400); line-height: 1.6; }
-  .read { font-size: 14px; font-weight: 700; color: var(--green); display: inline-flex; gap: 6px; align-items: center; }
-  .read span { transition: transform .3s; }
-  .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 56px; background: linear-gradient(135deg, #0F172A, #1E293B); background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(135deg, #0F172A, #1E293B); background-size: 30px 30px, 30px 30px, 100% 100%; }
+  /* 2. Stats */
+  .stats { z-index: 2; margin-top: -70px; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(15,23,42,.25); display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 28px 30px; }
+  .stat + .stat { border-left: 1px solid #F1F5F9; }
+  .s-v { font-size: 36px; font-weight: 800; letter-spacing: -1.3px; line-height: 1.1; background: linear-gradient(90deg, #10B981 0%, #047857 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #059669; }
+  .s-l { font-size: 14px; line-height: 1.5; color: var(--slate-500); margin-top: 6px; }
 
-  /* 2. Featured */
-  .feat-sec { position: relative; z-index: 2; margin-top: -110px; }
-  .feat-sec .row { padding: 0; }
-  .feat { display: grid; grid-template-columns: 1.15fr 1fr; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 70px -30px rgba(15,23,42,.35); border: 1px solid #E2E8F0; transition: transform .3s, box-shadow .3s; }
-  .feat:hover { transform: translateY(-4px); box-shadow: 0 40px 80px -30px rgba(15,23,42,.4); }
-  .feat:hover .read span { transform: translateX(5px); }
-  .feat-img { position: relative; min-height: 380px; background: #0F172A; }
-  .feat-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .new { position: absolute; top: 20px; left: 20px; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 100px; line-height: 1.6; }
-  .feat-body { padding: 48px 46px; display: flex; flex-direction: column; justify-content: center; }
-  .feat-body h2 { font-size: 32px; font-weight: 800; line-height: 1.2; letter-spacing: -.8px; color: var(--navy); margin-bottom: 16px; padding: 0; }
-  .feat-body p { font-size: 16px; line-height: 1.75; color: var(--slate-500); margin-bottom: 24px; padding: 0; }
+  /* 3. Topics */
+  .topics { padding: 100px 0 90px; background: #fff; }
+  .topic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .topic { display: flex; flex-direction: column; align-items: flex-start; text-align: left; font: inherit; cursor: pointer; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; padding: 28px; transition: transform .3s, box-shadow .3s, border-color .3s; }
+  .topic:hover { transform: translateY(-4px); border-color: #A7F3D0; box-shadow: 0 26px 50px -30px rgba(15,23,42,.3); }
+  .topic .ico { margin-bottom: 22px; }
+  .t-name { font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .t-text { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); margin-bottom: 20px; }
+  .t-count { margin-top: auto; font-size: 14px; font-weight: 700; color: #059669; }
+  .t-count i { font-size: 11px; margin-left: 4px; transition: transform .3s; }
+  .topic:hover .t-count i { transform: translateX(5px); }
 
-  /* 3. List */
-  .list-sec { background: #fff; padding: 80px 0 100px; }
-  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 0 0 36px; }
-  .cats { display: flex; flex-wrap: wrap; gap: 10px; }
-  .cat { font-family: var(--inter); padding: 10px 18px; border-radius: 100px; border: 1.5px solid #E2E8F0; background: #fff; color: var(--slate-500); font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s; line-height: 1.6; }
-  .cat em { font-style: normal; font-size: 12px; margin-left: 4px; padding: 1px 8px; border-radius: 100px; background: var(--light-bg); color: var(--slate-400); }
-  .cat:hover { border-color: var(--green); color: var(--green); }
-  .cat.active { background: var(--navy); border-color: var(--navy); color: #fff; }
-  .cat.active em { background: rgba(255,255,255,.15); color: #fff; }
-  .search { display: flex; align-items: center; gap: 10px; border: 1.5px solid #E2E8F0; border-radius: 100px; padding: 8px 18px; min-width: 280px; transition: border-color .2s; }
-  .search:focus-within { border-color: var(--green); }
-  .search span { font-size: 14px; opacity: .6; }
-  .search input { border: 0; outline: 0; font-family: var(--inter); font-size: 14.5px; color: var(--navy); width: 100%; background: transparent; padding: 4px 0; }
-  .grid-posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 0; }
-  .post { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 18px; overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
+  /* 4 + 5. Post cards */
+  .grid-posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .post { display: flex; flex-direction: column; background: #fff; border: 1px solid #E2E8F0; border-radius: 20px; overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
   .post[hidden] { display: none; }
-  .post:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -20px rgba(15,23,42,.2); border-color: var(--green); }
-  .post:hover .read span { transform: translateX(5px); }
-  .p-img { aspect-ratio: 16 / 10; overflow: hidden; background: #0F172A; }
-  .p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-  .post:hover .p-img img { transform: scale(1.04); }
-  .p-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
-  .p-body h3 { font-size: 19px; font-weight: 700; line-height: 1.35; letter-spacing: -.2px; color: var(--navy); margin-bottom: 10px; padding: 0; }
-  .p-body p { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); margin-bottom: 18px; padding: 0; flex: 1; }
-  .empty { text-align: center; color: var(--slate-500); font-size: 16px; padding: 30px 0; }
-  .more-row { padding: 48px 0 0; }
-  .more-row [hidden] { display: none; }
-  #more { cursor: pointer; font-family: var(--inter); }
+  .post:hover { transform: translateY(-4px); border-color: #A7F3D0; box-shadow: 0 26px 50px -30px rgba(15,23,42,.35); }
+  .p-img { aspect-ratio: 768 / 450; overflow: hidden; background: #0F172A; }
+  .p-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+  .post:hover .p-img img { transform: scale(1.05); }
+  .p-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+  .p-body h3 { font-size: 18.5px; font-weight: 700; line-height: 1.4; color: var(--navy); margin-bottom: 10px; }
+  .p-body p { font-size: 14.5px; line-height: 1.65; color: var(--slate-500); padding: 0; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .post:hover .read i { transform: translateX(5px); }
 
-  /* 4. Audit CTA */
-  .audit-sec { background: var(--light-bg); }
-  .audit-row { padding: 0; }
-  .audit { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); border-radius: 26px; padding: 56px 56px; position: relative; overflow: hidden; color: #fff; }
-  .a1 { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%); filter: blur(50px); }
-  .a2 { position: absolute; bottom: -60px; left: -60px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(139,92,246,.22), transparent 70%); filter: blur(40px); }
-  .audit-in { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
-  .a-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 1.5px; margin-bottom: 16px; line-height: 1.7; }
-  .audit h2 { font-size: 34px; font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin-bottom: 12px; padding: 0; }
-  .audit p { font-size: 16.5px; line-height: 1.7; color: var(--slate-300); padding: 0; max-width: 560px; }
+  .list-sec { padding: 100px 0; background: var(--light-bg); scroll-margin-top: 80px; }
+  .list-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 28px; }
+  .search { display: flex; align-items: center; gap: 10px; width: 340px; max-width: 100%; border: 1px solid #E2E8F0; border-radius: 14px; padding: 0 16px; background: #fff; transition: border-color .25s, box-shadow .25s; }
+  .search:focus-within { border-color: #6EE7B7; box-shadow: 0 0 0 4px rgba(16,185,129,.12); }
+  .search i { color: var(--slate-400); }
+  .search input { flex: 1; min-width: 0; border: 0; outline: 0; font: inherit; font-size: 15px; color: var(--navy); padding: 13px 0; background: transparent; }
+  .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+  .cat { font: inherit; font-size: 14px; font-weight: 600; color: #475569; border: 1px solid #E2E8F0; background: #fff; border-radius: 999px; padding: 9px 16px; cursor: pointer; transition: border-color .25s, color .25s; }
+  .cat em { font-style: normal; font-size: 12px; font-weight: 700; color: var(--slate-400); background: #F1F5F9; border-radius: 999px; padding: 1px 8px; margin-left: 6px; }
+  .cat:hover { border-color: #6EE7B7; color: #059669; }
+  .cat.active { background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); border-color: transparent; color: #fff; box-shadow: 0 10px 22px -12px rgba(5,150,105,.7); }
+  .cat.active em { background: rgba(255,255,255,.25); color: #fff; }
+  .empty { display: flex; align-items: center; gap: 18px; border: 1px dashed #CBD5E1; border-radius: 20px; padding: 28px; }
+  .empty[hidden] { display: none; }
+  .empty p { font-size: 16px; color: var(--slate-500); padding: 0; margin: 0; }
+  .empty button { font: inherit; color: #059669; font-weight: 700; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+  .more-row { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 44px; }
+  .count { font-size: 14px; color: var(--slate-400); padding: 0; margin: 0; }
+  #more[hidden] { display: none; }
 
+  /* 6. Audit */
+  .audit-sec { padding: 100px 0; background: #fff; }
+  .audit { position: relative; border-radius: 30px; overflow: hidden; }
+  .a-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .a-shade { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2,6,23,.95) 0%, rgba(6,78,59,.88) 55%, rgba(6,78,59,.6) 100%); }
+  .audit-in { position: relative; display: grid; grid-template-columns: 1.4fr auto; gap: 50px; align-items: center; padding: 70px 64px; }
+  .audit h2 { font-size: 40px; font-weight: 800; line-height: 1.15; letter-spacing: -1.3px; color: #fff; margin-bottom: 16px; padding: 0; }
+  .audit p { font-size: 17px; line-height: 1.7; color: #CBD5E1; padding: 0; margin: 0 0 22px; max-width: 620px; }
+  .a-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
+  .a-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #fff; }
+  .a-list i { width: 22px; height: 22px; border-radius: 7px; background: linear-gradient(135deg, #6EE7B7 0%, #059669 100%); font-size: 10px; display: flex; align-items: center; justify-content: center; }
+  .audit .btns { flex-direction: column; }
+
+  /* 7. Final */
+  .final { background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #064E3B 100%); padding: 120px 0; }
+  .final-in { text-align: center; max-width: 820px; }
+  .final h2 { font-size: 60px; font-weight: 800; line-height: 1.06; letter-spacing: -2px; color: #fff; margin-bottom: 20px; padding: 0; }
+  .final p { font-size: 18px; line-height: 1.7; color: var(--slate-300); max-width: 620px; margin: 0 auto 36px; padding: 0; }
+
+  @media (max-width: 1100px) {
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 980px) {
-    .feat { grid-template-columns: 1fr; }
-    .feat-img { min-height: 260px; }
-    .grid-posts { grid-template-columns: repeat(2, 1fr); }
-    .audit-in { grid-template-columns: 1fr; }
+    .hero-grid, .sec-head, .audit-in { grid-template-columns: 1fr; gap: 40px; }
+    .sec-head { gap: 16px; }
+    .b-hero { padding: 64px 0 130px; }
+    .feat { max-width: 620px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid #F1F5F9; }
+    .grid-posts { grid-template-columns: 1fr 1fr; }
+    .audit .btns { flex-direction: row; }
   }
   @media (max-width: 767px) {
-    .b-hero { padding: 60px 0 140px; }
-    .b-hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .b-hero h1 { font-size: 40px; letter-spacing: -1.3px; }
     .lead { font-size: 16.5px; }
-    .h-stats div { padding: 12px 16px; }
-    .h-stats strong { font-size: 18px; }
-    .feat-sec { margin-top: -90px; }
-    .feat-img { min-height: 210px; }
-    .feat-body { padding: 28px 24px; }
-    .feat-body h2 { font-size: 24px; }
-    .list-sec { padding: 56px 0 60px; }
-    .search { min-width: 0; width: 100%; }
-    .grid-posts { grid-template-columns: 1fr; gap: 20px; }
-    .audit { padding: 40px 26px; }
-    .audit h2 { font-size: 26px; }
+    .h2 { font-size: 32px; letter-spacing: -1px; }
+    .h-search { padding-left: 16px; }
+    .h-search .rr-btn { padding-left: 16px; padding-right: 16px; }
+    .stats { margin-top: -60px; }
+    .stat { padding: 20px 18px; }
+    .s-v { font-size: 26px; }
+    .s-l { font-size: 12.5px; }
+    .topics, .list-sec { padding: 70px 0; }
+    .topic-grid, .grid-posts { grid-template-columns: 1fr; }
+    .search { width: 100%; }
+    .cats { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+    .cat { white-space: nowrap; flex: none; }
+    .audit-sec { padding: 70px 0; }
+    .audit { border-radius: 22px; }
+    .audit-in { padding: 44px 24px; }
+    .audit h2 { font-size: 30px; }
+    .final { padding: 80px 0; }
+    .final h2 { font-size: 38px; letter-spacing: -1.2px; }
   }
 </style>
