@@ -1,9 +1,10 @@
 ---
 // CASE STUDY — GMB (CBD dispensary, Honolulu) — /case-study-top-rankings-for-a-cbd/
-// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
-import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPage.astro';
+// Sirf text yahan hai; design src/components/CaseStudyPageV2.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../components/CaseStudyPageV2.astro';
 
 const data: CaseStudyData = {
+  storyPhoto: '/images/services/loc-phone.jpg',
   meta: {
     title: 'GMB Case Study: #1 in the Local 3-Pack for a CBD Dispensary in Honolulu | Rank Ready',
     description: 'How a complete Google Business Profile, NLP-driven local SEO and a citation strategy took a Honolulu CBD dispensary from 6.1% to 59.2% share of local voice.',
@@ -11,7 +12,8 @@ const data: CaseStudyData = {
   path: '/case-study-top-rankings-for-a-cbd/',
   hero: {
     tag: 'GMB',
-    icon: '📍',
+    icon: 'fas fa-map-marker-alt',
+    photo: '/images/services/gmb-shop.jpg',
     title: 'Top Google rankings for a CBD dispensary in <span class="grad">Honolulu, Hawaii.</span>',
     lead: 'A CBD dispensary in one of Hawaii’s most competitive local markets wanted the top spot in Google Maps. With a fully optimized Google Business Profile, NLP-driven local content and a consistent multi-platform strategy, it reached <strong>#1 in the Local 3-Pack</strong> for its highest-intent searches.',
   },
