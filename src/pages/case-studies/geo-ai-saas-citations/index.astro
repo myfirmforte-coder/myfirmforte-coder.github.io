@@ -1,9 +1,10 @@
 ---
 // CASE STUDY — GEO / AI (B2B SaaS) — /case-studies/geo-ai-saas-citations/
-// Sirf text yahan hai; design src/components/CaseStudyPage.astro mein hai.
-import CaseStudyPage, { type CaseStudyData } from '../../../components/CaseStudyPage.astro';
+// Sirf text yahan hai; design src/components/CaseStudyPageV2.astro mein hai.
+import CaseStudyPage, { type CaseStudyData } from '../../../components/CaseStudyPageV2.astro';
 
 const data: CaseStudyData = {
+  storyPhoto: '/images/services/ai-chat.jpg',
   meta: {
     title: 'GEO Case Study: Cited by ChatGPT in 3 Weeks, 0→74% AI Citation Rate | Rank Ready',
     description: 'How NorthPeak SaaS went from invisible in AI answers to cited by 4 of 5 major AI engines — a 0→74% AI citation rate in 90 days with schema, authority content and entity signaling.',
@@ -11,7 +12,8 @@ const data: CaseStudyData = {
   path: '/case-studies/geo-ai-saas-citations/',
   hero: {
     tag: 'GEO / AI',
-    icon: '🚀',
+    icon: 'fas fa-robot',
+    photo: '/images/services/ai-woman.jpg',
     title: 'Cited by ChatGPT <span class="grad">in 3 weeks.</span>',
     lead: 'A B2B SaaS company wanted to show up when prospects asked AI tools for recommendations in their category. With schema optimization, authority content and entity signaling, it earned citations across <strong>4 of 5 major AI engines</strong> — and a <strong>0 → 74%</strong> AI citation rate in 90 days.',
   },
