@@ -71,8 +71,9 @@ const schema = {
       <aside class="side">
         {toc.length > 2 && (
           <nav class="toc" aria-label="On this page">
-            <div class="side-lbl">On this page</div>
-            <ol>{toc.map((t) => <li><a href={'#' + t.id}>{t.text}</a></li>)}</ol>
+            <div class="toc-head"><span class="side-lbl">On this page</span><span class="toc-count">{toc.length} sections</span></div>
+            <ol class="toc-list">{toc.map((t, i) => <li><a href={'#' + t.id} data-id={t.id}><span class="tn">{String(i + 1).padStart(2, '0')}</span><span class="tt">{t.text}</span></a></li>)}</ol>
+            <div class="toc-bar"><span id="toc-progress"></span></div>
           </nav>
         )}
         <div class="side-cta">
@@ -132,6 +133,32 @@ const schema = {
   </section>
 </BaseLayout>
 
+<script>
+  // "On this page": jo section screen par hai use highlight karo, aur parhne ki progress dikhao
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.toc-list a')];
+  const list = document.querySelector<HTMLElement>('.toc-list');
+  const bar = document.getElementById('toc-progress');
+  const article = document.querySelector<HTMLElement>('.prose');
+  const heads = links.map((a) => document.getElementById(a.dataset.id || '')).filter(Boolean) as HTMLElement[];
+  let current = '';
+  function update() {
+    let id = heads.length ? heads[0].id : '';
+    for (const h of heads) { if (h.getBoundingClientRect().top < 140) id = h.id; }
+    if (id !== current) {
+      current = id;
+      links.forEach((a) => a.classList.toggle('active', a.dataset.id === id));
+      const act = links.find((a) => a.dataset.id === id);
+      if (act && list) list.scrollTo({ top: act.offsetTop - list.clientHeight / 2 + act.clientHeight / 2, behavior: 'smooth' });
+    }
+    if (bar && article) {
+      const r = article.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.4 - r.top) / r.height));
+      bar.style.width = (p * 100).toFixed(1) + '%';
+    }
+  }
+  if (links.length) { window.addEventListener('scroll', update, { passive: true }); update(); }
+</script>
+
 <style>
   section, .cover { font-family: var(--inter); position: relative; }
   :global(.rr-btn i.rr-btn-arrow) { font-size: 13px; }
@@ -161,13 +188,19 @@ const schema = {
   .p-body { padding: 70px 0 60px; background: #fff; }
   .p-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: start; max-width: 1160px; }
   .side { position: sticky; top: 110px; display: grid; gap: 20px; }
-  .toc { border: 1px solid #E2E8F0; border-radius: 20px; padding: 24px; max-height: 60vh; overflow: auto; }
-  .side-lbl { font-size: 12px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: #059669; margin-bottom: 14px; }
-  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: t; }
-  .toc li { counter-increment: t; display: flex; gap: 10px; font-size: 14px; line-height: 1.5; }
-  .toc li::before { content: counter(t, decimal-leading-zero); font-weight: 700; color: #6EE7B7; flex: none; font-size: 12.5px; padding-top: 1px; }
-  .toc a { color: #475569; }
-  .toc a:hover { color: #059669; }
+  .toc { border: 1px solid #E2E8F0; border-radius: 20px; padding: 22px 0 0; background: #fff; overflow: hidden; box-shadow: 0 20px 40px -32px rgba(15,23,42,.3); }
+  .toc-head { display: flex; align-items: center; justify-content: space-between; padding: 0 22px 14px; border-bottom: 1px solid #F1F5F9; }
+  .side-lbl { font-size: 12px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: #059669; }
+  .toc-count { font-size: 12px; font-weight: 600; color: var(--slate-400); }
+  .toc-list { list-style: none; margin: 0; padding: 8px 0; max-height: calc(100vh - 430px); min-height: 160px; overflow-y: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 28px), transparent 100%); }
+  .toc-list::-webkit-scrollbar { display: none; }
+  .toc-list a { display: grid; grid-template-columns: 26px 1fr; gap: 8px; padding: 8px 22px 8px 19px; border-left: 3px solid transparent; font-size: 14px; line-height: 1.5; color: #475569; transition: background .2s, color .2s, border-color .2s; }
+  .tn { font-size: 12px; font-weight: 700; color: #94A3B8; font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .toc-list a:hover { background: #F8FAFC; color: var(--navy); }
+  .toc-list a.active { border-left-color: #10B981; background: #ECFDF5; color: #064E3B; font-weight: 600; }
+  .toc-list a.active .tn { color: #059669; }
+  .toc-bar { height: 3px; background: #F1F5F9; }
+  .toc-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #6EE7B7, #059669); transition: width .15s linear; }
   .side-cta { background: linear-gradient(135deg, #064E3B 0%, #065F46 40%, #0F172A 100%); border-radius: 20px; padding: 26px; color: #fff; }
   .sc-title { font-size: 20px; font-weight: 800; margin: 16px 0 8px; }
   .side-cta p { font-size: 14.5px; line-height: 1.6; color: #CBD5E1; padding: 0; margin: 0 0 18px; }
@@ -245,7 +278,7 @@ const schema = {
   @media (max-width: 1080px) {
     .p-grid { grid-template-columns: 1fr; }
     .side { position: static; grid-template-columns: 1fr 1fr; }
-    .toc { max-height: none; }
+    .toc-list { max-height: 340px; }
   }
   @media (max-width: 980px) {
     .rel-grid { grid-template-columns: 1fr 1fr; }
