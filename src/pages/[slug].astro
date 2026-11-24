@@ -26,7 +26,7 @@ const fallback: Record<string, string> = {
   'Semantic SEO': '/images/services/ai-abstract.jpg',
   'Website Design': '/images/services/web-3.jpg',
 };
-const imgOf = (p: WpPost) => (p.featured ? localImg(p.featured.src) : fallback[p.categories[0]] || '/images/services/seo-2.jpg');
+const imgOf = (p: WpPost) => (p.featured && !p.featured.full.includes('1920x1080') ? localImg(p.featured.full) : fallback[p.categories[0]] || '/images/services/seo-2.jpg');
 const hero = imgOf(post);
 const description = seo?.d && seo.d.length > 60 ? seo.d : stripTags(post.excerpt).replace(/\s*\[&hellip;\]|\s*\[…\]/g, '').slice(0, 158);
 const pageTitle = seo?.t ? (seo.t.includes('Rank Ready') ? seo.t : seo.t + ' | Rank Ready') : title + ' | Rank Ready';
