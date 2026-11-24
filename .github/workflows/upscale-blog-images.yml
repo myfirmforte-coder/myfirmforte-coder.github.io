@@ -1,0 +1,42 @@
+# Ek dafa chalne wala kaam: choti blog images ko saaf (HD) banata hai, asli images ko nahi chhedta.
+name: Upscale blog images
+
+on:
+  push:
+    paths: ['.github/workflows/upscale-blog-images.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upscale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: |
+          pip install "opencv-contrib-python-headless<5"
+          curl -sL -o EDSR_x2.pb https://raw.githubusercontent.com/Saafke/EDSR_Tensorflow/master/models/EDSR_x2.pb
+      - name: Upscale
+        run: |
+          printf '%s\n' \
+            2026-06-SEO-For-Plumbing-1.jpg 2026-06-HELPFULL-CONTENT-SYSTEM.jpg 2026-06-category-pages.jpg \
+            2026-06-AI-Visibility-Audit.jpg 2026-06-SEO-AUDIT-2026.jpg 2026-06-Featured-Snippets-vs-AI-Overviews.jpg \
+            2025-01-core-web-vitals-in-webdesign-and-seo.jpg 2025-01-seo-friendly-landing-page-design.jpg \
+            2025-01-schema-markup-boosting-seo.jpg 2025-01-google-business-profile-SEO-tips-1.jpg \
+            2025-01-seo-tips-for-small-local-business.jpg 2025-01-complete-local-seo-guide-for-small-businesses.jpg \
+            | xargs -P 2 -n 1 python scripts/upscale.py
+          ls -la public/images/blog/wp/*-hd.jpg
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/images/blog/wp
+          git commit -m "Add HD versions of small blog images" || echo "nothing to commit"
+          git pull --rebase
+          git push
