@@ -5,6 +5,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
 import { posts, blogCategories } from '../../data/posts';
+import { wpPosts, localImg } from '../../lib/wpPosts';
 
 const fmt = (d: string) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const noImg = ['', '1920x1080-768x432.png'];
@@ -14,7 +15,9 @@ const fallback: Record<string, string> = {
   'Semantic SEO': '/images/services/ai-abstract.jpg',
   'Website Design': '/images/services/web-3.jpg',
 };
-const img = (p: { img: string; cat: string }) => (noImg.includes(p.img) ? fallback[p.cat] ?? '/images/services/seo-2.jpg' : '/images/blog/' + p.img);
+// Asli (full size) image use karo taa ke card par photo saaf dikhe, blur na ho
+const full = Object.fromEntries(wpPosts.filter((w) => w.featured && !w.featured.full.includes('1920x1080')).map((w) => [w.slug, localImg(w.featured!.full)]));
+const img = (p: { slug: string; img: string; cat: string }) => full[p.slug] ?? (noImg.includes(p.img) ? fallback[p.cat] ?? '/images/services/seo-2.jpg' : '/images/blog/' + p.img);
 const featured = posts[0];
 const counts = Object.fromEntries(blogCategories.map((c) => [c, posts.filter((p) => p.cat === c).length]));
 const topics = [
