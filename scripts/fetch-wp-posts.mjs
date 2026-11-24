@@ -46,7 +46,7 @@ const re = /https?:\/\/rank-ready\.com\/wp-content\/uploads\/[^"'\s<>()]+?\.(?:j
 const urls = new Set();
 for (const p of out) {
   for (const u of p.content.match(re) || []) urls.add(u);
-  if (p.featured) { urls.add(p.featured.src); }
+  if (p.featured) { urls.add(p.featured.src); urls.add(p.featured.full); } // full = asli bari image (saaf, blur nahi)
 }
 fs.mkdirSync(IMG_DIR, { recursive: true });
 let ok = 0, fail = 0;
