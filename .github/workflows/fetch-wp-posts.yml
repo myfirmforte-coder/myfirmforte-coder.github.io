@@ -1,5 +1,6 @@
 # Ek dafa chalne wala kaam: purani WordPress site se blog posts aur un ki images
 # PARH KE (sirf read, kuch change nahi) is repo mein save karta hai.
+# (Dobara chalane ke liye is file mein koi bhi chhota sa change kar dein.)
 name: Import blog posts from old site
 
 on:
