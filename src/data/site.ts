@@ -20,7 +20,7 @@ export const site = {
   // Forms ke liye Web3Forms access key (web3forms.com se free). Khali ho to form email app kholta hai.
   web3formsKey: '',
   // Saari images is project ke andar public/images/ mein save hain (WordPress pe depend nahi).
-  logo: '/images/logo-rank-ready.svg',
+  logo: '/images/logo-reverse.png',
 };
 
 // Images ka folder (public/images/). Nayi image daalni ho to wahan file rakh ke yahan se naam likhein.
