@@ -29,7 +29,7 @@ const year = new Date().getFullYear();
 <footer class="ftr">
   <div class="row grid g-4 ftr-top">
     <div>
-      <h3 class="brand">Rank Ready</h3>
+      <a href="/" class="brand"><img src={site.logo} width="215" height="42" alt="Rank Ready" loading="lazy" /></a>
       <p class="txt">We build websites and search systems engineered to win Google, local, and AI search — all at once.</p>
       <ul class="social">
         {socials.map(([icon, name, href]) => (
@@ -63,7 +63,8 @@ const year = new Date().getFullYear();
 <style>
   .ftr { background: var(--navy-deep); padding: 80px 0 40px; font-family: var(--inter); }
   .ftr-top { margin-bottom: 48px; }
-  .brand { font-size: 24px; font-weight: 800; line-height: 24px; color: #fff; margin-bottom: 16px; }
+  .brand { display: inline-block; margin-bottom: 18px; }
+  .brand img { display: block; width: 215px; height: auto; }
   .txt { font-size: 14px; line-height: 30.6px; color: var(--slate-400); margin-bottom: 20px; }
   .social { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px; }
   .social a { width: 42px; height: 42px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 8px 18px -8px rgba(0,0,0,.6); transition: transform .3s, box-shadow .3s; }
